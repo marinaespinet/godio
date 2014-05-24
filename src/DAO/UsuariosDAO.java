@@ -1,11 +1,11 @@
 package DAO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import ENTITY.*;
 
 public class UsuariosDAO {
 
@@ -20,35 +20,48 @@ public class UsuariosDAO {
 		return instancia;
 	}
 	
-	public void grabarUsuario(UsuarioDTO usuario){
-		/*Convierto el parametro a bean*/
-		UsuarioBean aux = new UsuarioBean();
-		aux.setId(usuario.getId());
-		aux.setNombre(usuario.getNombre());
-		aux.setCuit(usuario.getCuit());
-		/*Abro sesion y grabo el objeto*/
+	public void grabarUsuario(Usuario aux){
+				
 		Session session = sf.openSession();
-		session.beginTransaction();
+		
 		session.persist(aux);
-		session.flush();
-		session.getTransaction().commit();
+		
 		session.close();
 	}
 
-	public List<UsuarioDTO> getUsuarios()
+	//Trae todos.
+	public List<Usuario> getUsuarios()
 	{
-		List<UsuarioDTO> usuarios = new ArrayList<UsuarioDTO>();
-		UsuarioDTO aux = null;
 		Session session = sf.openSession();
-		List<UsuarioBean> list = session.createQuery("from UsuarioBean").list();
-		for(UsuarioBean u: list)
-		{
-			aux = new UsuarioDTO(u.getId(), u.getNombre(), u.getCuit());
-			usuarios.add(aux);
-		}
+		List<Usuario> list = (List<Usuario>)session.createQuery("from Usuario").list();
+		
 		session.close();
 
-		return usuarios;
+		return list;
+	}
+	
+	//busqueda x ID
+	public Usuario getUsuario(int id){
+		Session session = sf.openSession();
+		//Busca x ID ?
+		Usuario usu  = (Usuario)session.get(Usuario.class, id);
+		
+		session.close();
+
+		return usu;
+	}
+	
+	//busqueda x name
+	public Usuario getUsuario(String name){
+		Session session = sf.openSession();
+		//Busca x name
+		Usuario usu  = (Usuario)session.createQuery("FROM Usuario WHERE name=?").setString(0, name)
+				.setFirstResult(1).setMaxResults(1).uniqueResult();
+		
+		session.close();
+
+		//Si el name no existe devuelve null.
+		return usu;
 	}
 
 }
