@@ -2,7 +2,7 @@ package DTO;
 import java.sql.Date;
 
 
-public class Comision_Mozo {
+public class Liquidacion_Comision_Mozo {
 
 	private Integer comision_id;
 	private Date fecha_registracion_dt;

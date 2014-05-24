@@ -6,21 +6,39 @@ import java.util.Vector;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="OPERACIONES_CAJA")
 
 
 public class Operacion_Caja {
 
+	@Id
+	@Column(name="cierre_id")
 	private Integer operacion_caja_id;
+	
+	@Column(name="fecha_cierre_dt")
 	private Date fecha_dt;
+	
+	@Column(name="cierre_sucursal_id")
+	@ManyToOne
+	@JoinColumn(name="sucursal_id")
 	private Sucursal operacion_caja_sucursal;
+	
+	@OneToMany
+	@JoinColumn(name="item_cierre_id")
 	private Vector<Item_Operacion_Caja>items;
+	
 	private Float recaudacion;
 	private Float comisiones;
-	private Tipo_Operacion tipo;
 	
+	@OneToOne
+	@JoinColumn(name="tipo_operacion_caja_id")
+	private Tipo_Operacion tipo;	
 	
+	public Operacion_Caja() {
+		super();
+	}
 	
+	/*
 	public Operacion_Caja(Sucursal sucursal,
 			Vector<Item_Operacion_Caja> items, Tipo_Operacion tipo) {
 		super();
@@ -28,6 +46,8 @@ public class Operacion_Caja {
 		this.items = items;
 		this.tipo = tipo;
 	}
+	*/
+	
 	public Integer getOperacion_caja_id() {
 		return operacion_caja_id;
 	}
@@ -70,15 +90,5 @@ public class Operacion_Caja {
 	public void setTipo(Tipo_Operacion tipo) {
 		this.tipo = tipo;
 	}
-	
-	public Float calcularRecaudacion(){
-		//TODO
-		return (float) 0;
-	}
-	
-	public Float calcularRecaudacionSinComisiones(){
-		//TODO
-		return (float) 0;
-	}
-	
+
 }

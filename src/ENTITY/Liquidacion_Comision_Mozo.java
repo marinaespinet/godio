@@ -5,8 +5,8 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Liquidacion_Comisione_Mozo")
-public class Comision_Mozo {
+@Table(name="LIQUIDACIONES_COMISIONES_MOZOS")
+public class Liquidacion_Comision_Mozo {
 
 	private Integer comision_id;
 	private Date fecha_registracion_dt;

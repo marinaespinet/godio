@@ -4,16 +4,28 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="")
-
+@Table(name="PAGOS_FACTURA")
 
 public class Pago_Factura {
 
+	@Id
 	private Integer pago_id;
+	
+	@ColumnName("pago_factura_id")
+	@OneToOne
+	@JoinColumn(name="factura_id")
 	private Factura pago_factura;
+	
+	@ColumnName("pago_medio_pago_id")
+	@OneToOne
+	@JoinColumn(name="medio_pago_id")
 	private Medio_Pago medio_pago;
+	
 	private Float monto_total;
 	
+	public Pago_Factura() {
+		super();
+	}
 	
 	public Integer getPago_id() {
 		return pago_id;
@@ -38,11 +50,6 @@ public class Pago_Factura {
 	}
 	public void setMonto_total(Float monto_total) {
 		this.monto_total = monto_total;
-	}
-	
-	public Boolean verificarPagoFactura(Factura factura){
-		//TODO
-		return true;
 	}
 	
 }
