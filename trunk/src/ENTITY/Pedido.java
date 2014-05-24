@@ -15,19 +15,19 @@ public class Pedido {
 	private Integer pedido_id;
 	
 	@ManyToOne
-	@JoinColumn(name="pedido_mesa_id")
+	@JoinColumn(name="mesa_id")
 	private Mesa pedido_mesa;
 	
 	@ManyToOne
-	@JoinColumn(name="pedido_mozo_id")
+	@JoinColumn(name="mozo_id")
 	private Mozo pedido_mozo;
 	
 	@ManyToOne
-	@JoinColumn(name="pedido_estado_id")
+	@JoinColumn(name="estado_id")
 	private Estado_Pedido pedido_estado;
 	
 	@OneToOne
-	@JoinColumn(name="pedido_login_id")
+	@JoinColumn(name="login_id")
 	private Login pedido_login;
 	
 	private Integer cant_comensales;

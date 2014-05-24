@@ -10,16 +10,31 @@ import javax.persistence.*;
 
 
 public class Factura {
-
+	
+	@Id
 	private Integer factura_id;
+	
 	private Date fecha_factura_dt;
+	
+	@ManyToOne
+	@JoinColumn(name="mesa_id")
 	private Mesa factura_mesa;
+	
+	@ManyToOne
+	@JoinColumn(name="mozo_id")
 	private Mozo factura_mozo;
+	
 	private Float monto_total;
+	
+	@OneToMany
+	@JoinColumn(name="item_factura_id")
 	private Vector<Item_Factura>items;
 	
+	public Factura() {
+		super();
+	}
 	
-	
+	/*
 	public Factura(Date fecha, Mesa mesa, Mozo mozo,
 			Vector<Item_Factura> items) {
 		super();
@@ -27,7 +42,7 @@ public class Factura {
 		this.factura_mesa = mesa;
 		this.factura_mozo = mozo;
 		this.items = items;
-	}
+	}*/
 	
 	public Integer getFactura_id() {
 		return factura_id;
@@ -66,8 +81,5 @@ public class Factura {
 		this.items = items;
 	}
 	
-	public void calcularMonto(){
-		//TODO
-	}
-	
+
 }
