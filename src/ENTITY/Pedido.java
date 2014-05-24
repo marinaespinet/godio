@@ -70,10 +70,10 @@ public class Pedido {
 	public void setPedido_mozo(Mozo pedido_mozo) {
 		this.pedido_mozo = pedido_mozo;
 	}
-	public String getPedidoEstado() {
+	public Estado_Pedido getPedidoEstado() {
 		return pedido_estado;
 	}
-	public void modificarPedidoEstado(String estado) {
+	public void modificarPedidoEstado(Estado_Pedido estado) {
 		this.pedido_estado = estado;
 	}
 	public Login getPedido_login() {
