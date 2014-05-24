@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 
 public class Insumo extends Producto{
+	@Id
+	@GeneratedValue
 
 	private Integer insumo_id;
 	private Float precio_compra;

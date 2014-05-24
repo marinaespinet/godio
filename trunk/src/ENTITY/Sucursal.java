@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 
 public class Sucursal {
-
+@Id
+@GeneratedValue
 	private Integer sucursal_id;
 	private String name;
 	private Integer cant_max_mesas;

@@ -1,28 +1,24 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
-@Table(name="")
-
-
+@Table(name="ITEMS_PLAN_PRODUCCION")
 public class Item_Plan_Produccion {
+	@Id
+	@GeneratedValue
 
 	private Integer item_plan_id;
+	@ManyToOne
+	@JoinColumn(name="ITEM_PLAN_SEMIELABORADO_ID")
 	private Semielaborado item_plan_semielaborado;
 	private Integer cantidad;
+	@ManyToOne
+	@JoinColumn(name="ITEM_PLAN_SUCURSAL_ID")
 	private Sucursal item_plan_sucursal;
 	private Integer item_plan_avance_qty;
 	
-	
-	public Item_Plan_Produccion(Semielaborado semielaborado,
-			Integer cantidad,Sucursal sucursal) {
-		super();
-		this.item_plan_semielaborado = semielaborado;
-		this.cantidad = cantidad;
-		this.item_plan_sucursal = sucursal;
-	}
 	
 	public Integer getItem_plan_id() {
 		return item_plan_id;

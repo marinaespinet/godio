@@ -1,28 +1,23 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name="Items_Compras")
 
-
 public class Item_Compra {
+	@Id
+	@GeneratedValue
 
 	private Integer item_compra_id;
+	@ManyToOne
+	@JoinColumn(name="item_producto_id")
 	private Producto item_producto;
 	private Integer item_compra_cant;
 	private Float item_precio_monto;
 	
-	
-	
-	public Item_Compra(Producto producto, Integer cantidad,
-			Float precio) {
-		super();
-		this.item_producto = producto;
-		this.item_compra_cant = cantidad;
-		this.item_precio_monto = precio;
-	}
+
 	public Integer getItem_compra_id() {
 		return item_compra_id;
 	}

@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name="Areas")
 
 public class Area {
+	@Id
+	@GeneratedValue
 
 	private Integer area_id;
 	private String name;

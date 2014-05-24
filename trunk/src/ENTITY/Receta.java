@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 
 public class Receta {
+	@Id
+	@GeneratedValue
 
 	private Integer receta_id;
 	private Vector<Ingrediente> ingredientes;

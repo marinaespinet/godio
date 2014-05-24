@@ -1,6 +1,8 @@
 package ENTITY;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 
 
 public class Insumo_Semielaborado {
+	@Id
+	@GeneratedValue
 
 	private Integer insumo_semielaborado_id;
 	private Insumo insumo;

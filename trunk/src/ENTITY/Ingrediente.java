@@ -1,6 +1,8 @@
 package ENTITY;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 
 
 public class Ingrediente {
+	@Id
+	@GeneratedValue
 
 	private Integer ingrediente_id;
 	private Producto ingrediente_producto;

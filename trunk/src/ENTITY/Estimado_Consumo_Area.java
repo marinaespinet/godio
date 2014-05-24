@@ -1,6 +1,8 @@
 package ENTITY;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 
 
 public class Estimado_Consumo_Area {
+	@Id
+	@GeneratedValue
 
 	private Integer estimado_consumo_id;
 	private Area estimado_consumo_area;

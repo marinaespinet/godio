@@ -1,13 +1,13 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
-@Table(name="")
-
-
+@Table(name="PROVEEDORES")
 public class Proveedor {
+	@Id
+	@GeneratedValue
 
 	private Integer proveedor_id;
 	private String name;

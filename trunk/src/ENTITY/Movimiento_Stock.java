@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 
 public class Movimiento_Stock {
+	@Id
+	@GeneratedValue
 
 	private	Integer movimiento_id;
 	private Deposito deposito_origen;

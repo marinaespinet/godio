@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 
 public class Mesa {
+	@Id
+	@GeneratedValue
 
 	private Integer mesa_id;
 	private Integer mesa_cd;

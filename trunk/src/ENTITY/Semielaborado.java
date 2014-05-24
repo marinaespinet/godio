@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 
 public class Semielaborado extends Producto{
+	@Id
+	@GeneratedValue
 
 	private Integer semielaborado_id;
 	private Float horas_elaboracion_cant;

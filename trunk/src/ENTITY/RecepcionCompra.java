@@ -1,20 +1,21 @@
 package ENTITY;
 
 import java.sql.Date;
-import java.util.Vector;
+import java.util.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
+@Table(name="RECEPCIONES_COMPRAS")
 public class RecepcionCompra {
+	@Id
+	@GeneratedValue
 
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;
 	private Compra recepcion_compra;
-	private Vector<Item_Recepcion_Compra>items;
+	@OneToMany
+	private List<Item_Recepcion_Compra>items;
 	
 	
 	
@@ -41,10 +42,10 @@ public class RecepcionCompra {
 	public void setRecepcion_compra(Compra recepcion_compra) {
 		this.recepcion_compra = recepcion_compra;
 	}
-	public Vector<Item_Recepcion_Compra> getItems() {
+	public List<Item_Recepcion_Compra> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Recepcion_Compra> items) {
+	public void setItems(List<Item_Recepcion_Compra> items) {
 		this.items = items;
 	}
 	

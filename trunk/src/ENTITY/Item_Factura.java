@@ -1,15 +1,16 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name="ITEMS_FACTURA")
 
 
 public class Item_Factura {
-
 	@Id
+	@GeneratedValue
+
 	private Integer item_id;
 	
 	@OneToOne
