@@ -19,6 +19,9 @@ public class Item_Plan_Produccion {
 	private Sucursal item_plan_sucursal;
 	private Integer item_plan_avance_qty;
 	
+	@ManyToOne
+	@JoinColumn(name="item_plan_plan_id")
+	private Plan_Produccion item_plan_plan_id;
 	
 	public Integer getItem_plan_id() {
 		return item_plan_id;

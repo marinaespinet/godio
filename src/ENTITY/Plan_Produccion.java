@@ -16,6 +16,7 @@ public class Plan_Produccion {
 	@Column(insertable=false)
 	private Date fecha_creacion_dt;
 	private Date fecha_finalizacion_tareas;
+	
 	@OneToMany
 	private List<Item_Plan_Produccion>items;
 	
