@@ -1,5 +1,10 @@
 package ENTITY;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Areas")
+
 public class Area {
 
 	private Integer area_id;

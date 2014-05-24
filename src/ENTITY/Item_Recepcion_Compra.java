@@ -1,4 +1,10 @@
 package ENTITY;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="")
+
 
 
 public class Item_Recepcion_Compra {

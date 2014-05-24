@@ -2,7 +2,10 @@ package ENTITY;
 
 import java.util.Vector;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name="Comandas")
 public class Comanda {
 
 	private Integer comanda_id;

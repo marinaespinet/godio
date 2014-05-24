@@ -3,6 +3,11 @@ package ENTITY;
 import java.sql.Date;
 import java.util.Vector;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="")
+
 
 public class Plan_Produccion {
 

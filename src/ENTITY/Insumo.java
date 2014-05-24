@@ -2,6 +2,12 @@ package ENTITY;
 
 import java.sql.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Insumos")
+
+
 
 public class Insumo extends Producto{
 

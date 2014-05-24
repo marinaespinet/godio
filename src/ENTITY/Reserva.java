@@ -2,6 +2,11 @@ package ENTITY;
 
 import java.sql.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="")
+
 
 public class Reserva {
 

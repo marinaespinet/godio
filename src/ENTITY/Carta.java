@@ -2,6 +2,10 @@ package ENTITY;
 
 import java.sql.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Cartas")
 
 public class Carta {
 

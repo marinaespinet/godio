@@ -1,5 +1,11 @@
 package ENTITY;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Ingredientes")
+
 
 public class Ingrediente {
 

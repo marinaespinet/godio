@@ -2,6 +2,12 @@ package ENTITY;
 
 import java.util.Vector;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="")
+
+
 
 public class Mesa {
 

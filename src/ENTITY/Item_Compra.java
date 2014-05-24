@@ -1,5 +1,11 @@
 package ENTITY;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Items_Compras")
+
 
 public class Item_Compra {
 
