@@ -1,7 +1,7 @@
 package ENTITY;
 
 import java.sql.Date;
-import java.util.Vector;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -23,8 +23,8 @@ public class Operacion_Caja {
 	private Sucursal cierre_sucursal_id;
 	
 	@OneToMany
-	@JoinColumn(name="item_cierre_id")
-	private Vector<Item_Operacion_Caja>items;
+	//@JoinColumn(name="item_cierre_id")
+	private List<Item_Operacion_Caja>items;
 	
 	private Float recaudacion;
 	private Float comisiones;
@@ -65,10 +65,10 @@ public class Operacion_Caja {
 	public void setOperacion_caja_sucursal(Sucursal operacion_caja_sucursal) {
 		this.cierre_sucursal_id = operacion_caja_sucursal;
 	}
-	public Vector<Item_Operacion_Caja> getItems() {
+	public List<Item_Operacion_Caja> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Operacion_Caja> items) {
+	public void setItems(List<Item_Operacion_Caja> items) {
 		this.items = items;
 	}
 	public Float getRecaudacion() {

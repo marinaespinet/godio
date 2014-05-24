@@ -11,15 +11,13 @@ public class Pago_Factura {
 	@Id
 	private Integer pago_id;
 	
-	@Column(name="pago_factura_id")
 	@OneToOne
 	@JoinColumn(name="factura_id")
-	private Factura pago_factura;
+	private Factura pago_factura_id;
 	
-	@Column(name="pago_medio_pago_id")
 	@OneToOne
 	@JoinColumn(name="medio_pago_id")
-	private Medio_Pago medio_pago;
+	private Medio_Pago pago_medio_pago_id;
 	
 	private Float monto_total;
 	
@@ -34,16 +32,16 @@ public class Pago_Factura {
 		this.pago_id = pago_id;
 	}
 	public Factura getPago_factura() {
-		return pago_factura;
+		return pago_factura_id;
 	}
 	public void setPago_factura(Factura pago_factura) {
-		this.pago_factura = pago_factura;
+		this.pago_factura_id = pago_factura;
 	}
 	public Medio_Pago getMedio_pago() {
-		return medio_pago;
+		return pago_medio_pago_id;
 	}
 	public void setMedio_pago(Medio_Pago medio_pago) {
-		this.medio_pago = medio_pago;
+		this.pago_medio_pago_id = medio_pago;
 	}
 	public Float getMonto_total() {
 		return monto_total;
