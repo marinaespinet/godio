@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Item_Compra {
 	@Id
 	@GeneratedValue
-
 	private Integer item_compra_id;
 	@ManyToOne
 	@JoinColumn(name="item_producto_id")
@@ -17,7 +16,10 @@ public class Item_Compra {
 	private Integer item_compra_cant;
 	private Float item_precio_monto;
 	
-
+	@ManyToOne
+	@JoinColumn(name="item_compra_compra_id")
+	private Compra item_compra_compra_id;
+	
 	public Integer getItem_compra_id() {
 		return item_compra_id;
 	}

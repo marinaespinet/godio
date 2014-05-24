@@ -12,8 +12,13 @@ public class Compra {
 	@GeneratedValue
 
 	private Integer compra_id;
+	
+	@OneToOne
+	@JoinColumn(name="compra_proveedor_id")
 	private Proveedor compra_proveedor;
 	private Date fecha_compra_dt;
+	
+	@OneToMany
 	private List<Item_Compra>items;
 	
 	

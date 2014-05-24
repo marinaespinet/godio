@@ -8,12 +8,16 @@ import javax.persistence.*;
 public class Item_Recepcion_Compra {
 	@Id
 	@GeneratedValue
-
 	private Integer item_recepcion_id;
+	
 	@ManyToOne
 	@JoinColumn(name="item_recepcion_producto_id")
 	private Producto item_recepcion_producto;
 	private Integer cant;
+	
+	@ManyToOne
+	@JoinColumn(name="item_recepcion_recepcion_id")
+	private RecepcionCompra item_recepcion_recepcion_id;
 	
 	
 	public Integer getItem_recepcion_id() {

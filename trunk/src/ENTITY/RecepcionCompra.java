@@ -14,16 +14,11 @@ public class RecepcionCompra {
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;
 	private Compra recepcion_compra;
+	
 	@OneToMany
-	private List<Item_Recepcion_Compra>items;
+	private List<Item_Recepcion_Compra>items;	
 	
-	
-	
-	public RecepcionCompra(Date fecha, Compra compra) {
-		super();
-		this.recepcion_fecha_dt = fecha;
-		this.recepcion_compra = compra;
-	}
+
 	public Integer getRecepcion_id() {
 		return recepcion_id;
 	}

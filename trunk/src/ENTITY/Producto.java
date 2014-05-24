@@ -2,10 +2,10 @@ package ENTITY;
 
 import javax.persistence.*;
 
-@MappedSuperclass
+//@MappedSuperclass
 @Table(name="PRODUCTO")
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Producto {
+public class Producto {
 	@Id
 	@GeneratedValue
 	private Integer producto_id;
