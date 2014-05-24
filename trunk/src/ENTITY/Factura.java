@@ -1,7 +1,7 @@
 package ENTITY;
 
 import java.sql.Date;
-import java.util.Vector;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -30,21 +30,9 @@ public class Factura {
 	
 	@OneToMany
 	@JoinColumn(name="item_factura_id")
-	private Vector<Item_Factura>items;
+	private List<Item_Factura>items;
 	
-	public Factura() {
-		super();
-	}
 	
-	/*
-	public Factura(Date fecha, Mesa mesa, Mozo mozo,
-			Vector<Item_Factura> items) {
-		super();
-		this.fecha_factura_dt = fecha;
-		this.factura_mesa = mesa;
-		this.factura_mozo = mozo;
-		this.items = items;
-	}*/
 	
 	public Integer getFactura_id() {
 		return factura_id;
@@ -76,10 +64,10 @@ public class Factura {
 	public void setMonto_total(Float monto_total) {
 		this.monto_total = monto_total;
 	}
-	public Vector<Item_Factura> getItems() {
+	public List<Item_Factura> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Factura> items) {
+	public void setItems(List<Item_Factura> items) {
 		this.items = items;
 	}
 	

@@ -13,6 +13,7 @@ public class Plan_Produccion {
 	@GeneratedValue
 
 	private Integer plan_id;
+	@Column(insertable=false)
 	private Date fecha_creacion_dt;
 	private Date fecha_finalizacion_tareas;
 	@OneToMany

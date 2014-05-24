@@ -1,7 +1,7 @@
 package ENTITY;
 
 import java.sql.Date;
-import java.util.Vector;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -37,7 +37,7 @@ public class Pedido {
 	
 	@OneToMany
 	@JoinColumn(name="item_pedido_id")
-	private Vector<Item_Pedido>items;
+	private List<Item_Pedido>items;
 	
 	public Pedido() {
 		super();
@@ -106,10 +106,10 @@ public class Pedido {
 	public void setFecha_cierre_dt(Date fecha_cierre_dt) {
 		this.fecha_cierre_dt = fecha_cierre_dt;
 	}
-	public Vector<Item_Pedido>listarItems() {
+	public List<Item_Pedido>listarItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Pedido> items) {
+	public void setItems(List<Item_Pedido> items) {
 		this.items = items;
 	}
 
