@@ -6,23 +6,44 @@ import java.util.Vector;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="PEDIDOS_MESAS")
 
 
 public class Pedido {
-
+	
+	@Id
 	private Integer pedido_id;
+	
+	@ManyToOne
+	@JoinColumn(name="pedido_mesa_id")
 	private Mesa pedido_mesa;
+	
+	@ManyToOne
+	@JoinColumn(name="pedido_mozo_id")
 	private Mozo pedido_mozo;
-	private String pedido_estado;
+	
+	@ManyToOne
+	@JoinColumn(name="pedido_estado_id")
+	private Estado_Pedido pedido_estado;
+	
+	@OneToOne
+	@JoinColumn(name="pedido_login_id")
 	private Login pedido_login;
+	
 	private Integer cant_comensales;
 	private Date fecha_apertura_dt;
 	private Date fecha_pago_dt;
 	private Date fecha_cierre_dt;
+	
+	@OneToMany
+	@JoinColumn(name="item_pedido_id")
 	private Vector<Item_Pedido>items;
 	
+	public Pedido() {
+		super();
+	}
 	
+	/*
 	public Pedido(Mesa mesa, Mozo mozo, Integer cantComensales,
 			Vector<Item_Pedido> items) {
 		super();
@@ -30,7 +51,7 @@ public class Pedido {
 		this.pedido_mozo = mozo;
 		this.cant_comensales = cantComensales;
 		this.items = items;
-	}
+	}*/
 	public Integer getPedido_id() {
 		return pedido_id;
 	}
@@ -91,9 +112,6 @@ public class Pedido {
 	public void setItems(Vector<Item_Pedido> items) {
 		this.items = items;
 	}
-	
-	public void agregarItem(Item_Pedido item){
-		//TODO
-	}
+
 	
 }
