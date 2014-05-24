@@ -11,6 +11,7 @@ public class TDD_Schere {
 		
 		unitTestUsuarios();
 		unitTestLogin();
+		unitTestPlanProd();
 	}
 	
 	public static boolean unitTestUsuarios(){
@@ -34,6 +35,16 @@ public class TDD_Schere {
 		Usuario usu = UsuariosDAO.getInstancia().getUsuario("Cajero1");
 		log.setUser(usu);
 		LoginDAO.getInstancia().grabarLogin(log);
+		
+		System.out.println("OK");
+		return true;
+	}
+	
+	public static boolean unitTestPlanProd(){
+		System.out.print("Test PLAN PROD: ");
+		Plan_Produccion plan = new Plan_Produccion();
+		
+		PlanProduccionDAO.getInstancia().grabarPlanProduccion(plan);
 		
 		System.out.println("OK");
 		return true;
