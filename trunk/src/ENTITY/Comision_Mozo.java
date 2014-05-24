@@ -2,7 +2,10 @@ package ENTITY;
 
 import java.sql.Date;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name="Liquidacion_Comisione_Mozo")
 public class Comision_Mozo {
 
 	private Integer comision_id;

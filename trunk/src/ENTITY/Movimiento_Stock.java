@@ -2,6 +2,12 @@ package ENTITY;
 
 import java.sql.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="")
+
+
 
 public class Movimiento_Stock {
 

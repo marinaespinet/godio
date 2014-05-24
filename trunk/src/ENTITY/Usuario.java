@@ -1,4 +1,9 @@
 package ENTITY;
+import javax.persistence.*;
+
+@Entity
+@Table(name="")
+
 public class Usuario {
 
 	private Integer user_id;

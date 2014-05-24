@@ -1,5 +1,11 @@
 package ENTITY;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Estimados_Consumos_Areas")
+
 
 public class Estimado_Consumo_Area {
 
