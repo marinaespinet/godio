@@ -18,10 +18,9 @@ public class Operacion_Caja {
 	@Column(name="fecha_cierre_dt")
 	private Date fecha_dt;
 	
-	@Column(name="cierre_sucursal_id")
 	@ManyToOne
 	@JoinColumn(name="sucursal_id")
-	private Sucursal operacion_caja_sucursal;
+	private Sucursal cierre_sucursal_id;
 	
 	@OneToMany
 	@JoinColumn(name="item_cierre_id")
@@ -61,10 +60,10 @@ public class Operacion_Caja {
 		this.fecha_dt = fecha_dt;
 	}
 	public Sucursal getOperacion_caja_sucursal() {
-		return operacion_caja_sucursal;
+		return cierre_sucursal_id;
 	}
 	public void setOperacion_caja_sucursal(Sucursal operacion_caja_sucursal) {
-		this.operacion_caja_sucursal = operacion_caja_sucursal;
+		this.cierre_sucursal_id = operacion_caja_sucursal;
 	}
 	public Vector<Item_Operacion_Caja> getItems() {
 		return items;
