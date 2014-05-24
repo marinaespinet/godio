@@ -16,6 +16,7 @@ public class HibernateUtil
         	 //TODO: EQUIPO - cada uno agregar sus clases aqui
         	 config.addAnnotatedClass(Rol.class);
         	 config.addAnnotatedClass(Usuario.class);
+        	 config.addAnnotatedClass(Login.class);
              sessionFactory = config.buildSessionFactory();
         }
         catch (Throwable ex)
