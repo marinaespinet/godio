@@ -8,13 +8,25 @@ import javax.persistence.*;
 @Table(name="LIQUIDACIONES_COMISIONES_MOZOS")
 public class Liquidacion_Comision_Mozo {
 
+	@Id
 	private Integer comision_id;
+	
+	@Column(insertable=false)
 	private Date fecha_registracion_dt;
+	
+	@Column(insertable=false)
 	private Date fecha_liquidacion_dt;
+	
+	@ManyToOne
+	@JoinColumn(name="mozo_id")
 	private Mozo comision_mozo;
+	
 	private Float importe_amount;
 	
-	
+	public Liquidacion_Comision_Mozo() {
+		super();
+
+	}
 	public Integer getComision_id() {
 		return comision_id;
 	}
