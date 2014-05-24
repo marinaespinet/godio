@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Producto {
 	
+	
 	@Id
 	@GeneratedValue
 	private Integer producto_id;
