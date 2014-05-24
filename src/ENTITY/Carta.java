@@ -8,6 +8,8 @@ import javax.persistence.*;
 @Table(name="Cartas")
 
 public class Carta {
+	@Id
+	@GeneratedValue
 
 	private Integer carta_id;
 	private Date fecha_expiracion;

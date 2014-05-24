@@ -1,6 +1,7 @@
 package ENTITY;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
@@ -8,7 +9,8 @@ import javax.persistence.Table;
 
 
 public class Tipo_Caducidad {
-
+@Id
+@GeneratedValue
 	private Integer tipo_caducidad_id;
 	private String name;
 	

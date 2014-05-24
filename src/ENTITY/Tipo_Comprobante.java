@@ -1,14 +1,14 @@
 package ENTITY;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="")
-
-
 public class Tipo_Comprobante {
-
+@Id
+@GeneratedValue
 	private Integer tipo_comprobante_id;
 	private String nombre;
 	

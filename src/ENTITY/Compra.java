@@ -1,20 +1,20 @@
 package ENTITY;
 
 import java.sql.Date;
-import java.util.Vector;
+import java.util.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="Compras")
-
-
 public class Compra {
+	@Id
+	@GeneratedValue
 
 	private Integer compra_id;
 	private Proveedor compra_proveedor;
 	private Date fecha_compra_dt;
-	private Vector<Item_Compra>items;
+	private List<Item_Compra>items;
 	
 	
 	public Compra(Proveedor proveedor) {
@@ -39,10 +39,10 @@ public class Compra {
 	public void setFecha_compra_dt(Date fecha_compra_dt) {
 		this.fecha_compra_dt = fecha_compra_dt;
 	}
-	public Vector<Item_Compra> getItems() {
+	public List<Item_Compra> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Compra> items) {
+	public void setItems(List<Item_Compra> items) {
 		this.items = items;
 	}
 	

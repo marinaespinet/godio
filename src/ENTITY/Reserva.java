@@ -9,6 +9,8 @@ import javax.persistence.*;
 
 
 public class Reserva {
+	@Id
+	@GeneratedValue
 
 	private Integer reserva_id;
 	private Mesa reserva_mesa;

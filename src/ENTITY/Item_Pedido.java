@@ -1,15 +1,15 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="ITEMS_PEDIDOS")
 
 public class Item_Pedido {
-
 	@Id
+	@GeneratedValue
+
 	private Integer item_id;
 	
 	@ManyToOne

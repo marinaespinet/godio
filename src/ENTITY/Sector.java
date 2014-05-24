@@ -1,6 +1,8 @@
 package ENTITY;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 
 
 public class Sector {
+	@Id
+	@GeneratedValue
 
 	private int sector_id;
 	private String name;

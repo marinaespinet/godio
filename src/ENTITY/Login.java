@@ -5,13 +5,16 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
+@Table(name="LOGIN")
 public class Login {
 
+	@Id
+	@GeneratedValue
 	private Integer login_id;
+	@ManyToOne
+	@JoinColumn(name="user_id")
 	private Usuario user;
+	@Column(insertable=false)
 	private Date fecha_login_dt;
 	private Date fecha_logout_dt;
 	

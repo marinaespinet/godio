@@ -1,11 +1,15 @@
 package ENTITY;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Roles")
 public class Rol {
+	@Id
+	@GeneratedValue
 
 	private Integer role_id;
 	private String role_name;	

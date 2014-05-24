@@ -10,8 +10,10 @@ import javax.persistence.*;
 
 
 public class Factura {
-	
+
 	@Id
+	@GeneratedValue
+
 	private Integer factura_id;
 	
 	private Date fecha_factura_dt;

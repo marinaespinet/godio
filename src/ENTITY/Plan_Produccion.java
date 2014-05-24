@@ -1,20 +1,22 @@
 package ENTITY;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
+@Table(name="PLAN_PRODUCCION")
 public class Plan_Produccion {
+	@Id
+	@GeneratedValue
 
 	private Integer plan_id;
 	private Date fecha_creacion_dt;
 	private Date fecha_finalizacion_tareas;
-	private Vector<Item_Plan_Produccion>items;
+	@OneToMany
+	private List<Item_Plan_Produccion>items;
 	
 	
 	public Integer getPlan_id() {
@@ -35,20 +37,11 @@ public class Plan_Produccion {
 	public void setFecha_finalizacion_tareas(Date fecha_finalizacion_tareas) {
 		this.fecha_finalizacion_tareas = fecha_finalizacion_tareas;
 	}
-	public Vector<Item_Plan_Produccion> getItems() {
+	public List<Item_Plan_Produccion> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Plan_Produccion> items) {
+	public void setItems(List<Item_Plan_Produccion> items) {
 		this.items = items;
-	}
-	
-	public Integer verificarAvancePlan(){
-		//TODO
-		return 0;
-	}
-	
-	public void agregarTarea(Semielaborado semielaborado, Integer cantidad, Sucursal sucursal){
-		//TODO
 	}
 	
 	

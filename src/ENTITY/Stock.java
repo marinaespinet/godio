@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 
 public class Stock {
-
+@Id
+@GeneratedValue
 	private Integer stock_id;
 	private Deposito stock_deposito;
 	private Producto stock_producto;

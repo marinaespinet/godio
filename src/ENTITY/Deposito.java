@@ -1,5 +1,7 @@
 package ENTITY;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -8,6 +10,8 @@ import javax.persistence.Table;
 
 
 public class Deposito {
+	@Id
+	@GeneratedValue
 
 	private Integer deposito_id;
 	private Area deposito_area;

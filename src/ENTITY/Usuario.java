@@ -2,12 +2,15 @@ package ENTITY;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="Users")
 
 public class Usuario {
-
+	@Id
+	@GeneratedValue
 	private Integer user_id;
 	private String user_name;
+	@ManyToOne()
+	@JoinColumn(name="user_role_id")
 	private Rol user_rol;
 	
 	public Integer getUser_id() {

@@ -1,14 +1,14 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="")
 
 
 public class Tipo_Operacion {
-
+	@Id
+	@GeneratedValue
 	private Integer tipo_operacion_id;
 	private String nombre;
 	
