@@ -2,28 +2,39 @@ package ENTITY;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
+@Table(name="ITEMS_PEDIDOS")
 
 public class Item_Pedido {
 
+	@Id
 	private Integer item_id;
+	
+	@ManyToOne
+	@JoinColumn(name="item_pedido_id")
 	private Pedido item_pedido;
+	
+	@OneToOne
+	@JoinColumn(name="item_item_carta_id")
 	private Item_Carta item_carta;
+	
 	private Integer cantidad;
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
 	
-	
+	public Item_Pedido() {
+		super();
+	}
+	/*
 	public Item_Pedido(Pedido pedido, Item_Carta item_carta,
 			Integer cantidad) {
 		super();
 		this.item_pedido = pedido;
 		this.item_carta = item_carta;
 		this.cantidad = cantidad;
-	}
+	}*/
 	
 	public Integer getItem_id() {
 		return item_id;
@@ -61,10 +72,6 @@ public class Item_Pedido {
 	public void setObservaciones_no_facturar(String observaciones_no_facturar) {
 		this.observaciones_no_facturar = observaciones_no_facturar;
 	}
-	
-	public void no_facturar(String observaciones){
-		//TODO
-	}
-	
+
 	
 }
