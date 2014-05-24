@@ -3,7 +3,7 @@ package DAO;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-import entity.*;
+import ENTITY.*;
  
 public class HibernateUtil
 {
@@ -13,15 +13,8 @@ public class HibernateUtil
         try
         {
         	 AnnotationConfiguration config = new AnnotationConfiguration();
-//             config.addAnnotatedClass(UsuarioBean.class);
-        	 config.addAnnotatedClass(UnidadEntity.class);
-        	 config.addAnnotatedClass(IngredienteEntity.class);
-        	 config.addAnnotatedClass(PlatoEntity.class);
-        	 config.addAnnotatedClass(Item_IngredienteEntity.class);
-        	 config.addAnnotatedClass(FacturaEntity.class);
-        	 config.addAnnotatedClass(ItemFacturaEntity.class);
-        	 config.addAnnotatedClass(RubroEntity.class);
-        	 config.addAnnotatedClass(Cuenta.class);
+        	 //TODO: EQUIPO - cada uno agregar sus clases aqui
+        	 config.addAnnotatedClass(Rol.class);
         	 config.addAnnotatedClass(Usuario.class);
              sessionFactory = config.buildSessionFactory();
         }
