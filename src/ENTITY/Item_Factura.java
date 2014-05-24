@@ -23,17 +23,9 @@ public class Item_Factura {
 	@JoinColumn(name="item_id")
 	private Item_Pedido item_pedido;
 	
-	public Item_Factura() {
-		super();
-	}
-	/*	
-	public Item_Factura(Plato plato, Integer cantidad,
-			Item_Pedido item_pedido) {
-		super();
-		this.item_plato = plato;
-		this.cant_plato = cantidad;
-		this.item_pedido = item_pedido;
-	}*/
+	@ManyToOne
+	@JoinColumn(name="item_factura_id")
+	private Factura factura;
 	
 	public Integer getItem_id() {
 		return item_id;

@@ -1,18 +1,13 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Entity
-@Table(name="")
-
-
-public class Producto {
+@MappedSuperclass
+@Table(name="PRODUCTO")
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Producto {
 	@Id
 	@GeneratedValue
-
 	private Integer producto_id;
 	private String name;
 	private Integer producto_tipo_caducidad_id;

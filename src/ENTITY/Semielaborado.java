@@ -5,14 +5,10 @@ import java.util.Vector;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
-
+@Table(name="SEMIELABORADOS")
+@PrimaryKeyJoinColumn(name="semielaborado_id")
 public class Semielaborado extends Producto{
 	@Id
-	@GeneratedValue
-
 	private Integer semielaborado_id;
 	private Float horas_elaboracion_cant;
 	private String nombres;
