@@ -1,3 +1,5 @@
+package DTO;
+
 public class Estado_Pedido {
 	
 	private Integer estado_id;
