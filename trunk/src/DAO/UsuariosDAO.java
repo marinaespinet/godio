@@ -55,8 +55,8 @@ public class UsuariosDAO {
 	public Usuario getUsuario(String name){
 		Session session = sf.openSession();
 		//Busca x name
-		Usuario usu  = (Usuario)session.createQuery("FROM Usuario WHERE name=?").setString(0, name)
-				.setFirstResult(1).setMaxResults(1).uniqueResult();
+		Usuario usu  = (Usuario)session.createQuery("FROM Usuario WHERE user_name= ?").setString(0, name)
+				.setFirstResult(0).setMaxResults(1).uniqueResult();
 		
 		session.close();
 
