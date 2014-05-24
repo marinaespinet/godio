@@ -1,3 +1,5 @@
+package ENTITY;
+
 
 public class Medio_Pago {
 

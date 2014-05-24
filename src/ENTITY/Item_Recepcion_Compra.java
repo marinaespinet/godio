@@ -1,3 +1,5 @@
+package ENTITY;
+
 
 public class Item_Recepcion_Compra {
 

@@ -1,4 +1,4 @@
-
+package ENTITY;
 public class Usuario {
 
 	private Integer user_id;
