@@ -4,26 +4,34 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="")
+@Table(name="ITEMS_CIERRE_CAJA")
 
 
 public class Item_Operacion_Caja {
 
+	@Id
+	@Column(name="item_cierre_id")
 	private Integer item_operacion_id;
+	
 	private Float monto;
 	private Integer cantidad;
+	
+	@OneToOne
+	@JoinColumn(name="tipo_comprobante_id")
 	private Tipo_Comprobante tipo_comprobante;
 	
+	public Item_Operacion_Caja() {
+		super();
+	}
 	
-	
-	
+	/*
 	public Item_Operacion_Caja(Float monto, Integer cantidad,
 			Tipo_Comprobante tipo) {
 		super();
 		this.monto = monto;
 		this.cantidad = cantidad;
 		this.tipo_comprobante = tipo;
-	}
+	}*/
 	
 	
 	public Integer getItem_operacion_id() {

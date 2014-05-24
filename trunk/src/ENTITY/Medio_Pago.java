@@ -4,15 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="")
-
+@Table(name="MEDIOS_PAGO")
 
 public class Medio_Pago {
 
+	@Id
 	private Integer medio_pago_id;
+	
+	@Column(name="medio_pago_name")
 	private String name;
 	
-	
+	public Medio_Pago() {
+		super();
+	}
 	public Integer getMedio_pago_id() {
 		return medio_pago_id;
 	}
