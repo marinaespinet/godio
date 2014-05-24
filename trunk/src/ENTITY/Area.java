@@ -1,3 +1,4 @@
+package ENTITY;
 
 public class Area {
 
