@@ -18,7 +18,7 @@ public class Liquidacion_Comision_Mozo {
 	private Date fecha_liquidacion_dt;
 	
 	@ManyToOne
-	@JoinColumn(name="mozo_id")
+	@JoinColumn(name="COMISION_MOZO_ID")
 	private Mozo comision_mozo;
 	
 	private Float importe_amount;

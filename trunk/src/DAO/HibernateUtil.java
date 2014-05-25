@@ -19,6 +19,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(Deposito.class);
         	 config.addAnnotatedClass(Estado_Pedido.class);
         	 config.addAnnotatedClass(Estado_Insumo.class);
+        	 config.addAnnotatedClass(Estado_Mesa.class);
         	 config.addAnnotatedClass(Estimado_Consumo_Area.class);
         	 config.addAnnotatedClass(Factura.class);
         	 config.addAnnotatedClass(Ingrediente.class);
@@ -47,6 +48,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(RecepcionCompra.class);        
         	 config.addAnnotatedClass(Reserva.class);
         	 config.addAnnotatedClass(Rol.class);
+        	 config.addAnnotatedClass(Rubro_Carta.class);
         	 config.addAnnotatedClass(Sector.class);
         	 config.addAnnotatedClass(Semielaborado.class);
         	 config.addAnnotatedClass(Stock.class);
