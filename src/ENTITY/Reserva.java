@@ -5,7 +5,7 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="RESERVAS")
 
 
 public class Reserva {
@@ -13,6 +13,9 @@ public class Reserva {
 	@GeneratedValue
 
 	private Integer reserva_id;
+	
+	@ManyToOne
+	@JoinColumn(name="RESERVA_MESA_ID")
 	private Mesa reserva_mesa;
 	private Date fecha;
 	private Integer cant_comensales;
