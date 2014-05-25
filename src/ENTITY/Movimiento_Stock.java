@@ -14,14 +14,30 @@ public class Movimiento_Stock {
 	@GeneratedValue
 
 	private	Integer movimiento_id;
+	
+	@ManyToOne
+	@JoinColumn(name="DEPOSITO_ORIGEN_ID")
 	private Deposito deposito_origen;
+	
+	@ManyToOne
+	@JoinColumn(name="DEPOSITO_DESTINO_ID")
 	private Deposito deposito_destino;
 	private Date fecha_movimiento_dt;
 	private String motivo_desc;
+	
+	@OneToOne
+	@JoinColumn(name="LOGIN_ID")
 	private Login login_id;
+	
+	@ManyToOne
+	@JoinColumn(name="PRODUCTO_ID")
 	private Producto producto;
 	private Integer cantidad;
 	private String lote;
+	
+	@ManyToOne
+	@JoinColumn(name="SOLICITANTE")
+	
 	private Usuario solicitante;
 	private Date fecha_compra_producto_dt;
 	private Date fecha_vencim_producto_dt;

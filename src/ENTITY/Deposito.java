@@ -1,8 +1,6 @@
 package ENTITY;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 
 @Entity
 @Table(name="Depositos")
@@ -14,6 +12,9 @@ public class Deposito {
 	@GeneratedValue
 
 	private Integer deposito_id;
+	
+	@OneToOne
+	@JoinColumn(name="DEPOSITO_AREA_ID")
 	private Area deposito_area;
 	
 	public Integer getDeposito_id() {
