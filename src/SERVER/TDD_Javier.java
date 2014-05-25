@@ -12,7 +12,7 @@ public class TDD_Javier {
 		// TODO Auto-generated method stub
 		
 		
-		unitTestSucursales();
+		//unitTestSucursales();
 		//unitTestSucursalPorNombre();
 		//unitTestSucursalPorId();
 		
@@ -34,7 +34,7 @@ public class TDD_Javier {
 		
 		/* A estos no los pude hacer andar */
 		
-		//unitTestReservas();
+		unitTestReservas();
 		//unitTestReservaPorId();
 		//unitTestReservaPorFecha();
 		//unitTestCrearReserva();
@@ -71,12 +71,12 @@ public class TDD_Javier {
 	private static void unitTestCrearReserva() {
 		
 		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
-		Date laFecha = new Date(25/05/2014);
+		//Date laFecha = (new java.util.Date(2014,7,13));
 		Reserva unaReserva = new Reserva();
 		unaReserva.setCant_comensales(4);
-		unaReserva.setFecha(laFecha);
+		unaReserva.setFecha(new java.util.Date(2014,7,13));
 		unaReserva.setMinutos_duracion(45);
-		unaReserva.setReserva_id(1005);
+		//unaReserva.setReserva_id(1005);   al ser @Id @Autogenerado no hace falta
 		unaReserva.setReserva_mesa(unaMesa);
 		
 		LocationDAO.getInstancia().setReserva(unaReserva);
