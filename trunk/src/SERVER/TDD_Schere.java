@@ -20,9 +20,11 @@ public class TDD_Schere {
 	}
 	
 	public static boolean unitTestComprasRealizar(){
+		System.out.print("Test Compras a Realizar: ");
 		List<DTO.Insumo> insumos = ComprasController.getInstancia().getListadoDeComprasARealizar();
 		for(DTO.Insumo ins : insumos)
 			System.out.println(ins.getName());
+		System.out.println("OK");
 		return true;
 	}
 	
