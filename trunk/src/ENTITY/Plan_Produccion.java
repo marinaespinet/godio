@@ -15,9 +15,10 @@ public class Plan_Produccion {
 	private Integer plan_id;
 	@Column(insertable=false)
 	private Date fecha_creacion_dt;
-	private Date fecha_finalizacion_tareas;
+	private Date fecha_finalizacion_tareas_dt;
 	
 	@OneToMany
+	@JoinColumn(name="item_plan_plan_id")
 	private List<Item_Plan_Produccion>items;
 	
 	
@@ -34,10 +35,10 @@ public class Plan_Produccion {
 		this.fecha_creacion_dt = fecha_creacion_dt;
 	}
 	public Date getFecha_finalizacion_tareas() {
-		return fecha_finalizacion_tareas;
+		return fecha_finalizacion_tareas_dt;
 	}
 	public void setFecha_finalizacion_tareas(Date fecha_finalizacion_tareas) {
-		this.fecha_finalizacion_tareas = fecha_finalizacion_tareas;
+		this.fecha_finalizacion_tareas_dt = fecha_finalizacion_tareas;
 	}
 	public List<Item_Plan_Produccion> getItems() {
 		return items;

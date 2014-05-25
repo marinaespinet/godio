@@ -10,6 +10,7 @@ public class Proveedor {
 	@GeneratedValue
 
 	private Integer proveedor_id;
+	@Column(name="PROVEEDOR_NAME")
 	private String name;
 	
 	

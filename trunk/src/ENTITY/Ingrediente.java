@@ -9,8 +9,10 @@ public class Ingrediente {
 	@GeneratedValue
 
 	private Integer ingrediente_id;
+	
 	@ManyToOne @JoinColumn(name="INGREDIENTE_INSUMO_ID")
 	private Insumo insumo;
+	
 	private Integer cantidad;
 	
 	@ManyToOne @JoinColumn(name="ingrediente_plato_id")

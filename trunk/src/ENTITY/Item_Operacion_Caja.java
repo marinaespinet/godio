@@ -20,18 +20,8 @@ public class Item_Operacion_Caja {
 	@JoinColumn(name="tipo_comprobante_id")
 	private Tipo_Comprobante tipo_comprobante;
 	
-	public Item_Operacion_Caja() {
-		super();
-	}
-	
-	/*
-	public Item_Operacion_Caja(Float monto, Integer cantidad,
-			Tipo_Comprobante tipo) {
-		super();
-		this.monto = monto;
-		this.cantidad = cantidad;
-		this.tipo_comprobante = tipo;
-	}*/
+	@ManyToOne @JoinColumn(name="item_cierre_cierre_id")
+	private Operacion_Caja item_cierre_cierre_id;
 	
 	
 	public Integer getItem_operacion_id() {

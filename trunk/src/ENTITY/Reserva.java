@@ -17,6 +17,7 @@ public class Reserva {
 	@ManyToOne
 	@JoinColumn(name="RESERVA_MESA_ID")
 	private Mesa reserva_mesa;
+	@Column(name="fecha_dt")
 	private Date fecha;
 	private Integer cant_comensales;
 	private Integer minutos_duracion;

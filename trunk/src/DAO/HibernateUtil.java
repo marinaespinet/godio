@@ -55,7 +55,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(Sucursal.class);
         	 config.addAnnotatedClass(Tipo_Caducidad.class);
         	 config.addAnnotatedClass(Tipo_Comprobante.class);
-        	 config.addAnnotatedClass(Tipo_Operacion.class);
+        	 config.addAnnotatedClass(Tipo_Operacion_Caja.class);
         	 config.addAnnotatedClass(Usuario.class);
 
              sessionFactory = config.buildSessionFactory();

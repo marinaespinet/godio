@@ -13,7 +13,8 @@ public class Insumo_Semielaborado {
 	
 	@ManyToOne @JoinColumn(name="INSUMOS_SEMIELABORADO_INSUMO_ID")
 	private Insumo insumo;
-	@OneToOne @JoinColumn(name="INSUMOS_SEMIELABORADO_SEMIELABORADO_ID")
+	
+	@ManyToOne @JoinColumn(name="INSUMOS_SEMIELABORADO_SEMIELABORADO_ID")
 	private Semielaborado semielaborado;
 	private Float cantidad;
 	
