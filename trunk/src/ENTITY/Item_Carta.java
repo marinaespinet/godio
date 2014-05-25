@@ -18,6 +18,10 @@ public class Item_Carta {
 	private String rubro;
 	private Float precio_monto;
 	
+	@ManyToOne
+	@JoinColumn(name="item_carta_id")
+	private Carta carta;
+	
 	
 	public Integer getItem_carta_id() {
 		return item_carta_id;
