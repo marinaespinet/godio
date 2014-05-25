@@ -10,8 +10,9 @@ import javax.persistence.*;
 public class Carta {
 	@Id
 	@GeneratedValue
-
 	private Integer carta_id;
+	
+	@Column(name="fecha_expiracion_dt")
 	private Date fecha_expiracion;
 	
 	
