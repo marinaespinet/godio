@@ -16,6 +16,18 @@ public class Producto {
 	private Float punto_reposicion_cant;
 	private Float punto_pedido_cant;
 	
+	public Float getPunto_reposicion_cant() {
+		return punto_reposicion_cant;
+	}
+	public void setPunto_reposicion_cant(Float punto_reposicion_cant) {
+		this.punto_reposicion_cant = punto_reposicion_cant;
+	}
+	public Float getPunto_pedido_cant() {
+		return punto_pedido_cant;
+	}
+	public void setPunto_pedido_cant(Float punto_pedido_cant) {
+		this.punto_pedido_cant = punto_pedido_cant;
+	}
 	public Integer getProducto_id() {
 		return producto_id;
 	}
