@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name="MESAS")
 
 
-
 public class Mesa {
 	@Id
 	@GeneratedValue
@@ -68,17 +67,6 @@ public class Mesa {
 	}
 	public void setUnion_mesa(Integer union_mesa) {
 		this.union_mesa = union_mesa;
-	}
-	
-	
-	public void modificarEstado(String estado){
-		//TODO
-	}
-	
-	public List<Mesa> mesas(Integer cantComensales){
-		//TODO
-		return null;
-		
 	}
 	
 }
