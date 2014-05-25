@@ -17,7 +17,7 @@ public class Stock {
 	private Deposito stock_deposito;
 	@OneToOne
 	@JoinColumn(name="STOCK_PRODUCTO_ID")
-	private Producto stock_producto;
+	private Producto producto;
 	private Integer cantidad;
 	private Date fecha_vencimiento_producto_dt;
 	
@@ -33,11 +33,11 @@ public class Stock {
 	public void setStock_deposito(Deposito stock_deposito) {
 		this.stock_deposito = stock_deposito;
 	}
-	public Producto getStock_producto() {
-		return stock_producto;
+	public Producto getProducto() {
+		return producto;
 	}
-	public void setStock_producto(Producto stock_producto) {
-		this.stock_producto = stock_producto;
+	public void setProducto(Producto stock_producto) {
+		this.producto = stock_producto;
 	}
 	public Integer getCantidad(Producto producto) {
 		//TODO

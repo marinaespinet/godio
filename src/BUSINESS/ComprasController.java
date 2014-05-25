@@ -1,5 +1,7 @@
 package BUSINESS;
 
+import java.util.*;
+
 import DAO.*;
 import ENTITY.*;
 
@@ -14,8 +16,13 @@ public class ComprasController {
 		return instancia;
 	}
 	
-	public void getListadoDeComprasARealizar(){
+	public List<DTO.Insumo> getListadoDeComprasARealizar(){
+		List<Insumo> insumos = ComprasDAO.getInstancia().getComprasRealizar();
+		List<DTO.Insumo> insumosDTO  = new ArrayList<DTO.Insumo>();
 		
+		for(Insumo insumo: insumos){
+			insumosDTO.add( ProductosController.getInstancia().getInsumoDTO(insumo));			
+		}
+		return insumosDTO;
 	}
-	
 }

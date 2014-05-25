@@ -1,7 +1,11 @@
 package SERVER;
 
+import java.util.*;
+
+import BUSINESS.*;
 import DAO.*;
 import ENTITY.*;
+
 
 public class TDD_Schere {
 
@@ -12,6 +16,14 @@ public class TDD_Schere {
 		unitTestUsuarios();
 		unitTestLogin();
 		unitTestPlanProd();
+		unitTestComprasRealizar();
+	}
+	
+	public static boolean unitTestComprasRealizar(){
+		List<DTO.Insumo> insumos = ComprasController.getInstancia().getListadoDeComprasARealizar();
+		for(DTO.Insumo ins : insumos)
+			System.out.println(ins.getName());
+		return true;
 	}
 	
 	public static boolean unitTestUsuarios(){

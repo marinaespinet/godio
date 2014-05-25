@@ -13,7 +13,8 @@ public class Producto {
 	private String name;
 	private Integer producto_tipo_caducidad_id;
 	private Boolean puede_venta_ind;
-	
+	private Float punto_reposicion_cant;
+	private Float punto_pedido_cant;
 	
 	public Integer getProducto_id() {
 		return producto_id;
