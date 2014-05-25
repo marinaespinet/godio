@@ -22,6 +22,7 @@ public class Movimiento_Stock {
 	@ManyToOne
 	@JoinColumn(name="DEPOSITO_DESTINO_ID")
 	private Deposito deposito_destino;
+	
 	private Date fecha_movimiento_dt;
 	private String motivo_desc;
 	
@@ -32,13 +33,14 @@ public class Movimiento_Stock {
 	@ManyToOne
 	@JoinColumn(name="PRODUCTO_ID")
 	private Producto producto;
+	
 	private Integer cantidad;
 	private String lote;
 	
 	@ManyToOne
 	@JoinColumn(name="SOLICITANTE")
-	
 	private Usuario solicitante;
+	
 	private Date fecha_compra_producto_dt;
 	private Date fecha_vencim_producto_dt;
 	private String movimiento_estado;
