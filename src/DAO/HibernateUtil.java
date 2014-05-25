@@ -43,8 +43,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(Plato.class);
         	 config.addAnnotatedClass(Producto.class);
         	 config.addAnnotatedClass(Proveedor.class);
-        	 config.addAnnotatedClass(RecepcionCompra.class);
-        	 config.addAnnotatedClass(Receta.class);
+        	 config.addAnnotatedClass(RecepcionCompra.class);        
         	 config.addAnnotatedClass(Reserva.class);
         	 config.addAnnotatedClass(Rol.class);
         	 config.addAnnotatedClass(Sector.class);

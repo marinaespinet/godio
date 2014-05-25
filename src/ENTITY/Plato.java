@@ -1,25 +1,31 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="Platos")
-
-
 public class Plato {
 	@Id
 	@GeneratedValue
-
 	private Integer plato_id;
 	private String name;
+	
+	@ManyToOne @JoinColumn(name="plato_area_id")
 	private Area plato_area;
 	private Float comision_extra_mozo;
-	private Receta plato_receta;
+	
+	@OneToMany
+	private List<Ingrediente>  ingredientes;
 	
 	
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
 	public Integer getPlato_id() {
 		return plato_id;
 	}
@@ -43,12 +49,6 @@ public class Plato {
 	}
 	public void setComision_extra_mozo(Float comision_extra_mozo) {
 		this.comision_extra_mozo = comision_extra_mozo;
-	}
-	public Receta getPlato_receta() {
-		return plato_receta;
-	}
-	public void setPlato_receta(Receta plato_receta) {
-		this.plato_receta = plato_receta;
 	}
 	
 	private Item_Carta obtenerPlatoAlternativo(){

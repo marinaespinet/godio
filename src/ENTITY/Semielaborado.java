@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="SEMIELABORADOS")
 @PrimaryKeyJoinColumn(name="semielaborado_id")
 public class Semielaborado extends Producto{
-	@Id
+	
 	private Integer semielaborado_id;
 	private Float horas_elaboracion_cant;
 	private String nombres;
