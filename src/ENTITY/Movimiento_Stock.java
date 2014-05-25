@@ -33,14 +33,10 @@ public class Movimiento_Stock {
 	
 	private Integer cantidad;
 	private String lote;
-	
-	@ManyToOne
-	@JoinColumn(name="SOLICITANTE")
-	private Usuario solicitante;
+
 	
 	private Date fecha_compra_producto_dt;
 	private Date fecha_vencim_producto_dt;
-	private String movimiento_estado;
 	
 	
 	public Integer getMovimiento_id() {
@@ -97,12 +93,6 @@ public class Movimiento_Stock {
 	public void setLote(String lote) {
 		this.lote = lote;
 	}
-	public Usuario getSolicitante() {
-		return solicitante;
-	}
-	public void setSolicitante(Usuario solicitante) {
-		this.solicitante = solicitante;
-	}
 	public Date getFecha_compra_producto_dt() {
 		return fecha_compra_producto_dt;
 	}
@@ -114,15 +104,6 @@ public class Movimiento_Stock {
 	}
 	public void setFecha_vencim_producto_dt(Date fecha_vencim_producto_dt) {
 		this.fecha_vencim_producto_dt = fecha_vencim_producto_dt;
-	}
-	public String getMovimiento_estado() {
-		return movimiento_estado;
-	}
-	public void setMovimiento_estado(String movimiento_estado) {
-		this.movimiento_estado = movimiento_estado;
-	}
-	
-	
-
+	}	
 	
 }

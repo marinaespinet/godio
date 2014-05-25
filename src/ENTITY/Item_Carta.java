@@ -42,10 +42,10 @@ public class Item_Carta {
 	public void setItem_plato(Plato item_plato) {
 		this.item_plato = item_plato;
 	}
-	public String getRubro() {
+	public Rubro_Carta getRubro() {
 		return rubro;
 	}
-	public void setRubro(String rubro) {
+	public void setRubro(Rubro_Carta rubro) {
 		this.rubro = rubro;
 	}
 	public Float getPrecio_monto() {
