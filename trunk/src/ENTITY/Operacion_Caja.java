@@ -24,9 +24,9 @@ public class Operacion_Caja {
 	
 	@OneToMany
 	//@JoinColumn(name="item_cierre_id")
-	private List<Item_Operacion_Caja>items;
+	private List<Item_Operacion_Caja> items;
 	
-	private Float recaudacion;
+	private Float recaudacion_monto;
 	private Float comisiones;
 	
 	@OneToOne
@@ -72,10 +72,10 @@ public class Operacion_Caja {
 		this.items = items;
 	}
 	public Float getRecaudacion() {
-		return recaudacion;
+		return recaudacion_monto;
 	}
 	public void setRecaudacion(Float recaudacion) {
-		this.recaudacion = recaudacion;
+		this.recaudacion_monto = recaudacion;
 	}
 	public Float getComisiones() {
 		return comisiones;
