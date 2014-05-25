@@ -1,5 +1,6 @@
 package SERVER;
 
+import java.sql.Date;
 import java.util.List;
 
 import DAO.*;
@@ -19,13 +20,19 @@ public class TDD_Javier {
 		//unitTestAreaPorNombre();
 		//unitTestAreaPorId();
 		
-		unitTestSectores();
+		//unitTestSectores();
 		//unitTestSectorPorNombre();
 		//unitTestSectorPorId();
 		
 		//unitTestMozos();
 		//unitTestMozoPorNombre();
 		//unitTestMozoPorId();
+		
+		//unitTestMesas();
+		//unitTestMesaPorId();
+		
+		
+		/* A estos no los pude hacer andar */
 		
 		//unitTestReservas();
 		//unitTestReservaPorId();
@@ -34,48 +41,151 @@ public class TDD_Javier {
 
 	}
 	
+	private static boolean unitTestMesaPorId() {
+	
+		System.out.print("Test Mesa por Id: ");
+		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
+		if(unaMesa != null){
+		System.out.println("La mesa con el Id 1 efectivamente existe y tiene una cantidad maxima de comensales de " + unaMesa.getMax_cant_comensales());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
+		
+	}
+
+	private static boolean unitTestMesas() {
+
+		System.out.print("Test Mesas: ");
+		List<Mesa> lasMesas = LocationDAO.getInstancia().getMesas();
+		if(lasMesas != null){
+			for(Mesa unaMesa : lasMesas)
+				System.out.println("Encontré una mesa con el Id " + unaMesa.getMesa_id() + " para " + unaMesa.getMax_cant_comensales() + " comensales");
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
+		
+	}
+
 	private static void unitTestCrearReserva() {
-		// TODO Auto-generated method stub
+		
+		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
+		Date laFecha = new Date(25/05/2014);
+		Reserva unaReserva = new Reserva();
+		unaReserva.setCant_comensales(4);
+		unaReserva.setFecha(laFecha);
+		unaReserva.setMinutos_duracion(45);
+		unaReserva.setReserva_id(1005);
+		unaReserva.setReserva_mesa(unaMesa);
+		
+		LocationDAO.getInstancia().setReserva(unaReserva);
+	}
+
+	private static boolean unitTestReservaPorFecha() {
+		
+		System.out.print("Test Reserva por fecha: ");
+		Date unaFecha = new Date(25/05/2014);
+		Reserva unaReserva = LocationDAO.getInstancia().getReservaPorFecha(unaFecha);
+		if(unaReserva != null){
+		System.out.println("La Reserva para el dia " + unaReserva.getFecha() + " efectivamente existe es para " + unaReserva.getCant_comensales() + " comensales");
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestReservaPorFecha() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestReservaPorId() {
+		
+		System.out.print("Test Reserva por Id: ");
+		Reserva unaReserva = LocationDAO.getInstancia().getReservaPorId(1);
+		if(unaReserva != null){
+		System.out.println("La reserva con el Id 1 efectivamente existe y es para el dia " + unaReserva.getFecha());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestReservaPorId() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestReservas() {
+		
+		System.out.print("Test Reservas: ");
+		List<Reserva> lasReservas = LocationDAO.getInstancia().getReservas();
+		if(lasReservas != null){
+			for(Reserva unaReserva : lasReservas)
+				System.out.println("Encontré una reserva, el dia " + unaReserva.getFecha() + " para " + unaReserva.getCant_comensales() + " comensales");
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestReservas() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestMozoPorId() {
+
+		System.out.print("Test Mozo por Id: ");
+		Mozo unMozo = LocationDAO.getInstancia().getMozoPorId(1);
+		if(unMozo != null){
+		System.out.println("El Mozo 1 efectivamente existe y tiene el nombre " + unMozo.getName());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestMozoPorId() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestMozoPorNombre() {
+		
+		System.out.print("Test Mozo por nombre: ");
+		Mozo unMozo = LocationDAO.getInstancia().getMozoPorNombre("Juan");
+		if(unMozo != null){
+		System.out.println("El mozo " + unMozo.getName() + " efectivamente existe y tiene el Id " + unMozo.getMozo_id());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestMozoPorNombre() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestMozos() {
+		
+		System.out.print("Test Mozos: ");
+		List<Mozo> losMozos = LocationDAO.getInstancia().getMozos();
+		if(losMozos != null){
+			for(Mozo unMozo : losMozos)
+				System.out.println("Encontré un Mozo y se llama: " + unMozo.getName() + " que corresponde al username  " + unMozo.getMozo_user().getUser_name());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestMozos() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestSectorPorId() {
+		
+		System.out.print("Test Sector por Id: ");
+		Sector unSector = LocationDAO.getInstancia().getSectorPorId(33);
+		if(unSector != null){
+		System.out.println("El sector 33 efectivamente existe y tiene el nombre " + unSector.getName());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestSectorPorId() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestSectorPorNombre() {
 		
-	}
-
-	private static void unitTestSectorPorNombre() {
-		// TODO Auto-generated method stub
+		System.out.print("Test Sector por nombre: ");
+		Sector unSector = LocationDAO.getInstancia().getSectorPorNombre("Ventana1");
+		if(unSector != null){
+		System.out.println("El sector " + unSector.getName() + " efectivamente existe y tiene el Id " + unSector.getSector_id());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
