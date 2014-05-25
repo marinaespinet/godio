@@ -21,9 +21,13 @@ public class Mesa {
 	@ManyToOne @JoinColumn(name="mesa_sector_id")
 	private Sector mesa_sector;
 	
-	private String mesa_estado;
+	@ManyToOne @JoinColumn(name="MESA_ESTADO_ID")
+	private Estado_Mesa mesa_estado;
+	
 	private Integer max_cant_comensales;
-	private Integer union_mesa;
+	
+	@ManyToOne @JoinColumn(name="UNION_MESA_ID")
+	private Mesa union_mesa;
 	
 	
 	public Integer getMesa_id() {
@@ -50,10 +54,10 @@ public class Mesa {
 	public void setMesa_sector(Sector mesa_sector) {
 		this.mesa_sector = mesa_sector;
 	}
-	public String getMesa_estado() {
+	public Estado_Mesa getMesa_estado() {
 		return mesa_estado;
 	}
-	public void setMesa_estado(String mesa_estado) {
+	public void setMesa_estado(Estado_Mesa mesa_estado) {
 		this.mesa_estado = mesa_estado;
 	}
 	public Integer getMax_cant_comensales() {
@@ -62,10 +66,10 @@ public class Mesa {
 	public void setMax_cant_comensales(Integer max_cant_comensales) {
 		this.max_cant_comensales = max_cant_comensales;
 	}
-	public Integer getUnion_mesa() {
+	public Mesa getUnion_mesa() {
 		return union_mesa;
 	}
-	public void setUnion_mesa(Integer union_mesa) {
+	public void setUnion_mesa(Mesa union_mesa) {
 		this.union_mesa = union_mesa;
 	}
 	

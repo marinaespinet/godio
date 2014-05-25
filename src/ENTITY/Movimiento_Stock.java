@@ -5,14 +5,10 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
-
+@Table(name="Movimientos_Stock")
 public class Movimiento_Stock {
 	@Id
 	@GeneratedValue
-
 	private	Integer movimiento_id;
 	
 	@ManyToOne
@@ -23,6 +19,7 @@ public class Movimiento_Stock {
 	@JoinColumn(name="DEPOSITO_DESTINO_ID")
 	private Deposito deposito_destino;
 	
+	@Column(insertable=false)
 	private Date fecha_movimiento_dt;
 	private String motivo_desc;
 	
@@ -44,25 +41,6 @@ public class Movimiento_Stock {
 	private Date fecha_compra_producto_dt;
 	private Date fecha_vencim_producto_dt;
 	private String movimiento_estado;
-	
-	
-	
-	
-	public Movimiento_Stock(Deposito origen,
-			Deposito destino, String motivo, Producto producto,
-			Integer cantidad, String lote, Usuario solicitante,
-			Date compra, Date vencimiento) {
-		super();
-		deposito_origen = origen;
-		deposito_destino = destino;
-		motivo_desc = motivo;
-		this.producto = producto;
-		this.cantidad = cantidad;
-		this.lote = lote;
-		this.solicitante = solicitante;
-		fecha_compra_producto_dt = compra;
-		fecha_vencim_producto_dt = vencimiento;
-	}
 	
 	
 	public Integer getMovimiento_id() {
