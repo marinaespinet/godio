@@ -11,7 +11,12 @@ public class Stock {
 	@Id
 	@GeneratedValue
 	private Integer stock_id;
+	
+	@OneToOne
+	@JoinColumn(name="STOCK_DEPOSITO_ID")
 	private Deposito stock_deposito;
+	@OneToOne
+	@JoinColumn(name="STOCK_PRODUCTO_ID")
 	private Producto stock_producto;
 	private Integer cantidad;
 	private Date fecha_vencimiento_producto_dt;
