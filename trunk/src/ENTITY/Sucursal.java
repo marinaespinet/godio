@@ -15,6 +15,8 @@ public class Sucursal {
 	private Integer cant_max_cubiertos;
 	private Integer cant_max_hs_produccion_cocina;
 	private Boolean es_admin_central_ind;
+	
+	@OneToMany
 	private List<Reserva> reservas;
 
 	  @ManyToMany
