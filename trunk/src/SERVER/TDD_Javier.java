@@ -85,7 +85,7 @@ public class TDD_Javier {
 		List<Sector> losSectores = LocationDAO.getInstancia().getSectores();
 		if(losSectores != null){
 			for(Sector unSector : losSectores)
-				System.out.println("Encontré un sector y se llama: " + unSector.getName());
+				System.out.println("Encontré un sector y se llama: " + unSector.getName() + " que corresponde a la sucursal " + unSector.getSector_sucursal().getName());
 			return true;
 		} else
 			System.out.println(" MMMMAAAAAAL");
