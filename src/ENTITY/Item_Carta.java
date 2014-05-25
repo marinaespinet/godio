@@ -19,7 +19,9 @@ public class Item_Carta {
 	@JoinColumn(name="item_plato_id")
 	private Plato item_plato;
 	
-	private Integer carta_rubro_Id;
+	@ManyToOne
+	@JoinColumn(name="CARTA_RUBRO_ID")
+	private Rubro_Carta rubro;
 	
 	private Float precio_monto;
 	
@@ -40,18 +42,23 @@ public class Item_Carta {
 	public void setItem_plato(Plato item_plato) {
 		this.item_plato = item_plato;
 	}
-	
+	public String getRubro() {
+		return rubro;
+	}
+	public void setRubro(String rubro) {
+		this.rubro = rubro;
+	}
 	public Float getPrecio_monto() {
 		return precio_monto;
 	}
 	public void setPrecio_monto(Float precio_monto) {
 		this.precio_monto = precio_monto;
 	}
-	public Integer getCarta_rubro_Id() {
-		return carta_rubro_Id;
-	}
-	public void setCarta_rubro_Id(Integer carta_rubro_Id) {
-		this.carta_rubro_Id = carta_rubro_Id;
+	
+	public Integer verificarDisponibilidad(){
+		
+		//TODO
+		return 0;
 	}
 	
 }
