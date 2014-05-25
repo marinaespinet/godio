@@ -16,10 +16,13 @@ public class Compra {
 	@OneToOne
 	@JoinColumn(name="compra_proveedor_id")
 	private Proveedor compra_proveedor;
+	
+	@Column(insertable=false)
 	private Date fecha_compra_dt;
 	
 	@OneToMany
-	private List<Item_Compra>items;
+	@JoinColumn(name="ITEM_COMPRA_COMPRA_ID")
+	private List<Item_Compra> items;
 	
 	
 	public Compra(Proveedor proveedor) {

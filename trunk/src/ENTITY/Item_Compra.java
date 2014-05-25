@@ -1,18 +1,18 @@
 package ENTITY;
-
 import javax.persistence.*;
 
 
 @Entity
-@Table(name="Items_Compras")
-
+@Table(name="Items_Compra")
 public class Item_Compra {
 	@Id
 	@GeneratedValue
 	private Integer item_compra_id;
+	
 	@ManyToOne
 	@JoinColumn(name="item_producto_id")
 	private Producto item_producto;
+	
 	private Integer item_compra_cant;
 	private Float item_precio_monto;
 	

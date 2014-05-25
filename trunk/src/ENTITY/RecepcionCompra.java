@@ -13,10 +13,10 @@ public class RecepcionCompra {
 
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;
-	private Compra recepcion_compra;
+	//private Compra recepcion_compra;
 	
 	@OneToMany
-	private List<Item_Recepcion_Compra>items;	
+	private List<Item_Recepcion_Compra> items;	
 	
 
 	public Integer getRecepcion_id() {
@@ -31,12 +31,7 @@ public class RecepcionCompra {
 	public void setRecepcion_fecha_dt(Date recepcion_fecha_dt) {
 		this.recepcion_fecha_dt = recepcion_fecha_dt;
 	}
-	public Compra getRecepcion_compra() {
-		return recepcion_compra;
-	}
-	public void setRecepcion_compra(Compra recepcion_compra) {
-		this.recepcion_compra = recepcion_compra;
-	}
+	
 	public List<Item_Recepcion_Compra> getItems() {
 		return items;
 	}

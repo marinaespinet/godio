@@ -9,7 +9,8 @@ public class Ingrediente {
 	@GeneratedValue
 
 	private Integer ingrediente_id;
-	private Producto ingrediente_producto;
+	@ManyToOne @JoinColumn(name="INGREDIENTE_INSUMO_ID")
+	private Insumo insumo;
 	private Integer cantidad;
 	
 	@ManyToOne @JoinColumn(name="ingrediente_plato_id")
@@ -21,11 +22,11 @@ public class Ingrediente {
 	public void setIngrediente_id(Integer ingrediente_id) {
 		this.ingrediente_id = ingrediente_id;
 	}
-	public Producto getIngrediente_producto() {
-		return ingrediente_producto;
+	public Insumo getIngrediente_producto() {
+		return insumo;
 	}
-	public void setIngrediente_producto(Producto ingrediente_producto) {
-		this.ingrediente_producto = ingrediente_producto;
+	public void setIngrediente_insumo(Insumo insumo) {
+		this.insumo = insumo;
 	}
 	public Integer getCantidad() {
 		return cantidad;

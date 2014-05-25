@@ -11,9 +11,11 @@ public class Insumo extends Producto {
 	
 	@Column(insertable=false, updatable=false)
 	private Integer insumo_id;
+	
 	private Float precio_compra;
 	private Date fecha_vencimiento;
-	private String estado;
+	@ManyToOne @JoinColumn(name="ESTADO_ID")
+	private Estado_Insumo estado;
 	private Boolean puede_compra_ind;
 	
 	
@@ -35,10 +37,10 @@ public class Insumo extends Producto {
 	public void setFecha_vencimiento(Date fecha_vencimiento) {
 		this.fecha_vencimiento = fecha_vencimiento;
 	}
-	public String getEstado() {
+	public Estado_Insumo getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado_Insumo estado) {
 		this.estado = estado;
 	}
 	public Boolean getPuede_compra_ind() {

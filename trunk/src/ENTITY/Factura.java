@@ -19,11 +19,11 @@ public class Factura {
 	private Date fecha_factura_dt;
 	
 	@ManyToOne
-	@JoinColumn(name="mesa_id")
+	@JoinColumn(name="FACTURA_MESA_ID")
 	private Mesa factura_mesa;
 	
 	@ManyToOne
-	@JoinColumn(name="mozo_id")
+	@JoinColumn(name="FACTURA_MOZO_ID")
 	private Mozo factura_mozo;
 	
 	private Float monto_total;
