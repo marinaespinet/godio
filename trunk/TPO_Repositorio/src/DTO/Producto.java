@@ -7,7 +7,6 @@ public class Producto {
 	private Integer producto_tipo_caducidad_id;
 	private Boolean puede_venta_ind;
 	
-	
 	public Integer getProducto_id() {
 		return producto_id;
 	}
