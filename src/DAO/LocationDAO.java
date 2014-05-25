@@ -94,7 +94,7 @@ public class LocationDAO {
 	public Area getAreaPorNombre(String AreaNombre){
 		Session session = sf.openSession();
 		//Busca x name
-		Area unArea  = (Area)session.createQuery("FROM Area are WHERE suc.name= ?").setString(0, AreaNombre)
+		Area unArea  = (Area)session.createQuery("FROM Area are WHERE are.name= ?").setString(0, AreaNombre)
 				.setFirstResult(0).setMaxResults(1).uniqueResult();
 		
 		session.close();
