@@ -3,7 +3,7 @@ package ENTITY;
 import javax.persistence.*;
 
 //@MappedSuperclass
-@Table(name="PRODUCTO")
+@Table(name="PRODUCTOS")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Producto {
 	
