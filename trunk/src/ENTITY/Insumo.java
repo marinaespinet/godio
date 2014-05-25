@@ -9,6 +9,7 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name="insumo_id")
 public class Insumo extends Producto {
 	
+	@Column(insertable=false, updatable=false)
 	private Integer insumo_id;
 	private Float precio_compra;
 	private Date fecha_vencimiento;

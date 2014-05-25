@@ -1,11 +1,11 @@
 package ENTITY;
 
-import java.util.Vector;
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
+@Table(name="MESAS")
 
 
 
@@ -15,8 +15,13 @@ public class Mesa {
 
 	private Integer mesa_id;
 	private Integer mesa_cd;
+
+	@ManyToOne @JoinColumn(name="mesa_sucursal_id")
 	private Sucursal mesa_sucursal;
+	
+	@ManyToOne @JoinColumn(name="mesa_sector_id")
 	private Sector mesa_sector;
+	
 	private String mesa_estado;
 	private Integer max_cant_comensales;
 	private Integer union_mesa;
@@ -70,7 +75,7 @@ public class Mesa {
 		//TODO
 	}
 	
-	public Vector<Mesa>mesas(Integer cantComensales){
+	public List<Mesa> mesas(Integer cantComensales){
 		//TODO
 		return null;
 		

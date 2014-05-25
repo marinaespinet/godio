@@ -1,13 +1,11 @@
 package ENTITY;
 
-import java.util.Vector;
+import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
+@Table(name="SUCURSALES")
 public class Sucursal {
 @Id
 @GeneratedValue
@@ -17,9 +15,19 @@ public class Sucursal {
 	private Integer cant_max_cubiertos;
 	private Integer cant_max_hs_produccion_cocina;
 	private Boolean es_admin_central_ind;
-	private Vector<Reserva> reservas;
+	private List<Reserva> reservas;
+
+	  @ManyToMany
+	    @JoinTable(name="AREAS_SUCURSALES", joinColumns = {@JoinColumn(name="SUCURSALES_SUCURSAL_ID")}, 
+	                        inverseJoinColumns = @JoinColumn(name = "AREAS_AREA_ID"))
+	private List<Area> areas;
 	
-	
+	public List<Area> getAreas() {
+		return areas;
+	}
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
+	}
 	public Integer getSucursal_id() {
 		return sucursal_id;
 	}
@@ -57,10 +65,10 @@ public class Sucursal {
 	public void setEs_admin_central_ind(Boolean es_admin_central_ind) {
 		this.es_admin_central_ind = es_admin_central_ind;
 	}
-	public Vector<Reserva> getReservas() {
+	public List<Reserva> getReservas() {
 		return reservas;
 	}
-	public void setReservas(Vector<Reserva> reservas) {
+	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
 	
