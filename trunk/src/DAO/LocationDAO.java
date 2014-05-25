@@ -223,4 +223,12 @@ public class LocationDAO {
 	}
 	
 	
+	//insertar una reserva
+	public void grabarReserva(Reserva resv){
+		
+		Session session = sf.openSession();
+		session.persist(resv);
+		session.close();
+	}
+	
 }
