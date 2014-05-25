@@ -39,13 +39,23 @@ public class PedidosDAO {
 	//busqueda x ID
 	public Pedido getPedido(int id){
 		Session session = sf.openSession();
-		//Busca x ID ?
 		Pedido ped = (Pedido)session.get(Pedido.class, id);
 		
 		session.close();
 
 		return ped;
 	}
+	
+	//Listar Items de un pedido
+	
+	public List<Item_Pedido> getItems (int id){
+		Session session = sf.openSession();
+		List<Item_Pedido> list = (List<Item_Pedido>)session.createQuery("SELECT p.items FROM Pedido p JOIN p.items i WHERE p.pedido_id=?").setInteger(0, id).list();
+		session.close();
+		return list;
+	}
+	
+	//Listar pedidos por estado
 
 }
 
