@@ -15,11 +15,11 @@ public class TDD_Javier {
 		//unitTestSucursalPorNombre();
 		//unitTestSucursalPorId();
 		
-		unitTestAreas();
+		//unitTestAreas();
 		//unitTestAreaPorNombre();
 		//unitTestAreaPorId();
 		
-		//unitTestSectores();
+		unitTestSectores();
 		//unitTestSectorPorNombre();
 		//unitTestSectorPorId();
 		
@@ -79,18 +79,43 @@ public class TDD_Javier {
 		
 	}
 
-	private static void unitTestSectores() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestSectores() {
+		
+		System.out.print("Test Sectores: ");
+		List<Sector> losSectores = LocationDAO.getInstancia().getSectores();
+		if(losSectores != null){
+			for(Sector unSector : losSectores)
+				System.out.println("Encontré un sector y se llama: " + unSector.getName());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestAreaPorId() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestAreaPorId() {
+		
+		System.out.print("Test Area por Id: ");
+		Area unArea = LocationDAO.getInstancia().getAreaPorId(1);
+		if(unArea != null){
+		System.out.println("El area con el Id 1 efectivamente existe y se llama " + unArea.getName());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
-	private static void unitTestAreaPorNombre() {
-		// TODO Auto-generated method stub
+	private static boolean unitTestAreaPorNombre() {
+
+		System.out.print("Test Area por nombre: ");
+		Area unArea = LocationDAO.getInstancia().getAreaPorNombre("Cocina");
+		if(unArea != null){
+		System.out.println("El area " + unArea.getName() + " efectivamente existe y tiene el Id " + unArea.getArea_id());
+			return true;
+		} else
+			System.out.println(" MMMMAAAAAAL");
+			return false;
 		
 	}
 
