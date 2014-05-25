@@ -1,4 +1,4 @@
-//maneja sucursal area sector mozo reserva
+//maneja sucursal area sector mozo reserva mesas
 
 package DAO;
 
@@ -224,11 +224,40 @@ public class LocationDAO {
 	
 	
 	//insertar una reserva
-	public void grabarReserva(Reserva resv){
+	public void setReserva(Reserva resv){
 		
 		Session session = sf.openSession();
+		session.beginTransaction();
 		session.persist(resv);
+		session.flush();
+		session.getTransaction().commit();
 		session.close();
 	}
+	
+	//MANEJO DE MESAS
+	
+		//Trae todas las mesas.
+		@SuppressWarnings("unchecked")
+		public List<Mesa> getMesas()
+		{
+			Session session = sf.openSession();
+			List<Mesa> list = (List<Mesa>)session.createQuery("FROM Mesa").list();
+			
+			session.close();
+
+			return list;
+		}
+		
+		//Trae una mesa por Id.
+		public Mesa getMesaPorId(Integer mesaId)
+		{
+			Session session = sf.openSession();
+			Mesa unaMesa = (Mesa)session.createQuery("FROM Mesa mes WHERE mes.mesa_id = ?").setInteger(0, mesaId).uniqueResult();
+			
+			session.close();
+
+			return unaMesa;
+		}	
+		
 	
 }
