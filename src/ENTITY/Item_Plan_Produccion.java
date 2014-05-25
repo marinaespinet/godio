@@ -13,10 +13,12 @@ public class Item_Plan_Produccion {
 	@ManyToOne
 	@JoinColumn(name="ITEM_PLAN_SEMIELABORADO_ID")
 	private Semielaborado item_plan_semielaborado;
+	
 	private Integer cantidad;
 	@ManyToOne
 	@JoinColumn(name="ITEM_PLAN_SUCURSAL_ID")
 	private Sucursal item_plan_sucursal;
+	
 	private Integer item_plan_avance_qty;
 	
 	@ManyToOne

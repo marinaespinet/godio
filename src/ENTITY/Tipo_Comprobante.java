@@ -5,11 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="")
+@Table(name="Tipos_Comprobantes")
 public class Tipo_Comprobante {
 @Id
 @GeneratedValue
 	private Integer tipo_comprobante_id;
+
+@Column(name="name")
 	private String nombre;
 	
 	

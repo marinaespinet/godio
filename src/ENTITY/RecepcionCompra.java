@@ -15,7 +15,7 @@ public class RecepcionCompra {
 	private Date recepcion_fecha_dt;
 	//private Compra recepcion_compra;
 	
-	@OneToMany
+	@OneToMany @JoinColumn(name="item_recepcion_recepcion_id")
 	private List<Item_Recepcion_Compra> items;	
 	
 

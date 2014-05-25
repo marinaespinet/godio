@@ -16,7 +16,7 @@ public class Plato {
 	private Area plato_area;
 	private Float comision_extra_mozo;
 	
-	@OneToMany
+	@OneToMany @JoinColumn(name="ingrediente_plato_id")
 	private List<Ingrediente>  ingredientes;
 	
 	

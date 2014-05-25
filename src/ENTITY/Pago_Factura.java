@@ -12,11 +12,11 @@ public class Pago_Factura {
 	private Integer pago_id;
 	
 	@OneToOne
-	@JoinColumn(name="factura_id")
+	@JoinColumn(name="pago_factura_id")
 	private Factura pago_factura_id;
 	
 	@OneToOne
-	@JoinColumn(name="medio_pago_id")
+	@JoinColumn(name="PAGO_MEDIO_PAGO_ID")
 	private Medio_Pago pago_medio_pago_id;
 	
 	private Float monto_total;

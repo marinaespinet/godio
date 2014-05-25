@@ -19,19 +19,19 @@ public class Operacion_Caja {
 	private Date fecha_dt;
 	
 	@ManyToOne
-	@JoinColumn(name="sucursal_id")
+	@JoinColumn(name="CIERRE_SUCURSAL_ID")
 	private Sucursal cierre_sucursal_id;
 	
 	@OneToMany
-	//@JoinColumn(name="item_cierre_id")
+	@JoinColumn(name="item_cierre_cierre_id")
 	private List<Item_Operacion_Caja> items;
 	
 	private Float recaudacion_monto;
-	private Float comisiones;
+	private Float comisiones_monto;
 	
 	@OneToOne
 	@JoinColumn(name="tipo_operacion_caja_id")
-	private Tipo_Operacion tipo;	
+	private Tipo_Operacion_Caja tipo;	
 	
 	public Operacion_Caja() {
 		super();
@@ -78,15 +78,15 @@ public class Operacion_Caja {
 		this.recaudacion_monto = recaudacion;
 	}
 	public Float getComisiones() {
-		return comisiones;
+		return comisiones_monto;
 	}
 	public void setComisiones(Float comisiones) {
-		this.comisiones = comisiones;
+		this.comisiones_monto = comisiones;
 	}
-	public Tipo_Operacion getTipo() {
+	public Tipo_Operacion_Caja getTipo() {
 		return tipo;
 	}
-	public void setTipo(Tipo_Operacion tipo) {
+	public void setTipo(Tipo_Operacion_Caja tipo) {
 		this.tipo = tipo;
 	}
 
