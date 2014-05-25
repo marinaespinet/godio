@@ -1,3 +1,5 @@
+//maneja sucursal area sector mozo reserva
+
 package DAO;
 
 import java.util.*;
@@ -20,12 +22,14 @@ public class LocationDAO {
 		return instancia;
 	}
 	
+	//MANEJO DE SUCURSALES
+	
 	//Trae todas las sucursales.
 	@SuppressWarnings("unchecked")
 	public List<Sucursal> getSucursales()
 	{
 		Session session = sf.openSession();
-		List<Sucursal> list = (List<Sucursal>)session.createQuery("from Sucursal").list();
+		List<Sucursal> list = (List<Sucursal>)session.createQuery("FROM Sucursal").list();
 		
 		session.close();
 
@@ -58,14 +62,15 @@ public class LocationDAO {
 		return suc;
 	}
 	
-	//maneja sucursal area sector mozo reserva
-
+	
+	//MANEJO DE AREAS
+	
 	//Trae todas las areas.
 	@SuppressWarnings("unchecked")
 	public List<Area> getAreas()
 	{
 		Session session = sf.openSession();
-		List<Area> list = (List<Area>)session.createQuery("from Area").list();
+		List<Area> list = (List<Area>)session.createQuery("FROM Area").list();
 		
 		session.close();
 
@@ -97,5 +102,125 @@ public class LocationDAO {
 		//Si el name no existe devuelve null.
 		return unArea;
 	}
+	
+
+	//MANEJO DE SECTORES
+	
+	//Trae todos los sectores.
+	@SuppressWarnings("unchecked")
+	public List<Sector> getSectores()
+	{
+		Session session = sf.openSession();
+		List<Sector> list = (List<Sector>)session.createQuery("FROM Sector").list();
+		
+		session.close();
+
+		return list;
+	}
+	
+	//Trae un sector.
+	public Sector getSectorPorId(Integer sectorId)
+	{
+		Session session = sf.openSession();
+		Sector unSector = (Sector)session.createQuery("FROM Sector sec WHERE sec.sector_id = ?").setInteger(0, sectorId).uniqueResult();
+		
+		session.close();
+
+		return unSector;
+	}	
+	
+	
+
+	//busqueda x name
+	public Sector getSectorPorNombre(String SectorNombre){
+		Session session = sf.openSession();
+		//Busca x name
+		Sector unSector  = (Sector)session.createQuery("FROM Sector sec WHERE sec.name= ?").setString(0, SectorNombre)
+				.setFirstResult(0).setMaxResults(1).uniqueResult();
+		
+		session.close();
+
+		//Si el name no existe devuelve null.
+		return unSector;
+	}
+	
+	//MANEJO DE MOZOS
+	
+	//Trae todos los mozos.
+	@SuppressWarnings("unchecked")
+	public List<Mozo> getMozos()
+	{
+		Session session = sf.openSession();
+		List<Mozo> list = (List<Mozo>)session.createQuery("FROM Mozo").list();
+		
+		session.close();
+
+		return list;
+	}
+	
+	//Trae un Mozo.
+	public Mozo getMozoPorId(Integer mozoId)
+	{
+		Session session = sf.openSession();
+		Mozo unMozo = (Mozo)session.createQuery("FROM Mozo moz WHERE moz.mozo_id = ?").setInteger(0, mozoId).uniqueResult();
+		
+		session.close();
+
+		return unMozo;
+	}	
+	
+	
+
+	//busqueda x name
+	public Mozo getMozoPorNombre(String MozoNombre){
+		Session session = sf.openSession();
+		//Busca x name
+		Mozo unMozo  = (Mozo)session.createQuery("FROM Mozo moz WHERE moz.name= ?").setString(0, MozoNombre)
+				.setFirstResult(0).setMaxResults(1).uniqueResult();
+		
+		session.close();
+
+		//Si el name no existe devuelve null.
+		return unMozo;
+	}
+
+	//MANEJO DE RESERVAS
+	
+	//Trae todas las reservas.
+	@SuppressWarnings("unchecked")
+	public List<Reserva> getReservas()
+	{
+		Session session = sf.openSession();
+		List<Reserva> list = (List<Reserva>)session.createQuery("FROM Reserva").list();
+		
+		session.close();
+
+		return list;
+	}
+	
+	//Trae una reserva.
+	public Reserva getReservaPorId(Integer reservaId)
+	{
+		Session session = sf.openSession();
+		Reserva unaReserva = (Reserva)session.createQuery("FROM Reserva resv WHERE resv.reserva_id = ?").setInteger(0, reservaId).uniqueResult();
+		
+		session.close();
+
+		return unaReserva;
+	}	
+	
+	
+
+	//busqueda x fecha
+	public Reserva getReservaPorFecha(Date fechaReserva){
+		Session session = sf.openSession();
+		//Busca x name
+		Reserva unaReserva  = (Reserva)session.createQuery("FROM Reserva resv WHERE resv.fecha= ?").setDate(0, fechaReserva).setFirstResult(0).setMaxResults(1).uniqueResult();
+		
+		session.close();
+
+		return unaReserva;
+	}
+	
 	
 }
