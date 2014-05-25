@@ -1,20 +1,17 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="")
-
-
+@Table(name="SECTORES")
 public class Sector {
 	@Id
 	@GeneratedValue
 
 	private int sector_id;
 	private String name;
+	
+	@ManyToOne @JoinColumn(name="sector_sucursal_id")
 	private Sucursal sector_sucursal;
 	
 	
