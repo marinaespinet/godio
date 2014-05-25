@@ -1,6 +1,6 @@
 package ENTITY;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,8 +15,12 @@ public class Mozo {
 
 	private Integer mozo_id;
 	private String name;
+	@ManyToOne
+	@JoinColumn(name="MOZO_SECTOR_ID")
 	private Sector mozo_sector;
 	private Float comision;
+	@ManyToOne
+	@JoinColumn(name="MOZO_USER_ID")
 	private Usuario mozo_user;
 	
 	
