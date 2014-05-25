@@ -14,7 +14,11 @@ public class Item_Carta {
 	@GeneratedValue
 
 	private Integer item_carta_id;
+	
+	@OneToOne
+	@JoinColumn(name="item_plato_id")
 	private Plato item_plato;
+	
 	private String rubro;
 	private Float precio_monto;
 	
