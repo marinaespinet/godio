@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="")
+@Table(name="Tipos_caducidad")
 
 
 public class Tipo_Caducidad {
