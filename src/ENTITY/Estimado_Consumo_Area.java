@@ -1,9 +1,6 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Estimados_Consumos_Areas")
@@ -14,8 +11,15 @@ public class Estimado_Consumo_Area {
 	@GeneratedValue
 
 	private Integer estimado_consumo_id;
+	
+	@OneToOne
+	@JoinColumn(name="ESTIMADO_CONSUMO_AREA_ID")
 	private Area estimado_consumo_area;
+	
+	@OneToOne
+	@JoinColumn(name="ESTIMADO_CONSUMO_PRODUCTO_ID")
 	private Producto estimado_consumo_producto;
+	
 	private Integer cantidad;
 	
 	public Integer getEstimado_consumo_id() {
