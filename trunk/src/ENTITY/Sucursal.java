@@ -74,12 +74,4 @@ public class Sucursal {
 		this.reservas = reservas;
 	}
 	
-	public Integer getHorasProduccionLibres(){
-		
-		//TODO
-		return null;
-		
-	}
-	
-	
 }
