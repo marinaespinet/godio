@@ -14,13 +14,13 @@ public class Item_Factura {
 	private Integer item_id;
 	
 	@OneToOne
-	@JoinColumn(name="plato_id")
+	@JoinColumn(name="ITEM_PLATO_ID")
 	private Plato item_plato;
 	
 	private Integer cant_plato;
 	
 	@OneToOne
-	@JoinColumn(name="item_id")
+	@JoinColumn(name="ITEM_PEDIDO_ID")
 	private Item_Pedido item_pedido;
 	
 	@ManyToOne

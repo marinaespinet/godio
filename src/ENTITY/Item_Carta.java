@@ -23,7 +23,7 @@ public class Item_Carta {
 	private Float precio_monto;
 	
 	@ManyToOne
-	@JoinColumn(name="item_carta_id")
+	@JoinColumn(name="ITEM_CARTA_CARTA_ID")
 	private Carta carta;
 	
 	
