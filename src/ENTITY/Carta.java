@@ -15,6 +15,10 @@ public class Carta {
 	@Column(name="fecha_expiracion_dt")
 	private Date fecha_expiracion;
 	
+	@OneToMany
+	@JoinColumn(name="item_carta_id")
+	private List<Item_Carta> items;
+	
 	
 	public Integer getCarta_id() {
 		return carta_id;
