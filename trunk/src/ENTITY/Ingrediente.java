@@ -1,14 +1,9 @@
 package ENTITY;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Ingredientes")
-
-
 public class Ingrediente {
 	@Id
 	@GeneratedValue
@@ -17,6 +12,8 @@ public class Ingrediente {
 	private Producto ingrediente_producto;
 	private Integer cantidad;
 	
+	@ManyToOne @JoinColumn(name="ingrediente_plato_id")
+	private Plato ingrediente_plato;
 	
 	public Integer getIngrediente_id() {
 		return ingrediente_id;

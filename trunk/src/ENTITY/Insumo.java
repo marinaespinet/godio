@@ -6,8 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="Insumos")
-public class Insumo extends Producto{
-	@Id
+@PrimaryKeyJoinColumn(name="insumo_id")
+public class Insumo extends Producto {
+	
 	private Integer insumo_id;
 	private Float precio_compra;
 	private Date fecha_vencimiento;
