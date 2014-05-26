@@ -12,8 +12,8 @@ public class TDD_Marina {
 
 		//unitTestPedidos();
 		//unitTestUnPedido();
-		unitTestListarItemsPedido();
-		
+		//unitTestListarItemsPedido();
+		unitTestListarPedidoPorEstado();
 	}
 
 
@@ -53,7 +53,20 @@ private static boolean unitTestListarItemsPedido() {
 			} else{
 				System.out.println("Mal :(");
 				return false;}
-	}
-		
-
 }
+
+private static boolean unitTestListarPedidoPorEstado() {
+	
+	System.out.print("TEST: Listar todos los pedidos en determinado estado");
+	List<Pedido> pedidos = PedidosDAO.getInstancia().getPedidosPorEstado("Abierto");
+	if(pedidos!=null){
+			for(Pedido unPedido : pedidos)
+				System.out.println("Encontré un pedido con Id " + unPedido.getPedido_id() + " en estado " + unPedido.getPedidoEstado().getEstado_name());
+			return true;
+		} else{
+			System.out.println("Mal :(");
+			return false;}
+	}
+}
+
+

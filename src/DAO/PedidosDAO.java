@@ -56,6 +56,14 @@ public class PedidosDAO {
 	}
 	
 	//Listar pedidos por estado
+	
+	public List<Pedido> getPedidosPorEstado(String estado)
+	{
+		Session session = sf.openSession();
+		List<Pedido> list = (List<Pedido>)session.createQuery("Select p from Pedido p JOIN p.pedido_estado e where e.estado_name=?").setString(0,estado).list();
+		session.close();
+		return list;
+	}
 
 }
 
