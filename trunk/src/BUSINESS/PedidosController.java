@@ -18,21 +18,21 @@ public class PedidosController {
 		PedidosDAO.getInstancia().setItemPedido(it);
 	}
 	
-	public Item_Pedido getItemPedidoFromDTO(DTO.Item_Pedido item){
-		Item_Pedido it = new Item_Pedido();
-		it.setCantidad(item.getCantidad());
-		it.setPedido(PedidosDAO.getInstancia().getPedido(item.getPedido_id()));
-		it.setItem_carta(CartasDAO.getInstancia().getItemCarta(item.getItem_carta_id()));
+	public Item_Pedido getItemPedidoFromDTO(DTO.Item_Pedido itemDTO){
+		Item_Pedido itEnt = new Item_Pedido();
+		itEnt.setCantidad(itemDTO.getCantidad());
+		itEnt.setPedido(PedidosDAO.getInstancia().getPedido(itemDTO.getPedido_id()));
+		itEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(itemDTO.getItem_carta_id()));
 		
-		it.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
+		itEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
 		
-		it.setArea(
-				CartasDAO.getInstancia().getItemCarta(item.getItem_carta_id()).getPlato().getPlato_area()
+		itEnt.setArea(
+				CartasDAO.getInstancia().getItemCarta(itemDTO.getItem_carta_id()).getPlato().getPlato_area()
 		);
 		
-		Pedido pedido = PedidosDAO.getInstancia().getPedido(item.getPedido_id());
+		Pedido pedido = PedidosDAO.getInstancia().getPedido(itemDTO.getPedido_id());
 		
-		it.setPedido(pedido);
-		return it;
+		itEnt.setPedido(pedido);
+		return itEnt;
 	}
 }
