@@ -12,7 +12,7 @@ public class TDD_Javier {
 		// TODO Auto-generated method stub
 		
 		
-		//unitTestSucursales();
+		unitTestSucursales();
 		//unitTestSucursalPorNombre();
 		//unitTestSucursalPorId();
 		
@@ -34,7 +34,7 @@ public class TDD_Javier {
 		
 		/* A estos no los pude hacer andar */
 		
-		unitTestReservas();
+		//unitTestReservas();
 		//unitTestReservaPorId();
 		//unitTestReservaPorFecha();
 		//unitTestCrearReserva();
