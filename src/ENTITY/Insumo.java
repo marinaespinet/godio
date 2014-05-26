@@ -18,6 +18,8 @@ public class Insumo extends Producto {
 	private Estado_Insumo estado;
 	private Boolean puede_compra_ind;
 	
+	@OneToOne @JoinColumn(name="INSUMO_ID")
+	private Stock stock;
 	
 	public Integer getInsumo_id() {
 		return insumo_id;
