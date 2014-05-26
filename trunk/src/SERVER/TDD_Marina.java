@@ -13,7 +13,10 @@ public class TDD_Marina {
 		//unitTestPedidos();
 		//unitTestUnPedido();
 		//unitTestListarItemsPedido();
-		unitTestListarPedidoPorEstado();
+		//unitTestListarPedidoPorEstado();
+		//unitTestPedidoAbiertoDeMesa();
+		FacturasController.getInstancia().solicitarFactura(2);
+		
 	}
 
 
@@ -67,6 +70,19 @@ private static boolean unitTestListarPedidoPorEstado() {
 			System.out.println("Mal :(");
 			return false;}
 	}
+
+private static boolean unitTestPedidoAbiertoDeMesa(){
+	System.out.print("TEST: Buscar el pedido abierto de una mesa");
+	Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(1);
+	if(pedido!=null){
+				System.out.println("Pedido: " + pedido.getPedido_id() + " en estado " + pedido.getPedidoEstado().getEstado_name() + " Mesa: " + pedido.getPedido_mesa().getMesa_id());
+			return true;
+		} else{
+			System.out.println("Mal :(");
+			return false;}
 }
+
+}
+
 
 
