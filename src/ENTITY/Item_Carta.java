@@ -36,10 +36,10 @@ public class Item_Carta {
 	public void setItem_carta_id(Integer item_carta_id) {
 		this.item_carta_id = item_carta_id;
 	}
-	public Plato getItem_plato() {
+	public Plato getPlato() {
 		return item_plato;
 	}
-	public void setItem_plato(Plato item_plato) {
+	public void setPlato(Plato item_plato) {
 		this.item_plato = item_plato;
 	}
 	public Rubro_Carta getRubro() {
