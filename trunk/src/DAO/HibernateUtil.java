@@ -20,6 +20,7 @@ public class HibernateUtil
         	 config.addAnnotatedClass(Estado_Pedido.class);
         	 config.addAnnotatedClass(Estado_Insumo.class);
         	 config.addAnnotatedClass(Estado_Mesa.class);
+        	 config.addAnnotatedClass(Estado_Item_Pedido.class);
         	 config.addAnnotatedClass(Estimado_Consumo_Area.class);
         	 config.addAnnotatedClass(Factura.class);
         	 config.addAnnotatedClass(Ingrediente.class);

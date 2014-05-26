@@ -24,6 +24,17 @@ public class Item_Pedido {
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
 	
+	@ManyToOne @JoinColumn(name="ESTADO_ITEM_PEDIDO_ID")
+	private Estado_Item_Pedido estado;
+	
+	public Estado_Item_Pedido getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado_Item_Pedido estado) {
+		this.estado = estado;
+	}
+
 	public Item_Pedido() {
 		super();
 	}

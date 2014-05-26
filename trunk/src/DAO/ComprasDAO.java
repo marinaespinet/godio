@@ -25,9 +25,10 @@ public class ComprasDAO {
 	{
 		Session session = sf.openSession();
 		List<Insumo> list = (List<Insumo>)session.createQuery(""
-				+ "SELECT i "
-				+ "FROM Stock s JOIN s.producto p "
-				+ "WHERE p.punto_reposicion_cant <= s.cantidad "
+				+ "SELECT i "				
+				+ "FROM Insumo i "
+				+ "JOIN i.stock s "
+				+ "WHERE s.cantidad <= i.punto_reposicion_cant "
 				+ " ").list();			
 		
 		session.close();
