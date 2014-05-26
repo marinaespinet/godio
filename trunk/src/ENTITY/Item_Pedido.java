@@ -14,15 +14,18 @@ public class Item_Pedido {
 	
 	@ManyToOne
 	@JoinColumn(name="item_pedido_id")
-	private Pedido item_pedido;
+	private Pedido pedido;
 	
 	@OneToOne
 	@JoinColumn(name="item_item_carta_id")
 	private Item_Carta item_carta;
 	
 	private Integer cantidad;
-	private Boolean item_no_facturar_ind;
+	private Boolean item_no_facturar_ind=false;
 	private String observaciones_no_facturar;
+	
+	@ManyToOne @JoinColumn(name="item_area_id")
+	private Area item_area_id;
 	
 	@ManyToOne @JoinColumn(name="ESTADO_ITEM_PEDIDO_ID")
 	private Estado_Item_Pedido estado;
@@ -53,11 +56,11 @@ public class Item_Pedido {
 	public void setItem_id(Integer item_id) {
 		this.item_id = item_id;
 	}
-	public Pedido getItem_pedido() {
-		return item_pedido;
+	public Pedido getPedido() {
+		return pedido;
 	}
-	public void setItem_pedido(Pedido item_pedido) {
-		this.item_pedido = item_pedido;
+	public void setPedido(Pedido item_pedido) {
+		this.pedido = item_pedido;
 	}
 	public Item_Carta getItem_carta() {
 		return item_carta;
@@ -84,5 +87,12 @@ public class Item_Pedido {
 		this.observaciones_no_facturar = observaciones_no_facturar;
 	}
 
+	public Area getArea() {
+		return item_area_id;
+	}
+
+	public void setArea(Area item_area_id) {
+		this.item_area_id = item_area_id;
+	}
 	
 }

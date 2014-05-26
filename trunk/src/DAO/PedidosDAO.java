@@ -79,6 +79,15 @@ public class PedidosDAO {
 			return conteo;
 		}
 	
+	//Graba un item (update o insert) de un pedido
+		public void setItemPedido(Item_Pedido item) {
+			Session session = sf.openSession();
+			
+			session.persist(item);
+			
+			session.flush();
+			session.close();
+		}
 
 }
 
