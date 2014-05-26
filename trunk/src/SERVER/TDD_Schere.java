@@ -4,6 +4,7 @@ import java.util.*;
 
 import BUSINESS.*;
 import DAO.*;
+import DTO.Item_Pedido;
 import ENTITY.*;
 
 
@@ -17,6 +18,7 @@ public class TDD_Schere {
 		unitTestLogin();
 		unitTestPlanProd();
 		unitTestComprasRealizar();
+		unitTestAgregarItemPedido();
 	}
 	
 	public static boolean unitTestComprasRealizar(){
@@ -64,5 +66,15 @@ public class TDD_Schere {
 		return true;
 	}
 	
+	public static boolean unitTestAgregarItemPedido(){
+		
+		System.out.print("Test TestAgregarItemPedido: ");
+		DTO.Item_Pedido item = new Item_Pedido(1,1,123);
+		PedidosController.getInstancia().agregarItemsPedido(item);		
+		
+		System.out.println("OK");
+		return true;
+		
+	}
 
 }
