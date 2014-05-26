@@ -12,9 +12,9 @@ public class TDD_Javier {
 		// TODO Auto-generated method stub
 		
 		
-		unitTestSucursales();
+		//unitTestSucursales();
 		//unitTestSucursalPorNombre();
-		//unitTestSucursalPorId();
+		unitTestSucursalPorId();
 		
 		//unitTestAreas();
 		//unitTestAreaPorNombre();
