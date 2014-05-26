@@ -1,6 +1,7 @@
 package SERVER;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import DAO.*;
@@ -71,6 +72,9 @@ public class TDD_Javier {
 	private static void unitTestCrearReserva() {
 		
 		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
+		Calendar.getInstance().set(2014, 7, 13);
+		Date laFecha = new Date(Calendar.getInstance().getTimeInMillis());
+		
 		//Date laFecha = (new java.util.Date(2014,7,13));
 		Reserva unaReserva = new Reserva();
 		unaReserva.setCant_comensales(4);
