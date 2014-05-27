@@ -4,6 +4,8 @@ import java.util.*;
 
 import DAO.*;
 import ENTITY.*;
+import ENTITY.Pedido;
+import DTO.*;
 
 public class FacturasController {
 	
@@ -24,11 +26,20 @@ public class FacturasController {
 					System.out.println("No hay items pendientes, podes pedir la factura");
 					pedido.modificarPedidoEstado(EstadosDAO.getInstancia().buscarEstadoPedido("Cerrado"));
 					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse"));
+					crearFactura(pedido);
 			}
 			return flag;
 		}
 		else 
 			return false;
 		}
+
+	private Factura crearFactura(Pedido pedido) {
+		Factura factura=new Factura();
+		return factura;
+		//TODO
+	}
+
+
 
 }
