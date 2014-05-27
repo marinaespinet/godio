@@ -63,6 +63,14 @@ public class PedidosDAO {
 		return pedido;
 	}
 	
+	//Listar items de una mesa
+		public List<Item_Pedido> getItems (int id){
+			Session session = sf.openSession();
+			List<Item_Pedido> list = (List<Item_Pedido>)session.createQuery("SELECT p.items FROM Pedido p WHERE p.pedido_id=? ").setInteger(0, id).list();
+			session.close();
+			return list;
+		}
+	
 	//Listar items pendientes de una mesa
 	public List<Item_Pedido> getItemsPendientesDeMesa (int id){
 		Session session = sf.openSession();
@@ -87,6 +95,14 @@ public class PedidosDAO {
 			
 			session.flush();
 			session.close();
+		}
+		
+		public List<Pedido> getPedidosPorEstado(String estado)
+		{
+			Session session = sf.openSession();
+			List<Pedido> pedidos = (List<Pedido>)session.createQuery("FROM Pedido p JOIN p.pedido_estado e WHERE e.estado_name=?").setString(0, estado);
+			session.close();
+			return pedidos;
 		}
 
 }
