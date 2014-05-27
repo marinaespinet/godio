@@ -51,7 +51,7 @@ private static boolean unitTestListarItemsPedido() {
 		List<Item_Pedido> items = PedidosDAO.getInstancia().getItems(2);
 		if(items!=null){
 				for(Item_Pedido unItem : items)
-					System.out.println("Encontré un item. Descripcion: " + unItem.getItem_carta().getItem_plato().getName() + " cantidad: " + unItem.getCantidad());
+					System.out.println("Encontré un item. Descripcion: " + unItem.getItem_carta().getPlato().getName() + " cantidad: " + unItem.getCantidad());
 				return true;
 			} else{
 				System.out.println("Mal :(");
