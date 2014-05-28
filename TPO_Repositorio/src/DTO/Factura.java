@@ -10,7 +10,7 @@ public class Factura {
 	private Date fecha_factura_dt;
 	private Mesa factura_mesa;
 	private Mozo factura_mozo;
-	private Float monto_total;
+	private Double monto_total;
 	private List<Item_Factura>items;
 	
 	
@@ -43,8 +43,8 @@ public class Factura {
 	public Mesa getFactura_mesa() {
 		return factura_mesa;
 	}
-	public void setFactura_mesa(Mesa factura_mesa) {
-		this.factura_mesa = factura_mesa;
+	public void setFactura_mesa(Mesa mesa) {
+		this.factura_mesa = mesa;
 	}
 	public Mozo getFactura_mozo() {
 		return factura_mozo;
@@ -52,10 +52,10 @@ public class Factura {
 	public void setFactura_mozo(Mozo factura_mozo) {
 		this.factura_mozo = factura_mozo;
 	}
-	public Float getMonto_total() {
+	public Double getMonto_total() {
 		return monto_total;
 	}
-	public void setMonto_total(Float monto_total) {
+	public void setMonto_total(Double monto_total) {
 		this.monto_total = monto_total;
 	}
 	public List<Item_Factura> getItems() {
