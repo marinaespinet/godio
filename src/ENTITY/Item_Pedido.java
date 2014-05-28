@@ -12,7 +12,7 @@ public class Item_Pedido {
 
 	private Integer item_id;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="item_pedido_id")
 	private Pedido pedido;
 	
