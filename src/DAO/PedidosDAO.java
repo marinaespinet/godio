@@ -79,20 +79,19 @@ public class PedidosDAO {
 		return list;
 	}
 	
-	//Verifica que no haya items pendientes de una mesa
-		public boolean verificarItemsPendientesDeMesa (int id){
+	//Verifica que no haya items pendientes en un pedido
+		public Long verificarItemsPendientesDelPedido (Integer id){
 			Session session = sf.openSession();
-			boolean conteo = (boolean)session.createQuery("SELECT COUNT(p.items)FROM Pedido p JOIN p.items i JOIN i.estado e WHERE p.pedido_id=? and e.estado_name='Pendiente'").setInteger(0, id).equals(0);
+			Long conteo = (Long)session.createQuery("SELECT COUNT(i.estado)FROM Pedido p JOIN p.items i JOIN i.estado e WHERE p.pedido_id=? and e.estado_name='Pendiente'").setInteger(0, id).setFirstResult(0).setMaxResults(1).uniqueResult();
 			session.close();
 			return conteo;
+					
 		}
 	
 	//Graba un item (update o insert) de un pedido
 		public void setItemPedido(Item_Pedido item) {
 			Session session = sf.openSession();
-			
 			session.persist(item);
-			
 			session.flush();
 			session.close();
 		}
@@ -105,5 +104,18 @@ public class PedidosDAO {
 			return pedidos;
 		}
 
+		public java.sql.Date getFechaAperturaSQL(Integer id){
+			Session session = sf.openSession();
+			java.sql.Date fecha = (java.sql.Date)session.createQuery("SELECT p.fecha_apertura_dt FROM Pedido p WHERE p.pedido_id=?").setInteger(0,id).setFirstResult(0).setMaxResults(1).uniqueResult();
+			return fecha;
+		}
+		
+		//Calcula el monto a partir del precio de los platos 
+		//"No facturar=falso" y cantidad pedida de c/u
+		public Double calcularMonto(int pedido){
+			Session session = sf.openSession();
+			Double monto = (Double)session.createQuery("SELECT SUM(itc.precio_monto*itp.cantidad) FROM Item_Factura itf JOIN itf.item_pedido itp JOIN itp.pedido p JOIN itp.item_carta itc WHERE p.pedido_id=? AND itp.item_no_facturar_ind=false").setInteger(0,pedido).setFirstResult(0).setMaxResults(1).uniqueResult();
+			return monto;
+		}
 }
 
