@@ -27,6 +27,10 @@ public class Item_Factura {
 	@JoinColumn(name="item_factura_id")
 	private Factura factura;
 	
+	public Item_Factura() {
+		super();
+		
+	}
 	public Integer getItem_id() {
 		return item_id;
 	}
@@ -44,6 +48,18 @@ public class Item_Factura {
 	}
 	public void setItem_pedido(Item_Pedido item_pedido) {
 		this.item_pedido = item_pedido;
+	}
+	public Integer getCant_plato() {
+		return cant_plato;
+	}
+	public void setCant_plato(Integer cant_plato) {
+		this.cant_plato = cant_plato;
+	}
+	public Factura getFactura() {
+		return factura;
+	}
+	public void setFactura(Factura factura) {
+		this.factura = factura;
 	}
 	
 	
