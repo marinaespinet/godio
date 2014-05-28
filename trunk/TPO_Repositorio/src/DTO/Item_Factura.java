@@ -15,6 +15,9 @@ public class Item_Factura {
 		this.cant_plato = cantidad;
 		this.item_pedido = item_pedido;
 	}
+	public Item_Factura() {
+		super();
+	}
 	public Integer getItem_id() {
 		return item_id;
 	}
@@ -30,10 +33,7 @@ public class Item_Factura {
 	public Item_Pedido getItem_pedido() {
 		return item_pedido;
 	}
-	public void setItem_pedido(Item_Pedido item_pedido) {
-		this.item_pedido = item_pedido;
-	}
-	
+
 	
 	
 }
