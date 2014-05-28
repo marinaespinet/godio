@@ -15,7 +15,27 @@ public class TDD_Marina {
 		//unitTestListarItemsPedido();
 		//unitTestListarPedidoPorEstado();
 		//unitTestPedidoAbiertoDeMesa();
-		FacturasController.getInstancia().solicitarFactura(2);
+		FacturasController.getInstancia().solicitarFactura(1);
+		//unitTestCalcularMonto();
+		//unitTestVerificarPedidoPendiente();
+		//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+	}
+
+
+	private static void unitTestVerificarPedidoPendiente() {
+		System.out.println("TEST Verificar pedidos pendientes");
+		Long flag=PedidosDAO.getInstancia().verificarItemsPendientesDelPedido(1);
+		if (flag==0)
+				System.out.println("No hay pedidos pendientes");
+		else
+			System.out.println("Ojo! Hay pedidos pendientes");
+	}
+
+
+	private static void unitTestCalcularMonto() {
+		System.out.print("TEST: Calcular monto de factura");
+		Double resultado = FacturasDAO.getInstancia().calcularMonto(1);
+		System.out.println("Monto: $"+ resultado);
 		
 	}
 
