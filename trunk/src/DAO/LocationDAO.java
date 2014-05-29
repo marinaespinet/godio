@@ -40,7 +40,9 @@ public class LocationDAO {
 	public Sucursal getSucursalPorId(Integer sucursalId)
 	{
 		Session session = sf.openSession();
-		Sucursal laSucursal = (Sucursal)session.createQuery("FROM Sucursal suc WHERE suc.sucursal_id = ?").setInteger(0, sucursalId).uniqueResult();
+		Sucursal laSucursal =(Sucursal) session.get(Sucursal.class,sucursalId); 
+				//old code: (Sucursal)session.createQuery("FROM Sucursal suc WHERE suc.sucursal_id = ?").setInteger(0, sucursalId).uniqueResult();
+		
 		
 		session.close();
 

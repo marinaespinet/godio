@@ -27,4 +27,13 @@ public class PlanProduccionDAO {
 				
 		session.close();
 	}
+	
+	public Plan_Produccion nuevoPlanProduccion(){
+		Plan_Produccion plan = new Plan_Produccion();
+		Session session = sf.openSession();
+		session.persist(plan);
+		session.flush();
+		session.close();
+		return plan;
+	}
 }
