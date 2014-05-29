@@ -6,7 +6,7 @@
 	import DAO.*;
 	import ENTITY.*;
 	
-public class TDD_M {
+public class TDD_Marina {
 
 		public static void main(String[] args) {
 
