@@ -6,7 +6,7 @@ public class Plato {
 	private String name;
 	private Area plato_area;
 	private Float comision_extra_mozo;
-	private Receta plato_receta;
+	
 	
 	
 	public Integer getPlato_id() {
@@ -32,17 +32,6 @@ public class Plato {
 	}
 	public void setComision_extra_mozo(Float comision_extra_mozo) {
 		this.comision_extra_mozo = comision_extra_mozo;
-	}
-	public Receta getPlato_receta() {
-		return plato_receta;
-	}
-	public void setPlato_receta(Receta plato_receta) {
-		this.plato_receta = plato_receta;
-	}
-	
-	private Item_Carta obtenerPlatoAlternativo(){
-		//TODO
-		return null;
 	}
 	
 }

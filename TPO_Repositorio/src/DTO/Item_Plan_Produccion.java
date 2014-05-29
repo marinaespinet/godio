@@ -7,7 +7,9 @@ public class Item_Plan_Produccion {
 	private Integer cantidad;
 	private Sucursal item_plan_sucursal;
 	private Integer item_plan_avance_qty;
-	
+	private Integer plan_id;
+	private Integer sucursalID;
+	private Integer semielaboradoID;
 	
 	public Item_Plan_Produccion(Semielaborado semielaborado,
 			Integer cantidad,Sucursal sucursal) {
@@ -52,5 +54,33 @@ public class Item_Plan_Produccion {
 		//TODO
 		return 0;
 	}
+
+
+	
+	public Integer getPlan_id() {
+		return plan_id;
+	}
+
+	public void setPlan_id(Integer plan_id) {
+		this.plan_id = plan_id;
+	}
+
+	public Integer getSucursalID() {
+		return sucursalID;
+	}
+
+	public void setSucursalID(Integer sucursalID) {
+		this.sucursalID = sucursalID;
+	}
+
+	public Integer getSemielaboradoID() {
+		return semielaboradoID;
+	}
+
+	public void setSemielaboradoID(Integer semielaboradoID) {
+		this.semielaboradoID = semielaboradoID;
+	}
+
+	
 	
 }
