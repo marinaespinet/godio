@@ -32,12 +32,20 @@ public class ProduccionController {
 			
 			
 			planID = item.getPlan_id();
+			Plan_Produccion plan;
 			if(planID ==0 ){
 				//Add new plan and return id
-				Plan_Produccion plan= DAO.PlanProduccionDAO.getInstancia().nuevoPlanProduccion();
+				plan= DAO.PlanProduccionDAO.getInstancia().nuevoPlanProduccion();
+			} else {
+				plan = DAO.PlanProduccionDAO.getInstancia().getPlanProduccion(planID);
 			}
 			
 			Item_Plan_Produccion itEnt = getItemPlanEntity(item);
+			itEnt.setPlan(plan);
+			itEnt.setSemielaborado(semi);
+			itEnt.setSucursal(suc);
+			
+			DAO.PlanProduccionDAO.getInstancia().grabarItemPlan(itEnt);
 		}
 		return 0;
 	}
