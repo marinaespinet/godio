@@ -31,10 +31,10 @@ public class Item_Plan_Produccion {
 	public void setItem_plan_id(Integer item_plan_id) {
 		this.item_plan_id = item_plan_id;
 	}
-	public Semielaborado getItem_plan_semielaborado() {
+	public Semielaborado getSemielaborado() {
 		return item_plan_semielaborado;
 	}
-	public void setItem_plan_semielaborado(Semielaborado item_plan_semielaborado) {
+	public void setSemielaborado(Semielaborado item_plan_semielaborado) {
 		this.item_plan_semielaborado = item_plan_semielaborado;
 	}
 	public Integer getCantidad() {
@@ -43,10 +43,10 @@ public class Item_Plan_Produccion {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	public Sucursal getItem_plan_sucursal() {
+	public Sucursal getSucursal() {
 		return item_plan_sucursal;
 	}
-	public void setItem_plan_sucursal(Sucursal item_plan_sucursal) {
+	public void setSucursal(Sucursal item_plan_sucursal) {
 		this.item_plan_sucursal = item_plan_sucursal;
 	}
 	public Integer getItem_plan_avance_qty() {
@@ -59,6 +59,12 @@ public class Item_Plan_Produccion {
 	public Integer verificarAvanceTareas(){
 		//TODO
 		return 0;
+	}
+	public Plan_Produccion getPlan() {
+		return item_plan_plan_id;
+	}
+	public void setPlan(Plan_Produccion item_plan_plan_id) {
+		this.item_plan_plan_id = item_plan_plan_id;
 	}
 	
 }
