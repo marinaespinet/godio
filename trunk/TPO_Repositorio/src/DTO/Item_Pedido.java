@@ -4,7 +4,10 @@ public class Item_Pedido {
 
 	private Integer item_id;
 	private Pedido item_pedido;
+	private Integer pedido_id;
+
 	private Item_Carta item_carta;
+	private Integer item_carta_id;
 	private Integer cantidad;
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
@@ -15,6 +18,13 @@ public class Item_Pedido {
 		super();
 		this.item_pedido = pedido;
 		this.item_carta = item_carta;
+		this.cantidad = cantidad;
+	}
+	public Item_Pedido(Integer pedidoId, Integer item_carta_id,
+			Integer cantidad) {
+		super();
+		this.pedido_id = pedidoId;
+		this.item_carta_id = item_carta_id;
 		this.cantidad = cantidad;
 	}
 	
@@ -57,6 +67,21 @@ public class Item_Pedido {
 	
 	public void no_facturar(String observaciones){
 		//TODO
+	}
+	public Integer getPedido_id() {
+		return pedido_id;
+	}
+
+	public void setPedido_id(Integer pedido_id) {
+		this.pedido_id = pedido_id;
+	}
+
+	public Integer getItem_carta_id() {
+		return item_carta_id;
+	}
+
+	public void setItem_carta_id(Integer item_carta_id) {
+		this.item_carta_id = item_carta_id;
 	}
 	
 	
