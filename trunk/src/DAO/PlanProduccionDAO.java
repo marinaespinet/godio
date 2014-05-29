@@ -36,4 +36,22 @@ public class PlanProduccionDAO {
 		session.close();
 		return plan;
 	}
+	public Plan_Produccion getPlanProduccion(Integer id)
+	{
+		Session session = sf.openSession();
+		Plan_Produccion obj =(Plan_Produccion) session.get(Semielaborado.class,id); 	
+		session.close();
+
+		return obj;
+	}
+	
+	public void grabarItemPlan(Item_Plan_Produccion item)
+	{
+		Session session = sf.openSession();
+		
+		session.persist(item);
+		
+		session.flush();
+		session.close();
+	}
 }
