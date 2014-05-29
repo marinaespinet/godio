@@ -19,6 +19,8 @@ public class Item_Plan_Produccion {
 		this.item_plan_sucursal = sucursal;
 	}
 	
+	public Item_Plan_Produccion() {}
+	
 	public Integer getItem_plan_id() {
 		return item_plan_id;
 	}
