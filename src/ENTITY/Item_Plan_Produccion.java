@@ -19,7 +19,7 @@ public class Item_Plan_Produccion {
 	@JoinColumn(name="ITEM_PLAN_SUCURSAL_ID")
 	private Sucursal item_plan_sucursal;
 	
-	private Integer item_plan_avance_qty;
+	private Integer item_plan_avance_qty=0;
 	
 	@ManyToOne
 	@JoinColumn(name="item_plan_plan_id")

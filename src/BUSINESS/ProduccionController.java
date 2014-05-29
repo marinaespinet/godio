@@ -21,7 +21,7 @@ public class ProduccionController {
 	
 	public int addTareasPlanProduccion(List<DTO.Item_Plan_Produccion> tareas) throws RestaurantException{
 		//Si el PlanID existe, agrega a un plan inexistente, sino agrega un nuevo plan y devuelve el ID
-		int planID = 0;
+		Integer planID = 0;
 		for(DTO.Item_Plan_Produccion item : tareas){
 			//Check sucursal Existe
 			Sucursal suc = DAO.LocationDAO.getInstancia().getSucursalPorId(item.getSucursalID());
@@ -30,8 +30,11 @@ public class ProduccionController {
 			Semielaborado semi = DAO.ProductosDAO.getInstancia().getSemielaborado(item.getSemielaboradoID());
 			if(semi == null){ throw new RestaurantException("Semielaborado "+item.getSemielaboradoID().toString()+ " inexistente en tarea de produccion");}
 			
+			if(item.getPlan_id()==null)
+				planID=0;
+			else				
+				planID = item.getPlan_id();
 			
-			planID = item.getPlan_id();
 			Plan_Produccion plan;
 			if(planID ==0 ){
 				//Add new plan and return id

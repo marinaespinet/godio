@@ -5,12 +5,14 @@ import java.util.*;
 import BUSINESS.*;
 import DAO.*;
 import DTO.Item_Pedido;
+import DTO.Item_Plan_Produccion;
 import ENTITY.*;
+import Exceptions.RestaurantException;
 
 
 public class TDD_Schere {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RestaurantException {
 		// TODO Auto-generated method stub
 		
 		
@@ -19,6 +21,30 @@ public class TDD_Schere {
 		unitTestPlanProd();
 		unitTestComprasRealizar();
 		unitTestAgregarItemPedido();
+		unitTestAddPlanProduccion();
+	}
+	
+	public static boolean unitTestAddPlanProduccion() throws RestaurantException{
+		System.out.print("Test Add Items Plan Prod: ");
+		List<DTO.Item_Plan_Produccion> items = new ArrayList<DTO.Item_Plan_Produccion>();  
+		DTO.Item_Plan_Produccion it = new Item_Plan_Produccion();
+		it.setCantidad(3);
+		it.setSucursalID(3);
+		it.setSemielaboradoID(3);
+		
+		items.add(it);
+		
+		it = new Item_Plan_Produccion();
+		it.setCantidad(111);
+		it.setSucursalID(4);
+		it.setSemielaboradoID(3);
+		
+		items.add(it);
+		ProduccionController.getInstancia().addTareasPlanProduccion(items);
+		
+		System.out.println("OK");
+		return true;
+		
 	}
 	
 	public static boolean unitTestComprasRealizar(){
