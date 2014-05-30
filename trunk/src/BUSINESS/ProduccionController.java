@@ -64,14 +64,26 @@ public class ProduccionController {
 	
 	public void registrarAvancePlanProduccion(int sucursal, int codSemielaborado, int cantidadProducida) throws RestaurantException {
 		Sucursal suc = DAO.LocationDAO.getInstancia().getSucursalPorId(sucursal);
-		if(suc == null){ throw new RestaurantException("Sucursal "+ sucursal + " inexistente en tarea de produccion");}
-		//Check Semielaborado Existe
+		if(suc == null)
+			{ throw new RestaurantException("Sucursal "+ sucursal + " inexistente en tarea de produccion");}
+		
 		Semielaborado semi = DAO.ProductosDAO.getInstancia().getSemielaborado(codSemielaborado);
-		if(semi == null){ throw new RestaurantException("Semielaborado " + codSemielaborado + " inexistente en tarea de produccion");}
+		if(semi == null)
+			{ throw new RestaurantException("Semielaborado " + codSemielaborado + " inexistente en tarea de produccion");}
 		
 		Item_Plan_Produccion item = PlanProduccionDAO.getInstancia().getItemPorSucursalySemielaborado(sucursal, codSemielaborado);
-		item.setAvance((cantidadProducida/item.getCantidad())+item.getItem_plan_avance_qty());
-		PlanProduccionDAO.getInstancia().grabarItemPlan(item);
+		if(item!=null){
+			int avance = (cantidadProducida/item.getCantidad())+item.getItem_plan_avance_qty();
+			if(avance<1){
+				item.setAvance(avance);
+				PlanProduccionDAO.getInstancia().grabarItemPlan(item);
+				}
+			else
+				throw new RestaurantException("La cantidad producida excede lo indicado en el plan de produccion");
+		}
+		else 
+			{throw new RestaurantException("No existen tareas pendientes para la sucursal y el semielaborado ingresados");}
+	
 	}
 	
 }
