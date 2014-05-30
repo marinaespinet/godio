@@ -48,9 +48,47 @@ public class PlanProduccionDAO {
 	public void grabarItemPlan(Item_Plan_Produccion item)
 	{
 		Session session = sf.openSession();
+		
 		session.persist(item);
+		
 		session.flush();
 		session.close();
+	}
+	
+	public int getCantidadTareasPendientesAvance(Integer sucursalID, Integer avance){
+		/*Retorna la cantidad de tareas de la sucursal 'sucursalID, cuyo avance sea menor a 'avance'
+		 * */
+		Session session = sf.openSession();
+		Long cant = (Long)session.createQuery(""
+				+ " select count(*) AS Cant "
+				+ " from Item_Plan_Produccion p "
+				+ " join p.sucursal s "			
+				+ " where s.sucursal_id=:suc " 
+				+ " and ((p.item_plan_avance_qty / p.cantidad) *100) < :avance "
+				+ "").setInteger("suc",sucursalID).setInteger("avance",avance).setFirstResult(0).setMaxResults(1).uniqueResult();
+		session.close();
+		Integer cantidad = cant.intValue();
+		return cantidad;
+	}
+	
+	/*para la regla: Valida que la sucursal posea horas disponibles para produccion y SI posee.*/
+	public Double[] getHorasAsignadasAvance(Integer sucursalID){
+		Session session = sf.openSession();
+		Object[] datos = (Object[])session.createQuery(""
+				+ " select " 
+				+ " sum(e.horas_elaboracion_cant * p.cantidad) AS HsAsign, "
+				+ " sum(p.item_plan_avance_qty * p.cantidad) AS HsAvance "
+				+ " from Item_Plan_Produccion p "
+				+ " join p.sucursal s "
+				+ " join p.semielaborado e  "
+				+ " where s.sucursal_id=:suc  "
+				+ "").setInteger("suc",sucursalID).setFirstResult(0).setMaxResults(1).uniqueResult();
+		session.close();
+		Double[] valores = new Double[2];
+		valores[0] = (Double)datos[0];
+		valores[1] = ((Long)datos[1]).doubleValue();
+		
+		return valores;
 	}
 	
 	public Item_Plan_Produccion getItemPorSucursalySemielaborado(int sucursal, int semielaborado){
