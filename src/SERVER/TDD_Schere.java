@@ -21,7 +21,7 @@ public class TDD_Schere {
 		unitTestPlanProd();
 		unitTestComprasRealizar();
 		unitTestAgregarItemPedido();
-		unitTestAddPlanProduccion();
+		//unitTestAddPlanProduccion();
 	}
 	
 	public static boolean unitTestAddPlanProduccion() throws RestaurantException{
@@ -29,17 +29,17 @@ public class TDD_Schere {
 		List<DTO.Item_Plan_Produccion> items = new ArrayList<DTO.Item_Plan_Produccion>();  
 		DTO.Item_Plan_Produccion it = new Item_Plan_Produccion();
 		it.setCantidad(3);
-		it.setSucursalID(3);
+		it.setSucursalID(5);
 		it.setSemielaboradoID(3);
 		
 		items.add(it);
-		
+		/*
 		it = new Item_Plan_Produccion();
 		it.setCantidad(111);
 		it.setSucursalID(4);
 		it.setSemielaboradoID(3);
-		
-		items.add(it);
+		*/
+		//items.add(it);
 		ProduccionController.getInstancia().addTareasPlanProduccion(items);
 		
 		System.out.println("OK");

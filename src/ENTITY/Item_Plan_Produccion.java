@@ -12,12 +12,12 @@ public class Item_Plan_Produccion {
 	private Integer item_plan_id;
 	@ManyToOne
 	@JoinColumn(name="ITEM_PLAN_SEMIELABORADO_ID")
-	private Semielaborado item_plan_semielaborado;
+	private Semielaborado semielaborado;
 	
 	private Integer cantidad;
 	@ManyToOne
 	@JoinColumn(name="ITEM_PLAN_SUCURSAL_ID")
-	private Sucursal item_plan_sucursal;
+	private Sucursal sucursal;
 	
 	private Integer item_plan_avance_qty=0;
 	
@@ -32,10 +32,10 @@ public class Item_Plan_Produccion {
 		this.item_plan_id = item_plan_id;
 	}
 	public Semielaborado getSemielaborado() {
-		return item_plan_semielaborado;
+		return semielaborado;
 	}
 	public void setSemielaborado(Semielaborado item_plan_semielaborado) {
-		this.item_plan_semielaborado = item_plan_semielaborado;
+		this.semielaborado = item_plan_semielaborado;
 	}
 	public Integer getCantidad() {
 		return cantidad;
@@ -44,10 +44,10 @@ public class Item_Plan_Produccion {
 		this.cantidad = cantidad;
 	}
 	public Sucursal getSucursal() {
-		return item_plan_sucursal;
+		return sucursal;
 	}
 	public void setSucursal(Sucursal item_plan_sucursal) {
-		this.item_plan_sucursal = item_plan_sucursal;
+		this.sucursal = item_plan_sucursal;
 	}
 	public Integer getItem_plan_avance_qty() {
 		return item_plan_avance_qty;
