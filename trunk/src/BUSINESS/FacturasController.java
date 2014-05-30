@@ -4,8 +4,9 @@ import java.util.*;
 import java.sql.Date;
 
 import DAO.*;
-import ENTITY.*;
-import DTO.*;
+import ENTITY.Factura;
+import ENTITY.Item_Factura;
+import ENTITY.Mesa;
 
 
 public class FacturasController {
@@ -20,15 +21,18 @@ public class FacturasController {
 	}
 	
 	public void solicitarFactura(Integer numeroDeMesa){
-		Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(numeroDeMesa);
+		ENTITY.Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(numeroDeMesa);
 		if(pedido!=null){
 			System.out.println("Tengo un pedido");
 			Long pendientes=verificarItemsPendientes(pedido.getPedido_id());
 			if (pendientes==0){
 					System.out.println("No hay items pendientes, podes pedir la factura");
 					pedido.modificarPedidoEstado(EstadosDAO.getInstancia().buscarEstadoPedido("Cerrado"));
+					PedidosDAO.getInstancia().grabarPedido(pedido);
 					System.out.println("Pedido cerrado");
 					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse"));
+					Mesa mesa=pedido.getPedido_mesa();
+					LocationDAO.getInstancia().grabarMesa(mesa);
 					System.out.println("Mesa proxima a liberarse");
 					crearFactura(pedido);
 			}
@@ -44,7 +48,7 @@ public class FacturasController {
 		
 	}
 
-	public void crearFactura(Pedido pedido) {
+	public void crearFactura(ENTITY.Pedido pedido) {
 		System.out.println("Entré a crearFactura");
 		Factura factura=new Factura();
 		System.out.println("new Factura");
@@ -57,20 +61,20 @@ public class FacturasController {
 		System.out.println("Se ha creado la factura nro: " + factura.getFactura_id() + " con un monto total de: $" + factura.getMonto_total());
 	}
 
-private void llenarDatosDelPedido(Factura factura, Pedido pedido) {
-	//Corregir esto con la clase Calendar
-	factura.setFecha_factura_dt(PedidosDAO.getInstancia().getFechaAperturaSQL(pedido.getPedido_id()));
+private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
+	Date hoy = new java.sql.Date(System.currentTimeMillis());
+	factura.setFecha_factura_dt(hoy);
 	factura.setFactura_mesa(pedido.getPedido_mesa());
 	factura.setFactura_mozo(pedido.getPedido_mozo());
 	System.out.println("llene los datos de factura");
-	//agregarItems(factura,pedido);
+	agregarItems(factura,pedido);
 	System.out.println("agregué los items");
 	
 }
 
-private void agregarItems(Factura factura, Pedido pedido) {
-	List<Item_Pedido> itemsPed = pedido.listarItems();
-	for(Item_Pedido unItem: itemsPed){
+private void agregarItems(Factura factura, ENTITY.Pedido pedido) {
+	List<ENTITY.Item_Pedido> itemsPed = pedido.listarItems();
+	for(ENTITY.Item_Pedido unItem: itemsPed){
 		Item_Factura it = new Item_Factura();
 		it.setItem_pedido(unItem);
 		it.setItem_plato(unItem.getItem_carta().getPlato());
@@ -80,34 +84,10 @@ private void agregarItems(Factura factura, Pedido pedido) {
 		}
 }	
 
-public Double calcularMontoFactura(Pedido pedido) {
+public Double calcularMontoFactura(ENTITY.Pedido pedido) {
 	Double monto = PedidosDAO.getInstancia().calcularMonto(pedido.getPedido_id());
 	return monto;
 }
-
-public DTO.Factura getFacturaDTO(Factura factura){
-	DTO.Factura facturaDTO = new DTO.Factura();
-	facturaDTO.setFactura_id(factura.getFactura_id());
-	facturaDTO.setFactura_mesa(getMesaDTO(factura.getFactura_mesa()));
-	facturaDTO.setFactura_mozo(factura.getFactura_mozo());
-	facturaDTO.setFecha_factura_dt(factura.getFecha_factura_dt());
-	facturaDTO.setItems(factura.getItems());
-	facturaDTO.setMonto_total(factura.getMonto_total());
-	return facturaDTO;
-}
-
-//Esto tendría que ir a LocationController
-public DTO.Mesa getMesaDTO(Mesa mesa){
-	DTO.Mesa mesaDTO = new DTO.Mesa();
-	mesaDTO.setMesa_cd(mesa.getMesa_cd());
-	mesaDTO.setMesa_id(mesa.getMesa_id());
-	mesaDTO.setMax_cant_comensales(mesa.getMax_cant_comensales());
-	mesaDTO.setMesa_estado(mesa.getMesa_estado());
-	mesaDTO.setMesa_sector(mesa.getMesa_sector());
-	mesaDTO.setMesa_sucursal(mesa.getMesa_sucursal());
-	mesaDTO.setUnion_mesa(mesa.getUnion_mesa());
-}
-
 
 
 }
