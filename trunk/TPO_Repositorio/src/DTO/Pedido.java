@@ -1,5 +1,6 @@
 package DTO;
 import java.sql.Date;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -79,7 +80,7 @@ public class Pedido {
 	public void setFecha_cierre_dt(Date fecha_cierre_dt) {
 		this.fecha_cierre_dt = fecha_cierre_dt;
 	}
-	public Vector<Item_Pedido>listarItems() {
+	public List<Item_Pedido> listarItems() {
 		return items;
 	}
 	public void setItems(Vector<Item_Pedido> items) {
