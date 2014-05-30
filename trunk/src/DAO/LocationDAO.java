@@ -259,6 +259,12 @@ public class LocationDAO {
 			session.close();
 
 			return unaMesa;
+		}
+
+		public void grabarMesa(Mesa aux) {
+			Session session = sf.openSession();
+			session.persist(aux);
+			session.close();
 		}	
 		
 	
