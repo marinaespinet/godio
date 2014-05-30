@@ -7,7 +7,7 @@ public class Operacion_Caja {
 
 	private Integer operacion_caja_id;
 	private Date fecha_dt;
-	private Sucursal cierre_sucursal_id;
+	private Sucursal operacion_caja_sucursal;
 	private Vector<Item_Operacion_Caja>items;
 	private Float recaudacion;
 	private Float comisiones;
