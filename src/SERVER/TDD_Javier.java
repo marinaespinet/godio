@@ -15,30 +15,22 @@ public class TDD_Javier {
 		
 		//unitTestSucursales();
 		//unitTestSucursalPorNombre();
-		unitTestSucursalPorId();
-		
+		//unitTestSucursalPorId();
 		//unitTestAreas();
 		//unitTestAreaPorNombre();
 		//unitTestAreaPorId();
-		
 		//unitTestSectores();
 		//unitTestSectorPorNombre();
 		//unitTestSectorPorId();
-		
 		//unitTestMozos();
 		//unitTestMozoPorNombre();
 		//unitTestMozoPorId();
-		
 		//unitTestMesas();
 		//unitTestMesaPorId();
-		
-		
-		/* A estos no los pude hacer andar */
-		
 		//unitTestReservas();
 		//unitTestReservaPorId();
 		//unitTestReservaPorFecha();
-		//unitTestCrearReserva();
+		unitTestCrearReserva();
 
 	}
 	
@@ -72,15 +64,20 @@ public class TDD_Javier {
 	private static void unitTestCrearReserva() {
 		
 		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
-		Calendar.getInstance().set(2014, 7, 13);
-		Date laFecha = new Date(Calendar.getInstance().getTimeInMillis());
 		
-		//Date laFecha = (new java.util.Date(2014,7,13));
+		Calendar unaFecha = Calendar.getInstance();
+		unaFecha.set(Calendar.YEAR,1983);
+		unaFecha.set(Calendar.MONTH,2);
+		unaFecha.set(Calendar.DAY_OF_MONTH,20);
+		unaFecha.set(Calendar.HOUR_OF_DAY, 21);
+		unaFecha.set(Calendar.MINUTE, 0);
+		
+		Date laFecha = new java.sql.Date(unaFecha.getTimeInMillis());
+		
 		Reserva unaReserva = new Reserva();
-		unaReserva.setCant_comensales(4);
-		unaReserva.setFecha(new java.util.Date(2014,7,13));
+		unaReserva.setCant_comensales(5);
+		unaReserva.setFecha(laFecha);
 		unaReserva.setMinutos_duracion(45);
-		//unaReserva.setReserva_id(1005);   al ser @Id @Autogenerado no hace falta
 		unaReserva.setReserva_mesa(unaMesa);
 		
 		LocationDAO.getInstancia().setReserva(unaReserva);
