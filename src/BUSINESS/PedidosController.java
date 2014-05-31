@@ -35,4 +35,13 @@ public class PedidosController {
 		itEnt.setPedido(pedido);
 		return itEnt;
 	}
+	
+	
+	public DTO.Pedido mostrarPedidoActual(Integer mesaId){
+		Pedido elPedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesaId);
+		DTO.Pedido elPedidoDTO = RestauranteController.getInstancia().getPedidoDTO(elPedido);
+		return elPedidoDTO;
+	}
+		
+	
 }
