@@ -17,8 +17,8 @@ public class Reserva {
 	private Integer reserva_id;
 	
 	@ManyToOne
-	@JoinColumn(name="RESERVA_MESA_ID")
-	private Mesa reserva_mesa;
+	@JoinColumn(name="RESERVA_SUCURSAL_ID")
+	private Sucursal sucursal;
 	@Column(name="fecha_dt")
 	private Date fecha;
 	private Integer cant_comensales;
@@ -31,11 +31,11 @@ public class Reserva {
 	public void setReserva_id(Integer reserva_id) {
 		this.reserva_id = reserva_id;
 	}
-	public Mesa getReserva_mesa() {
-		return reserva_mesa;
+	public Sucursal getReserva_mesa() {
+		return sucursal;
 	}
-	public void setReserva_mesa(Mesa reserva_mesa) {
-		this.reserva_mesa = reserva_mesa;
+	public void setReserva_mesa(Sucursal reserva_mesa) {
+		this.sucursal = reserva_mesa;
 	}
 	public Date getFecha() {
 		return fecha;
