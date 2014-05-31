@@ -6,17 +6,30 @@ import java.util.*;
 	import BUSINESS.*;
 import DAO.*;
 import ENTITY.*;
+import Exceptions.RestaurantException;
 	
 public class TDD_Marina {
 
-		public static void main(String[] args) {
-
+		public static void main(String[] args) throws RestaurantException {
+			/* Probar
+			DTO.Tipo_Comprobante tc = new DTO.Tipo_Comprobante();
+			tc.setTipo_comprobante_id(1);
+			tc.setNombre("Efectivo");
+			Float monto=(float) 5;
+			Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(6);
+			DTO.Operacion_Caja ope = CajaController.getInstancia().getDTOFromEntity(op);
+			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(1, monto, 3, tc, op);
+			CajaController.getInstancia().agregarItemsCaja(item,5);
+			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());
+			*/
+			
+			//CajaController.getInstancia().crearOperacionCaja(2, 1);
 			//unitTestPedidos();
 			//unitTestUnPedido();
 			//unitTestListarItemsPedido();
 			//unitTestListarPedidoPorEstado();
 			//unitTestPedidoAbiertoDeMesa();
-			FacturasController.getInstancia().solicitarFactura(1);
+			//FacturasController.getInstancia().solicitarFactura(1);
 			//unitTestCalcularMonto();
 			//unitTestVerificarPedidoPendiente();
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
