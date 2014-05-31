@@ -13,7 +13,7 @@ public class TDD_Javier {
 		// TODO Auto-generated method stub
 		
 		
-		unitTestSucursales();
+		//unitTestSucursales();
 		//unitTestSucursalPorNombre();
 		//unitTestSucursalPorId()
 		//unitTestSucursalPorId();
@@ -31,10 +31,17 @@ public class TDD_Javier {
 		//unitTestReservas();
 		//unitTestReservaPorId();
 		//unitTestReservaPorFecha();
-		unitTestCrearReserva();
+		//unitTestCrearReserva();
+		
+		unitTestRegistrarReclamo();
 
 	}
 	
+	private static void unitTestRegistrarReclamo() {
+		
+		
+	}
+
 	private static boolean unitTestMesaPorId() {
 	
 		System.out.print("Test Mesa por Id: ");
