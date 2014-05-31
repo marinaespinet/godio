@@ -1,7 +1,6 @@
 package DTO;
 import java.sql.Date;
 import java.util.List;
-import java.util.Vector;
 
 
 public class Pedido {
@@ -15,11 +14,11 @@ public class Pedido {
 	private Date fecha_apertura_dt;
 	private Date fecha_pago_dt;
 	private Date fecha_cierre_dt;
-	private Vector<Item_Pedido>items;
+	private List<Item_Pedido>items;
 	
 	
 	public Pedido(Mesa mesa, Mozo mozo, Integer cantComensales,
-			Vector<Item_Pedido> items) {
+			List<Item_Pedido> items) {
 		super();
 		this.pedido_mesa = mesa;
 		this.pedido_mozo = mozo;
@@ -88,12 +87,8 @@ public class Pedido {
 	public List<Item_Pedido> listarItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Pedido> items) {
+	public void setItems(List<Item_Pedido> items) {
 		this.items = items;
 	}
-	
-	public void agregarItem(Item_Pedido item){
-		//TODO
-	}
-	
+
 }
