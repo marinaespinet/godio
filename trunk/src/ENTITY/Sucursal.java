@@ -17,8 +17,8 @@ public class Sucursal {
 	private Boolean es_admin_central_ind;
 	
 	
-	@OneToMany
-	private List<Reserva> reservas;
+	//@OneToMany
+	//private List<Reserva> reservas;
 
 	  @ManyToMany
 	    @JoinTable(name="AREAS_SUCURSALES", joinColumns = {@JoinColumn(name="SUCURSALES_SUCURSAL_ID")}, 
@@ -68,12 +68,12 @@ public class Sucursal {
 	public void setEs_admin_central_ind(Boolean es_admin_central_ind) {
 		this.es_admin_central_ind = es_admin_central_ind;
 	}
-	
+	/*
 	public List<Reserva> getReservas() {
 		return reservas;
 	}
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
-	
+	*/
 }

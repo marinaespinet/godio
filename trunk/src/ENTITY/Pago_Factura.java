@@ -11,9 +11,9 @@ public class Pago_Factura {
 	@Id
 	private Integer pago_id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="pago_factura_id")
-	private Factura pago_factura_id;
+	private Factura factura;
 	
 	@OneToOne
 	@JoinColumn(name="PAGO_MEDIO_PAGO_ID")
@@ -32,10 +32,10 @@ public class Pago_Factura {
 		this.pago_id = pago_id;
 	}
 	public Factura getPago_factura() {
-		return pago_factura_id;
+		return factura;
 	}
 	public void setPago_factura(Factura pago_factura) {
-		this.pago_factura_id = pago_factura;
+		this.factura = pago_factura;
 	}
 	public Medio_Pago getMedio_pago() {
 		return pago_medio_pago_id;
