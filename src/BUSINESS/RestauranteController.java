@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.*;
 
 import DAO.*;
+import DTO.Area;
 import DTO.Login;
 import DTO.Mesa;
 import DTO.Rol;
@@ -74,9 +75,10 @@ public class RestauranteController {
 		unaMesaDTO.setMesa_id(mesaEnt.getMesa_id());
 		unaMesaDTO.setMesa_sector(getSectorDTO(mesaEnt.getMesa_sector()));
 		unaMesaDTO.setMesa_sucursal(getSucursalDTO(mesaEnt.getMesa_sucursal()));
-		unaMesaDTO.setUnion_mesa(mesaEnt.getUnion_mesa());
+		unaMesaDTO.setUnion_mesa(mesaEnt.getUnion_mesa_id());
 		return unaMesaDTO;
 	}
+
 
 
 	private DTO.Sector getSectorDTO(ENTITY.Sector mesa_sectorEnt) {
@@ -96,8 +98,19 @@ public class RestauranteController {
 		unaSucursalDTO.setEs_admin_central_ind(sucursalEnt.getEs_admin_central_ind());
 		unaSucursalDTO.setName(sucursalEnt.getName());
 		unaSucursalDTO.setSucursal_id(sucursalEnt.getSucursal_id());
-		unaSucursalDTO.setAreas(sucursalEnt.getAreas());
+		unaSucursalDTO.setAreas(getAreasDTO(sucursalEnt.getAreas()));
  		return unaSucursalDTO;
+	}
+
+
+	private List<Area> getAreasDTO(List<ENTITY.Area> areasEnt) {
+		List<DTO.Area> areasDTO = new LinkedList<DTO.Area>();
+		for(ENTITY.Area areaEnt : areasEnt){
+			DTO.Area unAreaDTO = new DTO.Area();
+			unAreaDTO.setArea_id(areaEnt.getArea_id());
+			unAreaDTO.setName(areaEnt.getName());
+		}
+		return areasDTO;
 	}
 
 
