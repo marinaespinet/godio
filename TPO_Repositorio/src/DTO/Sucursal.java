@@ -11,6 +11,7 @@ public class Sucursal {
 	private Integer cant_max_hs_produccion_cocina;
 	private Boolean es_admin_central_ind;
 	private List<Reserva> reservas;
+	private List<Area> areas;
 	
 	
 	public Integer getSucursal_id() {
@@ -56,12 +57,12 @@ public class Sucursal {
 	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
-	
-	public Integer getHorasProduccionLibres(){
-		
-		//TODO
-		return null;
-		
+			
+	public List<Area> getAreas() {
+		return areas;
+	}
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
 	}
 	
 	
