@@ -95,10 +95,8 @@ public class RestauranteController {
 		unaSucursalDTO.setCant_max_mesas(sucursalEnt.getCant_max_mesas());
 		unaSucursalDTO.setEs_admin_central_ind(sucursalEnt.getEs_admin_central_ind());
 		unaSucursalDTO.setName(sucursalEnt.getName());
-		unaSucursalDTO.setHorasProduccionLibres(sucursalEnt.getHorasProduccionLibres); //y esto?
-		unaSucursalDTO.setReservas(sucursalEnt.getReservas); //tampoco coincide
 		unaSucursalDTO.setSucursal_id(sucursalEnt.getSucursal_id());
-		unaSucursalDTO.setAreas(sucursalEnt.getAreas()); //y esto otro?
+		unaSucursalDTO.setAreas(sucursalEnt.getAreas());
  		return unaSucursalDTO;
 	}
 
