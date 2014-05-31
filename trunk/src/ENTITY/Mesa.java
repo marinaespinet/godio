@@ -1,5 +1,7 @@
 package ENTITY;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,6 +28,10 @@ public class Mesa {
 	
 	@ManyToOne @JoinColumn(name="UNION_MESA_ID")
 	private Mesa union_mesa;
+	
+	@ManyToOne
+	@JoinColumn(name="FACTURA_MESA_ID")
+	private Factura factura;
 	
 	public Integer getMesa_id() {
 		return mesa_id;
@@ -69,5 +75,12 @@ public class Mesa {
 	public void setUnion_mesa(Mesa union_mesa) {
 		this.union_mesa = union_mesa;
 	}
+	public Factura getFactura() {
+		return factura;
+	}
+	public void setFactura(Factura factura) {
+		this.factura = factura;
+	}
+
 	
 }
