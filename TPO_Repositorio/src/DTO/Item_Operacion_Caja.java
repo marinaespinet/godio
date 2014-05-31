@@ -23,13 +23,13 @@ public class Item_Operacion_Caja {
 	
 	public Item_Operacion_Caja(Integer item_operacion_id, Float monto,
 			Integer cantidad, Tipo_Comprobante tipo_comprobante,
-			Operacion_Caja item_operacion_operacion_id) {
+			Operacion_Caja op) {
 		super();
 		this.item_operacion_id = item_operacion_id;
 		this.monto = monto;
 		this.cantidad = cantidad;
 		this.tipo_comprobante = tipo_comprobante;
-		this.item_operacion_operacion_id = item_operacion_operacion_id;
+		this.item_operacion_operacion_id = op;
 	}
 
 
