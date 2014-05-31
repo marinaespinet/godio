@@ -41,7 +41,10 @@ public class Factura {
 	@OneToMany
 	@JoinColumn(name="item_factura_id")
 	private List<Item_Factura>items;
-	
+
+	@OneToOne
+	@JoinColumn(name="pago_factura_id")
+	private Pago_Factura pago_factura;
 	
 	public Integer getFactura_id() {
 		return factura_id;
@@ -79,6 +82,13 @@ public class Factura {
 	public void setItems(List<Item_Factura> items) {
 		this.items = items;
 	}
+	public Pago_Factura getPago_factura() {
+		return pago_factura;
+	}
+	public void setPago_factura(Pago_Factura pago_factura) {
+		this.pago_factura = pago_factura;
+	}
+
 	
 }
 	

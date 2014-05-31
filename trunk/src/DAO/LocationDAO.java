@@ -254,10 +254,9 @@ public class LocationDAO {
 		public Mesa getMesaPorId(Integer mesaId)
 		{
 			Session session = sf.openSession();
-			Mesa unaMesa = (Mesa)session.createQuery("FROM Mesa mes WHERE mes.mesa_id = ?").setInteger(0, mesaId).uniqueResult();
+			Mesa unaMesa = (Mesa)session.get(Mesa.class, mesaId);
 			
 			session.close();
-
 			return unaMesa;
 		}
 

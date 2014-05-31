@@ -16,12 +16,22 @@ public class TDD_Schere {
 		// TODO Auto-generated method stub
 		
 		
-		unitTestUsuarios();
-		unitTestLogin();
-		unitTestPlanProd();
-		unitTestComprasRealizar();
-		unitTestAgregarItemPedido();
+		//unitTestUsuarios();
+		//unitTestLogin();
+		//unitTestPlanProd();
+		//unitTestComprasRealizar();
+		//unitTestAgregarItemPedido();
 		//unitTestAddPlanProduccion();
+		unitTestCerrarMesa();
+	}
+	
+	public static boolean unitTestCerrarMesa() throws RestaurantException{
+		System.out.print("Test Cerrar Mesa: ");
+		
+		MesasController.getInstancia().cerrarMesa(1);
+		
+		System.out.println("OK");
+		return true;
 	}
 	
 	public static boolean unitTestAddPlanProduccion() throws RestaurantException{
