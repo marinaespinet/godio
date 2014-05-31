@@ -26,6 +26,11 @@ public class Pedido {
 		this.cant_comensales = cantComensales;
 		this.items = items;
 	}
+	
+	public Pedido() {
+		
+	}
+	
 	public Integer getPedido_id() {
 		return pedido_id;
 	}
