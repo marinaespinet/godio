@@ -1,7 +1,5 @@
 package ENTITY;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -26,9 +24,8 @@ public class Mesa {
 	
 	private Integer max_cant_comensales;
 	
-	
-	private Integer union_mesa_id;
-	
+	@ManyToOne @JoinColumn(name="UNION_MESA_ID")
+	private Mesa union_mesa;
 	
 	public Integer getMesa_id() {
 		return mesa_id;
@@ -66,12 +63,11 @@ public class Mesa {
 	public void setMax_cant_comensales(Integer max_cant_comensales) {
 		this.max_cant_comensales = max_cant_comensales;
 	}
-	public Integer getUnion_mesa_id() {
-		return union_mesa_id;
+	public Mesa getUnion_mesa() {
+		return union_mesa;
 	}
-	public void setUnion_mesa_id(Integer union_mesa_id) {
-		this.union_mesa_id = union_mesa_id;
+	public void setUnion_mesa(Mesa union_mesa) {
+		this.union_mesa = union_mesa;
 	}
-
 	
 }
