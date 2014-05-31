@@ -37,10 +37,9 @@ public class PedidosController {
 	}
 	
 	
-	public DTO.Pedido mostrarPedidoActual(Integer mesaId){
+	public ENTITY.Pedido getPedidoActualEnMesa(Integer mesaId){
 		Pedido elPedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesaId);
-		DTO.Pedido elPedidoDTO = RestauranteController.getInstancia().getPedidoDTO(elPedido);
-		return elPedidoDTO;
+		return elPedido;
 	}
 		
 	
