@@ -103,5 +103,11 @@ public class RestauranteController {
 	}
 
 
+	public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id) {
+		List<ENTITY.Mesa> lasMesas=LocationDAO.getInstancia().getMesasLibresEnSucursal(sucursal_id);
+		return lasMesas;
+	}
+
+
 	
 }
