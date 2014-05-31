@@ -23,7 +23,6 @@ public class Item_Operacion_Caja {
 	@ManyToOne @JoinColumn(name="item_cierre_cierre_id")
 	private Operacion_Caja item_cierre_cierre_id;
 	
-	
 	public Integer getItem_operacion_id() {
 		return item_operacion_id;
 	}
@@ -47,6 +46,12 @@ public class Item_Operacion_Caja {
 	}
 	public void setTipo_comprobante(Tipo_Comprobante tipo_comprobante) {
 		this.tipo_comprobante = tipo_comprobante;
+	}
+	public Operacion_Caja getItem_cierre_cierre_id() {
+		return item_cierre_cierre_id;
+	}
+	public void setItem_cierre_cierre_id(Operacion_Caja item_cierre_cierre_id) {
+		this.item_cierre_cierre_id = item_cierre_cierre_id;
 	}
 	
 	

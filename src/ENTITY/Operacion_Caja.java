@@ -26,8 +26,8 @@ public class Operacion_Caja {
 	@JoinColumn(name="item_cierre_cierre_id")
 	private List<Item_Operacion_Caja> items;
 	
-	private Float recaudacion_monto;
-	private Float comisiones_monto;
+	private Double recaudacion_monto;
+	private Double comisiones_monto;
 	
 	@OneToOne
 	@JoinColumn(name="tipo_operacion_caja_id")
@@ -71,17 +71,17 @@ public class Operacion_Caja {
 	public void setItems(List<Item_Operacion_Caja> items) {
 		this.items = items;
 	}
-	public Float getRecaudacion() {
+	public Double getRecaudacion() {
 		return recaudacion_monto;
 	}
-	public void setRecaudacion(Float recaudacion) {
+	public void setRecaudacion(Double recaudacion) {
 		this.recaudacion_monto = recaudacion;
 	}
-	public Float getComisiones() {
+	public Double getComisiones() {
 		return comisiones_monto;
 	}
-	public void setComisiones(Float comisiones) {
-		this.comisiones_monto = comisiones;
+	public void setComisiones(Double monto) {
+		this.comisiones_monto = monto;
 	}
 	public Tipo_Operacion_Caja getTipo() {
 		return tipo;
