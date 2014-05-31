@@ -43,15 +43,6 @@ public class Pedido {
 		super();
 	}
 	
-	/*
-	public Pedido(Mesa mesa, Mozo mozo, Integer cantComensales,
-			Vector<Item_Pedido> items) {
-		super();
-		this.pedido_mesa = mesa;
-		this.pedido_mozo = mozo;
-		this.cant_comensales = cantComensales;
-		this.items = items;
-	}*/
 	public Integer getPedido_id() {
 		return pedido_id;
 	}
