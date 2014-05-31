@@ -28,6 +28,9 @@ public class Item_Pedido {
 		this.cantidad = cantidad;
 	}
 	
+	public Item_Pedido() {
+	}
+	
 	public Integer getItem_id() {
 		return item_id;
 	}
