@@ -6,19 +6,33 @@ public class Item_Operacion_Caja {
 	private Float monto;
 	private Integer cantidad;
 	private Tipo_Comprobante tipo_comprobante;
+	private Operacion_Caja item_operacion_operacion_id;
 	
 	
 	
+	public Operacion_Caja getItem_operacion_operacion_id() {
+		return item_operacion_operacion_id;
+	}
+
+
+	public void setItem_operacion_operacion_id(
+			Operacion_Caja item_operacion_operacion_id) {
+		this.item_operacion_operacion_id = item_operacion_operacion_id;
+	}
+
 	
-	public Item_Operacion_Caja(Float monto, Integer cantidad,
-			Tipo_Comprobante tipo) {
+	public Item_Operacion_Caja(Integer item_operacion_id, Float monto,
+			Integer cantidad, Tipo_Comprobante tipo_comprobante,
+			Operacion_Caja item_operacion_operacion_id) {
 		super();
+		this.item_operacion_id = item_operacion_id;
 		this.monto = monto;
 		this.cantidad = cantidad;
-		this.tipo_comprobante = tipo;
+		this.tipo_comprobante = tipo_comprobante;
+		this.item_operacion_operacion_id = item_operacion_operacion_id;
 	}
-	
-	
+
+
 	public Integer getItem_operacion_id() {
 		return item_operacion_id;
 	}
