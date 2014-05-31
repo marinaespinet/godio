@@ -1,5 +1,6 @@
 package DTO;
 import java.sql.Date;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -9,8 +10,8 @@ public class Operacion_Caja {
 	private Date fecha_dt;
 	private Sucursal operacion_caja_sucursal;
 	private Vector<Item_Operacion_Caja>items;
-	private Float recaudacion;
-	private Float comisiones;
+	private Double recaudacion;
+	private Double comisiones;
 	private Tipo_Operacion tipo;
 	
 	
@@ -21,6 +22,9 @@ public class Operacion_Caja {
 		operacion_caja_sucursal = sucursal;
 		this.items = items;
 		this.tipo = tipo;
+	}
+	public Operacion_Caja() {
+	super();
 	}
 	public Integer getOperacion_caja_id() {
 		return operacion_caja_id;
@@ -40,22 +44,22 @@ public class Operacion_Caja {
 	public void setOperacion_caja_sucursal(Sucursal operacion_caja_sucursal) {
 		this.operacion_caja_sucursal = operacion_caja_sucursal;
 	}
-	public Vector<Item_Operacion_Caja> getItems() {
+	public List<Item_Operacion_Caja> getItems() {
 		return items;
 	}
 	public void setItems(Vector<Item_Operacion_Caja> items) {
 		this.items = items;
 	}
-	public Float getRecaudacion() {
+	public Double getRecaudacion() {
 		return recaudacion;
 	}
-	public void setRecaudacion(Float recaudacion) {
+	public void setRecaudacion(Double recaudacion) {
 		this.recaudacion = recaudacion;
 	}
-	public Float getComisiones() {
+	public Double getComisiones() {
 		return comisiones;
 	}
-	public void setComisiones(Float comisiones) {
+	public void setComisiones(Double comisiones) {
 		this.comisiones = comisiones;
 	}
 	public Tipo_Operacion getTipo() {
