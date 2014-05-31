@@ -27,7 +27,6 @@ public class CajaController {
 			opCaja.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(sucursal));
 			opCaja.setTipo(OperacionCajaDAO.getInstancia().getTipo(operacion_id));
 			OperacionCajaDAO.getInstancia().grabarOperacionCaja(opCaja);
-			//TODO Recaudacion y comisiones
 			System.out.println("Se creó la operación de caja " + opCaja.getTipo().getNombre() + " con fecha: " + opCaja.getFecha_dt());
 		}
 		else throw new RestaurantException("Ya existe una operacion de caja de el tipo seleccionado para el día de hoy");
@@ -46,14 +45,15 @@ public class CajaController {
 		OperacionCajaDAO.getInstancia().grabarOperacionCaja(op);
 	}
 
-	private Operacion_Caja getOperacionCajaFromDTO(DTO.Operacion_Caja operacionDTO) {
+	public Operacion_Caja getOperacionCajaFromDTO(DTO.Operacion_Caja operacionDTO) {
 		Operacion_Caja opCajaEnt = new Operacion_Caja();
-		opCajaEnt.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(operacionDTO.getOperacion_caja_sucursal().getSucursal_id()));
+		opCajaEnt.setOperacion_caja_id(operacionDTO.getOperacion_caja_id());
+		opCajaEnt.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(1));//operacionDTO.getOperacion_caja_sucursal().getSucursal_id()));
 		opCajaEnt.setComisiones(operacionDTO.getComisiones());
 		opCajaEnt.setFecha_dt(operacionDTO.getFecha_dt());
 		opCajaEnt.setItems(OperacionCajaDAO.getInstancia().listarItems(operacionDTO.getOperacion_caja_id()));
 		opCajaEnt.setRecaudacion(operacionDTO.getRecaudacion());
-		opCajaEnt.setTipo(OperacionCajaDAO.getInstancia().getTipo(operacionDTO.getTipo().getTipo_operacion_id()));
+		opCajaEnt.setTipo(OperacionCajaDAO.getInstancia().getTipo(1));//operacionDTO.getTipo().getTipo_operacion_id()));
 		return opCajaEnt;
 	}
 
@@ -70,7 +70,7 @@ public class CajaController {
 		itEnt.setItem_cierre_cierre_id(OperacionCajaDAO.getInstancia().getOperacion(opCajaId));
 		//Esto no le gusta
 		//itEnt.setItem_cierre_cierre_id(OperacionCajaDAO.getInstancia().getOperacion(itemDTO.getItem_operacion_operacion_id().getOperacion_caja_id()));
-		System.out.println("Operacion Id: "+itEnt.getItem_cierre_cierre_id());
+		System.out.println("Operacion Id: "+itEnt.getItem_cierre_cierre_id().getOperacion_caja_id());
 		return itEnt;
 	}
 
