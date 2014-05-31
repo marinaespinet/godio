@@ -10,7 +10,7 @@ public class Mesa {
 	private Sector mesa_sector;
 	private String mesa_estado;
 	private Integer max_cant_comensales;
-	private Integer union_mesa;
+	private Mesa union_mesa;
 	
 	
 	public Integer getMesa_id() {
@@ -49,22 +49,12 @@ public class Mesa {
 	public void setMax_cant_comensales(Integer max_cant_comensales) {
 		this.max_cant_comensales = max_cant_comensales;
 	}
-	public Integer getUnion_mesa() {
+	public Mesa getUnion_mesa() {
 		return union_mesa;
 	}
-	public void setUnion_mesa(Integer union_mesa) {
+	public void setUnion_mesa(Mesa union_mesa) {
 		this.union_mesa = union_mesa;
 	}
-	
-	
-	public void modificarEstado(String estado){
-		//TODO
-	}
-	
-	public Vector<Mesa>mesas(Integer cantComensales){
-		//TODO
-		return null;
-		
-	}
+
 	
 }
