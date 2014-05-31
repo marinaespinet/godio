@@ -3,9 +3,7 @@ package DTO;
 public class Area {
 
 	private Integer area_id;
-	private String name;
-	private Sucursal area_sucursal;
-	
+	private String name;	
 	
 	public Integer getArea_id() {
 		return area_id;
@@ -19,13 +17,5 @@ public class Area {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Sucursal getArea_sucursal() {
-		return area_sucursal;
-	}
-	public void setArea_sucursal(Sucursal area_sucursal) {
-		this.area_sucursal = area_sucursal;
-	}
-	
-	
 	
 }
