@@ -265,6 +265,20 @@ public class LocationDAO {
 			Session session = sf.openSession();
 			session.persist(aux);
 			session.close();
+		}
+
+		@SuppressWarnings("unchecked")
+		public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id) {
+			List<ENTITY.Mesa> laLista = new LinkedList<ENTITY.Mesa>();
+			Session session = sf.openSession();
+			List<Integer> idsMesa = (List<Integer>)session.createQuery("SELECT me.mesa_id FROM Mesa me JOIN me.mesa_estado es JOIN me.mesa_sucursal su WHERE es.estado_id =1 AND su.sucursal_id =?").setInteger(0, sucursal_id).list();
+			for(Integer o:idsMesa){
+				laLista.add(getMesaPorId(o));
+			}
+			session.close();
+
+			return laLista;
+			
 		}	
 		
 	
