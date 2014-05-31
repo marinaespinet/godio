@@ -89,5 +89,9 @@ public Double calcularMontoFactura(ENTITY.Pedido pedido) {
 	return monto;
 }
 
+public Float montoPagos(Integer facturaID){
+	return (FacturasDAO.getInstancia().getMontoPagos(facturaID)).floatValue();
+}
+
 
 }
