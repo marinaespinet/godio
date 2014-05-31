@@ -1,5 +1,5 @@
 package DTO;
-import java.util.Vector;
+import java.util.List;
 
 
 public class Sucursal {
@@ -10,7 +10,7 @@ public class Sucursal {
 	private Integer cant_max_cubiertos;
 	private Integer cant_max_hs_produccion_cocina;
 	private Boolean es_admin_central_ind;
-	private Vector<Reserva> reservas;
+	private List<Reserva> reservas;
 	
 	
 	public Integer getSucursal_id() {
@@ -50,10 +50,10 @@ public class Sucursal {
 	public void setEs_admin_central_ind(Boolean es_admin_central_ind) {
 		this.es_admin_central_ind = es_admin_central_ind;
 	}
-	public Vector<Reserva> getReservas() {
+	public List<Reserva> getReservas() {
 		return reservas;
 	}
-	public void setReservas(Vector<Reserva> reservas) {
+	public void setReservas(List<Reserva> reservas) {
 		this.reservas = reservas;
 	}
 	
