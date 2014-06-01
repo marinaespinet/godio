@@ -117,5 +117,14 @@ public class PedidosDAO {
 			Double monto = (Double)session.createQuery("SELECT SUM(itc.precio_monto*itp.cantidad) FROM Item_Factura itf JOIN itf.item_pedido itp JOIN itp.pedido p JOIN itp.item_carta itc WHERE p.pedido_id=? AND itp.item_no_facturar_ind=false").setInteger(0,pedido).setFirstResult(0).setMaxResults(1).uniqueResult();
 			return monto;
 		}
+
+		public Item_Pedido getItemPedidoPorId(Integer item_id) {
+			Session session = sf.openSession();
+			Item_Pedido elItem =(Item_Pedido) session.get(Item_Pedido.class,item_id); 
+	
+			session.close();
+
+			return elItem;
+		}
 }
 
