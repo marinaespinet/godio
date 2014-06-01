@@ -6,9 +6,11 @@ import java.util.List;
 
 import BUSINESS.PedidosController;
 import BUSINESS.RestauranteController;
+import BUSINESS.StockController;
 import DAO.*;
 import DTO.Item_Pedido;
 import ENTITY.*;
+import Exceptions.RestaurantException;
 
 public class TDD_Javier {
 
@@ -35,28 +37,33 @@ public class TDD_Javier {
 		//unitTestReservaPorFecha();
 		//unitTestCrearReserva();
 		
-		unitTestRegistrarReclamo();
-
+		//unitTestRegistrarReclamo();
+		//unitTestControlarStock();
+		unitTestPrepararComanda();
+		
 	}
 	
 	
-	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
-	private static void unitTestRegistrarReclamo() {
+
+	/******** CASO DE USO 06 - REGISTRAR RECLAMO 
+	 * @throws RestaurantException ************/
+	private static void unitTestRegistrarReclamo() throws RestaurantException {
 		//tengo la mesa, busco el pedido
 		Pedido elPedidoDelReclamoEntity = PedidosController.getInstancia().getPedidoActualEnMesa(3);
 		
-		
+				
 		//armo un DTO con los datos que necesito, itemPedidos y se lo mando a la interfaz
 		DTO.Pedido elPedidoDelReclamoDTO = RestauranteController.getInstancia().getPedidoDTOReclamo(elPedidoDelReclamoEntity);
 
-		// Lo listo simplemente para ver lo que ve el mozo en la interfaz. Es un DTO que tiene unicamente
+		
+		// Lo listo simplemente para ver lo que ve el mozo en la interfaz y ver que haya algun item_pedido. Es un DTO que tiene unicamente
 		// el Id del pedido, y los items del pedido. Esos items tambien son distintos a la Entity porque tienen id y un campo especial
 		// que es "la descripcion rapida" de lo que contienen, para no traerme el item carta, los platos y recien ahi el nombre
 		List<DTO.Item_Pedido> losItems = elPedidoDelReclamoDTO.listarItems();
 		for(DTO.Item_Pedido elItemPedido : losItems){
 			System.out.println("Item Nro " + elItemPedido.getItem_id() + ", plato " + elItemPedido.getDescripcionPlatoContenido());
 		}
-		
+			
 				
 		//me llega un itemPedidoDTO que hay que persistir, lo creo para el ejemplo
 		DTO.Item_Pedido elItemObservadoDTO = new DTO.Item_Pedido();
@@ -69,10 +76,40 @@ public class TDD_Javier {
 		
 		//lo persisto
 		PedidosDAO.getInstancia().setItemPedido(elItemObservadoEnt);
+	}
+
+	
+
+	/******** CASO DE USO 10 - CONTROLAR STOCK ************/
+	private static void unitTestControlarStock() {
+		
+		//Tengo la sucursal donde voy a controlar el Stock, debo imprimir por pantalla el stock que posee el deposito
+		List<Stock> stockSucursalEnt = StockController.getInstancia().getStockPorDeposito(1);
+		
+		//Tengo un listado de Entities, las paso a DTOs que me convengan
+		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getDTOFromEntityStockPorSucursal(stockSucursalEnt);
+		
+		//Los listo simplemente para ver que los datos vienen bien, pero deberia mandarlo directamente al cliente
+		for(DTO.Stock unStock : stockSucursalDTO){
+			System.out.println("En la sucursal 1 hay " + unStock.getCantidad() + " " + unStock.getNombreProducto() + " que vence el dia " + unStock.getFecha_vencimiento_producto_dt());
+		}
+		
 		
 	}
 	
-
+	
+	/******** CASO DE USO 06 - PREPARAR COMANDA ************/
+	private static void unitTestPrepararComanda() {
+		// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
+		// Es decir que tengo la sucursal y el area (area 1, sucursal 1)
+		List<ENTITY.Pedido> losItemPedidosPendientesEnt = PedidosController.getInstancia().getItemPedidosPendientes(1,1);
+		
+		//Transformo las Entities en DTOs que sirvan para el mozo
+		
+		
+		
+	}
+	
 	private static boolean unitTestMesaPorId() {
 	
 		System.out.print("Test Mesa por Id: ");
