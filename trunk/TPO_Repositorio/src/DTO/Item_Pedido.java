@@ -12,14 +12,23 @@ public class Item_Pedido {
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
 	private String descripcionPlatoContenido;
-	private Integer estado;
+	private Integer estado_id;
+	private String estado_name;
 	
 	
-	public Integer getEstado() {
-		return estado;
+	
+
+	public Integer getEstado_id() {
+		return estado_id;
 	}
-	public void setEstado(Integer estado) {
-		this.estado = estado;
+	public void setEstado_id(Integer estado_id) {
+		this.estado_id = estado_id;
+	}
+	public String getEstado_name() {
+		return estado_name;
+	}
+	public void setEstado_name(String estado_name) {
+		this.estado_name = estado_name;
 	}
 	public Item_Pedido(Pedido pedido, Item_Carta item_carta,
 			Integer cantidad) {
