@@ -4,6 +4,7 @@ package DAO;
 
 import java.util.*;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -280,7 +281,24 @@ public class LocationDAO {
 			
 		}	
 		
-		
+
+		public int getCantReservas(int sucursal_id){
+			Date hoy = new java.sql.Date(System.currentTimeMillis());
+			Session session = sf.openSession();
+			Query q;
+			int cantReserv; 
+			String theQuery= "select count(*) from Reserva r "
+					+ "where r.sucursal = :sucursal "
+					+ "and r.fecha = :hoy";
+
+			q=session.createQuery(theQuery);
+			q.setParameter("sucursal", sucursal_id);
+			q.setDate("hoy", hoy);
+			cantReserv = (int)q.uniqueResult();
+			session.close();
+
+			return cantReserv;
+		}
 		
 	
 }
