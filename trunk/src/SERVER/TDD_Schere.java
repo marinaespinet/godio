@@ -22,11 +22,32 @@ public class TDD_Schere {
 		//unitTestComprasRealizar();
 		//unitTestAgregarItemPedido();
 		//unitTestAddPlanProduccion();
-		unitTestCerrarMesa();
+		//unitTestCerrarMesa();
+		//unitTestCheckStock();
+		unitTestTransferStock();
 	}
 	
 	private static void unitTestUpdateEstadoInsumo(){
 		EstadosDAO.getInstancia().TestActualizarEstadoInsumo(1,"cambiado");
+	}
+	
+	public static boolean unitTestCheckStock()throws RestaurantException{
+		System.out.print("Test check Stock: ");
+		
+		Integer cant = StockController.getInstancia().getStockCant(1,  1);
+		
+		System.out.println(cant.toString());
+		System.out.println("OK");
+		return true;
+	}
+	public static boolean unitTestTransferStock()throws RestaurantException{
+		System.out.print("Test check Stock: ");
+		
+		//(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) 
+		StockController.getInstancia().transferenciaStockByAreaSuc(1, 1, 1, 1, "test", 2, "Lote4");
+		
+		System.out.println("OK");
+		return true;
 	}
 	
 	public static boolean unitTestCerrarMesa() throws RestaurantException{
