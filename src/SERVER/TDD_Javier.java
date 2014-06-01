@@ -45,8 +45,7 @@ public class TDD_Javier {
 	
 	
 
-	/******** CASO DE USO 06 - REGISTRAR RECLAMO 
-	 * @throws RestaurantException ************/
+	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	private static void unitTestRegistrarReclamo() throws RestaurantException {
 		//tengo la mesa, busco el pedido
 		Pedido elPedidoDelReclamoEntity = PedidosController.getInstancia().getPedidoActualEnMesa(3);
@@ -120,7 +119,9 @@ public class TDD_Javier {
 		
 	}
 	
-	/******** CASO DE USO 06 - RECEPCION DE MERCADERIA ************/
+	/******** CASO DE USO 27 - RECEPCION DE MERCADERIA ************/
+		
+	
 	
 	private static boolean unitTestMesaPorId() {
 	
