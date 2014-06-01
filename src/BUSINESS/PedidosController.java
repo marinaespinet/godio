@@ -56,7 +56,8 @@ public class PedidosController {
 		for (ENTITY.Item_Pedido itEnt : itemPedidosPendientesEnt){
 			DTO.Item_Pedido itDTO = new DTO.Item_Pedido();
 			itDTO.setDescripcionPlatoContenido(itEnt.getItem_carta().getPlato().getName());
-			itDTO.setEstado(itEnt.getEstado().getEstado_id());
+			itDTO.setEstado_id(itEnt.getEstado().getEstado_id());
+			itDTO.setEstado_name(itEnt.getEstado().getEstado_name());
 			itDTO.setItem_id(itEnt.getItem_id());
 			itemPedidosPendientesDTO.add(itDTO);
 		}
@@ -65,8 +66,8 @@ public class PedidosController {
 
 	public ENTITY.Item_Pedido getItemPedidoEntityFromDTO(Item_Pedido itemDTO) {
 		ENTITY.Item_Pedido itEnt = PedidosDAO.getInstancia().getItemPedidoPorId(itemDTO.getItem_id());
-		itEnt.getEstado().setEstado_id(itemDTO.getEstado());
-		itEnt.getEstado().setEstado_name("Entregado");
+		itEnt.getEstado().setEstado_id(itemDTO.getEstado_id());
+		itEnt.getEstado().setEstado_name(itemDTO.getEstado_name());
 		return itEnt;
 	}
 		
