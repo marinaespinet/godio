@@ -1,6 +1,10 @@
 package BUSINESS;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import DAO.*;
+import DTO.Item_Pedido;
 import ENTITY.*;
 
 public class PedidosController {
@@ -40,6 +44,30 @@ public class PedidosController {
 	public ENTITY.Pedido getPedidoActualEnMesa(Integer mesaId){
 		Pedido elPedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesaId);
 		return elPedido;
+	}
+
+	public List<ENTITY.Item_Pedido> getItemPedidosPendientes(int sucId, int areaId) {
+		List<ENTITY.Item_Pedido> losItemsPendientes = PedidosDAO.getInstancia().getItemsPendientesDeArea(sucId,areaId);
+		return losItemsPendientes;
+	}
+
+	public List<DTO.Item_Pedido> getDTOFromEntityItemsPedido(List<ENTITY.Item_Pedido> itemPedidosPendientesEnt) {
+		List<DTO.Item_Pedido> itemPedidosPendientesDTO = new LinkedList<DTO.Item_Pedido>();
+		for (ENTITY.Item_Pedido itEnt : itemPedidosPendientesEnt){
+			DTO.Item_Pedido itDTO = new DTO.Item_Pedido();
+			itDTO.setDescripcionPlatoContenido(itEnt.getItem_carta().getPlato().getName());
+			itDTO.setEstado(itEnt.getEstado().getEstado_id());
+			itDTO.setItem_id(itEnt.getItem_id());
+			itemPedidosPendientesDTO.add(itDTO);
+		}
+		return itemPedidosPendientesDTO;
+	}
+
+	public ENTITY.Item_Pedido getItemPedidoEntityFromDTO(Item_Pedido itemDTO) {
+		ENTITY.Item_Pedido itEnt = PedidosDAO.getInstancia().getItemPedidoPorId(itemDTO.getItem_id());
+		itEnt.getEstado().setEstado_id(itemDTO.getEstado());
+		itEnt.getEstado().setEstado_name("Entregado");
+		return itEnt;
 	}
 		
 	
