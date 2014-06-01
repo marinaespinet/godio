@@ -1,5 +1,6 @@
 package BUSINESS;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import DAO.LocationDAO;
@@ -82,6 +83,19 @@ public class StockController {
 	public List<Stock> getStockPorDeposito(Integer depoID){
 		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);
 		return elStock;
+	}
+
+
+	public List<DTO.Stock> getDTOFromEntityStockPorSucursal(List<Stock> stockSucursalEnt) {
+		List<DTO.Stock> elStockSucursal = new LinkedList<DTO.Stock>();
+		for(ENTITY.Stock unStockEnt : stockSucursalEnt){
+			DTO.Stock unStockDTO = new DTO.Stock();
+			unStockDTO.setCantidad(unStockEnt.getCantidad());
+			unStockDTO.setFecha_vencimiento_producto_dt(unStockEnt.getFecha_vencimiento_producto_dt());
+			unStockDTO.setNombreProducto(unStockEnt.getProducto().getName());
+			elStockSucursal.add(unStockDTO);
+		}
+		return elStockSucursal;
 	}
 	
 	
