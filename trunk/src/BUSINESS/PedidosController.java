@@ -18,12 +18,12 @@ public class PedidosController {
 	}
 	
 	public void agregarItemsPedido(DTO.Item_Pedido item ){
-		Item_Pedido it = getItemPedidoFromDTO(item);
+		ENTITY.Item_Pedido it = getItemPedidoEntityFromDTO(item);
 		PedidosDAO.getInstancia().setItemPedido(it);
 	}
 	
-	public Item_Pedido getItemPedidoFromDTO(DTO.Item_Pedido itemDTO){
-		Item_Pedido itEnt = new Item_Pedido();
+	public ENTITY.Item_Pedido getItemPedidoFromDTO(DTO.Item_Pedido itemDTO){
+		ENTITY.Item_Pedido itEnt = new ENTITY.Item_Pedido();
 		itEnt.setCantidad(itemDTO.getCantidad());
 		itEnt.setPedido(PedidosDAO.getInstancia().getPedido(itemDTO.getPedido_id()));
 		itEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(itemDTO.getItem_carta_id()));
