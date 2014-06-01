@@ -110,7 +110,8 @@ public class TDD_Javier {
 		//Recibo un itemPedido que ya está listo, lo transformo en Entity. Ahora creo uno para simular
 		DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
 		itemDTO.setItem_id(1);
-		itemDTO.setEstado(2);
+		itemDTO.setEstado_id(2);
+		itemDTO.setEstado_name("Entregado");
 		
 		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoEntityFromDTO(itemDTO);
 		
