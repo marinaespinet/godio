@@ -190,5 +190,8 @@ public class RestauranteController {
 		return elItemEnt;
 	}
 
+	public int getCantidadReservas(int sucursal_id){
+		return LocationDAO.getInstancia().getCantReservas(sucursal_id);
+	}
 	
 }
