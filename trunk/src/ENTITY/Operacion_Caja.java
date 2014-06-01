@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Operacion_Caja {
 
 	@Id
+	@GeneratedValue
 	@Column(name="cierre_id")
 	private Integer operacion_caja_id;
 	
