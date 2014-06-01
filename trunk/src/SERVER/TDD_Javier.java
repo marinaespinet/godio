@@ -66,6 +66,7 @@ public class TDD_Javier {
 		
 		//convierto el Item_Pedido DTO a Entity
 		ENTITY.Item_Pedido elItemObservadoEnt = RestauranteController.getInstancia().getItemPedidoEntityFromDTOReclamo(elItemObservadoDTO);
+		
 		//lo persisto
 		PedidosDAO.getInstancia().setItemPedido(elItemObservadoEnt);
 		
@@ -101,7 +102,7 @@ public class TDD_Javier {
 
 	private static void unitTestCrearReserva() {
 		
-		Mesa unaMesa = LocationDAO.getInstancia().getMesaPorId(1);
+		Sucursal laSucursalDeLaReserva = LocationDAO.getInstancia().getSucursalPorId(1);
 		
 		Calendar unaFecha = Calendar.getInstance();
 		unaFecha.set(Calendar.YEAR,1983);
@@ -116,7 +117,7 @@ public class TDD_Javier {
 		unaReserva.setCant_comensales(5);
 		unaReserva.setFecha(laFecha);
 		unaReserva.setMinutos_duracion(45);
-		unaReserva.setReserva_mesa(unaMesa);
+		unaReserva.setReserva_mesa(laSucursalDeLaReserva);
 		
 		LocationDAO.getInstancia().setReserva(unaReserva);
 	}
