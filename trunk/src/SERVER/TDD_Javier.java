@@ -4,13 +4,15 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
+import BUSINESS.PedidosController;
+import BUSINESS.RestauranteController;
 import DAO.*;
+import DTO.Item_Pedido;
 import ENTITY.*;
 
 public class TDD_Javier {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		
 		//unitTestSucursales();
@@ -37,10 +39,38 @@ public class TDD_Javier {
 
 	}
 	
+	
+	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	private static void unitTestRegistrarReclamo() {
+		//tengo la mesa, busco el pedido
+		Pedido elPedidoDelReclamoEntity = PedidosController.getInstancia().getPedidoActualEnMesa(3);
 		
+		
+		//armo un DTO con los datos que necesito, itemPedidos y se lo mando a la interfaz
+		DTO.Pedido elPedidoDelReclamoDTO = RestauranteController.getInstancia().getPedidoDTOReclamo(elPedidoDelReclamoEntity);
+
+		// Lo listo simplemente para ver lo que ve el mozo en la interfaz. Es un DTO que tiene unicamente
+		// el Id del pedido, y los items del pedido. Esos items tambien son distintos a la Entity porque tienen id y un campo especial
+		// que es "la descripcion rapida" de lo que contienen, para no traerme el item carta, los platos y recien ahi el nombre
+		List<DTO.Item_Pedido> losItems = elPedidoDelReclamoDTO.listarItems();
+		for(DTO.Item_Pedido elItemPedido : losItems){
+			System.out.println("Item Nro " + elItemPedido.getItem_id() + ", plato " + elItemPedido.getDescripcionPlatoContenido());
+		}
+		
+				
+		//me llega un itemPedidoDTO que hay que persistir, lo creo para el ejemplo
+		DTO.Item_Pedido elItemObservadoDTO = new DTO.Item_Pedido();
+		elItemObservadoDTO.setItem_id(1);
+		elItemObservadoDTO.setItem_no_facturar_ind(true);
+		elItemObservadoDTO.setObservaciones_no_facturar("tenia un pucho apagado");
+		
+		//convierto el Item_Pedido DTO a Entity
+		ENTITY.Item_Pedido elItemObservadoEnt = RestauranteController.getInstancia().getItemPedidoEntityFromDTOReclamo(elItemObservadoDTO);
+		//lo persisto
+		PedidosDAO.getInstancia().setItemPedido(elItemObservadoEnt);
 		
 	}
+	
 
 	private static boolean unitTestMesaPorId() {
 	
