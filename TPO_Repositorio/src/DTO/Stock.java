@@ -8,7 +8,20 @@ public class Stock {
 	private Producto stock_producto;
 	private Integer cantidad;
 	private Date fecha_vencimiento_producto_dt;
+	public String getGetNombreProducto() {
+		return getNombreProducto;
+	}
+	public void setGetNombreProducto(String getNombreProducto) {
+		this.getNombreProducto = getNombreProducto;
+	}
+	public String getNombreProducto;
 	
+	public Integer getCantidad() {
+		return cantidad;
+	}
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
 	public Integer getStock_id() {
 		return stock_id;
 	}
