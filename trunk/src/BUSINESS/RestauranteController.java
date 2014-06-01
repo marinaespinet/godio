@@ -16,6 +16,7 @@ import DTO.Sector;
 import DTO.Sucursal;
 import DTO.Usuario;
 import ENTITY.*;
+import Exceptions.RestaurantException;
 
 public class RestauranteController {
 	private static RestauranteController instancia = null;
@@ -164,7 +165,7 @@ public class RestauranteController {
 	}
 
 
-	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) {
+	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) throws RestaurantException {
 		DTO.Pedido unPedidoDTO = new DTO.Pedido();
 		unPedidoDTO.setItems(getItemsPedidoDTOReclamo(pedidoEnt.listarItems()));
 		unPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
@@ -172,13 +173,17 @@ public class RestauranteController {
 	}
 
 
-	private List<DTO.Item_Pedido> getItemsPedidoDTOReclamo(List<ENTITY.Item_Pedido> itemsEnt) {
+	public List<DTO.Item_Pedido> getItemsPedidoDTOReclamo(List<ENTITY.Item_Pedido> itemsEnt) throws RestaurantException {
 		List<DTO.Item_Pedido> itemsDTO = new LinkedList<DTO.Item_Pedido>();
 		for(ENTITY.Item_Pedido itemEnt : itemsEnt){
 			DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
 			itemDTO.setItem_id(itemEnt.getItem_id());
 			itemDTO.setDescripcionPlatoContenido(itemEnt.getItem_carta().getPlato().getName());
 		}
+		if(itemsDTO.size() == 0){ 
+			throw new RestaurantException("El pedido ingresado no tiene platos asociados ");
+		}
+		
 		return itemsDTO;
 	}
 
