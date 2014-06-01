@@ -41,7 +41,6 @@ public class TDD_Florencia {
 	//sabe cant comensales y mozo
 	private static int unitTestAbrirMesa(Mozo unMozo, int comensales){
 		List <Mesa> mesasBuenas=new LinkedList <Mesa>();
-		List <Mesa> mesasBuenasSinReservas=new LinkedList <Mesa>();
 		List <Mesa> mesas = RestauranteController.getInstancia().getMesasLibresEnSucursal(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
 		if(mesas != null){
 			for (Mesa unaMesa: mesas){
@@ -50,8 +49,13 @@ public class TDD_Florencia {
 			}
 			if(mesasBuenas!=null){
 				//chequear reservas
+				int cantidadReserva = RestauranteController.getInstancia().getCantidadReservas(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
+				if (cantidadReserva<mesasBuenas.size()){
+					return mesasBuenas.get(0).getMesa_id(); //devuelvo la primer mesa
+				}
 				
-				/*select count(*) from RESERVAS where RESERVA_SUCURSAL_ID = :sucursalID and :fechaHOY < (FECHA_DT +MINUTOS_DURACION) and CANT_COMENSALES <= :cantComensales*/
+
+				
 			}
 			System.out.println("No hay mesas para los comensales");
 			return 0;
