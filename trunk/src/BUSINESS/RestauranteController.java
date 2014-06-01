@@ -132,38 +132,6 @@ public class RestauranteController {
 	}
 
 
-	public List<DTO.Item_Pedido> getItemsPedidoDTO(List<Item_Pedido> itemsEnt) {
-		List<DTO.Item_Pedido> itemsPedidoDTO = new LinkedList<DTO.Item_Pedido>();
-		for(ENTITY.Item_Pedido unItemEnt: itemsEnt){
-			DTO.Item_Pedido unItemPedidoDTO = new DTO.Item_Pedido();
-			unItemPedidoDTO.setCantidad(unItemEnt.getCantidad());
-			unItemPedidoDTO.setItem_carta(getItemCartaDTO(unItemEnt.getItem_carta()));
-			unItemPedidoDTO.setItem_carta_id(unItemEnt.getItem_carta().getItem_carta_id());
-			unItemPedidoDTO.setItem_id(unItemEnt.getItem_id());
-			unItemPedidoDTO.setItem_no_facturar_ind(unItemEnt.getItem_no_facturar_ind());
-			unItemPedidoDTO.setItem_pedido(getPedidoDTO(unItemEnt.getPedido()));
-			unItemPedidoDTO.setObservaciones_no_facturar(unItemEnt.getObservaciones_no_facturar());
-			unItemPedidoDTO.setPedido_id(unItemEnt.getPedido().getPedido_id());
-			itemsPedidoDTO.add(unItemPedidoDTO);
-		}
-		return itemsPedidoDTO;
-	}
-
-
-	public Pedido getPedidoDTO(ENTITY.Pedido pedidoEnt) {
-		DTO.Pedido unPedidoDTO = new DTO.Pedido();
-		unPedidoDTO.setCant_comensales(pedidoEnt.getCant_comensales());
-		unPedidoDTO.setFecha_apertura_dt(pedidoEnt.getFecha_apertura_dt());
-		unPedidoDTO.setFecha_cierre_dt(pedidoEnt.getFecha_cierre_dt());
-		unPedidoDTO.setFecha_pago_dt(pedidoEnt.getFecha_pago_dt());
-		unPedidoDTO.setItems(getItemsPedidoDTO(pedidoEnt.listarItems()));  //esto no se clava por recursividad?
-		unPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
-		unPedidoDTO.setPedido_login(getLoginDTO(pedidoEnt.getPedido_login()));
-		unPedidoDTO.setPedido_mesa(getMesaDTO(pedidoEnt.getPedido_mesa()));
-		unPedidoDTO.setPedido_mozo(getMozoDTO(pedidoEnt.getPedido_mozo()));
-		return unPedidoDTO;
-	}
-
 
 	public Mozo getMozoDTO(ENTITY.Mozo mozoEnt) {
 		DTO.Mozo unMozoDTO = new DTO.Mozo();
@@ -195,6 +163,32 @@ public class RestauranteController {
 		return unPlatoDTO;
 	}
 
+
+	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) {
+		DTO.Pedido unPedidoDTO = new DTO.Pedido();
+		unPedidoDTO.setItems(getItemsPedidoDTOReclamo(pedidoEnt.listarItems()));
+		unPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
+		return unPedidoDTO;
+	}
+
+
+	private List<DTO.Item_Pedido> getItemsPedidoDTOReclamo(List<ENTITY.Item_Pedido> itemsEnt) {
+		List<DTO.Item_Pedido> itemsDTO = new LinkedList<DTO.Item_Pedido>();
+		for(ENTITY.Item_Pedido itemEnt : itemsEnt){
+			DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
+			itemDTO.setItem_id(itemEnt.getItem_id());
+			itemDTO.setDescripcionPlatoContenido(itemEnt.getItem_carta().getPlato().getName());
+		}
+		return itemsDTO;
+	}
+
+
+	public Item_Pedido getItemPedidoEntityFromDTOReclamo(DTO.Item_Pedido elItemObservadoDTO) {
+		ENTITY.Item_Pedido elItemEnt = PedidosDAO.getInstancia().getItemPedidoPorId(elItemObservadoDTO.getItem_id());
+		elItemEnt.setItem_no_facturar_ind(elItemObservadoDTO.getItem_no_facturar_ind());
+		elItemEnt.setObservaciones_no_facturar(elItemObservadoDTO.getObservaciones_no_facturar());
+		return elItemEnt;
+	}
 
 	
 }
