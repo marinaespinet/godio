@@ -98,17 +98,28 @@ public class TDD_Javier {
 	}
 	
 	
-	/******** CASO DE USO 06 - PREPARAR COMANDA ************/
+	/******** CASO DE USO 08 - PREPARAR COMANDA ************/
 	private static void unitTestPrepararComanda() {
 		// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
 		// Es decir que tengo la sucursal y el area (area 1, sucursal 1)
-		List<ENTITY.Pedido> losItemPedidosPendientesEnt = PedidosController.getInstancia().getItemPedidosPendientes(1,1);
+		List<ENTITY.Item_Pedido> losItemPedidosPendientesEnt = PedidosController.getInstancia().getItemPedidosPendientes(1,1);
 		
-		//Transformo las Entities en DTOs que sirvan para el mozo
+		//Transformo las Entities en DTOs que sirvan para el Area y se los mando 
+		List<DTO.Item_Pedido> losItemPedidoPendientesDTO = PedidosController.getInstancia().getDTOFromEntityItemsPedido(losItemPedidosPendientesEnt); 
 		
+		//Recibo un itemPedido que ya está listo, lo transformo en Entity. Ahora creo uno para simular
+		DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
+		itemDTO.setItem_id(1);
+		itemDTO.setEstado(2);
 		
+		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoFromDTO(itemDTO);
+		
+		//lo persisto
+		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo);
 		
 	}
+	
+	/******** CASO DE USO 06 - RECEPCION DE MERCADERIA ************/
 	
 	private static boolean unitTestMesaPorId() {
 	
