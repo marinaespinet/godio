@@ -39,22 +39,14 @@ public class Stock {
 	public void setProducto(Producto stock_producto) {
 		this.producto = stock_producto;
 	}
-	public Integer getCantidad(Producto producto) {
-		//TODO
+
+
+
+	public Integer getCantidad() {
 		return cantidad;
 	}
-	
-	public void descontarStock(Integer cantidad){
-		//TODO
-	}
-	
-	public void agregarStock(Integer cantidad){
-		//TODO
-	}
-	
-	public Boolean verificarCantidad(Producto producto,Integer cantidad,Deposito deposito){
-		//TODO
-		return true;
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
 	}
 	public Date getFecha_vencimiento_producto_dt() {
 		return fecha_vencimiento_producto_dt;

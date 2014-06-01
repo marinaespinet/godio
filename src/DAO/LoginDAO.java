@@ -27,4 +27,13 @@ public class LoginDAO {
 		session.flush();
 		session.close();
 	}
+	
+	public Login getLogin(Integer id)
+	{
+		Session session = sf.openSession();
+		Login obj = (Login)session.get(Login.class, id);
+		
+		session.close();
+		return obj;
+	}
 }

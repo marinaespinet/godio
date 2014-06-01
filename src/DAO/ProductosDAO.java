@@ -3,8 +3,7 @@ package DAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import ENTITY.Semielaborado;
-import ENTITY.Sucursal;
+import ENTITY.*;
 
 public class ProductosDAO {
 	private static ProductosDAO instancia = null;
@@ -27,5 +26,15 @@ public class ProductosDAO {
 
 		return semi;
 	}	
+	
+	
+	public Producto getProducto(Integer id)
+	{
+		Session session = sf.openSession();
+		Producto obj = (Producto)session.get(Producto.class, id);
+		
+		session.close();
+		return obj;
+	}
 	
 }

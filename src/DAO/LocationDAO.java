@@ -300,5 +300,34 @@ public class LocationDAO {
 			return cantReserv;
 		}
 		
-	
+		
+		//Depositos
+		public Deposito getDeposito(Integer depoID)
+		{
+			Session session = sf.openSession();
+			Deposito obj = (Deposito)session.get(Deposito.class, depoID);
+			
+			session.close();
+			return obj;
+		}
+		
+		public Deposito getDepositoPorAreaSucursal(Integer areaID, Integer sucID)
+		{
+			Session session = sf.openSession();
+			Deposito obj = (Deposito)session.createQuery("SELECT d FROM Deposito d JOIN d.deposito_area a JOIN d.sucursal s WHERE a.area_id=:area AND s.sucursal_id=:suc").setInteger("area", areaID).setInteger("suc", sucID).uniqueResult();
+			
+			session.close();
+
+			return obj;
+		}
+		
+		public Deposito getDepositoPorAreaSucursal( Integer sucID, String area)
+		{
+			Session session = sf.openSession();
+			Deposito obj = (Deposito)session.createQuery("SELECT d FROM Deposito d JOIN d.deposito_area a JOIN d.sucursal s WHERE a.name=:area AND s.sucursal_id=:suc").setString("area", area).setInteger("suc", sucID).uniqueResult();
+			
+			session.close();
+
+			return obj;
+		}	
 }
