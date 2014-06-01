@@ -112,7 +112,7 @@ public class TDD_Javier {
 		itemDTO.setItem_id(1);
 		itemDTO.setEstado(2);
 		
-		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoFromDTO(itemDTO);
+		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoEntityFromDTO(itemDTO);
 		
 		//lo persisto
 		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo);
