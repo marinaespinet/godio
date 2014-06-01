@@ -45,8 +45,17 @@ public class FacturasDAO {
 	
 	public Double getMontoPagos(int nroFact){
 		Session session = sf.openSession();
-		Double monto = (Double)session.createQuery("SELECT SUM(p.monto_total) FROM Factura f JOIN f.pagos WHERE f.factura_id=?").setInteger(0,nroFact).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Double monto = (Double)session.createQuery("SELECT SUM(p.monto_total) FROM Factura f JOIN f.pagos p WHERE f.factura_id=?").setInteger(0,nroFact).setFirstResult(0).setMaxResults(1).uniqueResult();
 		return monto;
 	}
+	
+	public Factura getFacturaPedido(int pedidoID){
+		Session session = sf.openSession();
+		Factura fac= (Factura)session.createQuery("SELECT f FROM Factura f JOIN f.pedido p"
+		+ " WHERE p.pedido_id=?").setInteger(0,pedidoID).setFirstResult(0).setMaxResults(1).uniqueResult();
+		return fac;
+	}
+	
+	
 		
 }

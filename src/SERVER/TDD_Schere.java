@@ -15,7 +15,7 @@ public class TDD_Schere {
 	public static void main(String[] args) throws RestaurantException {
 		// TODO Auto-generated method stub
 		
-		
+		//unitTestUpdateEstadoInsumo();
 		//unitTestUsuarios();
 		//unitTestLogin();
 		//unitTestPlanProd();
@@ -25,10 +25,14 @@ public class TDD_Schere {
 		unitTestCerrarMesa();
 	}
 	
+	private static void unitTestUpdateEstadoInsumo(){
+		EstadosDAO.getInstancia().TestActualizarEstadoInsumo(1,"cambiado");
+	}
+	
 	public static boolean unitTestCerrarMesa() throws RestaurantException{
 		System.out.print("Test Cerrar Mesa: ");
 		
-		MesasController.getInstancia().cerrarMesa(1);
+		PedidosController.getInstancia().cerrarPedido(1);
 		
 		System.out.println("OK");
 		return true;

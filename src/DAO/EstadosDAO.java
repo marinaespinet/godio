@@ -39,4 +39,14 @@ public class EstadosDAO {
 		session.close();
 		return estado;
 	}
+	
+	public void TestActualizarEstadoInsumo(int estadoID, String newdesc){
+		Session session = sf.openSession();
+		Estado_Insumo estado = (Estado_Insumo)session.get(Estado_Insumo.class, estadoID);
+		estado.setEstado_name(newdesc);
+		session.persist(estado);
+		session.flush();
+		session.close();
+		
+	}
 }
