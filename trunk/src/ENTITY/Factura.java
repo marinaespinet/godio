@@ -29,8 +29,8 @@ public class Factura {
 	private Date fecha_factura_dt;
 	
 	@ManyToOne
-	@JoinColumn(name="FACTURA_MESA_ID")
-	private Mesa factura_mesa;
+	@JoinColumn(name="FACTURA_PEDIDO_MESA_ID")
+	private Pedido pedido;
 	
 	@ManyToOne
 	@JoinColumn(name="FACTURA_MOZO_ID")
@@ -58,11 +58,11 @@ public class Factura {
 	public void setFecha_factura_dt(java.util.Date fecha) {
 		this.fecha_factura_dt = (Date) fecha;
 	}
-	public Mesa getFactura_mesa() {
-		return factura_mesa;
+	public Pedido getFactura_mesa() {
+		return pedido;
 	}
-	public void setFactura_mesa(Mesa factura_mesa) {
-		this.factura_mesa = factura_mesa;
+	public void setFactura_mesa(Pedido factura_mesa) {
+		this.pedido = factura_mesa;
 	}
 	public Mozo getFactura_mozo() {
 		return factura_mozo;
