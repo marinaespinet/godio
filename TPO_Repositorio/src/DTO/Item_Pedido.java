@@ -12,8 +12,15 @@ public class Item_Pedido {
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
 	private String descripcionPlatoContenido;
+	private Integer estado;
 	
 	
+	public Integer getEstado() {
+		return estado;
+	}
+	public void setEstado(Integer estado) {
+		this.estado = estado;
+	}
 	public Item_Pedido(Pedido pedido, Item_Carta item_carta,
 			Integer cantidad) {
 		super();
