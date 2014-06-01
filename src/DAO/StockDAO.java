@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -46,5 +48,18 @@ public class StockDAO {
 			
 		session.flush();
 		session.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Stock> getStockPorDeposito(Integer depoID) {
+		Session session = sf.openSession();
+		List<Stock> elStock =(List<Stock>)session.createQuery("SELECT s FROM Stock s " 
+				+ " JOIN s.stock_deposito d WHERE " 
+				+ " d.deposito_id=:depo")
+				.setInteger("depo", depoID).list();
+			
+		session.close();
+
+		return elStock;
 	}
 }
