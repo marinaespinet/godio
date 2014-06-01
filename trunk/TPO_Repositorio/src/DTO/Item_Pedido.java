@@ -11,6 +11,7 @@ public class Item_Pedido {
 	private Integer cantidad;
 	private Boolean item_no_facturar_ind;
 	private String observaciones_no_facturar;
+	private String descripcionPlatoContenido;
 	
 	
 	public Item_Pedido(Pedido pedido, Item_Carta item_carta,
@@ -85,6 +86,12 @@ public class Item_Pedido {
 
 	public void setItem_carta_id(Integer item_carta_id) {
 		this.item_carta_id = item_carta_id;
+	}
+	public String getDescripcionPlatoContenido() {
+		return descripcionPlatoContenido;
+	}
+	public void setDescripcionPlatoContenido(String descripcionPlatoContenido) {
+		this.descripcionPlatoContenido = descripcionPlatoContenido;
 	}
 	
 	
