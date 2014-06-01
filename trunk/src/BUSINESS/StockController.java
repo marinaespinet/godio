@@ -1,5 +1,7 @@
 package BUSINESS;
 
+import java.util.List;
+
 import DAO.LocationDAO;
 import DAO.LoginDAO;
 import DAO.ProductosDAO;
@@ -76,6 +78,12 @@ public class StockController {
 		stk.setCantidad(stk.getCantidad() - cant);
 		StockDAO.getInstancia().grabarStock(stk);
 	}
+	
+	public List<Stock> getStockPorDeposito(Integer depoID){
+		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);
+		return elStock;
+	}
+	
 	
 	
 }
