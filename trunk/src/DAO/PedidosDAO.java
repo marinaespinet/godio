@@ -28,10 +28,11 @@ public class PedidosDAO {
 	}
 
 	//Trae todos.
+	@SuppressWarnings("unchecked")
 	public List<Pedido> getPedidos()
 	{
 		Session session = sf.openSession();
-		List<Pedido> list = (List<Pedido>)session.createQuery("from Pedido").list();
+		List<Pedido> list = (List<Pedido>)session.createQuery("FROM Pedido").list();
 		session.close();
 		return list;
 	}
@@ -64,6 +65,7 @@ public class PedidosDAO {
 	}
 	
 	//Listar items de una mesa
+		@SuppressWarnings("unchecked")
 		public List<Item_Pedido> getItems (int id){
 			Session session = sf.openSession();
 			List<Item_Pedido> list = (List<Item_Pedido>)session.createQuery("SELECT p.items FROM Pedido p WHERE p.pedido_id=? ").setInteger(0, id).list();
@@ -72,6 +74,7 @@ public class PedidosDAO {
 		}
 	
 	//Listar items pendientes de una mesa
+	@SuppressWarnings("unchecked")
 	public List<Item_Pedido> getItemsPendientesDeMesa (int id){
 		Session session = sf.openSession();
 		List<Item_Pedido> list = (List<Item_Pedido>)session.createQuery("SELECT p.items FROM Pedido p JOIN p.items i JOIN i.estado e WHERE p.pedido_id=? and e.estado_name='Pendiente'").setInteger(0, id).list();
@@ -96,6 +99,7 @@ public class PedidosDAO {
 			session.close();
 		}
 		
+		@SuppressWarnings("unchecked")
 		public List<Pedido> getPedidosPorEstado(String estado)
 		{
 			Session session = sf.openSession();
@@ -125,6 +129,25 @@ public class PedidosDAO {
 			session.close();
 
 			return elItem;
+		}
+
+		@SuppressWarnings("unchecked")
+		public List<Item_Pedido> getItemsPendientesDeArea(int sucId, int areaId) {
+			Session session = sf.openSession();
+			List<ENTITY.Item_Pedido> losItemsPedido = (List<ENTITY.Item_Pedido>) session.createQuery("SELECT it FROM Item_Pedido it " 
+				+ " JOIN it.Estado_Item_Pedido es"
+				+ " JOIN it.Pedido ped"
+				+ " JOIN ped.pedido_mesa mes"
+				+ " JOIN mes.mesa_sucursal suc"
+				+ " JOIN Estado_Item_Pedido est"
+				+ " WHERE " 
+				+ " suc.sucursal_id=?"
+				+ " AND"
+				+ " it.item_area_id=?"
+				+ " AND "
+				+ "est.estado_id = 1")
+				.setInteger(0, sucId).setInteger(1, areaId).list();
+			return losItemsPedido;
 		}
 }
 
