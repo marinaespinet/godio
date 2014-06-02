@@ -23,7 +23,7 @@ public class CajaController {
 		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);
 		if (cantOperacionesHoy==0){
 			Operacion_Caja opCaja = new Operacion_Caja();
-			opCaja.setOperacion_caja_id(Calendar.DATE);
+			//opCaja.setOperacion_caja_id(Calendar.DATE);
 			opCaja.setFecha_dt(hoy);
 			opCaja.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(sucursal));
 			opCaja.setTipo(OperacionCajaDAO.getInstancia().getTipo(operacion_id));
@@ -43,6 +43,7 @@ public class CajaController {
 		Operacion_Caja op = getOperacionCajaFromDTO(operacion);
 		Double monto = OperacionCajaDAO.getInstancia().calcularMonto(operacion.getOperacion_caja_id());
 		op.setRecaudacion(monto);
+		System.out.println("Calculé el monto: " + monto);
 		OperacionCajaDAO.getInstancia().grabarOperacionCaja(op);
 	}
 
@@ -68,10 +69,11 @@ public class CajaController {
 		System.out.println("Cantidad: "+itEnt.getCantidad());
 		itEnt.setMonto(itemDTO.getMonto());
 		System.out.println("Monto: "+itEnt.getMonto());
-		itEnt.setItem_cierre_cierre_id(OperacionCajaDAO.getInstancia().getOperacion(opCajaId));
-		//Esto no le gusta
-		//itEnt.setItem_cierre_cierre_id(OperacionCajaDAO.getInstancia().getOperacion(itemDTO.getItem_operacion_operacion_id().getOperacion_caja_id()));
-		System.out.println("Operacion Id: "+itEnt.getItem_cierre_cierre_id().getOperacion_caja_id());
+		Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(opCajaId);
+		//System.out.println("Operacion: "+op.getOperacion_caja_id());
+		itEnt.setItem_cierre_cierre_id(op);
+		System.out.println("El item se asocio a operacion "+opCajaId);
+		System.out.println("Operacion Id: "+ opCajaId);
 		return itEnt;
 	}
 
