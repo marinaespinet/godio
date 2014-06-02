@@ -41,7 +41,7 @@ public class TDD_Javier {
 		//unitTestRegistrarReclamo();
 		//unitTestControlarStock();
 		//unitTestPrepararComanda();
-		unitTestRecepcionMercaderia();
+		//unitTestRecepcionMercaderia();
 		
 	}
 	
