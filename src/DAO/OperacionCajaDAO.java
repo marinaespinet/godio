@@ -47,9 +47,9 @@ public class OperacionCajaDAO {
 	}
 	
 	//Busca por Id
-	public Operacion_Caja getOperacion(int id){
+	public Operacion_Caja getOperacion(Integer id){
 		Session session = sf.openSession();
-		Operacion_Caja op = (Operacion_Caja)session.get(Operacion_Caja.class, id);
+		Operacion_Caja op = (Operacion_Caja)session.createQuery("FROM Operacion_Caja op WHERE op.operacion_caja_id=?").setInteger(0, id).setFirstResult(0).setMaxResults(1).uniqueResult();
 		session.close();
 		return op;
 	}
