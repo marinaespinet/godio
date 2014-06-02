@@ -15,6 +15,7 @@ public class Stock {
 	@OneToOne
 	@JoinColumn(name="STOCK_DEPOSITO_ID")
 	private Deposito stock_deposito;
+	
 	@OneToOne
 	@JoinColumn(name="STOCK_PRODUCTO_ID")
 	private Producto producto;
