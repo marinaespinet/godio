@@ -26,9 +26,9 @@ public class EstadosDAO {
 		return estado;
 	}
 	
-	public Estado_Mesa buscarEstadoMesa(String est){				
+	public Estado_Mesa buscarEstadoMesa(Integer est){				
 		Session session = sf.openSession();
-		Estado_Mesa estado = (Estado_Mesa)session.createQuery("FROM Estado_Mesa e WHERE e.estado_name=?").setString(0,est).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Estado_Mesa estado = (Estado_Mesa)session.createQuery("FROM Estado_Mesa e WHERE e.estado_id=?").setInteger(0,est).setFirstResult(0).setMaxResults(1).uniqueResult();
 		session.close();
 		return estado;
 	}
