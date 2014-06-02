@@ -16,7 +16,6 @@ import DTO.Sector;
 import DTO.Sucursal;
 import DTO.Usuario;
 import ENTITY.*;
-import Exceptions.RestaurantException;
 
 public class RestauranteController {
 	private static RestauranteController instancia = null;
@@ -103,7 +102,7 @@ public class RestauranteController {
 		unaSucursalDTO.setEs_admin_central_ind(sucursalEnt.getEs_admin_central_ind());
 		unaSucursalDTO.setName(sucursalEnt.getName());
 		unaSucursalDTO.setSucursal_id(sucursalEnt.getSucursal_id());
-		unaSucursalDTO.setAreas(getAreasDTO(sucursalEnt.getAreas()));
+		//unaSucursalDTO.setAreas(getAreasDTO(sucursalEnt.getAreas()));
  		return unaSucursalDTO;
 	}
 
@@ -164,8 +163,8 @@ public class RestauranteController {
 		return unPlatoDTO;
 	}
 
-
-	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) throws RestaurantException {
+/*
+	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) {
 		DTO.Pedido unPedidoDTO = new DTO.Pedido();
 		unPedidoDTO.setItems(getItemsPedidoDTOReclamo(pedidoEnt.listarItems()));
 		unPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
@@ -173,19 +172,17 @@ public class RestauranteController {
 	}
 
 
-	public List<DTO.Item_Pedido> getItemsPedidoDTOReclamo(List<ENTITY.Item_Pedido> itemsEnt) throws RestaurantException {
+	private List<DTO.Item_Pedido> getItemsPedidoDTOReclamo(List<ENTITY.Item_Pedido> itemsEnt) {
 		List<DTO.Item_Pedido> itemsDTO = new LinkedList<DTO.Item_Pedido>();
 		for(ENTITY.Item_Pedido itemEnt : itemsEnt){
 			DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
 			itemDTO.setItem_id(itemEnt.getItem_id());
 			itemDTO.setDescripcionPlatoContenido(itemEnt.getItem_carta().getPlato().getName());
 		}
-		if(itemsDTO.size() == 0){ 
-			throw new RestaurantException("El pedido ingresado no tiene platos asociados ");
-		}
-		
 		return itemsDTO;
 	}
+	*/
+	
 
 
 	public Item_Pedido getItemPedidoEntityFromDTOReclamo(DTO.Item_Pedido elItemObservadoDTO) {
@@ -197,14 +194,6 @@ public class RestauranteController {
 
 	public int getCantidadReservas(int sucursal_id){
 		return LocationDAO.getInstancia().getCantReservas(sucursal_id);
-	}
-
-
-	public ENTITY.Area getAreaEntity(Area area) {
-		ENTITY.Area unArea = new ENTITY.Area();
-		unArea.setArea_id(area.getArea_id());
-		unArea.setName(area.getName());
-		return unArea;
 	}
 	
 }

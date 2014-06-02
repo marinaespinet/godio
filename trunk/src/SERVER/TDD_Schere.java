@@ -24,11 +24,30 @@ public class TDD_Schere {
 		//unitTestAddPlanProduccion();
 		//unitTestCerrarMesa();
 		//unitTestCheckStock();
-		unitTestTransferStock();
+		//unitTestTransferStock();
+		unitTestAddStock();
 	}
 	
 	private static void unitTestUpdateEstadoInsumo(){
 		EstadosDAO.getInstancia().TestActualizarEstadoInsumo(1,"cambiado");
+	}
+	
+	public static boolean unitTestAddStock(){
+		Stock st1 = StockDAO.getInstancia().getStock(1, 1);
+		
+		Stock stk = new Stock();
+		stk.setCantidad(3);
+		stk.setFecha_vencimiento_producto_dt(st1.getFecha_vencimiento_producto_dt());
+		stk.setProducto(st1.getProducto());
+		stk.setStock_deposito(st1.getStock_deposito());
+		
+		StockDAO.getInstancia().grabarStock(stk);
+		
+		stk.setCantidad(666);
+		
+		StockDAO.getInstancia().grabarStock(stk);
+		
+		return true;
 	}
 	
 	public static boolean unitTestCheckStock()throws RestaurantException{
