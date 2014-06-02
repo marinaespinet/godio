@@ -41,11 +41,24 @@ public class FacturasDAO {
 	
 	public void addItemsFactura(Item_Factura item){
 		Session session = sf.openSession();
-		session.persist(item);
+		session.beginTransaction();
+		session.save(item);
 		session.flush();
+		session.getTransaction().commit();
 		session.close();
 	}
 	
+
+	public void actualizarFactura(Factura fac){
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.save(fac);
+		session.flush();
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+
 	public Double getMontoPagos(int nroFact){
 		Session session = sf.openSession();
 		Double monto = (Double)session.createQuery("SELECT SUM(p.monto_total) FROM Factura f JOIN f.pagos p WHERE f.factura_id=?").setInteger(0,nroFact).setFirstResult(0).setMaxResults(1).uniqueResult();
@@ -82,6 +95,7 @@ public class FacturasDAO {
 		//liquidacion de todos los mozos
 		List <Mozo> todosMozos = new LinkedList <Mozo>();
 		todosMozos= LocationDAO.getInstancia().getMozos();
+>>>>>>> .r189
 		
 		return null;
 	}*/
