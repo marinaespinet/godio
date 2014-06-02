@@ -23,24 +23,20 @@ public class FacturasController {
 	public void solicitarFactura(Integer numeroDeMesa){
 		ENTITY.Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(numeroDeMesa);
 		if(pedido!=null){
-			System.out.println("Tengo un pedido");
 			Long pendientes=verificarItemsPendientes(pedido.getPedido_id());
 			if (pendientes==0){
-					System.out.println("No hay items pendientes, podes pedir la factura");
+					System.out.println("No hay items pendientes, se puede solicitar la factura");
 					pedido.modificarPedidoEstado(EstadosDAO.getInstancia().buscarEstadoPedido("Cerrado"));
-					PedidosDAO.getInstancia().grabarPedido(pedido);
-					System.out.println("Pedido cerrado");
-					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse"));
-					Mesa mesa=pedido.getPedido_mesa();
-					LocationDAO.getInstancia().grabarMesa(mesa);
-					System.out.println("Mesa proxima a liberarse");
-					crearFactura(pedido);
+					PedidosDAO.getInstancia().grabarPedidoActualizado(pedido);
+					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(4));
+					LocationDAO.getInstancia().grabarMesaActualizada(pedido.getPedido_mesa());
+					//crearFactura(pedido);
 			}
 			else
 				System.out.println("Hay " + pendientes + " items pendientes de entrega");
 		}
 		else
-			System.out.println("No se encontró un pedido abierto para la mesa " + numeroDeMesa);
+			System.out.println("No se encontró un pedido abierto para la mesa: " + numeroDeMesa);
 	}	
 
 	private Long verificarItemsPendientes(Integer pedido_id) {
@@ -59,21 +55,21 @@ public class FacturasController {
 		System.out.println("Calculé monto de factura");
 		FacturasDAO.getInstancia().grabarFactura(factura);
 		System.out.println("Se ha creado la factura nro: " + factura.getFactura_id() + " con un monto total de: $" + factura.getMonto_total());
+		agregarItems(factura,pedido);
+		System.out.println("agregué los items");
 	}
 
 private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
 	Date hoy = new java.sql.Date(System.currentTimeMillis());
 	factura.setFecha_factura_dt(hoy);
-	factura.setFactura_mesa(pedido.getPedido_mesa());
+	factura.setFactura_mesa(pedido);
 	factura.setFactura_mozo(pedido.getPedido_mozo());
 	System.out.println("llene los datos de factura");
-	agregarItems(factura,pedido);
-	System.out.println("agregué los items");
-	
+		
 }
 
 private void agregarItems(Factura factura, ENTITY.Pedido pedido) {
-	List<ENTITY.Item_Pedido> itemsPed = pedido.listarItems();
+	List<ENTITY.Item_Pedido> itemsPed = PedidosDAO.getInstancia().getItems(pedido.getPedido_id());//pedido.listarItems();
 	for(ENTITY.Item_Pedido unItem: itemsPed){
 		Item_Factura it = new Item_Factura();
 		it.setItem_pedido(unItem);
