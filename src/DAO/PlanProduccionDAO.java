@@ -55,6 +55,7 @@ public class PlanProduccionDAO {
 		session.close();
 	}
 	
+	
 	public int getCantidadTareasPendientesAvance(Integer sucursalID, Integer avance){
 		/*Retorna la cantidad de tareas de la sucursal 'sucursalID, cuyo avance sea menor a 'avance'
 		 * */
@@ -89,5 +90,10 @@ public class PlanProduccionDAO {
 		valores[1] = ((Long)datos[1]).doubleValue();
 		
 		return valores;
+	}
+	public Item_Plan_Produccion getItemPorSucursalySemielaborado(int sucursal, int semielaborado){
+		Session session = sf.openSession();
+		Item_Plan_Produccion item = (Item_Plan_Produccion) session.createQuery("FROM Item_Plan_Produccion ipp JOIN ipp.item_plan_semielaborado ips JOIN ipp.item_plan_sucursal suc WHERE suc.sucursal_id=? AND ips.semielaborado_id=? AND ipp.item_plan_avance_qty<1").setInteger(0, sucursal).setInteger(1,semielaborado).setFirstResult(0).setMaxResults(1).uniqueResult();
+		return item;
 	}
 }
