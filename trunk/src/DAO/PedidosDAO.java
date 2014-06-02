@@ -154,5 +154,12 @@ public class PedidosDAO {
 			return losItemsPedido;
 		}
 
+		public Plato getPlatoPorId(Integer plato_id) {
+			Session session = sf.openSession();
+			Plato elPlato =(Plato) session.get(Plato.class,plato_id); 
+			session.close();
+			return elPlato;
+		}
+
 }
 

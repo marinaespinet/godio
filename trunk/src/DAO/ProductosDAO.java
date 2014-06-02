@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -37,4 +39,10 @@ public class ProductosDAO {
 		return obj;
 	}
 	
+	public List<Ingrediente> getIngredientes(Integer idPlato){
+		Session session = sf.openSession();
+		List<Ingrediente> ing = (List<Ingrediente>)session.createQuery("FROM Ingrediente i JOIN i.ingrediente_plato p where p.plato_id=?").setInteger(0, idPlato).list();
+		session.close();
+		return ing;
+	}
 }
