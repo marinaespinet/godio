@@ -198,5 +198,13 @@ public class RestauranteController {
 	public int getCantidadReservas(int sucursal_id){
 		return LocationDAO.getInstancia().getCantReservas(sucursal_id);
 	}
+
+
+	public ENTITY.Area getAreaEntity(Area area) {
+		ENTITY.Area unArea = new ENTITY.Area();
+		unArea.setArea_id(area.getArea_id());
+		unArea.setName(area.getName());
+		return unArea;
+	}
 	
 }
