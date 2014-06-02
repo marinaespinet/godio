@@ -5,6 +5,7 @@ import java.util.*;
 
 	import BUSINESS.*;
 import DAO.*;
+import DTO.Plato;
 import ENTITY.*;
 import Exceptions.RestaurantException;
 	
@@ -16,7 +17,13 @@ public class TDD_Marina {
 			//FacturasController.getInstancia().solicitarFactura(1);
 			
 			//CU04 Crear Factura
-			FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			
+			//CU10 Agregar Plato al pedido
+			DTO.Plato pl = new DTO.Plato();
+			pl.setPlato_id(1);
+			pl.setName("Arroz con leche");
+			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 1, 1, 1);
 			
 			//CajaController.getInstancia().crearOperacionCaja(2, 1);
 			/*
@@ -45,6 +52,8 @@ public class TDD_Marina {
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			//System.out.println("Hoy es "+ new java.sql.Date(System.currentTimeMillis()));
 		}
+
+
 
 
 		private static void unitTestVerificarPedidoPendiente() {
@@ -90,18 +99,18 @@ public class TDD_Marina {
 					return false;}
 		}
 		
-	private static boolean unitTestListarItemsPedido() {
+	/*private static boolean unitTestListarItemsPedido() {
 			
 			System.out.print("TEST: Listar items de un pedido");
 			List<Item_Pedido> items = PedidosDAO.getInstancia().getItems(2);
 			if(items!=null){
 					for(Item_Pedido unItem : items)
-						System.out.println("Encontré un item. Descripcion: " + unItem.getItem_carta().getPlato().getName() + " cantidad: " + unItem.getCantidad());
+			//			System.out.println("Encontré un item. Descripcion: " + unItem.getItem_carta().getItem_carta_id().getName() + " cantidad: " + unItem.getCantidad());
 					return true;
 				} else{
 					System.out.println("Mal :(");
 					return false;}
-	}
+	}*/
 
 	private static boolean unitTestListarPedidoPorEstado() {
 		
