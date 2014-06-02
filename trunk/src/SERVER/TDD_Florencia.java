@@ -21,6 +21,7 @@ public class TDD_Florencia {
 		//unitTestAbrirMesa(unMozo, comensales);
 		//unitTestMesasPorSucursal();
 		//unitTestLiquidarComisiones(hoy);
+		//unitTestRegistrarOC();
 	}
 
 
@@ -97,4 +98,8 @@ public class TDD_Florencia {
 		
 		return liquidoComisiones;
 	}
+	/*private static void unitTestRegistrarOC(int Prov_id, int Prod_id, int cant){
+		ProductosDAO.getInstancia().getProducto(Prod_id);
+	}*/
+	
 }
