@@ -94,5 +94,15 @@ public class Item_Pedido {
 	public void setArea(Area item_area_id) {
 		this.item_area_id = item_area_id;
 	}
+
+	public void setItemCarta(Item_Carta itemCarta) {
+		this.item_carta=itemCarta;
+		
+	}
+
+	public void set_Area(Area plato_area) {
+		this.item_area_id=plato_area;
+		
+	}
 	
 }
