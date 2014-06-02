@@ -7,6 +7,7 @@ import java.util.List;
 
 import DAO.*;
 import ENTITY.*;
+import BUSINESS.CajaController;
 import BUSINESS.RestauranteController;
 
 public class TDD_Florencia {
@@ -15,9 +16,11 @@ public class TDD_Florencia {
 		Mozo unMozo = new Mozo();
 		unMozo.setMozo_id(1);
 		int comensales = 4;
+		Date hoy;
 		//crear los datos para los métodos 
-		unitTestAbrirMesa(unMozo, comensales);
-		unitTestMesasPorSucursal();
+		//unitTestAbrirMesa(unMozo, comensales);
+		//unitTestMesasPorSucursal();
+		//unitTestLiquidarComisiones(hoy);
 	}
 
 
@@ -65,4 +68,33 @@ public class TDD_Florencia {
 	
 	}
 
+	private static List <Liquidacion_Comision_Mozo> unitTestLiquidarComisiones(Date d){
+		List <Liquidacion_Comision_Mozo> liquidoComisiones = new LinkedList <Liquidacion_Comision_Mozo>();
+		//me traigo a los mozos
+		List <Mozo> todosMozos = new LinkedList <Mozo>();
+		todosMozos= LocationDAO.getInstancia().getMozos();
+		//liquido a cada uno
+		float liquidacionDia;
+		Date hoy = new java.sql.Date(System.currentTimeMillis());
+		for(Mozo unMozo:todosMozos){
+			liquidacionDia = CajaController.getInstancia().liquidarComisionMozo(d, unMozo.getMozo_id());
+			Liquidacion_Comision_Mozo liqmozo = new Liquidacion_Comision_Mozo(); 
+			liqmozo.setFecha_liquidacion_dt(d);
+			liqmozo.setImporte_amount(liquidacionDia);
+			liqmozo.setFecha_liquidacion_dt(hoy);
+			liqmozo.setComision_mozo(unMozo);
+			//guardo el que creo
+			liquidoComisiones.add(liqmozo);
+			
+		}
+		//persisto todas
+		// por mozo?
+		
+		for(Liquidacion_Comision_Mozo l:liquidoComisiones){
+			FacturasDAO.getInstancia().grabarLiquidaciones(liquidoComisiones.get(l.getComision_mozo().getMozo_id()));
+		}
+		//liquidoComisiones = CajaController.getInstancia().liquidarComisionMozo(d, mozo);
+		
+		return liquidoComisiones;
+	}
 }
