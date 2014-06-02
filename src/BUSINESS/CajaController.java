@@ -2,6 +2,7 @@ package BUSINESS;
 
 import java.sql.Date;
 import java.util.*;
+
 import DAO.*;
 import ENTITY.*;
 import Exceptions.RestaurantException;
@@ -86,5 +87,13 @@ public class CajaController {
 		return opDTO;
 	
 	}
+
+	public static float liquidarComisionMozo(Date d, int mozoId) {
+		//List<Liquidacion_Comision_Mozo> liq = new LinkedList<Liquidacion_Comision_Mozo>();
+
+		return FacturasDAO.getInstancia().getLiquidacionesUnMozoDia(d, mozoId);
+	}
+	
+	
 	
 }
