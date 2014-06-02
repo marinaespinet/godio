@@ -2,6 +2,7 @@ package SERVER;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import BUSINESS.PedidosController;
@@ -14,7 +15,7 @@ import Exceptions.RestaurantException;
 
 public class TDD_Javier {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RestaurantException {
 		
 		
 		//unitTestSucursales();
@@ -39,7 +40,8 @@ public class TDD_Javier {
 		
 		//unitTestRegistrarReclamo();
 		//unitTestControlarStock();
-		unitTestPrepararComanda();
+		//unitTestPrepararComanda();
+		unitTestRecepcionMercaderia();
 		
 	}
 	
@@ -120,8 +122,45 @@ public class TDD_Javier {
 	}
 	
 	/******** CASO DE USO 27 - RECEPCION DE MERCADERIA ************/
+	private static void unitTestRecepcionMercaderia() throws RestaurantException {
+		//tengo un montón de datos sobre productos nuevos, la fecha actual y el codigo del proveedor
+		//primero creo una instancia de recepcion de compra
+		ENTITY.RecepcionCompra laRecepcionDeHoy = new ENTITY.RecepcionCompra();
 		
-	
+		//Le seteo los datos de fecha y proveedor (el proveedor te lo debo porque no esta por ningun lado) (le compramos todo a COTO)
+		Date laFecha = RestauranteController.getInstancia().getDate(2014, 05, 01, 10, 00);
+		laRecepcionDeHoy.setRecepcion_fecha_dt(laFecha);
+		
+		//Por cada item de compra nuevo, creo una nueva instancia de item recepcion. Simulo esos datos
+		List<ENTITY.Item_Recepcion_Compra> losItemsRecepcion = new LinkedList<ENTITY.Item_Recepcion_Compra>();
+		
+		ENTITY.Item_Recepcion_Compra elItemRecepcion1 = new ENTITY.Item_Recepcion_Compra();
+		ENTITY.Producto unProducto = ProductosDAO.getInstancia().getProducto(1);
+		elItemRecepcion1.setItem_recepcion_producto(unProducto);
+		elItemRecepcion1.setCant(2);
+		losItemsRecepcion.add(elItemRecepcion1);
+				
+		ENTITY.Item_Recepcion_Compra elItemRecepcion2 = new ENTITY.Item_Recepcion_Compra();
+		ENTITY.Producto otroProducto = ProductosDAO.getInstancia().getProducto(2);
+		elItemRecepcion2.setItem_recepcion_producto(otroProducto);
+		elItemRecepcion2.setCant(3);
+		losItemsRecepcion.add(elItemRecepcion2);
+		
+		//Ahora bien, por cada item, tengo que hacer un movimiento de stock hacia el deposito central y actualizar el stock del producto
+		//lo hago aparte para que se entienda mejor, pero deberia hacerlo en un for por cada producto
+		StockController.getInstancia().transferenciaStock(1, 1, 0, 1000, "Compra", 1, "Lote 1");
+		StockController.getInstancia().transferenciaStock(2, 2, 0, 1000, "Compra", 1, "Lote 2");
+		
+		//le agrego la lista de items recibidos a la recepcion de compra
+		laRecepcionDeHoy.setItems(losItemsRecepcion);
+		
+		//persisto la recepcion
+		ComprasDAO.getInstancia().setRecepcionCompra(laRecepcionDeHoy);
+		
+				
+	}
+
+		
 	
 	private static boolean unitTestMesaPorId() {
 	
