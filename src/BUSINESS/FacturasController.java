@@ -25,12 +25,12 @@ public class FacturasController {
 		if(pedido!=null){
 			Long pendientes=verificarItemsPendientes(pedido.getPedido_id());
 			if (pendientes==0){
-					System.out.println("No hay items pendientes, se puede solicitar la factura");
+					System.out.println("No hay items pendientes de entrega, se solicitará la factura");
 					pedido.modificarPedidoEstado(EstadosDAO.getInstancia().buscarEstadoPedido("Cerrado"));
 					PedidosDAO.getInstancia().grabarPedidoActualizado(pedido);
 					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(4));
 					LocationDAO.getInstancia().grabarMesaActualizada(pedido.getPedido_mesa());
-					//crearFactura(pedido);
+					crearFactura(pedido);
 			}
 			else
 				System.out.println("Hay " + pendientes + " items pendientes de entrega");
@@ -45,18 +45,13 @@ public class FacturasController {
 	}
 
 	public void crearFactura(ENTITY.Pedido pedido) {
-		System.out.println("Entré a crearFactura");
 		Factura factura=new Factura();
-		System.out.println("new Factura");
 		llenarDatosDelPedido(factura, pedido);
-		System.out.println("Llené los datos del pedido");
 		Double monto=calcularMontoFactura(pedido);
 		factura.setMonto_total(monto);
-		System.out.println("Calculé monto de factura");
 		FacturasDAO.getInstancia().grabarFactura(factura);
 		System.out.println("Se ha creado la factura nro: " + factura.getFactura_id() + " con un monto total de: $" + factura.getMonto_total());
 		agregarItems(factura,pedido);
-		System.out.println("agregué los items");
 	}
 
 private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
@@ -64,7 +59,6 @@ private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
 	factura.setFecha_factura_dt(hoy);
 	factura.setFactura_mesa(pedido);
 	factura.setFactura_mozo(pedido.getPedido_mozo());
-	System.out.println("llene los datos de factura");
 		
 }
 
