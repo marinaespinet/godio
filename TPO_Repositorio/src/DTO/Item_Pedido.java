@@ -15,8 +15,6 @@ public class Item_Pedido {
 	private Integer estado_id;
 	private String estado_name;
 	
-	
-	
 
 	public Integer getEstado_id() {
 		return estado_id;
