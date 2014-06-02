@@ -11,19 +11,29 @@ import Exceptions.RestaurantException;
 public class TDD_Marina {
 
 		public static void main(String[] args) throws RestaurantException {
-		
+			
+			//CU03 Solicitar factura 
+			//FacturasController.getInstancia().solicitarFactura(1);
+			
+			//CU04 Crear Factura
+			FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			
+			//CajaController.getInstancia().crearOperacionCaja(2, 1);
+			/*
 			DTO.Tipo_Comprobante tc = new DTO.Tipo_Comprobante();
 			tc.setTipo_comprobante_id(1);
 			tc.setNombre("Efectivo");
 			Float monto=(float) 5;
-			Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(5);
+			Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(2);
+			System.out.println("Encontre operacion "+op.getOperacion_caja_id());
 			DTO.Operacion_Caja ope = CajaController.getInstancia().getDTOFromEntity(op);
-			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(11, monto, 3, tc, ope);
+			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(94, monto, 3, tc, ope);
 			CajaController.getInstancia().agregarItemsCaja(item,5);
 			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id().getOperacion_caja_id());
+			*/
+
 			
 			
-			//CajaController.getInstancia().crearOperacionCaja(2, 1);
 			//unitTestPedidos();
 			//unitTestUnPedido();
 			//unitTestListarItemsPedido();
