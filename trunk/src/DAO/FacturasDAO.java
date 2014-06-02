@@ -1,7 +1,10 @@
 package DAO;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.sql.Date;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -56,6 +59,40 @@ public class FacturasDAO {
 		return fac;
 	}
 	
+	public float getLiquidacionesUnMozoDia(Date d, int idMozo){
+		//liquidacion de un mozo
+		Session session = sf.openSession();
+		Query q;
+		float liq; 
+		String theQuery= "select SUM(f.monto_total*m.comision) from Factura f "
+				+ "JOIN Mozo m ON f.factura_mozo = m.mozo_id "
+				+ "WHERE f.factura_mozo = :idmozo"
+				+ "AND f.fecha_factura_dt = :date";
+
+		q=session.createQuery(theQuery);
+		q.setParameter("idmozo", idMozo);
+		q.setDate("date", d);
+		liq = (int)q.uniqueResult();
+		session.close();
+
+		return liq;
+	}
+	
+	/*public List <Liquidacion_Comision_Mozo> getLiquidacionDiaComisiones(Date d){
+		//liquidacion de todos los mozos
+		List <Mozo> todosMozos = new LinkedList <Mozo>();
+		todosMozos= LocationDAO.getInstancia().getMozos();
+		
+		return null;
+	}*/
+
+	public void grabarLiquidaciones(Liquidacion_Comision_Mozo liqui){				
+		Session session = sf.openSession();
+		
+		session.persist(liqui);
+				
+		session.close();
+	}
 	
 		
 }
