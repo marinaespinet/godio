@@ -21,6 +21,7 @@ public class ComprasDAO {
 	
 	
 	//Trae todos.
+	@SuppressWarnings("unchecked")
 	public List<Insumo> getComprasRealizar()
 	{
 		Session session = sf.openSession();
@@ -34,5 +35,17 @@ public class ComprasDAO {
 		session.close();
 
 		return list;
+	}
+
+
+	public void setRecepcionCompra(RecepcionCompra recepcionEnt) {
+
+		Session session = sf.openSession();
+			
+			session.persist(recepcionEnt);
+				
+			session.flush();
+			session.close();
+			
 	}
 }
