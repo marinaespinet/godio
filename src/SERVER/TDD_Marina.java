@@ -20,13 +20,14 @@ public class TDD_Marina {
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			
 			//CU10 Agregar Plato al pedido
-			DTO.Plato pl = new DTO.Plato();
+			/*DTO.Plato pl = new DTO.Plato();
 			pl.setPlato_id(1);
 			pl.setName("Arroz con leche");
 			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 1, 1, 1);
+			*/
 			
-			//CajaController.getInstancia().crearOperacionCaja(2, 1);
-			/*
+			//CU11 CU14 Abrir Caja/Cerrar Caja
+			CajaController.getInstancia().crearOperacionCaja(2, 2);
 			DTO.Tipo_Comprobante tc = new DTO.Tipo_Comprobante();
 			tc.setTipo_comprobante_id(1);
 			tc.setNombre("Efectivo");
@@ -34,10 +35,10 @@ public class TDD_Marina {
 			Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(2);
 			System.out.println("Encontre operacion "+op.getOperacion_caja_id());
 			DTO.Operacion_Caja ope = CajaController.getInstancia().getDTOFromEntity(op);
-			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(94, monto, 3, tc, ope);
+			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(5, monto, 3, tc, ope);
 			CajaController.getInstancia().agregarItemsCaja(item,5);
 			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id().getOperacion_caja_id());
-			*/
+			
 
 			
 			
