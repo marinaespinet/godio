@@ -263,7 +263,10 @@ public class LocationDAO {
 
 		public void grabarMesa(Mesa aux) {
 			Session session = sf.openSession();
+			session.beginTransaction();
 			session.persist(aux);
+			session.flush();
+			session.getTransaction().commit();
 			session.close();
 		}
 
@@ -281,7 +284,15 @@ public class LocationDAO {
 			
 		}	
 		
-
+		public void grabarMesaActualizada(Mesa aux) {
+			Session session = sf.openSession();
+			session.beginTransaction();
+			session.merge(aux);
+			session.flush();
+			session.getTransaction().commit();
+			session.close();
+		}	
+		
 		public int getCantReservas(int sucursal_id){
 			Date hoy = new java.sql.Date(System.currentTimeMillis());
 			Session session = sf.openSession();
@@ -330,4 +341,5 @@ public class LocationDAO {
 
 			return obj;
 		}	
+
 }
