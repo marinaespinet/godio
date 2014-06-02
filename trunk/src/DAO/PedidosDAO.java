@@ -108,26 +108,30 @@ public class PedidosDAO {
 			return pedidos;
 		}
 
-		public java.sql.Date getFechaAperturaSQL(Integer id){
-			Session session = sf.openSession();
-			java.sql.Date fecha = (java.sql.Date)session.createQuery("SELECT p.fecha_apertura_dt FROM Pedido p WHERE p.pedido_id=?").setInteger(0,id).setFirstResult(0).setMaxResults(1).uniqueResult();
-			return fecha;
-		}
-		
+				
 		//Calcula el monto a partir del precio de los platos 
 		//"No facturar=falso" y cantidad pedida de c/u
 		public Double calcularMonto(int pedido){
 			Session session = sf.openSession();
-			Double monto = (Double)session.createQuery("SELECT SUM(itc.precio_monto*itp.cantidad) FROM Item_Factura itf JOIN itf.item_pedido itp JOIN itp.pedido p JOIN itp.item_carta itc WHERE p.pedido_id=? AND itp.item_no_facturar_ind=false").setInteger(0,pedido).setFirstResult(0).setMaxResults(1).uniqueResult();
+			Double monto = (Double)session.createQuery("SELECT SUM(itc.precio_monto*itp.cantidad) FROM Pedido p JOIN p.items itp JOIN itp.item_carta itc WHERE p.pedido_id=? AND itp.item_no_facturar_ind=false").setInteger(0,pedido).setFirstResult(0).setMaxResults(1).uniqueResult();
 			return monto;
 		}
 
+		public void grabarPedidoActualizado(Pedido aux) {
+		
+				Session session = sf.openSession();
+				session.beginTransaction();
+				session.merge(aux);
+				session.flush();
+				session.getTransaction().commit();
+				session.close();
+			}	
+			
+	
 		public Item_Pedido getItemPedidoPorId(Integer item_id) {
 			Session session = sf.openSession();
 			Item_Pedido elItem =(Item_Pedido) session.get(Item_Pedido.class,item_id); 
-	
 			session.close();
-
 			return elItem;
 		}
 
@@ -149,5 +153,6 @@ public class PedidosDAO {
 				.setInteger(0, sucId).setInteger(1, areaId).list();
 			return losItemsPedido;
 		}
+
 }
 
