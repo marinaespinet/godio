@@ -23,7 +23,6 @@ public class CajaController {
 		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);
 		if (cantOperacionesHoy==0){
 			Operacion_Caja opCaja = new Operacion_Caja();
-			//opCaja.setOperacion_caja_id(Calendar.DATE);
 			opCaja.setFecha_dt(hoy);
 			opCaja.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(sucursal));
 			opCaja.setTipo(OperacionCajaDAO.getInstancia().getTipo(operacion_id));
