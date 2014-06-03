@@ -14,17 +14,17 @@ public class TDD_Marina {
 		public static void main(String[] args) throws RestaurantException {
 			
 			//CU03 Solicitar factura 
-			//FacturasController.getInstancia().solicitarFactura(1);
+			FacturasController.getInstancia().solicitarFactura(1);
 			
 			//CU04 Crear Factura
-			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			
 			//CU10 Agregar Plato al pedido
-			/*DTO.Plato pl = new DTO.Plato();
+			DTO.Plato pl = new DTO.Plato();
 			pl.setPlato_id(1);
 			pl.setName("Arroz con leche");
 			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 1, 1, 1);
-			*/
+			
 			
 			//CU11 CU14 Abrir Caja/Cerrar Caja
 			CajaController.getInstancia().crearOperacionCaja(2, 2);
@@ -47,10 +47,10 @@ public class TDD_Marina {
 			//unitTestListarItemsPedido();
 			//unitTestListarPedidoPorEstado();
 			//unitTestPedidoAbiertoDeMesa();
-			//FacturasController.getInstancia().solicitarFactura(1);
+			FacturasController.getInstancia().solicitarFactura(1);
 			//unitTestCalcularMonto();
 			//unitTestVerificarPedidoPendiente();
-			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			//System.out.println("Hoy es "+ new java.sql.Date(System.currentTimeMillis()));
 		}
 
