@@ -5,7 +5,6 @@ import java.util.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import DTO.Item_Carta;
 import ENTITY.*;
 
 public class CartasDAO {
