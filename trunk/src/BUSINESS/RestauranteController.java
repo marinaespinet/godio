@@ -195,5 +195,31 @@ public class RestauranteController {
 	public int getCantidadReservas(int sucursal_id){
 		return LocationDAO.getInstancia().getCantReservas(sucursal_id);
 	}
+
+
+	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) {
+		DTO.Pedido elPedidoDTO = new DTO.Pedido();
+		elPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
+		elPedidoDTO.setItems(getItemsPedidoDTOFromEntity(pedidoEnt.listarItems()));
+		return elPedidoDTO;
+	}
+
+
+	private List<DTO.Item_Pedido> getItemsPedidoDTOFromEntity(List<Item_Pedido> itemsEnt) {
+		List<DTO.Item_Pedido> itemsDTO = new LinkedList<DTO.Item_Pedido>();
+		for(ENTITY.Item_Pedido itemEnt : itemsEnt){
+			DTO.Item_Pedido itemDTO = new DTO.Item_Pedido();
+			itemDTO.setCantidad(itemEnt.getCantidad());
+			itemDTO.setDescripcionPlatoContenido(itemEnt.getItem_carta().getPlato().getName());
+			itemDTO.setEstado_id(itemEnt.getEstado().getEstado_id());
+			itemDTO.setEstado_name(itemEnt.getEstado().getEstado_name());
+			itemDTO.setObservaciones_no_facturar(itemEnt.getObservaciones_no_facturar());
+			itemDTO.setPedido_id(itemEnt.getPedido().getPedido_id());
+			itemDTO.setItem_carta_id(itemEnt.getItem_carta().getItem_carta_id());
+			itemDTO.setItem_no_facturar_ind(itemEnt.getItem_no_facturar_ind());
+			itemsDTO.add(itemDTO);
+		}
+		return itemsDTO;
+	}
 	
 }
