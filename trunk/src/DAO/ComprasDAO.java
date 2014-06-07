@@ -39,13 +39,11 @@ public class ComprasDAO {
 
 
 	public void setRecepcionCompra(RecepcionCompra recepcionEnt) {
-
 		Session session = sf.openSession();
-			
-			session.persist(recepcionEnt);
-				
-			session.flush();
-			session.close();
+		session.persist(recepcionEnt);
+		session.flush();
+		session.close();
 			
 	}
+	
 }
