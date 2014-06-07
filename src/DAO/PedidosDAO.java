@@ -157,17 +157,16 @@ public class PedidosDAO {
 		public List<Item_Pedido> getItemsPendientesDeArea(int sucId, int areaId) {
 			Session session = sf.openSession();
 			List<ENTITY.Item_Pedido> losItemsPedido = (List<ENTITY.Item_Pedido>) session.createQuery("SELECT it FROM Item_Pedido it " 
-				+ " JOIN it.Estado_Item_Pedido es"
-				+ " JOIN it.Pedido ped"
+				+ " JOIN it.estado es"
+				+ " JOIN it.pedido ped"
 				+ " JOIN ped.pedido_mesa mes"
 				+ " JOIN mes.mesa_sucursal suc"
-				+ " JOIN Estado_Item_Pedido est"
 				+ " WHERE " 
 				+ " suc.sucursal_id=?"
 				+ " AND"
 				+ " it.item_area_id=?"
 				+ " AND "
-				+ "est.estado_id = 1")
+				+ " es.estado_id = 1")
 				.setInteger(0, sucId).setInteger(1, areaId).list();
 			return losItemsPedido;
 		}
