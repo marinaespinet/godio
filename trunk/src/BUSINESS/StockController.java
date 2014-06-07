@@ -80,9 +80,13 @@ public class StockController {
 		StockDAO.getInstancia().grabarStock(stk);
 	}
 	
-	public List<Stock> getStockPorDeposito(Integer depoID){
+	public List<DTO.Stock> getStockPorDeposito(Integer depoID){
 		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);
-		return elStock;
+		
+		//Tengo un listado de Entities, las paso a DTOs que me convengan
+		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getDTOFromEntityStockPorSucursal(elStock);
+		
+		return stockSucursalDTO;
 	}
 
 
