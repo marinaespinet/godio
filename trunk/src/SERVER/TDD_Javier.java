@@ -38,7 +38,7 @@ public class TDD_Javier {
 		//unitTestReservaPorFecha();
 		//unitTestCrearReserva();
 		
-		//unitTestRegistrarReclamo();
+		unitTestRegistrarReclamo();
 		//unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
