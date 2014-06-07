@@ -64,6 +64,7 @@ public class PedidosDAO {
 				+ "FROM Pedido p "
 				+ "JOIN p.pedido_estado e "
 				+ "JOIN p.pedido_mesa m "
+				+ "JOIN p.items i "
 				+ "WHERE e.estado_name='Abierto' "
 				+ "AND p.pedido_mesa.mesa_id=?")
 				.setInteger(0, mesa).setFirstResult(0).setMaxResults(1).uniqueResult();
@@ -105,6 +106,16 @@ public class PedidosDAO {
 			session.flush();
 			session.close();
 		}
+		
+		
+		public void updateItemPedido(Item_Pedido item) {
+			Session session = sf.openSession();
+			session.saveOrUpdate(item);
+			session.flush();
+			session.close();
+		}
+		
+		 
 		
 		@SuppressWarnings("unchecked")
 		public List<Pedido> getPedidosPorEstado(String estado)
