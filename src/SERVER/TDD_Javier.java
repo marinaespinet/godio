@@ -1,10 +1,12 @@
 package SERVER;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
 import BUSINESS.RestauranteController;
 import BUSINESS.StockController;
@@ -40,8 +42,8 @@ public class TDD_Javier {
 		
 		//unitTestRegistrarReclamo();
 		//unitTestControlarStock();
-		unitTestPrepararComanda();
-		//unitTestRecepcionMercaderia();
+		//unitTestPrepararComanda();
+		unitTestRecepcionMercaderia();
 		
 	}
 	
@@ -102,6 +104,7 @@ public class TDD_Javier {
 		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo); */
 		
 		/***************** New Schere Levy's compliant version ************************/
+		
 		// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
 		// Es decir que tengo la sucursal y el area (area 1, sucursal 1)
 		List<DTO.Item_Pedido> losItemsPedidoPendientesDTO = PedidosController.getInstancia().getItemPedidosPendientesDTO(1,1);
@@ -119,7 +122,8 @@ public class TDD_Javier {
 	
 	/******** CASO DE USO 27 - RECEPCION DE MERCADERIA ************/
 	private static void unitTestRecepcionMercaderia() throws RestaurantException {
-		//tengo un montón de datos sobre productos nuevos, la fecha actual y el codigo del proveedor
+		
+		/* //tengo un montón de datos sobre productos nuevos, la fecha actual y el codigo del proveedor
 		//primero creo una instancia de recepcion de compra
 		ENTITY.RecepcionCompra laRecepcionDeHoy = new ENTITY.RecepcionCompra();
 		
@@ -128,7 +132,7 @@ public class TDD_Javier {
 		laRecepcionDeHoy.setRecepcion_fecha_dt(laFecha);
 		
 		//Por cada item de compra nuevo, creo una nueva instancia de item recepcion. Simulo esos datos
-		List<ENTITY.Item_Recepcion_Compra> losItemsRecepcion = new LinkedList<ENTITY.Item_Recepcion_Compra>();
+		List<ENTITY.Item_Recepcion_Compra> losItemsRecepcion = new ArrayList<ENTITY.Item_Recepcion_Compra>();
 		
 		ENTITY.Item_Recepcion_Compra elItemRecepcion1 = new ENTITY.Item_Recepcion_Compra();
 		ENTITY.Producto unProducto = ProductosDAO.getInstancia().getProducto(1);
@@ -151,7 +155,26 @@ public class TDD_Javier {
 		laRecepcionDeHoy.setItems(losItemsRecepcion);
 		
 		//persisto la recepcion
-		ComprasDAO.getInstancia().setRecepcionCompra(laRecepcionDeHoy);
+		ComprasDAO.getInstancia().setRecepcionCompra(laRecepcionDeHoy); */
+		
+		/***************** New Schere Levy's compliant version ************************/
+		//tengo un montón de datos sobre productos nuevos, la fecha actual y la cantidad
+		//simulo esos datos
+		DTO.RecepcionCompra laRecepcion = new DTO.RecepcionCompra();
+		Date laFecha = RestauranteController.getInstancia().getDate(2014, 05, 01, 10, 00);
+		laRecepcion.setRecepcion_fecha_dt(laFecha);
+		
+		DTO.Item_Recepcion_Compra elItemRecepcion1 = new DTO.Item_Recepcion_Compra();
+		elItemRecepcion1.setItem_Id_Producto(1);
+		elItemRecepcion1.setCant(2);
+		laRecepcion.getItems().add(elItemRecepcion1);
+		
+		DTO.Item_Recepcion_Compra elItemRecepcion2 = new DTO.Item_Recepcion_Compra();
+		elItemRecepcion1.setItem_Id_Producto(2);
+		elItemRecepcion1.setCant(4);
+		laRecepcion.getItems().add(elItemRecepcion2);
+				
+		ComprasController.getInstancia().setRecepcionCompra(laRecepcion);
 		
 				
 	}
