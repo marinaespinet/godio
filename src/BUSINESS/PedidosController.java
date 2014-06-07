@@ -2,8 +2,10 @@ package BUSINESS;
 
 import java.util.LinkedList;
 import java.util.List;
+
 import Exceptions.*;
 import DAO.*;
+import DTO.Item_Carta;
 import ENTITY.*;
 
 public class PedidosController {
@@ -75,24 +77,48 @@ public class PedidosController {
           System.out.println("Obtuve Plato para verificar disponibilidad");
           boolean disponible = verificarDisponibilidad(pl.getPlato_id(), cantidad, depo);
           if (disponible){
-                  DTO.Item_Pedido item = new DTO.Item_Pedido();
+                  
+        	  	  /******Old Espinet code *********/
+        	  	  /*DTO.Item_Pedido item = new DTO.Item_Pedido();
                   item.setItem_id(999);
                   item.setCantidad(cantidad);
                   
-                  item.setItem_carta(CartasDAO.getInstancia().getItemCartaPorPlato(pl.getPlato_id()));
-                  item.setItem_pedido (getPedidoFromEntity(PedidosDAO.getInstancia().getPedido(pedido)));
+                  item.setItem_carta(getItemCargaDTOFromEntity(CartasDAO.getInstancia().getItemCartaPorPlato(pl.getPlato_id())));
+                  item.setItem_pedido(getPedidoFromEntity(PedidosDAO.getInstancia().getPedido(pedido)));
                   agregarItemsPedido(item);
+                  */
+        	  
+        	      
+        	  	  /******Nuevo codigo by Javier*********/
+        	  	  
+        	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
+        	  	  ENTITY.Item_Pedido elItemPedidoEnt = new ENTITY.Item_Pedido();
+        	  	  
+        	  	  //le "cargo" los datos que traigo
+        	  	  elItemPedidoEnt.setCantidad(cantidad);
+        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedido(pedido));
+        	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCartaPorPlato(pl.getPlato_id()));
+        	  	  
+        	  	  //lo persisto
+        	  	  PedidosDAO.getInstancia().setItemPedido(elItemPedidoEnt);
           }
           else {
                   System.out.println("No disponible");
-                  String rubro = CartasDAO.getInstancia().getItemCartaPorPlato(pl.getPlato_id()).getRubro();
+                  String rubro = CartasDAO.getInstancia().getItemCartaPorPlato(pl.getPlato_id()).getRubro().getName();
                   List<ENTITY.Plato> platosAlternativos = CartasDAO.getInstancia().getPlatosAlternativos(pl.getPlato_id(), rubro);
                   System.out.println("El plato elegido no está disponible. Seleccionar alternativa: ");
                   
           }
   }
 
-  private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
+	  public Item_Carta getItemCargaDTOFromEntity(ENTITY.Item_Carta itemCartaEnt) {
+			DTO.Item_Carta itemCartaDTO = new DTO.Item_Carta();
+			itemCartaDTO.setItem_carta_id(itemCartaEnt.getItem_carta_id());
+			itemCartaDTO.setPrecio_monto(itemCartaEnt.getPrecio_monto());
+			return itemCartaDTO;
+		}
+
+private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
           DTO.Pedido pedido = new DTO.Pedido();
           pedido.setPedido_id(ped.getPedido_id());
           pedido.setCant_comensales(ped.getCant_comensales());
