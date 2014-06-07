@@ -38,8 +38,8 @@ public class TDD_Javier {
 		//unitTestReservaPorFecha();
 		//unitTestCrearReserva();
 		
-		unitTestRegistrarReclamo();
-		//unitTestControlarStock();
+		//unitTestRegistrarReclamo();
+		unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
 		
@@ -49,9 +49,7 @@ public class TDD_Javier {
 
 	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	private static void unitTestRegistrarReclamo() throws RestaurantException {
-
-		ENTITY.Pedido unPedido = PedidosDAO.getInstancia().getPedido(1);
-		
+	
 		//tengo la mesa, busco el pedido
 		Integer idMesa = 3; 
 		List<DTO.Reclamo> losItemsParaReclamos = PedidosController.getInstancia().obtenerItemsParaReclamo(idMesa);
@@ -71,12 +69,9 @@ public class TDD_Javier {
 	private static void unitTestControlarStock() {
 		
 		//Tengo la sucursal donde voy a controlar el Stock, debo imprimir por pantalla el stock que posee el deposito
-		List<Stock> stockSucursalEnt = StockController.getInstancia().getStockPorDeposito(1);
+		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getStockPorDeposito(1);
 		
-		//Tengo un listado de Entities, las paso a DTOs que me convengan
-		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getDTOFromEntityStockPorSucursal(stockSucursalEnt);
-		
-		//Los listo simplemente para ver que los datos vienen bien, pero deberia mandarlo directamente al cliente
+		//Recibo DTOs. Los listo simplemente para ver que los datos vienen bien.
 		for(DTO.Stock unStock : stockSucursalDTO){
 			System.out.println("En la sucursal 1 hay " + unStock.getCantidad() + " " + unStock.getNombreProducto() + " que vence el dia " + unStock.getFecha_vencimiento_producto_dt());
 		}
