@@ -16,6 +16,7 @@ import DTO.Sector;
 import DTO.Sucursal;
 import DTO.Usuario;
 import ENTITY.*;
+import Exceptions.RestaurantException;
 
 public class RestauranteController {
 	private static RestauranteController instancia = null;
@@ -197,9 +198,11 @@ public class RestauranteController {
 	}
 
 
-	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) {
+	public DTO.Pedido getPedidoDTOReclamo(ENTITY.Pedido pedidoEnt) throws RestaurantException {
 		DTO.Pedido elPedidoDTO = new DTO.Pedido();
 		elPedidoDTO.setPedido_id(pedidoEnt.getPedido_id());
+		if(pedidoEnt.listarItems()==null)
+		{ throw new RestaurantException("El pedido no tiene items");}
 		elPedidoDTO.setItems(getItemsPedidoDTOFromEntity(pedidoEnt.listarItems()));
 		return elPedidoDTO;
 	}
