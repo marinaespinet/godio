@@ -7,6 +7,7 @@ import java.util.List;
 import Exceptions.*;
 import DAO.*;
 import DTO.Item_Carta;
+import DTO.Item_Pedido;
 import DTO.Reclamo;
 import ENTITY.*;
 
@@ -203,5 +204,23 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 		}
 		
 		return losItemsDelReclamo;
+	}
+
+	public List<DTO.Item_Pedido> getItemPedidosPendientesDTO(int areaId, int sucId) {
+		List<ENTITY.Item_Pedido> losItemPedidosPendientesEnt = getItemPedidosPendientes(areaId,sucId);
+		//transformo a DTO
+		List<DTO.Item_Pedido> losItemPedidoPendientesDTO = getDTOFromEntityItemsPedido(losItemPedidosPendientesEnt);
+		
+		return losItemPedidoPendientesDTO;
+	}
+
+	public void marcarItemPedidoPreparado(List<Item_Pedido> losItemsPedidoPendientesDTO) {
+		for(DTO.Item_Pedido unItem : losItemsPedidoPendientesDTO){
+			ENTITY.Item_Pedido elItem = PedidosDAO.getInstancia().getItemPedidoPorId(unItem.getItem_id());
+			elItem.getEstado().setEstado_id(unItem.getEstado_id());
+			elItem.getEstado().setEstado_name(unItem.getEstado_name());
+			PedidosDAO.getInstancia().updateItemPedido(elItem);
+		}
+		
 	}
 }
