@@ -59,7 +59,14 @@ public class PedidosDAO {
 	public Pedido getPedidoAbiertoDeMesa(int mesa)
 	{
 		Session session = sf.openSession();
-		Pedido pedido = (Pedido)session.createQuery("SELECT p FROM Pedido p JOIN p.pedido_estado e JOIN p.pedido_mesa m WHERE e.estado_name='Abierto' AND p.pedido_mesa.mesa_id=?").setInteger(0, mesa).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Pedido pedido = (Pedido)session.createQuery(""
+				+ "SELECT p "
+				+ "FROM Pedido p "
+				+ "JOIN p.pedido_estado e "
+				+ "JOIN p.pedido_mesa m "
+				+ "WHERE e.estado_name='Abierto' "
+				+ "AND p.pedido_mesa.mesa_id=?")
+				.setInteger(0, mesa).setFirstResult(0).setMaxResults(1).uniqueResult();
 		session.close();
 		return pedido;
 	}
