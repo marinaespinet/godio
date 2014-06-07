@@ -5,14 +5,25 @@ public class Item_Recepcion_Compra {
 	private Integer item_recepcion_id;
 	private Producto item_recepcion_producto;
 	private Integer cant;
-	
-	
-	
+	private Integer Item_Id_Producto;
+
+	public Integer getItem_Id_Producto() {
+		return Item_Id_Producto;
+	}
+
+	public void setItem_Id_Producto(Integer item_Id_Producto) {
+		Item_Id_Producto = item_Id_Producto;
+	}
+
 	public Item_Recepcion_Compra(Producto producto, Integer cantidad) {
 		super();
 		this.item_recepcion_producto = producto;
 		this.cant = cantidad;
 	}
+	
+	public Item_Recepcion_Compra() {
+	}
+	
 	public Integer getItem_recepcion_id() {
 		return item_recepcion_id;
 	}
