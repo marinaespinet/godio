@@ -9,7 +9,7 @@ public class RecepcionCompra {
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;
 	private Compra recepcion_compra;
-	private List<Item_Recepcion_Compra>items;
+	private List<DTO.Item_Recepcion_Compra>items;
 	
 	
 	
