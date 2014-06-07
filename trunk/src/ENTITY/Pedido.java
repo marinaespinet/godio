@@ -35,7 +35,7 @@ public class Pedido {
 	private Date fecha_pago_dt;
 	private Date fecha_cierre_dt;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade={CascadeType.ALL})
 	@JoinColumn(name="item_pedido_id")
 	private List<Item_Pedido>items;
 	
