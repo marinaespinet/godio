@@ -39,8 +39,8 @@ public class TDD_Javier {
 		//unitTestCrearReserva();
 		
 		//unitTestRegistrarReclamo();
-		unitTestControlarStock();
-		//unitTestPrepararComanda();
+		//unitTestControlarStock();
+		unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
 		
 	}
@@ -82,7 +82,8 @@ public class TDD_Javier {
 	
 	/******** CASO DE USO 08 - PREPARAR COMANDA ************/
 	private static void unitTestPrepararComanda() {
-		// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
+		
+		/*// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
 		// Es decir que tengo la sucursal y el area (area 1, sucursal 1)
 		List<ENTITY.Item_Pedido> losItemPedidosPendientesEnt = PedidosController.getInstancia().getItemPedidosPendientes(1,1);
 		
@@ -98,7 +99,21 @@ public class TDD_Javier {
 		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoEntityFromDTO(itemDTO);
 		
 		//lo persisto
-		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo);
+		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo); */
+		
+		/***************** New Schere Levy's compliant version ************************/
+		// El Area ingresa a "Preparar Comanda", que busca los pedidos que esten pendientes de preparacion
+		// Es decir que tengo la sucursal y el area (area 1, sucursal 1)
+		List<DTO.Item_Pedido> losItemsPedidoPendientesDTO = PedidosController.getInstancia().getItemPedidosPendientesDTO(1,1);
+		
+		//vuelve la lista con los items marcados. Simulo la carga
+		losItemsPedidoPendientesDTO.get(0).setItem_id(2);
+		losItemsPedidoPendientesDTO.get(0).setEstado_id(2);
+		losItemsPedidoPendientesDTO.get(0).setEstado_name("Entregado");
+		
+		//llamo al controller desde la interfaz y le digo que efectivamente lo persista (obviamente a traves del DAO que corresponda)
+		PedidosController.getInstancia().marcarItemPedidoPreparado(losItemsPedidoPendientesDTO);
+		
 		
 	}
 	
