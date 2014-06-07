@@ -49,34 +49,20 @@ public class TDD_Javier {
 
 	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	private static void unitTestRegistrarReclamo() throws RestaurantException {
-		//tengo la mesa, busco el pedido
-		Pedido elPedidoDelReclamoEntity = PedidosController.getInstancia().getPedidoActualEnMesa(3);
-		
-				
-		//armo un DTO con los datos que necesito, itemPedidos y se lo mando a la interfaz
-		DTO.Pedido elPedidoDelReclamoDTO = RestauranteController.getInstancia().getPedidoDTOReclamo(elPedidoDelReclamoEntity);
 
+		ENTITY.Pedido unPedido = PedidosDAO.getInstancia().getPedido(1);
 		
-		// Lo listo simplemente para ver lo que ve el mozo en la interfaz y ver que haya algun item_pedido. Es un DTO que tiene unicamente
-		// el Id del pedido, y los items del pedido. Esos items tambien son distintos a la Entity porque tienen id y un campo especial
-		// que es "la descripcion rapida" de lo que contienen, para no traerme el item carta, los platos y recien ahi el nombre
-		List<DTO.Item_Pedido> losItems = elPedidoDelReclamoDTO.listarItems();
-		for(DTO.Item_Pedido elItemPedido : losItems){
-			System.out.println("Item Nro " + elItemPedido.getItem_id() + ", plato " + elItemPedido.getDescripcionPlatoContenido());
-		}
-			
-				
-		//me llega un itemPedidoDTO que hay que persistir, lo creo para el ejemplo
-		DTO.Item_Pedido elItemObservadoDTO = new DTO.Item_Pedido();
-		elItemObservadoDTO.setItem_id(1);
-		elItemObservadoDTO.setItem_no_facturar_ind(true);
-		elItemObservadoDTO.setObservaciones_no_facturar("tenia un pucho apagado");
+		//tengo la mesa, busco el pedido
+		Integer idMesa = 3; 
+		List<DTO.Reclamo> losItemsParaReclamos = PedidosController.getInstancia().obtenerItemsParaReclamo(idMesa);
 		
-		//convierto el Item_Pedido DTO a Entity
-		ENTITY.Item_Pedido elItemObservadoEnt = RestauranteController.getInstancia().getItemPedidoEntityFromDTOReclamo(elItemObservadoDTO);
+		//vuelve la lista con los items marcados. Simulo la carga
+		losItemsParaReclamos.get(0).setCantidadNoFacturar(1);
+		losItemsParaReclamos.get(0).setObservaciones("Un desastre todo");
 		
-		//lo persisto
-		PedidosDAO.getInstancia().setItemPedido(elItemObservadoEnt);
+		//llamo al controller desde la interfaz y le digo que efectivamente lo persista (obviamente a traves del DAO que corresponda)
+		PedidosController.getInstancia().registrarReclamo(losItemsParaReclamos);
+		
 	}
 
 	
