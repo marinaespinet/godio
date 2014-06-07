@@ -168,17 +168,11 @@ public class TDD_Javier {
 		
 		DTO.Item_Recepcion_Compra elItemRecepcion1 = new DTO.Item_Recepcion_Compra();
 		elItemRecepcion1.setItem_Id_Producto(1);
-		elItemRecepcion1.setCant(2);
+		elItemRecepcion1.setCant(1);
 		elItemRecepcion1.setItem_recepcion_id(1);
 				
-		DTO.Item_Recepcion_Compra elItemRecepcion2 = new DTO.Item_Recepcion_Compra();
-		elItemRecepcion1.setItem_Id_Producto(2);
-		elItemRecepcion1.setCant(4);
-		elItemRecepcion1.setItem_recepcion_id(2);
-		
 		losItems.add(elItemRecepcion1);
-		losItems.add(elItemRecepcion2);
-		
+			
 		laRecepcion.setItems(losItems);
 		
 		ComprasController.getInstancia().setRecepcionCompra(laRecepcion);
