@@ -1,5 +1,6 @@
 package DTO;
 import java.sql.Date;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -8,7 +9,7 @@ public class RecepcionCompra {
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;
 	private Compra recepcion_compra;
-	private Vector<Item_Recepcion_Compra>items;
+	private List<Item_Recepcion_Compra>items;
 	
 	
 	
@@ -17,6 +18,10 @@ public class RecepcionCompra {
 		this.recepcion_fecha_dt = fecha;
 		this.recepcion_compra = compra;
 	}
+	
+	public RecepcionCompra() {
+	}
+	
 	public Integer getRecepcion_id() {
 		return recepcion_id;
 	}
@@ -35,15 +40,11 @@ public class RecepcionCompra {
 	public void setRecepcion_compra(Compra recepcion_compra) {
 		this.recepcion_compra = recepcion_compra;
 	}
-	public Vector<Item_Recepcion_Compra> getItems() {
+	public List<Item_Recepcion_Compra> getItems() {
 		return items;
 	}
-	public void setItems(Vector<Item_Recepcion_Compra> items) {
+	public void setItems(List<Item_Recepcion_Compra> items) {
 		this.items = items;
-	}
-	
-	public void agregarItem(Item_Recepcion_Compra itemRecepcionCompra){
-		//TODO
 	}
 	
 }
