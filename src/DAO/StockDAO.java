@@ -44,7 +44,7 @@ public class StockDAO {
 	public void grabarStock(Stock obj){				
 		Session session = sf.openSession();
 		
-		session.persist(obj);
+		session.saveOrUpdate(obj);
 			
 		session.flush();
 		session.close();
