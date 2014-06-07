@@ -8,6 +8,7 @@ import java.util.List;
 
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
+import BUSINESS.ProductosController;
 import BUSINESS.RestauranteController;
 import BUSINESS.StockController;
 import DAO.*;
@@ -163,17 +164,23 @@ public class TDD_Javier {
 		DTO.RecepcionCompra laRecepcion = new DTO.RecepcionCompra();
 		Date laFecha = RestauranteController.getInstancia().getDate(2014, 05, 01, 10, 00);
 		laRecepcion.setRecepcion_fecha_dt(laFecha);
+		List<DTO.Item_Recepcion_Compra> losItems = new ArrayList<DTO.Item_Recepcion_Compra>();
 		
 		DTO.Item_Recepcion_Compra elItemRecepcion1 = new DTO.Item_Recepcion_Compra();
 		elItemRecepcion1.setItem_Id_Producto(1);
 		elItemRecepcion1.setCant(2);
-		laRecepcion.getItems().add(elItemRecepcion1);
-		
+		elItemRecepcion1.setItem_recepcion_id(1);
+				
 		DTO.Item_Recepcion_Compra elItemRecepcion2 = new DTO.Item_Recepcion_Compra();
 		elItemRecepcion1.setItem_Id_Producto(2);
 		elItemRecepcion1.setCant(4);
-		laRecepcion.getItems().add(elItemRecepcion2);
-				
+		elItemRecepcion1.setItem_recepcion_id(2);
+		
+		losItems.add(elItemRecepcion1);
+		losItems.add(elItemRecepcion2);
+		
+		laRecepcion.setItems(losItems);
+		
 		ComprasController.getInstancia().setRecepcionCompra(laRecepcion);
 		
 				
