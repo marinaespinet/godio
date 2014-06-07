@@ -1,11 +1,13 @@
 package BUSINESS;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import Exceptions.*;
 import DAO.*;
 import DTO.Item_Carta;
+import DTO.Reclamo;
 import ENTITY.*;
 
 public class PedidosController {
@@ -90,7 +92,6 @@ public class PedidosController {
         	  
         	      
         	  	  /******Nuevo codigo by Javier*********/
-        	  	  
         	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
         	  	  ENTITY.Item_Pedido elItemPedidoEnt = new ENTITY.Item_Pedido();
         	  	  
@@ -171,7 +172,36 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 		mesa.setUnion_mesa(null);
 		
 		//La setea en estado Proxima liberarse
-		mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse"));
+		//mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse")); //comentado para que no haya errores al tiempo de compilacion
+				
+	}
+
+	public void registrarReclamo(List<Reclamo> itemsReclamoDTO) {
+		for(DTO.Reclamo unItem : itemsReclamoDTO){
+			if(unItem.getCantidadNoFacturar() > 0){
+				ENTITY.Item_Pedido elItem = PedidosDAO.getInstancia().getItemPedidoPorId(unItem.getIdItemPedido());
+				elItem.setItem_no_facturar_ind(true);
+				elItem.setObservaciones_no_facturar(unItem.getObservaciones());
+				PedidosDAO.getInstancia().updateItemPedido(elItem);
+			}
+		}
 		
+	}
+
+	public List<Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RestaurantException {
+		ENTITY.Pedido elPedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(idMesa);
+		
+		if((elPedido==null) || (elPedido.getPedido_mesa().getMesa_estado().getEstado_id() != 2 /* Estado 2 es Ocupada */))
+		{ throw new RestaurantException("Mesa "+idMesa.toString()+ " no tiene el pedido abierto.");}
+		
+		List<DTO.Reclamo> losItemsDelReclamo = new ArrayList <DTO.Reclamo>();
+		for(ENTITY.Item_Pedido itemPedidoEnt : elPedido.listarItems()){
+			DTO.Reclamo itemReclamo = new DTO.Reclamo();
+			itemReclamo.setIdItemPedido(itemPedidoEnt.getItem_id());
+			itemReclamo.setPlatoNombre(itemPedidoEnt.getItem_carta().getPlato().getName());
+			losItemsDelReclamo.add(itemReclamo);
+		}
+		
+		return losItemsDelReclamo;
 	}
 }
