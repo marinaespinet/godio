@@ -7,6 +7,7 @@ import DAO.*;
 import ENTITY.Factura;
 import ENTITY.Item_Factura;
 import ENTITY.Mesa;
+import Exceptions.RestaurantException;
 
 
 public class FacturasController {
@@ -20,7 +21,7 @@ public class FacturasController {
 		return instancia;
 	}
 	
-	public void solicitarFactura(Integer numeroDeMesa){
+	public void solicitarFactura(Integer numeroDeMesa) throws RestaurantException{
 		ENTITY.Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(numeroDeMesa);
 		if(pedido!=null){
 			Long pendientes=verificarItemsPendientes(pedido.getPedido_id());
@@ -32,11 +33,9 @@ public class FacturasController {
 					LocationDAO.getInstancia().grabarMesaActualizada(pedido.getPedido_mesa());
 					crearFactura(pedido);
 			}
-			else
-				System.out.println("Hay " + pendientes + " items pendientes de entrega");
+			else throw new RestaurantException("Hay " + pendientes + " items pendientes de entrega");
 		}
-		else
-			System.out.println("No se encontró un pedido abierto para la mesa: " + numeroDeMesa);
+		else throw new RestaurantException("No se encontró un pedido abierto para la mesa: " + numeroDeMesa);
 	}	
 
 	private Long verificarItemsPendientes(Integer pedido_id) {
@@ -63,7 +62,7 @@ private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
 }
 
 private void agregarItems(Factura factura, ENTITY.Pedido pedido) {
-	List<ENTITY.Item_Pedido> itemsPed = PedidosDAO.getInstancia().getItems(pedido.getPedido_id());//pedido.listarItems();
+	List<ENTITY.Item_Pedido> itemsPed = PedidosDAO.getInstancia().getItems(pedido.getPedido_id());
 	for(ENTITY.Item_Pedido unItem: itemsPed){
 		Item_Factura it = new Item_Factura();
 		it.setItem_pedido(unItem);
