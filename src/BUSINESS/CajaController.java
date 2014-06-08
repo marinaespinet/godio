@@ -105,7 +105,7 @@ public class CajaController {
 			ENTITY.Liquidacion_Comision_Mozo laLiquidacion = new ENTITY.Liquidacion_Comision_Mozo();
 			laLiquidacion.setFecha_liquidacion_dt(diaDeLiquidacion);
 			laLiquidacion.setFecha_registracion_dt(hoy);
-			laLiquidacion.setImporte_amount(OperacionCajaDAO.getInstancia().calcularComisionMozo(unMozo.getMozo_id()));
+			laLiquidacion.setImporte_amount(OperacionCajaDAO.getInstancia().calcularComisionMozo(unMozo,diaDeLiquidacion));
 			laLiquidacion.setComision_mozo(unMozo);
 			OperacionCajaDAO.getInstancia().setComisionMozo(laLiquidacion);
 		}
