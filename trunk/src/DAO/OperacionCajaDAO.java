@@ -41,7 +41,7 @@ public class OperacionCajaDAO {
 	//Graba un item (update o insert) de un cierre o apertura de caja
 	public void setItemCaja(Item_Operacion_Caja item) {
 		Session session = sf.openSession();
-		session.persist(item);
+		session.saveOrUpdate(item);
 		session.flush();
 		session.close();
 	}
@@ -64,7 +64,7 @@ public class OperacionCajaDAO {
 	//Graba un cierre o apertura de caja
 	public void grabarOperacionCaja(Operacion_Caja op) {
 		Session session = sf.openSession();
-		session.persist(op);
+		session.saveOrUpdate(op);
 		session.flush();
 		session.close();
 	}
