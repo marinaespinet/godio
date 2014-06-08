@@ -94,6 +94,22 @@ public class CajaController {
 
 		return FacturasDAO.getInstancia().getLiquidacionesUnMozoDia(d, mozoId);
 	}
+
+	public void liquidarComisionesMozos(Date diaDeLiquidacion, int sucId) {
+		//busco los mozos de la sucursal
+		List<ENTITY.Mozo> losMozos = LocationDAO.getInstancia().getMozosPorSucursal(sucId);
+		Date hoy = new java.sql.Date(System.currentTimeMillis());
+		
+		//Liquido uno a uno y creo el registro de liquidacion
+		for(ENTITY.Mozo unMozo : losMozos){
+			ENTITY.Liquidacion_Comision_Mozo laLiquidacion = new ENTITY.Liquidacion_Comision_Mozo();
+			laLiquidacion.setFecha_liquidacion_dt(diaDeLiquidacion);
+			laLiquidacion.setFecha_registracion_dt(hoy);
+			laLiquidacion.setImporte_amount(OperacionCajaDAO.getInstancia().calcularComisionMozo(unMozo.getMozo_id()));
+			laLiquidacion.setComision_mozo(unMozo);
+			OperacionCajaDAO.getInstancia().setComisionMozo(laLiquidacion);
+		}
+	}
 	
 	
 	
