@@ -340,6 +340,20 @@ public class LocationDAO {
 			session.close();
 
 			return obj;
+		}
+
+		@SuppressWarnings("unchecked")
+		public List<Mozo> getMozosPorSucursal(int sucId) {
+			Session session = sf.openSession();
+			List<Mozo> list = (List<Mozo>)session.createQuery(""
+					+ "SELECT m FROM Mozo m"
+					+ " JOIN m.mozo_sector sec"
+					+ " JOIN sec.sector_sucursal suc"
+					+ " WHERE suc.sucursal_id = ?").setInteger(0, sucId).list();
+			
+			session.close();
+
+			return list;
 		}	
 
 }
