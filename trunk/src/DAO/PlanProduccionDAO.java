@@ -49,7 +49,7 @@ public class PlanProduccionDAO {
 	{
 		Session session = sf.openSession();
 		
-		session.persist(item);
+		session.saveOrUpdate(item);
 		
 		session.flush();
 		session.close();
@@ -93,7 +93,8 @@ public class PlanProduccionDAO {
 	}
 	public Item_Plan_Produccion getItemPorSucursalySemielaborado(int sucursal, int semielaborado){
 		Session session = sf.openSession();
-		Item_Plan_Produccion item = (Item_Plan_Produccion) session.createQuery("FROM Item_Plan_Produccion ipp JOIN ipp.semielaborado ips JOIN ipp.sucursal suc WHERE suc.sucursal_id=? AND ips.semielaborado_id=? AND ipp.item_plan_avance_qty<1").setInteger(0, sucursal).setInteger(1,semielaborado).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Integer itemId = (Integer) session.createQuery("Select ipp.item_plan_id FROM Item_Plan_Produccion ipp JOIN ipp.semielaborado ips JOIN ipp.sucursal suc WHERE suc.sucursal_id=? AND ips.semielaborado_id=? AND ipp.item_plan_avance_qty<ipp.cantidad").setInteger(0, sucursal).setInteger(1,semielaborado).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Item_Plan_Produccion item = (Item_Plan_Produccion) session.get(Item_Plan_Produccion.class,itemId);
 		return item;
 	}
 }
