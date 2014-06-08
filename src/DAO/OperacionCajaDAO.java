@@ -93,7 +93,7 @@ public class OperacionCajaDAO {
 
 	public Float calcularComisionMozo(Mozo unMozo, java.sql.Date diaDeLiquidacion) {
 		Session session = sf.openSession();
-		Long comisionFacturas = (Long)session.createQuery(""
+		Double comisionFacturas = (Double)session.createQuery(""
 				+ "SELECT SUM(f.monto_total*?) "
 				+ " FROM Factura f "
 				+ " JOIN f.items it "
@@ -107,15 +107,16 @@ public class OperacionCajaDAO {
 		session.close();
 		
 		Session session2 = sf.openSession();
-		Long comisionPorPlatos = (Long)session.createQuery(""
+		Double comisionPorPlatos = (Double)session2.createQuery(""
 				+ "SELECT SUM(car.precio_monto * pla.comision_extra_mozo) "
 				+ " FROM Factura f "
 				+ " JOIN f.items it "
 				+ " JOIN it.item_plato pla "
 				+ " JOIN it.item_pedido ped"
 				+ " JOIN ped.item_carta car"
+				+ " JOIN f.factura_mozo moz"
 				+ " WHERE f.fecha_factura_dt=? "
-				+ " AND f.factura_mozo = ?")
+				+ " AND moz.mozo_id = ?")
 				.setFloat(0, unMozo.getComision())
 				.setDate(1, diaDeLiquidacion)
 				.setInteger(2, unMozo.getMozo_id())
