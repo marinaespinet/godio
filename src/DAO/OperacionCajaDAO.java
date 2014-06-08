@@ -83,5 +83,18 @@ public class OperacionCajaDAO {
 		session.flush();
 		session.close();
 	}
+
+	public void setComisionMozo(Liquidacion_Comision_Mozo laLiquidacion) {
+		Session session = sf.openSession();
+		session.persist(laLiquidacion);
+		session.flush();
+		session.close();		
+	}
+
+	public Float calcularComisionMozo(int mozo_id) {
+		Session session = sf.openSession();
+		Long operaciones = (Long)session.createQuery("SELECT COUNT(oc.operacion_caja_id) FROM Operacion_Caja oc JOIN oc.tipo oct JOIN oc.cierre_sucursal_id suc WHERE oc.fecha_dt=? AND oct.tipo_operacion_caja_id=? AND suc.sucursal_id=?").setDate(0, hoy).setInteger(1,operacion).setInteger(2,sucursal).setFirstResult(0).setMaxResults(1).uniqueResult();
+		return operaciones.floatValue();
+	}
 	
 }
