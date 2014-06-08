@@ -94,7 +94,7 @@ public class OperacionCajaDAO {
 	public Float calcularComisionMozo(Mozo unMozo, java.sql.Date diaDeLiquidacion) {
 		Session session = sf.openSession();
 		Long operaciones = (Long)session.createQuery(""
-				+ "SELECT SUM(f.monto_total/?) "
+				+ "SELECT SUM(f.monto_total*?) "
 				+ " FROM Factura f "
 				+ " JOIN f.items it "
 				+ " WHERE f.fecha_factura_dt=? "
