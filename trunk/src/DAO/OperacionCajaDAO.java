@@ -106,8 +106,25 @@ public class OperacionCajaDAO {
 		session.flush();
 		session.close();
 		
+		Session session2 = sf.openSession();
+		Long comisionPorPlatos = (Long)session.createQuery(""
+				+ "SELECT SUM(car.precio_monto * pla.comision_extra_mozo) "
+				+ " FROM Factura f "
+				+ " JOIN f.items it "
+				+ " JOIN it.item_plato pla "
+				+ " JOIN it.item_pedido ped"
+				+ " JOIN ped.item_carta car"
+				+ " WHERE f.fecha_factura_dt=? "
+				+ " AND f.factura_mozo = ?")
+				.setFloat(0, unMozo.getComision())
+				.setDate(1, diaDeLiquidacion)
+				.setInteger(2, unMozo.getMozo_id())
+				.setFirstResult(0).setMaxResults(1).uniqueResult();
+		session2.flush();
+		session2.close();
 		
-		return comisionFacturas.floatValue();
+		
+		return comisionFacturas.floatValue() + comisionPorPlatos.floatValue();
 	}
 	
 }
