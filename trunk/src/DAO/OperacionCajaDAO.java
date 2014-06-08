@@ -84,7 +84,7 @@ public class OperacionCajaDAO {
 		session.close();
 	}
 
-	public void setComisionMozo(Liquidacion_Comision_Mozo laLiquidacion) {
+	public void setLiquidacionComisionMozo(Liquidacion_Comision_Mozo laLiquidacion) {
 		Session session = sf.openSession();
 		session.persist(laLiquidacion);
 		session.flush();
