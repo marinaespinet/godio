@@ -101,6 +101,30 @@ public class StockController {
 		}
 		return elStockSucursal;
 	}
+
+
+	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(int depoID) {
+		List<ENTITY.Movimiento_Stock> losMovimientosEnt = StockDAO.getInstancia().getMovimientosStockPorDeposito(depoID);
+		
+		//Tengo un listado de Entities, las paso a DTOs que me convengan
+		List<DTO.Movimiento_Stock> losMovimientosDTO = StockController.getInstancia().getDTOFromEntityMovStockPorSucursal(losMovimientosEnt);
+		
+		return losMovimientosDTO;
+	}
+
+
+	private List<DTO.Movimiento_Stock> getDTOFromEntityMovStockPorSucursal(List<ENTITY.Movimiento_Stock> losMovimientosEnt) {
+		List<DTO.Movimiento_Stock> losMovimientosDTO = new LinkedList<DTO.Movimiento_Stock>();
+		for(ENTITY.Movimiento_Stock unMovEnt : losMovimientosEnt){
+			DTO.Movimiento_Stock unMovDTO = new DTO.Movimiento_Stock();
+			unMovDTO.setCantidad(unMovEnt.getCantidad());
+			unMovDTO.setDeposito_origenId(unMovEnt.getDeposito_origen().getDeposito_id());
+			unMovDTO.setDeposito_destinoId(unMovEnt.getDeposito_destino().getDeposito_id());
+			unMovDTO.setProductoName(unMovEnt.getProducto().getName());
+			losMovimientosDTO.add(unMovDTO);
+		}
+		return losMovimientosDTO;
+	}
 	
 	
 	
