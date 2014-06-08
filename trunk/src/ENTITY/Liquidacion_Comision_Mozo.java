@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Liquidacion_Comision_Mozo {
 
 	@Id
+	@GeneratedValue
 	private Integer comision_id;
 	
 	@Column(insertable=false)
