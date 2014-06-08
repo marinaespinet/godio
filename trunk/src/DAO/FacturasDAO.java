@@ -26,7 +26,7 @@ public class FacturasDAO {
 	//Graba factura
 	public void grabarFactura(Factura aux){				
 		Session session = sf.openSession();
-		session.persist(aux);
+		session.saveOrUpdate(aux);
 		session.flush();
 		session.close();
 	}
