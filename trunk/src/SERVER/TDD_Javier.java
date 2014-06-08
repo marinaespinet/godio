@@ -189,7 +189,7 @@ public class TDD_Javier {
 	private static void unitTestLiquidarComisiones() throws RestaurantException {
 		
 		//Tengo el dia del que quiero liquidar las comisiones y la sucursal
-		Date diaLiquidado = RestauranteController.getInstancia().getDate(05, 07, 07, 00, 00);
+		Date diaLiquidado = RestauranteController.getInstancia().getDate(2014, 05, 29, 00, 00);
 		CajaController.getInstancia().liquidarComisionesMozos(diaLiquidado, 1);
 		
 	}
