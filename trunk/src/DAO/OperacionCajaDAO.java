@@ -117,9 +117,8 @@ public class OperacionCajaDAO {
 				+ " JOIN f.factura_mozo moz"
 				+ " WHERE f.fecha_factura_dt=? "
 				+ " AND moz.mozo_id = ?")
-				.setFloat(0, unMozo.getComision())
-				.setDate(1, diaDeLiquidacion)
-				.setInteger(2, unMozo.getMozo_id())
+				.setDate(0, diaDeLiquidacion)
+				.setInteger(1, unMozo.getMozo_id())
 				.setFirstResult(0).setMaxResults(1).uniqueResult();
 		session2.flush();
 		session2.close();
