@@ -14,28 +14,25 @@ public class TDD_Marina {
 		public static void main(String[] args) throws RestaurantException {
 			
 			//CU03 Solicitar factura 
-			//FacturasController.getInstancia().solicitarFactura(1);
+			//FacturasController.getInstancia().solicitarFactura(3);
 			
 			//CU04 Crear Factura
-			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
+			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(1));
 			
 			//CU10 Agregar Plato al pedido
-			/*DTO.Plato pl = new DTO.Plato();
+			DTO.Plato pl = new DTO.Plato();
 			pl.setPlato_id(1);
 			pl.setName("Arroz con leche");
-			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 1, 1, 1);*/
+			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 99999, 1, 1);
 			
 			
 			//CU11 CU14 Abrir Caja/Cerrar Caja
-			//CajaController.getInstancia().crearOperacionCaja(2, 2);
+			/*CajaController.getInstancia().crearOperacionCaja(2, 2);
 			Integer tc = (Integer)1;
 			Float monto=(float) 5;
-			//Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(12);
-			//System.out.println("Encontre operacion "+op.getOperacion_caja_id());
-			//DTO.Operacion_Caja ope = CajaController.getInstancia().getDTOFromEntity(op);
 			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(monto, 3, tc,12);
 			CajaController.getInstancia().agregarItemsCaja(item,12);
-			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());
+			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());*/
 			
 
 			

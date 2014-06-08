@@ -33,15 +33,22 @@ public class CartasDAO {
 
 	public Item_Carta getItemCartaPorPlato(Integer plato_id) {
 		Session session = sf.openSession();
-		Item_Carta item  = (Item_Carta)session.createQuery("FROM Item_Carta i JOIN i.carta c JOIN i.item_plato pl WHERE c.fecha_expiracion>getDate() AND pl.plato_id=?").setInteger(0,plato_id).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Item_Carta item  = (Item_Carta)session.createQuery("FROM Item_Carta i JOIN i.item_plato pl WHERE pl.plato_id=?").setInteger(0,plato_id).setFirstResult(0).setMaxResults(1);//.setFirstResult(0).setMaxResults(1).uniqueResult();
+		session.close();
+		return item;
+	}
+	
+	public Integer getItemCartaIdPorPlato(Integer plato_id) {
+		Session session = sf.openSession();
+		Integer item  = (Integer)session.createQuery("SELECT i.item_carta_id FROM Item_Carta i JOIN i.item_plato pl WHERE pl.plato_id=?").setInteger(0,plato_id).setFirstResult(0).setMaxResults(1).uniqueResult();
 		session.close();
 		return item;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Plato> getPlatosAlternativos(Integer plato_id, String rubro){
+	public List<String> getPlatosAlternativos(String rubro){
 		Session session = sf.openSession();
-		List<Plato> platos  = (List<Plato>)session.createQuery("FROM Plato pl JOIN Item_Carta i JOIN i.carta c JOIN i.rubro r WHERE c.fecha_expiracion>getDate() AND pl.plato_id<>? AND r.name=? ").setInteger(0,plato_id).setString(1,rubro).list();
+		List<String> platos  = (List<String>)session.createQuery("SELECT itc.item_plato.name FROM Item_Carta itc JOIN itc.rubro rub JOIN itc.item_plato WHERE rub.name=? ").setString(0,rubro).list();
 		session.close();
 		return platos;
 	}
