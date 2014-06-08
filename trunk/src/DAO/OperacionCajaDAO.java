@@ -123,8 +123,10 @@ public class OperacionCajaDAO {
 		session2.flush();
 		session2.close();
 		
-		
+		if (comisionFacturas != null && comisionPorPlatos != null)
 		return comisionFacturas.floatValue() + comisionPorPlatos.floatValue();
+		else
+		return null;
 	}
 	
 }
