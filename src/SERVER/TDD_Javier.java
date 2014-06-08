@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
+import BUSINESS.CajaController;
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
 import BUSINESS.ProductosController;
@@ -44,11 +45,13 @@ public class TDD_Javier {
 		//unitTestRegistrarReclamo();
 		//unitTestControlarStock();
 		//unitTestPrepararComanda();
-		unitTestRecepcionMercaderia();
-		
+		//unitTestRecepcionMercaderia();
+		unitTestLiquidarComisiones();
 	}
 	
 	
+
+
 
 	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	private static void unitTestRegistrarReclamo() throws RestaurantException {
@@ -102,7 +105,7 @@ public class TDD_Javier {
 		ENTITY.Item_Pedido elItemQueEstaListo = PedidosController.getInstancia().getItemPedidoEntityFromDTO(itemDTO);
 		
 		//lo persisto
-		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo); */
+		PedidosDAO.getInstancia().setItemPedido(elItemQueEstaListo);*/
 		
 		/***************** New Schere Levy's compliant version ************************/
 		
@@ -162,7 +165,7 @@ public class TDD_Javier {
 		//tengo un montón de datos sobre productos nuevos, la fecha actual y la cantidad
 		//simulo esos datos
 		DTO.RecepcionCompra laRecepcion = new DTO.RecepcionCompra();
-		Date laFecha = RestauranteController.getInstancia().getDate(2014, 05, 01, 10, 00);
+		Date laFecha = RestauranteController.getInstancia().getDate(2014, 07, 01, 10, 00);
 		laRecepcion.setRecepcion_fecha_dt(laFecha);
 		List<DTO.Item_Recepcion_Compra> losItems = new ArrayList<DTO.Item_Recepcion_Compra>();
 		
@@ -181,6 +184,17 @@ public class TDD_Javier {
 	}
 
 		
+	/******** CASO DE USO 15 - LIQUIDAR COMISIONES ************/
+	
+	private static void unitTestLiquidarComisiones() throws RestaurantException {
+		
+		//Tengo el dia del que quiero liquidar las comisiones y la sucursal
+		Date diaLiquidado = RestauranteController.getInstancia().getDate(05, 07, 07, 00, 00);
+		CajaController.getInstancia().liquidarComisionesMozos(diaLiquidado, 1);
+		
+	}
+
+
 	
 	private static boolean unitTestMesaPorId() {
 	
