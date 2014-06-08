@@ -40,7 +40,7 @@ public class ComprasDAO {
 
 	public void setRecepcionCompra(RecepcionCompra recepcionEnt) {
 		Session session = sf.openSession();
-		session.persist(recepcionEnt);
+		session.save(recepcionEnt);
 		//session.flush();
 		session.close();
 			
