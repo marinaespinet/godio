@@ -107,7 +107,7 @@ public class CajaController {
 			laLiquidacion.setFecha_registracion_dt(hoy);
 			laLiquidacion.setImporte_amount(OperacionCajaDAO.getInstancia().calcularComisionMozo(unMozo,diaDeLiquidacion));
 			laLiquidacion.setComision_mozo(unMozo);
-			OperacionCajaDAO.getInstancia().setComisionMozo(laLiquidacion);
+			OperacionCajaDAO.getInstancia().setLiquidacionComisionMozo(laLiquidacion);
 		}
 	}
 	
