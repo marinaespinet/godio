@@ -73,7 +73,7 @@ public class StockDAO {
 	@SuppressWarnings("unchecked")
 	public List<ENTITY.Movimiento_Stock> getMovimientosStockPorDeposito(int depoID) {
 		Session session = sf.openSession();
-		List<ENTITY.Movimiento_Stock> losMovimientos =(List<ENTITY.Movimiento_Stock>)session.createQuery("SELECT s FROM Movimiento_Stock mov " 
+		List<ENTITY.Movimiento_Stock> losMovimientos =(List<ENTITY.Movimiento_Stock>)session.createQuery("SELECT mov FROM Movimiento_Stock mov " 
 				+ " JOIN mov.deposito_origen ori " 
 				+ " JOIN mov.deposito_destino des "
 				+ " WHERE ori.deposito_id = ?"
