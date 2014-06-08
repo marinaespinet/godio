@@ -106,6 +106,15 @@ public class LocationDAO {
 		return unArea;
 	}
 	
+	public Area getAreaDePlato(Integer plato) {
+		Session session = sf.openSession();
+		Area unArea  = (Area)session.createQuery("FROM Area are WHERE are.area_id= ?").setInteger(0, plato)
+				.setFirstResult(0).setMaxResults(1).uniqueResult();
+		session.close();
+		return unArea;
+
+	}	
+	
 
 	//MANEJO DE SECTORES
 	
@@ -354,6 +363,8 @@ public class LocationDAO {
 			session.close();
 
 			return list;
-		}	
+		}
+
+
 
 }
