@@ -69,4 +69,18 @@ public class StockDAO {
 		session.close();
 		return NoTengoStock;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<ENTITY.Movimiento_Stock> getMovimientosStockPorDeposito(int depoID) {
+		Session session = sf.openSession();
+		List<ENTITY.Movimiento_Stock> losMovimientos =(List<ENTITY.Movimiento_Stock>)session.createQuery("SELECT s FROM Movimiento_Stock mov " 
+				+ " JOIN mov.deposito_origen ori " 
+				+ " JOIN mov.deposito_destino des "
+				+ " WHERE ori.deposito_id = ?"
+				+ " OR des.deposito_id = ?")
+				.setInteger(0, depoID).setInteger(1, depoID).list();
+			
+		session.close();
+		return losMovimientos;
+	}
 }
