@@ -35,12 +35,12 @@ public class CajaController {
 	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, int opCajaId){
 		Item_Operacion_Caja it = getItemCajaFromDTO(item, opCajaId);
 		OperacionCajaDAO.getInstancia().setItemCaja(it);
-		recalcularRecaudacionCaja(item.getItem_operacion_operacion_id());
+		recalcularRecaudacionCaja(opCajaId);
 	}
 	
-	private void recalcularRecaudacionCaja(DTO.Operacion_Caja operacion) {
-		Operacion_Caja op = getOperacionCajaFromDTO(operacion);
-		Double monto = OperacionCajaDAO.getInstancia().calcularMonto(operacion.getOperacion_caja_id());
+	private void recalcularRecaudacionCaja (Integer operacion) {
+		Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(operacion);
+		Double monto = OperacionCajaDAO.getInstancia().calcularMonto(operacion);
 		op.setRecaudacion(monto);
 		System.out.println("Calculé el monto: " + monto);
 		OperacionCajaDAO.getInstancia().grabarOperacionCaja(op);
@@ -60,7 +60,7 @@ public class CajaController {
 
 	private Item_Operacion_Caja getItemCajaFromDTO(DTO.Item_Operacion_Caja itemDTO, int opCajaId){
 		Item_Operacion_Caja itEnt = new Item_Operacion_Caja();
-		itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante().getTipo_comprobante_id()));
+		itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante()));
 		System.out.println("Tipo comprobante: "+itEnt.getTipo_comprobante().getNombre());
 		itEnt.setItem_operacion_id(itemDTO.getItem_operacion_id());
 		System.out.println("Item Id: "+itEnt.getItem_operacion_id());
