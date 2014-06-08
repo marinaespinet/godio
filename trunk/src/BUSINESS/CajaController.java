@@ -60,7 +60,7 @@ public class CajaController {
 
 	private Item_Operacion_Caja getItemCajaFromDTO(DTO.Item_Operacion_Caja itemDTO, int opCajaId){
 		Item_Operacion_Caja itEnt = new Item_Operacion_Caja();
-		itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante()));
+		//itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante()));
 		System.out.println("Tipo comprobante: "+itEnt.getTipo_comprobante().getNombre());
 		itEnt.setItem_operacion_id(itemDTO.getItem_operacion_id());
 		System.out.println("Item Id: "+itEnt.getItem_operacion_id());
