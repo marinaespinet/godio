@@ -11,6 +11,7 @@ public class Item_Operacion_Caja {
 
 	@Id
 	@Column(name="item_cierre_id")
+	@GeneratedValue
 	private Integer item_operacion_id;
 	
 	private Float monto;
