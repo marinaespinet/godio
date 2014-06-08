@@ -12,10 +12,8 @@ public class Liquidacion_Comision_Mozo {
 	@GeneratedValue
 	private Integer comision_id;
 	
-	@Column(insertable=false)
 	private Date fecha_registracion_dt;
 	
-	@Column(insertable=false)
 	private Date fecha_liquidacion_dt;
 	
 	@ManyToOne
