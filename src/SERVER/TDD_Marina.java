@@ -20,10 +20,10 @@ public class TDD_Marina {
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(1));
 			
 			//CU10 Agregar Plato al pedido
-			DTO.Plato pl = new DTO.Plato();
+			/*DTO.Plato pl = new DTO.Plato();
 			pl.setPlato_id(1);
 			pl.setName("Arroz con leche");
-			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 99999, 1, 1);
+			PedidosController.getInstancia().agregarPlatoAlPedido(pl, 3, 1, 1);*/
 			
 			
 			//CU11 CU14 Abrir Caja/Cerrar Caja
@@ -34,7 +34,8 @@ public class TDD_Marina {
 			CajaController.getInstancia().agregarItemsCaja(item,12);
 			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());*/
 			
-
+			//CU17 Registrar Avance de tareas plan de produccion
+			unitTestCU17();
 			
 			
 			//unitTestPedidos();
@@ -42,7 +43,7 @@ public class TDD_Marina {
 			//unitTestListarItemsPedido();
 			//unitTestListarPedidoPorEstado();
 			//unitTestPedidoAbiertoDeMesa();
-		//	FacturasController.getInstancia().solicitarFactura(1);
+			//	FacturasController.getInstancia().solicitarFactura(1);
 			//unitTestCalcularMonto();
 			//unitTestVerificarPedidoPendiente();
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
@@ -50,7 +51,9 @@ public class TDD_Marina {
 		}
 
 
-
+		private static void unitTestCU17() throws RestaurantException{
+			ProduccionController.getInstancia().registrarAvancePlanProduccion(1, 3, 2);
+		}
 
 		private static void unitTestVerificarPedidoPendiente() {
 			System.out.println("TEST Verificar pedidos pendientes");

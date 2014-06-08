@@ -85,8 +85,8 @@ public class ProduccionController {
 		
 		Item_Plan_Produccion item = PlanProduccionDAO.getInstancia().getItemPorSucursalySemielaborado(sucursal, codSemielaborado);
 		if(item!=null){
-			int avance = (cantidadProducida/item.getCantidad())+item.getItem_plan_avance_qty();
-			if(avance<1){
+			int avance = (cantidadProducida+item.getItem_plan_avance_qty());
+			if(avance<item.getCantidad()){
 				item.setAvance(avance);
 				PlanProduccionDAO.getInstancia().grabarItemPlan(item);
 				}
