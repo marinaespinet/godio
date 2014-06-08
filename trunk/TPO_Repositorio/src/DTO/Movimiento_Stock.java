@@ -17,10 +17,43 @@ public class Movimiento_Stock {
 	private Date fecha_compra_producto_dt;
 	private Date fecha_vencim_producto_dt;
 	private String movimiento_estado;
+	private Integer deposito_origenId;
+	private Integer deposito_destinoId;
+	private String productoName;
 	
 	
 	
 	
+	public Integer getDeposito_origenId() {
+		return deposito_origenId;
+	}
+
+
+	public void setDeposito_origenId(Integer deposito_origenId) {
+		this.deposito_origenId = deposito_origenId;
+	}
+
+
+	public Integer getDeposito_destinoId() {
+		return deposito_destinoId;
+	}
+
+
+	public void setDeposito_destinoId(Integer deposito_destinoId) {
+		this.deposito_destinoId = deposito_destinoId;
+	}
+
+
+	public String getProductoName() {
+		return productoName;
+	}
+
+
+	public void setProductoName(String productoName) {
+		this.productoName = productoName;
+	}
+
+
 	public Movimiento_Stock(Deposito origen,
 			Deposito destino, String motivo, Producto producto,
 			Integer cantidad, String lote, Usuario solicitante,
@@ -38,6 +71,10 @@ public class Movimiento_Stock {
 	}
 	
 	
+	public Movimiento_Stock() {
+	}
+
+
 	public Integer getMovimiento_id() {
 		return movimiento_id;
 	}
