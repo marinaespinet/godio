@@ -46,7 +46,8 @@ public class TDD_Javier {
 		//unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
-		unitTestLiquidarComisiones();
+		//unitTestLiquidarComisiones();
+		unitTestControlarMovimientoDeStock();
 	}
 	
 	
@@ -193,8 +194,22 @@ public class TDD_Javier {
 		CajaController.getInstancia().liquidarComisionesMozos(diaLiquidado, 1);
 		
 	}
-
-
+	
+	/******** CASO DE USO 13 - CONTROLAR MOVIMIENTOS DE STOCK ************/
+	private static void unitTestControlarMovimientoDeStock() {
+		//Tengo la sucursal donde voy a controlar los movimientos de Stock, que debo imprimir por pantalla
+		List<DTO.Movimiento_Stock> movimientosStockSucursalDTO = StockController.getInstancia().getMovimientosDeStockPorDeposito(1);
+		
+		//Recibo DTOs. Los listo simplemente para ver que los datos vienen bien.
+		for(DTO.Movimiento_Stock unMovimiento : movimientosStockSucursalDTO){
+			System.out.println("En la sucursal 1 se movieron " + unMovimiento.getCantidad() + " de " + unMovimiento.getProductoName() +  
+								" " + " desde el deposito " + unMovimiento.getDeposito_origenId() + 
+								" hacia el deposito " + unMovimiento.getDeposito_destinoId());
+		}
+		
+		
+	}
+	
 	
 	private static boolean unitTestMesaPorId() {
 	
