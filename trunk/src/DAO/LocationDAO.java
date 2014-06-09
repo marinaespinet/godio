@@ -280,7 +280,7 @@ public class LocationDAO {
 		}
 
 		@SuppressWarnings("unchecked")
-		public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id) {
+		public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id, Integer comensales) {
 			List<ENTITY.Mesa> laLista = new LinkedList<ENTITY.Mesa>();
 			Session session = sf.openSession();
 			List<Integer> idsMesa = (List<Integer>)session.createQuery("SELECT me.mesa_id FROM Mesa me JOIN me.mesa_estado es JOIN me.mesa_sucursal su WHERE es.estado_id =1 AND su.sucursal_id =?").setInteger(0, sucursal_id).list();
@@ -302,22 +302,12 @@ public class LocationDAO {
 			session.close();
 		}	
 		
-		public int getCantReservas(int sucursal_id){
+		public Long getCantReservas(int sucursal_id){
 			Date hoy = new java.sql.Date(System.currentTimeMillis());
 			Session session = sf.openSession();
-			Query q;
-			int cantReserv; 
-			String theQuery= "select count(*) from Reserva r "
-					+ "where r.sucursal = :sucursal "
-					+ "and r.fecha = :hoy";
-
-			q=session.createQuery(theQuery);
-			q.setParameter("sucursal", sucursal_id);
-			q.setDate("hoy", hoy);
-			cantReserv = (int)q.uniqueResult();
+			Long cantReservas = (Long)session.createQuery("SELECT COUNT(*) FROM Reserva res JOIN res.sucursal suc WHERE suc.sucursal_id=? and res.fecha-res.minutos_duracion<?").setInteger(0,sucursal_id).setDate(1, hoy).setFirstResult(0).setMaxResults(1).uniqueResult();
 			session.close();
-
-			return cantReserv;
+			return cantReservas;
 		}
 		
 		
