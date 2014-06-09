@@ -28,6 +28,43 @@ public class RestauranteController {
 		return instancia;
 	}
 	
+	public void abrirMesa(int mozo, int comensales) throws RestaurantException{
+		ENTITY.Mozo elMozo = LocationDAO.getInstancia().getMozoPorId(mozo);
+		List <ENTITY.Mesa> mesasPosibles=new LinkedList <ENTITY.Mesa>();
+		List <ENTITY.Mesa> mesasLibres = getMesasLibresEnSucursal(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id(), comensales);
+		if(mesasLibres == null) {throw new RestaurantException("No hay mesas libres en la sucursal");}
+		
+		//Si la mesa libre cubre la cantidad de comensales, la agrego como opcion
+		for (ENTITY.Mesa unaMesa: mesasLibres){
+					
+				if(unaMesa.getMax_cant_comensales()>=comensales)
+					mesasPosibles.add(unaMesa);
+				else {
+					//buscoUnir con la mesa anterior
+					int anterior=mesasLibres.indexOf(unaMesa)-1;
+					int cantComensalesUnion=unaMesa.getMax_cant_comensales()+mesasLibres.get(anterior).getMax_cant_comensales();
+					if(
+						//Si la cantidad de comensales que obtengo por la union cubre la cantidad solicitada
+						(cantComensalesUnion>=comensales) && 
+						//y si las mesas pertenecen al mismo sector
+						(unaMesa.getMesa_sector().equals(mesasLibres.get(anterior).getMesa_sector())))
+						unaMesa.setUnion_mesa(mesasLibres.get(anterior));
+						mesasPosibles.add(unaMesa);
+				}
+				
+			}
+		
+		if(mesasPosibles!=null) 
+		{
+				//Verifica si hay reservas
+				Long cantidadReserva = getCantidadReservas(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
+				if (cantidadReserva<mesasPosibles.size())
+					PedidosController.getInstancia().crearPedido(mesasPosibles.get(0).getMesa_id(),mozo,comensales); 
+				else  {throw new RestaurantException("No hay mesas disponibles en la sucursal");}
+		}
+		
+	}
+	
 
 	public Date getDate(int year,int month,int day,int hour,int minutes){
 		
@@ -127,8 +164,8 @@ public class RestauranteController {
 	}
 
 
-	public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id) {
-		List<ENTITY.Mesa> lasMesas=LocationDAO.getInstancia().getMesasLibresEnSucursal(sucursal_id);
+	public List<ENTITY.Mesa> getMesasLibresEnSucursal(Integer sucursal_id, int comensales) {
+		List<ENTITY.Mesa> lasMesas=LocationDAO.getInstancia().getMesasLibresEnSucursal(sucursal_id, comensales);
 		return lasMesas;
 	}
 
@@ -193,7 +230,7 @@ public class RestauranteController {
 		return elItemEnt;
 	}
 
-	public int getCantidadReservas(int sucursal_id){
+	public Long getCantidadReservas(int sucursal_id){
 		return LocationDAO.getInstancia().getCantReservas(sucursal_id);
 	}
 

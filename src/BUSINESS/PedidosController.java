@@ -164,8 +164,8 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 		//Desune las mesas si habia unidas
 		mesa.setUnion_mesa(null);
 		
-		//La setea en estado Proxima liberarse
-		//mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("ProximaLiberarse")); //comentado para que no haya errores al tiempo de compilacion
+		//La setea en estado Libre
+		//mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("Libre")); //comentado para que no haya errores al tiempo de compilacion
 				
 	}
 
@@ -214,5 +214,14 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 			PedidosDAO.getInstancia().updateItemPedido(elItem);
 		}
 		
+	}
+
+	public void crearPedido(Integer mesa_id, int mozo, int comensales) {
+		ENTITY.Pedido pedido = new ENTITY.Pedido();
+		pedido.setCant_comensales(comensales);
+		pedido.setPedido_mozo(LocationDAO.getInstancia().getMozoPorId(mozo));
+		pedido.setPedido_mesa(LocationDAO.getInstancia().getMesaPorId(mesa_id));
+		PedidosDAO.getInstancia().grabarPedido(pedido);
+		System.out.println("Pedido: "+pedido.getPedido_id());
 	}
 }
