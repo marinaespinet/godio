@@ -40,7 +40,7 @@ public class TDD_Marina {
 			//CU18 Registrar Orden de Compra
 			//unitTestCU18();
 			
-			
+			RestauranteController.getInstancia().abrirMesa(1, 5);
 			
 			
 			
