@@ -41,7 +41,12 @@ public class RestauranteController {
 					mesasPosibles.add(unaMesa);
 				else {
 					//buscoUnir con la mesa anterior
-					int anterior=mesasLibres.indexOf(unaMesa)-1;
+					int anterior=0;
+					if (unaMesa.equals(mesasLibres.get(0))) 
+						{anterior=mesasLibres.size()-1;}
+					else 
+						{anterior=mesasLibres.indexOf(unaMesa)-1;}
+					
 					int cantComensalesUnion=unaMesa.getMax_cant_comensales()+mesasLibres.get(anterior).getMax_cant_comensales();
 					if(
 						//Si la cantidad de comensales que obtengo por la union cubre la cantidad solicitada
@@ -49,6 +54,7 @@ public class RestauranteController {
 						//y si las mesas pertenecen al mismo sector
 						(unaMesa.getMesa_sector().equals(mesasLibres.get(anterior).getMesa_sector())))
 						unaMesa.setUnion_mesa(mesasLibres.get(anterior));
+						mesasLibres.get(anterior).setUnion_mesa(unaMesa);
 						mesasPosibles.add(unaMesa);
 				}
 				
@@ -58,8 +64,24 @@ public class RestauranteController {
 		{
 				//Verifica si hay reservas
 				Long cantidadReserva = getCantidadReservas(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
-				if (cantidadReserva<mesasPosibles.size())
-					PedidosController.getInstancia().crearPedido(mesasPosibles.get(0).getMesa_id(),mozo,comensales); 
+				if (cantidadReserva<mesasPosibles.size()){
+					//Si está unida, marca la otra mesa como ocupada
+					ENTITY.Mesa mesaElegida = mesasPosibles.get(0);
+					if (mesaElegida.getUnion_mesa()!=null) {
+						ENTITY.Mesa mesaUnida=mesaElegida.getUnion_mesa();
+						mesaUnida.setUnion_mesa(mesaElegida);
+						mesaUnida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
+						LocationDAO.getInstancia().grabarMesa(mesaUnida);
+						//Crea el pedido con el id de mesa mayor
+						PedidosController.getInstancia().crearPedido(mesaUnida.getMesa_id(),mozo,comensales);
+					}
+					//Crea el pedido con la mesa seleccionada
+					else {PedidosController.getInstancia().crearPedido(mesaElegida.getMesa_id(),mozo,comensales);} 
+					//Marca la mesa como ocupada
+					mesaElegida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
+					LocationDAO.getInstancia().grabarMesa(mesaElegida);
+					
+				}
 				else  {throw new RestaurantException("No hay mesas disponibles en la sucursal");}
 		}
 		
