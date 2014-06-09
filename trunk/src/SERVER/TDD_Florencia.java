@@ -28,7 +28,7 @@ public class TDD_Florencia {
 
 	private static boolean unitTestMesasPorSucursal() {
 		System.out.print("Test Mesa libre por Sucursal: ");
-		List <Mesa> unasMesas = LocationDAO.getInstancia().getMesasLibresEnSucursal(1);
+		List <Mesa> unasMesas = LocationDAO.getInstancia().getMesasLibresEnSucursal(1, null);
 		if (unasMesas != null){
 			for(Mesa unaMesa:unasMesas){
 				System.out.println("La sucursal 1 tiene la mesa " + unaMesa.getMesa_id() + " libre");
@@ -45,7 +45,7 @@ public class TDD_Florencia {
 	//sabe cant comensales y mozo
 	private static int unitTestAbrirMesa(Mozo unMozo, int comensales){
 		List <Mesa> mesasBuenas=new LinkedList <Mesa>();
-		List <Mesa> mesas = RestauranteController.getInstancia().getMesasLibresEnSucursal(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
+		List <Mesa> mesas = RestauranteController.getInstancia().getMesasLibresEnSucursal(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id(), comensales);
 		if(mesas != null){
 			for (Mesa unaMesa: mesas){
 				if(unaMesa.getMax_cant_comensales()>=comensales)
@@ -53,7 +53,7 @@ public class TDD_Florencia {
 			}
 			if(mesasBuenas!=null){
 				//chequear reservas
-				int cantidadReserva = RestauranteController.getInstancia().getCantidadReservas(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
+				Long cantidadReserva = RestauranteController.getInstancia().getCantidadReservas(unMozo.getMozo_sector().getSector_sucursal().getSucursal_id());
 				if (cantidadReserva<mesasBuenas.size()){
 					return mesasBuenas.get(0).getMesa_id(); //devuelvo la primer mesa
 				}
