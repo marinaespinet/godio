@@ -273,7 +273,7 @@ public class LocationDAO {
 		public void grabarMesa(Mesa aux) {
 			Session session = sf.openSession();
 			session.beginTransaction();
-			session.persist(aux);
+			session.saveOrUpdate(aux);
 			session.flush();
 			session.getTransaction().commit();
 			session.close();
