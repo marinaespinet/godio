@@ -1,5 +1,6 @@
 package BUSINESS;
 
+import java.sql.Date;
 import java.util.*;
 
 import DAO.*;
@@ -58,6 +59,42 @@ public class ComprasController {
 		return itemsEnt;
 		
 	}
+	
+	public void crearOrdenDeCompra (int proveedorId) throws RestaurantException{
+		//Check proveedor Existe
+		Proveedor proveedor = ComprasDAO.getInstancia().getProveedor(proveedorId);
+		if(proveedor == null){ throw new RestaurantException("Proveedor "+proveedorId+" inexistente");}
+		//Si existe, crea la orden de compra
+		ENTITY.Compra OC = new ENTITY.Compra(proveedor);
+		ComprasDAO.getInstancia().grabarCompra(OC);
+		System.out.println("Se creó la orden de compra nro: "+ComprasDAO.getInstancia().getCompraPorProveedor(OC.getCompra_proveedor().getProveedor_id()).getCompra_id());
+	}
+	
+	public void agregarItemsCompra(DTO.Item_Compra item, int compra ) throws RestaurantException{
+		ENTITY.Item_Compra it = getItemCompraFromDTO(item);
+		
+		//Valida que exista el producto
+		if (it.getItem_producto()==null) { throw new RestaurantException("Producto inexistente");}
+		
+		//Valida la cantidad ingresada
+		if (it.getItem_compra_cant()<=0){ throw new RestaurantException("Cantidad inválida");}
+		
+		//Valida el precio ingresado
+		if (it.getItem_precio_monto()<=0) { throw new RestaurantException("Precio inválido");}
+		
+		//Asocia el item con la compra y persiste
+		it.setItem_compra_compra_id(ComprasDAO.getInstancia().getCompra(compra));
+		ComprasDAO.getInstancia().agregarItemCompra(it);
+	}
+	
+	public ENTITY.Item_Compra getItemCompraFromDTO(DTO.Item_Compra itemDTO){
+		ENTITY.Item_Compra itEnt = new ENTITY.Item_Compra();
+		itEnt.setItem_compra_cant(itemDTO.getItem_compra_cant());
+		itEnt.setItem_precio_monto(itemDTO.getItem_precio_monto());
+		itEnt.setItem_producto(ProductosDAO.getInstancia().getProducto(itemDTO.getItem_producto()));
+		return itEnt;
+	}
+	
 
 	
 }
