@@ -45,5 +45,45 @@ public class ComprasDAO {
 		session.close();
 			
 	}
+
+
+	public Proveedor getProveedor(int proveedorId) {
+		Session session = sf.openSession();
+		Proveedor proveedor =(Proveedor) session.get(Proveedor.class,proveedorId); 
+		session.close();
+		return proveedor;
+	}
+
+
+	public void grabarCompra(Compra compra) {
+		Session session = sf.openSession();
+		session.saveOrUpdate(compra);
+		session.flush();
+		session.close();
+		
+	}
+
+
+	public Compra getCompraPorProveedor(Integer proveedor_id) {
+		Session session = sf.openSession();
+		Integer id = (Integer)session.createQuery("Select co.compra_id FROM Compra co JOIN co.compra_proveedor prov WHERE prov.proveedor_id=? ORDER BY co.fecha_compra_dt DESC").setInteger(0, proveedor_id).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Compra compra = (Compra) session.get(Compra.class, id);
+		return compra;
+	}
+
+
+	public void agregarItemCompra(Item_Compra it) {
+		Session session = sf.openSession();
+		session.saveOrUpdate(it);
+		session.flush();session.close();
+		
+	}
+
+
+	public Compra getCompra(int id) {
+		Session session = sf.openSession();
+		Compra compra = (Compra) session.get(Compra.class, id);
+		return compra;
+	}
 	
 }

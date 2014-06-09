@@ -35,7 +35,13 @@ public class TDD_Marina {
 			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());*/
 			
 			//CU17 Registrar Avance de tareas plan de produccion
-			unitTestCU17();
+			//unitTestCU17();
+			
+			//CU18 Registrar Orden de Compra
+			//unitTestCU18();
+			
+			
+			
 			
 			
 			//unitTestPedidos();
@@ -48,6 +54,18 @@ public class TDD_Marina {
 			//unitTestVerificarPedidoPendiente();
 			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			//System.out.println("Hoy es "+ new java.sql.Date(System.currentTimeMillis()));
+		}
+
+
+		private static void unitTestCU18() throws RestaurantException {
+			System.out.println("TEST CU18 Registrar OC");
+			ComprasController.getInstancia().crearOrdenDeCompra(1);
+			Integer prod = (Integer)1;
+			Integer cant = (Integer)10;
+			Double precio = (Double) 15.0;
+			DTO.Item_Compra item = new DTO.Item_Compra(prod, cant, precio);
+			ComprasController.getInstancia().agregarItemsCompra(item,5);
+			
 		}
 
 

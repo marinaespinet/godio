@@ -14,7 +14,7 @@ public class Item_Compra {
 	private Producto item_producto;
 	
 	private Integer item_compra_cant;
-	private Float item_precio_monto;
+	private Double item_precio_monto;
 	
 	@ManyToOne
 	@JoinColumn(name="item_compra_compra_id")
@@ -38,11 +38,17 @@ public class Item_Compra {
 	public void setItem_compra_cant(Integer item_compra_cant) {
 		this.item_compra_cant = item_compra_cant;
 	}
-	public Float getItem_precio_monto() {
+	public Double getItem_precio_monto() {
 		return item_precio_monto;
 	}
-	public void setItem_precio_monto(Float item_precio_monto) {
+	public void setItem_precio_monto(Double item_precio_monto) {
 		this.item_precio_monto = item_precio_monto;
+	}
+	public Compra getItem_compra_compra_id() {
+		return item_compra_compra_id;
+	}
+	public void setItem_compra_compra_id(Compra item_compra_compra_id) {
+		this.item_compra_compra_id = item_compra_compra_id;
 	}
 	
 	

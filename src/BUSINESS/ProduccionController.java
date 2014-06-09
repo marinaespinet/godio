@@ -26,7 +26,7 @@ public class ProduccionController {
 			//Check sucursal Existe
 			Sucursal suc = DAO.LocationDAO.getInstancia().getSucursalPorId(item.getSucursalID());
 			if(suc == null){ throw new RestaurantException("Sucursal "+item.getSucursalID().toString()+ " inexistente en tarea de produccion");}
-			//Check Semielaborado Exite
+			//Check Semielaborado Existe
 
 			Semielaborado semi = DAO.ProductosDAO.getInstancia().getSemielaborado(item.getSemielaboradoID());
 			if(semi == null){ throw new RestaurantException("Semielaborado "+item.getSemielaboradoID().toString()+ " inexistente en tarea de produccion");}

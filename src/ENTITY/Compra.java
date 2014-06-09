@@ -24,6 +24,9 @@ public class Compra {
 	@JoinColumn(name="ITEM_COMPRA_COMPRA_ID")
 	private List<Item_Compra> items;
 	
+	public Compra() {
+		super();
+	}
 	
 	public Compra(Proveedor proveedor) {
 		super();
