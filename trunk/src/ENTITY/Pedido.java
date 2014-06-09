@@ -12,6 +12,7 @@ import javax.persistence.*;
 public class Pedido {
 	
 	@Id
+	@GeneratedValue
 	private Integer pedido_id;
 	
 	@ManyToOne
