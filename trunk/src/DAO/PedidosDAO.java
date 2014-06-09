@@ -23,7 +23,7 @@ public class PedidosDAO {
 	public void grabarPedido(Pedido aux){
 				
 		Session session = sf.openSession();
-		session.persist(aux);
+		session.saveOrUpdate(aux);
 		session.close();
 	}
 
