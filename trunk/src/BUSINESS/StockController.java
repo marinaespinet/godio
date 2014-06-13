@@ -1,19 +1,18 @@
 package BUSINESS;
 
+
 import java.util.LinkedList;
 import java.util.List;
 
-import DAO.LocationDAO;
-import DAO.LoginDAO;
-import DAO.ProductosDAO;
-import DAO.StockDAO;
+import DAO.*;
 import ENTITY.*;
 import Exceptions.RestaurantException;
 
-public class StockController {
+public class StockController  {
+	
 	private static StockController instancia = null;
 
-	public static StockController getInstancia(){
+	public static StockController getInstancia() throws RestaurantException{
 		if(instancia == null){			
 			instancia = new StockController();
 		} 
@@ -75,12 +74,18 @@ public class StockController {
 		
 		StockDAO.getInstancia().grabarTransferenciaStock(mov);
 		
-		//actualiza cantidad de stock
+		//actualiza cantidad de stock en deposito ORIGEN
 		stk.setCantidad(stk.getCantidad() - cant);
 		StockDAO.getInstancia().grabarStock(stk);
+		
+		//actualiza cantidad de stock en deposito DESTINO
+		stk = StockDAO.getInstancia().getStock(prodID, depoToID);
+		stk.setCantidad(stk.getCantidad() + cant);
+		StockDAO.getInstancia().grabarStock(stk);
+
 	}
 	
-	public List<DTO.Stock> getStockPorDeposito(Integer depoID){
+	public List<DTO.Stock> getStockPorDeposito(Integer depoID) throws RestaurantException{
 		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);
 		
 		//Tengo un listado de Entities, las paso a DTOs que me convengan
@@ -103,7 +108,7 @@ public class StockController {
 	}
 
 
-	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(int depoID) {
+	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(int depoID) throws RestaurantException {
 		List<ENTITY.Movimiento_Stock> losMovimientosEnt = StockDAO.getInstancia().getMovimientosStockPorDeposito(depoID);
 		
 		//Tengo un listado de Entities, las paso a DTOs que me convengan

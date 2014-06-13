@@ -1,5 +1,6 @@
 package SERVER;
 
+import java.rmi.RemoteException;
 import java.util.*;
 
 import BUSINESS.*;
@@ -50,7 +51,7 @@ public class TDD_Schere {
 		return true;
 	}
 	
-	public static boolean unitTestCheckStock()throws RestaurantException{
+	public static boolean unitTestCheckStock() throws RemoteException{
 		System.out.print("Test check Stock: ");
 		
 		Integer cant = StockController.getInstancia().getStockCant(1,  1);

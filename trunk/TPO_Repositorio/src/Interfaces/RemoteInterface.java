@@ -7,8 +7,8 @@ import Exceptions.RestaurantException;
 
 public interface RemoteInterface extends Remote {
 
-	public void transferirStock(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) 
-				throws RestaurantException;
+	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) 
+				throws RemoteException;
 	
 	
 	
