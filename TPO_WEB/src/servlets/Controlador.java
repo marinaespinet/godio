@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Interfaces.BusinessDelegate;
+
 public class Controlador extends HttpServlet {
 
 	private static final long serialVersionUID = 1087702007634924L;
@@ -33,20 +35,21 @@ public class Controlador extends HttpServlet {
                 //request.setAttribute("clientes", clientes);
                 jspPage = "/MostrarLista.jsp";
             }
-            else if ("displaycustomer".equals(action))
+            else if ("doStockTransfer".equals(action))
             {
                 //String id = request.getParameter("id");
                 //Cliente cliente = AdminCliente.getInstancia().getCliente(id);
                 //request.setAttribute("cliente", cliente);
 
-                jspPage = "/MostrarCliente.jsp";
+            	BusinessDelegate.getInstancia().transferenciaStockByAreaSuc(1, 1, 1, 1, "test", 2, "Lote4");
+            	//jspPage = "/ShowMesa_TransOK.jsp";   
             }
             else if ("stockTransfer".equals(action))
             {
                 //String id = request.getParameter("id");
                 //Cliente cliente = AdminCliente.getInstancia().getCliente(id);
                 //request.setAttribute("cliente", cliente);
-
+            	
                 jspPage = "/Form_StockTransfer.jsp";            
             }
 
