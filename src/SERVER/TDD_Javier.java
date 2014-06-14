@@ -72,8 +72,9 @@ public class TDD_Javier {
 
 	
 
-	/******** CASO DE USO 10 - CONTROLAR STOCK ************/
-	private static void unitTestControlarStock() {
+	/******** CASO DE USO 10 - CONTROLAR STOCK 
+	 * @throws RestaurantException ************/
+	private static void unitTestControlarStock() throws RestaurantException {
 		
 		//Tengo la sucursal donde voy a controlar el Stock, debo imprimir por pantalla el stock que posee el deposito
 		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getStockPorDeposito(1);
@@ -195,8 +196,9 @@ public class TDD_Javier {
 		
 	}
 	
-	/******** CASO DE USO 13 - CONTROLAR MOVIMIENTOS DE STOCK ************/
-	private static void unitTestControlarMovimientoDeStock() {
+	/******** CASO DE USO 13 - CONTROLAR MOVIMIENTOS DE STOCK 
+	 * @throws RestaurantException ************/
+	private static void unitTestControlarMovimientoDeStock() throws RestaurantException {
 		//Tengo la sucursal donde voy a controlar los movimientos de Stock, que debo imprimir por pantalla
 		List<DTO.Movimiento_Stock> movimientosStockSucursalDTO = StockController.getInstancia().getMovimientosDeStockPorDeposito(1);
 		
