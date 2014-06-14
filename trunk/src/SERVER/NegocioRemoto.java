@@ -22,5 +22,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		StockController.getInstancia().transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);
 		
 	}
+	
+	//TODO: Agregar todos los metodos de TODOS los CONTROLLERS
 
 }
