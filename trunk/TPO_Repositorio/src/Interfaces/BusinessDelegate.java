@@ -38,7 +38,7 @@ public class BusinessDelegate {
 		}
 	}
 	
-	
+	//TODO: Aqui van los metodos que llaman al SERVER
 	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) throws RemoteException{
 		try {	
 			ri.transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);
