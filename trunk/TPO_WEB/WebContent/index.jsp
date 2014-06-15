@@ -8,6 +8,7 @@
 </head>
 <body>
 	
-	<a href="Controller2?action=stockTransfer" target="_self">Transferencia Stock</a> 
+	<a href="./Menu.jsp" target="_self">Menu</a>
+	<a href="Controller2?action=FormStockTransfer" target="_self">Transferencia Stock</a> 
 </body>
 </html>
