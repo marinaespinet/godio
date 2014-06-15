@@ -2,12 +2,20 @@ package SERVER;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+
+import java.util.List;
+import java.sql.Date;
+
 import java.sql.Date;
 import java.util.List;
+
+import BUSINESS.ProductosController;
+import BUSINESS.RestauranteController;
 
 import BUSINESS.CajaController;
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
+
 import BUSINESS.StockController;
 import Exceptions.RestaurantException;
 
@@ -86,6 +94,19 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	
 	
 	
+	
+	
+	
+	public List<DTO.Producto> getProductos() throws RemoteException {
+		return ProductosController.getInstancia().getProductos();
+	}	
+	
+	public List<DTO.Area> getAreas() throws RemoteException {
+		return RestauranteController.getInstancia().getAreas();
+	}
+
+	
+
 	
 
 }
