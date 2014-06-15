@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import Exceptions.RestaurantException;
 import Interfaces.*;
 
 /**
@@ -40,14 +42,30 @@ public class Controller2 extends HttpServlet {
           }
           else if ("doStockTransfer".equals(action))
           {
-              //String id = request.getParameter("id");
-              //Cliente cliente = AdminCliente.getInstancia().getCliente(id);
-              //request.setAttribute("cliente", cliente);
 
-          	BusinessDelegate.getInstancia().transferenciaStockByAreaSuc(1, 1, 1, 1, "test", 2, "Lote4");
-          	//jspPage = "/ShowMesa_TransOK.jsp";   
+        	try{	        		    
+        		//TODO: Validaciones aqui y en el Form .JSP con javascript 
+        		Integer prod = Integer.parseInt(request.getParameter("prod"));
+        		Integer area = Integer.parseInt(request.getParameter("area"));
+        		Integer suc = Integer.parseInt(request.getParameter("suc"));
+        		String motivo = request.getParameter("motivo");
+        		String lote = request.getParameter("lote");
+        		Integer cant = Integer.parseInt(request.getParameter("cant"));
+        		
+        		BusinessDelegate.getInstancia().transferenciaStockByAreaSuc( 
+        				prod, 1, area, suc,
+        				motivo, cant, lote);
+        		
+        		request.setAttribute("message", "Transferencia de Stock satisfactoria");
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Success.jsp";   
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message", "Transferencia de Stock satisfactoria");
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Success.jsp";   
+        	}
           }
-          else if ("stockTransfer".equals(action))
+          else if ("FormStockTransfer".equals(action))
           {
               //String id = request.getParameter("id");
               //Cliente cliente = AdminCliente.getInstancia().getCliente(id);
@@ -76,3 +94,4 @@ public class Controller2 extends HttpServlet {
       }
 
 }
+
