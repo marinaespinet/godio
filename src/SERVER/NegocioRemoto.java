@@ -2,7 +2,12 @@ package SERVER;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Date;
+import java.util.List;
 
+import BUSINESS.CajaController;
+import BUSINESS.ComprasController;
+import BUSINESS.PedidosController;
 import BUSINESS.StockController;
 import Exceptions.RestaurantException;
 
@@ -24,5 +29,63 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	}
 	
 	//TODO: Agregar todos los metodos de TODOS los CONTROLLERS
+	
+	public List<DTO.Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RemoteException{
+	
+		return PedidosController.getInstancia().obtenerItemsParaReclamo(idMesa);
+		
+	}
+	
+	public void registrarReclamo(List<DTO.Reclamo> losItemsParaReclamos) throws RemoteException{
+		
+		PedidosController.getInstancia().registrarReclamo(losItemsParaReclamos);
+		
+	}
+	
+	public List<DTO.Stock> getStockPorDeposito (Integer depoID) throws RemoteException{
+		
+		return StockController.getInstancia().getStockPorDeposito(depoID);
+		
+	}
+	
+	public List<DTO.Item_Pedido> getItemPedidosPendientesDTO (Integer areaID, Integer sucID) throws RemoteException{
+		
+		return PedidosController.getInstancia().getItemPedidosPendientesDTO(areaID, sucID);	
+	
+	}
+	
+	
+	public void marcarItemPedidoPreparado(List<DTO.Item_Pedido> losItemsPedidoPendientesDTO) throws RemoteException {
+		
+		PedidosController.getInstancia().marcarItemPedidoPreparado(losItemsPedidoPendientesDTO);
+		
+	}
+	
+	
+	public void setRecepcionCompra(DTO.RecepcionCompra laRecepcion) throws RemoteException{
+		
+		ComprasController.getInstancia().setRecepcionCompra(laRecepcion);
+		
+	}
+	
+	public void liquidarComisionesMozos(Date diaLiquidado, Integer sucID) throws RemoteException{
+		
+		CajaController.getInstancia().liquidarComisionesMozos(diaLiquidado, 1);
+		
+	}
+	
+	
+	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(Integer depoID) throws RemoteException{
+		
+		return StockController.getInstancia().getMovimientosDeStockPorDeposito(depoID);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
