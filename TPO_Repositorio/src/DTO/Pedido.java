@@ -1,9 +1,12 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 
-public class Pedido {
+public class Pedido  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer pedido_id;
 	private Mesa pedido_mesa;

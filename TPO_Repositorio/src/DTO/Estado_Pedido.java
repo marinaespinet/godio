@@ -1,6 +1,10 @@
 package DTO;
 
-public class Estado_Pedido {
+import java.io.Serializable;
+
+public class Estado_Pedido  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	
 	private Integer estado_id;
 	private String estado_name;

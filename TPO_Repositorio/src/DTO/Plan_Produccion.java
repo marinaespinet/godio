@@ -1,9 +1,12 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Vector;
 
 
-public class Plan_Produccion {
+public class Plan_Produccion  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer plan_id;
 	private Date fecha_creacion_dt;
@@ -35,15 +38,5 @@ public class Plan_Produccion {
 	public void setItems(Vector<Item_Plan_Produccion> items) {
 		this.items = items;
 	}
-	
-	public Integer verificarAvancePlan(){
-		//TODO
-		return 0;
-	}
-	
-	public void agregarTarea(Semielaborado semielaborado, Integer cantidad, Sucursal sucursal){
-		//TODO
-	}
-	
 	
 }

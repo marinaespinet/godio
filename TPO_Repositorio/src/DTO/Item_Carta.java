@@ -1,6 +1,10 @@
 package DTO;
 
-public class Item_Carta {
+import java.io.Serializable;
+
+public class Item_Carta  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer item_carta_id;
 	private Plato item_plato;
@@ -31,12 +35,6 @@ public class Item_Carta {
 	}
 	public void setPrecio_monto(Float precio_monto) {
 		this.precio_monto = precio_monto;
-	}
-	
-	public Integer verificarDisponibilidad(){
-		
-		//TODO
-		return 0;
 	}
 	
 }

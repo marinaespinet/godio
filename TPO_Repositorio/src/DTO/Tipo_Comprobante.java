@@ -1,6 +1,10 @@
 package DTO;
 
-public class Tipo_Comprobante {
+import java.io.Serializable;
+
+public class Tipo_Comprobante  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer tipo_comprobante_id;
 	private String nombre;

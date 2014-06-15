@@ -1,6 +1,10 @@
 package DTO;
 
-public class Estimado_Consumo_Area {
+import java.io.Serializable;
+
+public class Estimado_Consumo_Area  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer estimado_consumo_id;
 	private Area estimado_consumo_area;

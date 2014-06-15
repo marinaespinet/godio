@@ -1,14 +1,23 @@
 package DTO;
+import java.io.Serializable;
 import java.util.Vector;
 
 
-public class Semielaborado extends Producto{
+public class Semielaborado extends Producto  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+
 
 	private Integer semielaborado_id;
 	private Float horas_elaboracion_cant;
 	private String nombres;
 	private Vector<Insumo_Semielaborado>insumos;
 	
+	
+		public Semielaborado(String n, Integer id) {
+		super(n, id);
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Integer getSemielaborado_id() {
 		return semielaborado_id;

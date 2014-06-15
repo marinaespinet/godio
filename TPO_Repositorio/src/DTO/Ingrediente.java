@@ -1,6 +1,10 @@
 package DTO;
 
-public class Ingrediente {
+import java.io.Serializable;
+
+public class Ingrediente  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer ingrediente_id;
 	private Producto ingrediente_producto;
@@ -25,13 +29,5 @@ public class Ingrediente {
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
-	
-	public Integer verificarDisponibilidadIngredientes(){
-		//TODO
-		return 0;
-	}
-	
-	public void modificarStockIngrediente(Integer cantidad){
-		//TODO
-	}
+
 }

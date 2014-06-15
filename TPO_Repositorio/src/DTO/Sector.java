@@ -1,6 +1,10 @@
 package DTO;
 
-public class Sector {
+import java.io.Serializable;
+
+public class Sector  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private int sector_id;
 	private String name;

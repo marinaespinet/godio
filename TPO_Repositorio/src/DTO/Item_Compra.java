@@ -1,6 +1,10 @@
 package DTO;
 
-public class Item_Compra {
+import java.io.Serializable;
+
+public class Item_Compra implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer item_compra_id;
 	private Integer item_producto;

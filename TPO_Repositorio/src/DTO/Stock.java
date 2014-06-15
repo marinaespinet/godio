@@ -1,7 +1,10 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Stock {
+public class Stock implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer stock_id;
 	private Deposito stock_deposito;
@@ -45,18 +48,6 @@ public class Stock {
 		return cantidad;
 	}
 	
-	public void descontarStock(Integer cantidad){
-		//TODO
-	}
-	
-	public void agregarStock(Integer cantidad){
-		//TODO
-	}
-	
-	public Boolean verificarCantidad(Producto producto,Integer cantidad,Deposito deposito){
-		//TODO
-		return true;
-	}
 	public Date getFecha_vencimiento_producto_dt() {
 		return fecha_vencimiento_producto_dt;
 	}

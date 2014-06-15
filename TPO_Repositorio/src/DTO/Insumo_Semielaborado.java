@@ -1,6 +1,10 @@
 package DTO;
 
-public class Insumo_Semielaborado {
+import java.io.Serializable;
+
+public class Insumo_Semielaborado  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer insumo_semielaborado_id;
 	private Insumo insumo;

@@ -1,10 +1,13 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
 
-public class RecepcionCompra {
+public class RecepcionCompra  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer recepcion_id;
 	private Date recepcion_fecha_dt;

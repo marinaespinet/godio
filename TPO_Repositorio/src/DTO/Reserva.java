@@ -1,8 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Reserva {
+public class Reserva  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer reserva_id;
 	private Mesa reserva_mesa;
@@ -40,13 +43,6 @@ public class Reserva {
 	}
 	public void setMinutos_duracion(Integer minutos_duracion) {
 		this.minutos_duracion = minutos_duracion;
-	}
-	
-	public Boolean buscarReservas(Date fecha, Integer cantComensales){
-		
-		//TODO
-		return null;
-		
 	}
 	
 	

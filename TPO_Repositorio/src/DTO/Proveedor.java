@@ -1,6 +1,10 @@
 package DTO;
 
-public class Proveedor {
+import java.io.Serializable;
+
+public class Proveedor  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer proveedor_id;
 	private String name;

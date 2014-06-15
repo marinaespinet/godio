@@ -1,6 +1,10 @@
 package DTO;
 
-public class Item_Operacion_Caja {
+import java.io.Serializable;
+
+public class Item_Operacion_Caja  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer item_operacion_id;
 	private Float monto;

@@ -1,10 +1,22 @@
 package DTO;
 
-public class Area {
+import java.io.Serializable;
 
+public class Area implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private Integer area_id;
 	private String name;	
 	
+	public Area(String n, Integer i){
+		this.name = n;
+		this.area_id = i;
+	}
+	
+	public Area() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getArea_id() {
 		return area_id;
 	}

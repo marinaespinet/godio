@@ -1,8 +1,12 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Insumo extends Producto{
+public class Insumo extends Producto  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+
 
 	private Integer insumo_id;
 	private Float precio_compra;
@@ -10,7 +14,16 @@ public class Insumo extends Producto{
 	private String estado;
 	private Boolean puede_compra_ind;
 	
+	public Insumo(String n, Integer id) {
+		super(n, id);
+		// TODO Auto-generated constructor stub
+	}
 	
+	public Insumo() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+
 	public Integer getInsumo_id() {
 		return insumo_id;
 	}

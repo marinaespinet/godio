@@ -1,6 +1,10 @@
 package DTO;
 
-public class Mozo {
+import java.io.Serializable;
+
+public class Mozo  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer mozo_id;
 	private String name;

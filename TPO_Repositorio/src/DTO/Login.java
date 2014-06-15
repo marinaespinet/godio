@@ -1,8 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Login {
+public class Login  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer login_id;
 	private Usuario user;
