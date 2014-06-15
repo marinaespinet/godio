@@ -53,13 +53,6 @@ public class Producto {
 		this.puede_venta_ind = puede_venta_ind;
 	}
 	
-	public int verificarStock(){
-		//TODO
-		return 0;
-	}
-	
-	public void modificarStockProducto(Integer cantidad){
-		//TODO
-	}
+
 	
 }

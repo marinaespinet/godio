@@ -56,12 +56,5 @@ public class Reserva {
 		this.minutos_duracion = minutos_duracion;
 	}
 	
-	public Boolean buscarReservas(Date fecha, Integer cantComensales){
-		
-		//TODO
-		return null;
-		
-	}
-	
 	
 }

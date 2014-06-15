@@ -45,4 +45,11 @@ public class ProductosDAO {
 		session.close();
 		return ing;
 	}
+	
+	public List<Producto> getProductos(){
+		Session session = sf.openSession();
+		List<Producto> prod = (List<Producto>)session.createQuery("FROM Producto p Order by Name").list();
+		session.close();
+		return prod;
+	}
 }

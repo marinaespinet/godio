@@ -143,8 +143,6 @@ public class RestauranteController {
 		return unaMesaDTO;
 	}
 
-
-
 	public DTO.Sector getSectorDTO(ENTITY.Sector mesa_sectorEnt) {
 		DTO.Sector unSectorDTO = new DTO.Sector();
 		unSectorDTO.setName(mesa_sectorEnt.getName());
@@ -152,7 +150,6 @@ public class RestauranteController {
 		unSectorDTO.setSector_sucursal(getSucursalDTO(mesa_sectorEnt.getSector_sucursal()));
 		return unSectorDTO;
 	}
-
 
 	public DTO.Sucursal getSucursalDTO(ENTITY.Sucursal sucursalEnt) {
 		DTO.Sucursal unaSucursalDTO = new DTO.Sucursal();
@@ -165,7 +162,6 @@ public class RestauranteController {
 		//unaSucursalDTO.setAreas(getAreasDTO(sucursalEnt.getAreas()));
  		return unaSucursalDTO;
 	}
-
 
 	public List<Area> getAreasDTO(List<ENTITY.Area> areasEnt) {
 		List<DTO.Area> areasDTO = new LinkedList<DTO.Area>();
@@ -283,5 +279,16 @@ public class RestauranteController {
 		}
 		return itemsDTO;
 	}
+	
+	
+	public  List<Area> getAreas() {
+		List<DTO.Area> areas = new ArrayList<DTO.Area>();
+		
+		for(ENTITY.Area area : DAO.LocationDAO.getInstancia().getAreas())
+			areas.add(new DTO.Area(area.getName(), area.getArea_id()));
+		
+		return areas;
+	}
+	
 	
 }

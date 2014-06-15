@@ -26,6 +26,13 @@ public class ProductosController {
 		return insumoDTO;
 	}
 	
-	
+	public List<DTO.Producto> getProductos(){
+		List<DTO.Producto> productos = new ArrayList<DTO.Producto>();
+		
+		for(Producto prod : DAO.ProductosDAO.getInstancia().getProductos())
+			productos.add(new DTO.Producto(prod.getName(), prod.getProducto_id()));
+		
+		return productos;
+	}
 	
 }
