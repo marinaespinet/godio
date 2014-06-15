@@ -1,6 +1,10 @@
 package DTO;
 
-public class Item_Plan_Produccion {
+import java.io.Serializable;
+
+public class Item_Plan_Produccion  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer item_plan_id;
 	private Semielaborado item_plan_semielaborado;
@@ -51,12 +55,6 @@ public class Item_Plan_Produccion {
 	public void setAvance(Integer cantidad) {
 		this.item_plan_avance_qty = cantidad;
 	}
-	
-	public Integer verificarAvanceTareas(){
-		//TODO
-		return 0;
-	}
-
 
 	
 	public Integer getPlan_id() {

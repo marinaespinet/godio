@@ -1,8 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Liquidacion_Comision_Mozo {
+public class Liquidacion_Comision_Mozo  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer comision_id;
 	private Date fecha_registracion_dt;

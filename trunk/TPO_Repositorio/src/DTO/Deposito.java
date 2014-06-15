@@ -1,6 +1,10 @@
 package DTO;
 
-public class Deposito {
+import java.io.Serializable;
+
+public class Deposito  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer deposito_id;
 	private Area deposito_area;

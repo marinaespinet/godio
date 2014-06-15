@@ -1,8 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 
 
-public class Movimiento_Stock {
+public class Movimiento_Stock  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private	Integer movimiento_id;
 	private Deposito deposito_origen;

@@ -1,6 +1,10 @@
 package DTO;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer user_id;
 	private String user_name;
@@ -23,8 +27,5 @@ public class Usuario {
 	}
 	public void setUser_rol(Rol user_rol) {
 		this.user_rol = user_rol;
-	}
-	
-	
-	
+	}	
 }

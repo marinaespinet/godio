@@ -1,10 +1,13 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
 
-public class Operacion_Caja {
+public class Operacion_Caja  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer operacion_caja_id;
 	private Date fecha_dt;
@@ -69,14 +72,5 @@ public class Operacion_Caja {
 		this.tipo = tipo;
 	}
 	
-	public Float calcularRecaudacion(){
-		//TODO
-		return (float) 0;
-	}
-	
-	public Float calcularRecaudacionSinComisiones(){
-		//TODO
-		return (float) 0;
-	}
 	
 }

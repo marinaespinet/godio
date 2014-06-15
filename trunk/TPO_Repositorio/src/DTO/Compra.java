@@ -1,9 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Vector;
 
 
-public class Compra {
+public class Compra implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Integer compra_id;
 	private Proveedor compra_proveedor;
@@ -40,9 +42,6 @@ public class Compra {
 		this.items = items;
 	}
 	
-	public void agregarItems(Item_Compra item){
-		//TODO
-	}
 	
 	
 }

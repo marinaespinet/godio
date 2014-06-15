@@ -1,6 +1,10 @@
 package DTO;
 
-public class Tipo_Operacion {
+import java.io.Serializable;
+
+public class Tipo_Operacion implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer tipo_operacion_id;
 	private String nombre;
@@ -18,7 +22,4 @@ public class Tipo_Operacion {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
-	
 }

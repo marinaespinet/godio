@@ -1,6 +1,10 @@
 package DTO;
 
-public class Tipo_Caducidad {
+import java.io.Serializable;
+
+public class Tipo_Caducidad  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer tipo_caducidad_id;
 	private String name;

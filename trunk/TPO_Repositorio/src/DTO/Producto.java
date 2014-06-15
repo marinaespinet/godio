@@ -1,11 +1,24 @@
 package DTO;
 
-public class Producto {
+import java.io.Serializable;
+
+public class Producto  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer producto_id;
 	private String name;
 	private Integer producto_tipo_caducidad_id;
 	private Boolean puede_venta_ind;
+	
+	public Producto(String n, Integer id){
+		this.name=n;
+		this.producto_id=id;		
+	}
+	
+	public Producto(){
+		
+	}
 	
 	public Integer getProducto_id() {
 		return producto_id;
@@ -32,13 +45,5 @@ public class Producto {
 		this.puede_venta_ind = puede_venta_ind;
 	}
 	
-	public int verificarStock(){
-		//TODO
-		return 0;
-	}
-	
-	public void modificarStockProducto(Integer cantidad){
-		//TODO
-	}
 	
 }

@@ -1,6 +1,10 @@
 package DTO;
 
-public class Medio_Pago {
+import java.io.Serializable;
+
+public class Medio_Pago  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer medio_pago_id;
 	private String name;

@@ -1,6 +1,10 @@
 package DTO;
 
-public class Pago_Factura {
+import java.io.Serializable;
+
+public class Pago_Factura  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer pago_id;
 	private Factura pago_factura_id;
@@ -31,11 +35,6 @@ public class Pago_Factura {
 	}
 	public void setMonto_total(Float monto_total) {
 		this.monto_total = monto_total;
-	}
-	
-	public Boolean verificarPagoFactura(Factura factura){
-		//TODO
-		return true;
 	}
 	
 }

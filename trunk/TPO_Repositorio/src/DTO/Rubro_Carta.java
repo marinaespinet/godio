@@ -1,6 +1,10 @@
 package DTO;
 
-public class Rubro_Carta {
+import java.io.Serializable;
+
+public class Rubro_Carta  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer rubro_id;
 	private String name;

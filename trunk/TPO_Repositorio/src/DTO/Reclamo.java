@@ -2,7 +2,9 @@ package DTO;
 
 import java.io.Serializable;
 
-public class Reclamo implements Serializable {
+public class Reclamo  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private String platoNombre;
 	private Integer cantidadNoFacturar = 0;

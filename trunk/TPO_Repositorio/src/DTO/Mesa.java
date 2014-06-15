@@ -1,8 +1,11 @@
 package DTO;
+import java.io.Serializable;
 import java.util.Vector;
 
 
-public class Mesa {
+public class Mesa  implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 
 	private Integer mesa_id;
 	private Integer mesa_cd;
