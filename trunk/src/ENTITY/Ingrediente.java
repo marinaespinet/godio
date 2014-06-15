@@ -37,12 +37,4 @@ public class Ingrediente {
 		this.cantidad = cantidad;
 	}
 	
-	public Integer verificarDisponibilidadIngredientes(){
-		//TODO
-		return 0;
-	}
-	
-	public void modificarStockIngrediente(Integer cantidad){
-		//TODO
-	}
 }

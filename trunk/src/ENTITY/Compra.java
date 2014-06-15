@@ -55,11 +55,6 @@ public class Compra {
 	}
 	public void setItems(List<Item_Compra> items) {
 		this.items = items;
-	}
-	
-	public void agregarItems(Item_Compra item){
-		//TODO
-	}
-	
+	}	
 	
 }

@@ -51,9 +51,5 @@ public class Plato {
 		this.comision_extra_mozo = comision_extra_mozo;
 	}
 	
-	private Item_Carta obtenerPlatoAlternativo(){
-		//TODO
-		return null;
-	}
 	
 }

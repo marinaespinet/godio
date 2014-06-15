@@ -55,10 +55,4 @@ public class Item_Carta {
 		this.precio_monto = precio_monto;
 	}
 	
-	public Integer verificarDisponibilidad(){
-		
-		//TODO
-		return 0;
-	}
-	
 }

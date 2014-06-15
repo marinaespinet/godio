@@ -76,14 +76,20 @@ public class StockController  {
 		
 		//actualiza cantidad de stock en deposito ORIGEN
 		stk.setCantidad(stk.getCantidad() - cant);
-		StockDAO.getInstancia().grabarStock(stk);
+		if(stk != null) 
+			StockDAO.getInstancia().grabarStock(stk);
 		
 		//actualiza cantidad de stock en deposito DESTINO
 		stk = StockDAO.getInstancia().getStock(prodID, depoToID);
-		stk.setCantidad(stk.getCantidad() + cant);
-		StockDAO.getInstancia().grabarStock(stk);
+		if(stk != null) {
+			stk.setCantidad(stk.getCantidad() + cant);
+			StockDAO.getInstancia().grabarStock(stk);
+		} else 
+			throw new RestaurantException("Stock inexistente para el producto en el deposito destino.");
+		
 
 	}
+		
 	
 	public List<DTO.Stock> getStockPorDeposito(Integer depoID) throws RestaurantException{
 		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);

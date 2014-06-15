@@ -39,8 +39,5 @@ public class RecepcionCompra {
 		this.items = items;
 	}
 	
-	public void agregarItem(Item_Recepcion_Compra itemRecepcionCompra){
-		//TODO
-	}
 	
 }
