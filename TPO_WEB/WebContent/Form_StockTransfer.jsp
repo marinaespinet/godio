@@ -9,7 +9,7 @@
 <body>
 
 
-	<form action="Controlador?action=doStockTransfer">
+	<form class="formulario" action="Controller2?action=doStockTransfer" method="POST">
 	<table cellspacing="3" cellpadding="3" border="1" width="60%">	
 	<input type="hidden" name="id" value="1">
 	
@@ -42,8 +42,5 @@
 	</tr>
 	</table>
 	</form>
-	
-	
-	
 </body>
 </html>

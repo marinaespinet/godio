@@ -8,6 +8,6 @@
 </head>
 <body>
 	
-	<a href="Controlador?action=stockTransfer" target="_self">Transferencia Stock</a> 
+	<a href="Controller2?action=stockTransfer" target="_self">Transferencia Stock</a> 
 </body>
 </html>
