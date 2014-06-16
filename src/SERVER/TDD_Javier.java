@@ -19,8 +19,8 @@ public class TDD_Javier {
 		//unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
-		//unitTestLiquidarComisiones();
-		unitTestControlarMovimientoDeStock();
+		unitTestLiquidarComisiones();
+		//unitTestControlarMovimientoDeStock();
 	}
 	
 
