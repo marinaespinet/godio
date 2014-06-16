@@ -26,10 +26,8 @@ public class Login extends HttpServlet {
         
         String usuario = request.getParameter("usuario");
         String pass = request.getParameter("pass");
-        Boolean isAdm = false;
-
         
-        String resultPage="";
+        String resultPage="index";
         
         try {
 			if (BusinessDelegate.getInstancia().userLogin(usuario)){

@@ -96,6 +96,12 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return RestauranteController.getInstancia().getAreas();
 	}
 
+	@Override
+	public boolean userLogin(String user) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 	

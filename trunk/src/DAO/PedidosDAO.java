@@ -139,7 +139,7 @@ public class PedidosDAO {
 		
 				Session session = sf.openSession();
 				session.beginTransaction();
-				session.merge(aux);
+				session.saveOrUpdate(aux);
 				session.flush();
 				session.getTransaction().commit();
 				session.close();

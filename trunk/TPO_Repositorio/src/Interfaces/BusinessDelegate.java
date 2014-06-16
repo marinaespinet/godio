@@ -161,7 +161,7 @@ public class BusinessDelegate {
 	}
 
 
-	/*public List<DTO.Producto> getProductos() throws RemoteException {
+	public List<DTO.Producto> getProductos() throws RemoteException {
 		return ri.getProductos();
 	}
 	
@@ -169,9 +169,9 @@ public class BusinessDelegate {
 		return ri.getAreas();
 	}
 	
+
+	
 	public boolean userLogin(String user){
 		return true;
-	}
-	*/
-	
+	}	
 }

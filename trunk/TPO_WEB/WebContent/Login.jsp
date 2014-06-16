@@ -15,15 +15,13 @@
  <div class="cuerpo">
             <h3>Login</h3>
             <p>Por favor ingrese su usuario y password para ingresar al sistema</p>
-            <form class="formulario" action="Login" method="POST" onsubmit="return validarForm(this);">
+            <form class="formulario" action="Login" method="POST" >
                 <fieldset>
                     <legend>Ingreso</legend>                
                     <table>
                         <tr>
-                            <td id="usuario">CUIT:</td>
+                            <td id="usuario">Usuario</td>
                             <td><input type="TEXT" name="usuario"></td>
-                            <td>Administrador</td>
-                            <td> <input type="checkbox" name="isAdm" value="true" onclick="myFunction(this)" />
                         </tr>
                         <tr>
                             <td>Password:</td><td colspan="3"><input type="password" name="pass"></td>

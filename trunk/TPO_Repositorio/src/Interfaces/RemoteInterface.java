@@ -25,5 +25,11 @@ public interface RemoteInterface extends Remote {
 	
 	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(Integer depoID) throws RemoteException;
 
+
+	public List<DTO.Producto> getProductos() throws RemoteException;
+	
+	public List<DTO.Area> getAreas() throws RemoteException;
+		
+	public boolean userLogin(String user)  throws RemoteException;
 	
 }	
