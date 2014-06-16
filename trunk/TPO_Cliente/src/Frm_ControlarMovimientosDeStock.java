@@ -5,8 +5,9 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.BorderFactory;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -28,7 +29,7 @@ import Interfaces.BusinessDelegate;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
+public class Frm_ControlarMovimientosDeStock extends javax.swing.JFrame {
 
 	{
 		//Set Look & Feel
@@ -39,17 +40,14 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 		}
 	}
 
-	private JTextField jTextFieldDia;
 	private JTextField jTextFieldSucursal;
-	private JLabel jLabelYear;
-	private JTextField jTextFieldYear;
-	private JTextField jTextFieldNotificacion;
-	private JTextField jTextFieldMes;
+	private JTextField jTextFieldDepoId;
+	private JLabel jLabelIdDepo;
+	private JTextField jTextFieldResultados;
 	private JLabel jLabelMes;
 	private JButton jButtonLiquidar;
 	private JLabel jLabelSucursal;
 	private JLabel jLabelTitulo;
-	private JLabel jLabelIngreseFecha;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -57,14 +55,14 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Frm_LiquidarComisionesMozos inst = new Frm_LiquidarComisionesMozos();
+				Frm_ControlarMovimientosDeStock inst = new Frm_ControlarMovimientosDeStock();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public Frm_LiquidarComisionesMozos() {
+	public Frm_ControlarMovimientosDeStock() {
 		super();
 		initGUI();
 	}
@@ -73,23 +71,12 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Liquidar comisiones Mozos");
-			{
-				jTextFieldDia = new JTextField();
-				getContentPane().add(jTextFieldDia);
-				jTextFieldDia.setBounds(52, 62, 46, 23);
-			}
-			{
-				jLabelIngreseFecha = new JLabel();
-				getContentPane().add(jLabelIngreseFecha);
-				jLabelIngreseFecha.setText("Día: ");
-				jLabelIngreseFecha.setBounds(22, 63, 30, 20);
-			}
+			this.setTitle("Controlar movimientos de stock");
 			{
 				jLabelTitulo = new JLabel();
 				getContentPane().add(jLabelTitulo);
-				jLabelTitulo.setText("Liquidar comisiones Mozos");
-				jLabelTitulo.setBounds(26, 12, 200, 31);
+				jLabelTitulo.setText("Controlar movimientos de stock");
+				jLabelTitulo.setBounds(26, 12, 295, 31);
 				jLabelTitulo.setFont(new java.awt.Font("Segoe UI",1,14));
 			}
 			{
@@ -108,20 +95,21 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 			{
 				jButtonLiquidar = new JButton();
 				getContentPane().add(jButtonLiquidar);
-				jButtonLiquidar.setText("Liquidar");
-				jButtonLiquidar.setBounds(217, 147, 84, 35);
+				jButtonLiquidar.setText("Listar Movimientos");
+				jButtonLiquidar.setBounds(522, 140, 145, 34);
 				jButtonLiquidar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonLiquidar.actionPerformed, event="+evt);
-						Calendar unaFecha = Calendar.getInstance();
-						unaFecha.set(Calendar.YEAR,Integer.parseInt(jTextFieldYear.getText()));
-						unaFecha.set(Calendar.MONTH,Integer.parseInt(jTextFieldMes.getText())-1);
-						unaFecha.set(Calendar.DAY_OF_MONTH,Integer.parseInt(jTextFieldDia.getText()));
-						Date laFecha = new java.sql.Date(unaFecha.getTimeInMillis());
+
 						try {
-							BusinessDelegate.getInstancia().liquidarComisionesMozos(laFecha, Integer.parseInt(jTextFieldSucursal.getText()));
-							jTextFieldNotificacion.enable();
-							jTextFieldNotificacion.setText("Mozos liquidados correctamente");
+							List <DTO.Movimiento_Stock> movimientosStockSucursalDTO = BusinessDelegate.getInstancia().getMovimientosDeStockPorDeposito(1);
+							for(DTO.Movimiento_Stock unMovimiento : movimientosStockSucursalDTO){
+								jTextFieldResultados.setText("En la sucursal 1 se movieron " + unMovimiento.getCantidad() + " de " + unMovimiento.getProductoName() +  
+													" " + " desde el deposito " + unMovimiento.getDeposito_origenId() + 
+													" hacia el deposito " + unMovimiento.getDeposito_destinoId());
+							}
+							
+							
 						} catch (NumberFormatException | RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -132,37 +120,27 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 			{
 				jLabelMes = new JLabel();
 				getContentPane().add(jLabelMes);
-				jLabelMes.setText("Mes: ");
 				jLabelMes.setBounds(116, 65, 28, 16);
 			}
 			{
-				jTextFieldMes = new JTextField();
-				getContentPane().add(jTextFieldMes);
-				jTextFieldMes.setBounds(151, 62, 47, 23);
+				jTextFieldResultados = new JTextField();
+				getContentPane().add(jTextFieldResultados);
+				jTextFieldResultados.setBounds(26, 180, 644, 228);
+				jTextFieldResultados.setEditable(false);
 			}
 			{
-				jLabelYear = new JLabel();
-				getContentPane().add(jLabelYear);
-				jLabelYear.setText("Año: ");
-				jLabelYear.setBounds(210, 65, 28, 16);
+				jLabelIdDepo = new JLabel();
+				getContentPane().add(jLabelIdDepo);
+				jLabelIdDepo.setText("Deposito ID: ");
+				jLabelIdDepo.setBounds(26, 65, 67, 16);
 			}
 			{
-				jTextFieldYear = new JTextField();
-				getContentPane().add(jTextFieldYear);
-				jTextFieldYear.setBounds(243, 62, 58, 23);
-			}
-			{
-				jTextFieldNotificacion = new JTextField();
-				getContentPane().add(jTextFieldNotificacion);
-				jTextFieldNotificacion.setBounds(26, 158, 176, 23);
-				jTextFieldNotificacion.setEditable(false);
-				jTextFieldNotificacion.setEnabled(false);
-				jTextFieldNotificacion.setBorder(BorderFactory.createCompoundBorder(
-						null, 
-						null));
+				jTextFieldDepoId = new JTextField();
+				getContentPane().add(jTextFieldDepoId);
+				jTextFieldDepoId.setBounds(116, 62, 41, 23);
 			}
 			pack();
-			this.setSize(345, 231);
+			this.setSize(707, 465);
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
