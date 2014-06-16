@@ -29,7 +29,7 @@ public class Factura {
 	private Date fecha_factura_dt;
 	
 	@ManyToOne
-	@JoinColumn(name="FACTURA_PEDIDO_MESA_ID")
+	@JoinColumn(name="FACTURA_MESA_ID")
 	private Pedido pedido;
 	
 	@ManyToOne
