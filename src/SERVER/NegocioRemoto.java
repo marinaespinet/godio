@@ -2,20 +2,16 @@ package SERVER;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-
 import java.util.List;
 import java.sql.Date;
-
 import java.sql.Date;
 import java.util.List;
 
 import BUSINESS.ProductosController;
 import BUSINESS.RestauranteController;
-
 import BUSINESS.CajaController;
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
-
 import BUSINESS.StockController;
 import Exceptions.RestaurantException;
 
@@ -88,11 +84,6 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return StockController.getInstancia().getMovimientosDeStockPorDeposito(depoID);
 		
 	}
-	
-	
-	
-	
-	
 	
 	
 	
