@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.BorderFactory;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -42,6 +43,7 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 	private JTextField jTextFieldSucursal;
 	private JLabel jLabelYear;
 	private JTextField jTextFieldYear;
+	private JTextField jTextFieldNotificacion;
 	private JTextField jTextFieldMes;
 	private JLabel jLabelMes;
 	private JButton jButtonLiquidar;
@@ -118,6 +120,7 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 						Date laFecha = new java.sql.Date(unaFecha.getTimeInMillis());
 						try {
 							BusinessDelegate.getInstancia().liquidarComisionesMozos(laFecha, Integer.parseInt(jTextFieldSucursal.getText()));
+							jTextFieldNotificacion.setText("Mozos liquidados correctamente");
 						} catch (NumberFormatException | RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -146,6 +149,16 @@ public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 				jTextFieldYear = new JTextField();
 				getContentPane().add(jTextFieldYear);
 				jTextFieldYear.setBounds(243, 62, 58, 23);
+			}
+			{
+				jTextFieldNotificacion = new JTextField();
+				getContentPane().add(jTextFieldNotificacion);
+				jTextFieldNotificacion.setBounds(26, 158, 176, 23);
+				jTextFieldNotificacion.setEditable(false);
+				jTextFieldNotificacion.setEnabled(false);
+				jTextFieldNotificacion.setBorder(BorderFactory.createCompoundBorder(
+						null, 
+						null));
 			}
 			pack();
 			this.setSize(345, 231);
