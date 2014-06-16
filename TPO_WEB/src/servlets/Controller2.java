@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,10 +60,10 @@ public class Controller2 extends HttpServlet {
         		request.setAttribute("message", "Transferencia de Stock satisfactoria");
         		request.setAttribute("goTo", "index.jsp");		    
         		jspPage = "/Success.jsp";   
-        	} catch (RestaurantException re) {        
-        		request.setAttribute("message", "Transferencia de Stock satisfactoria");
+        	} catch (RemoteException re) {        
+        		request.setAttribute("message",re.getMessage());
         		request.setAttribute("goTo", "index.jsp");		    
-        		jspPage = "/Success.jsp";   
+        		jspPage = "/Error.jsp";   
         	}
           }
           else if ("FormStockTransfer".equals(action))
