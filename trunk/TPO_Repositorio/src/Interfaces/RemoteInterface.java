@@ -24,5 +24,6 @@ public interface RemoteInterface extends Remote {
 	public void liquidarComisionesMozos(Date diaLiquidado, Integer sucID) throws RemoteException;	
 	
 	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(Integer depoID) throws RemoteException;
+
 	
 }	
