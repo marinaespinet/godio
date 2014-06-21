@@ -7,7 +7,7 @@
 <title>MENU PRINCIPAL</title>
 </head>
 <body>
-	
+	 <%@include file="./Menu.jsp"%>
 	<a href="./Menu.jsp" target="_self">Menu</a>
 	<a href="Controller2?action=FormStockTransfer" target="_self">Transferencia Stock</a>
 	<a href="./Login.jsp" target="_self">Login</a>  
