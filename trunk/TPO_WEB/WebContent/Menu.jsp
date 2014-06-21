@@ -2,17 +2,17 @@
 <%@ page import=" java.util.*" %>
 <%  
     
-    String usuario = (String)session.getAttribute("usuario");    
+    Integer loginId = (Integer)session.getAttribute("loginId");    
     HashMap<String,HashMap<String,String>> menus = new HashMap<String,HashMap<String,String>>();
     HashMap<String,String> submmenus;
  %>
     <ul id="menu">
  <%
-    if ( usuario != null && usuario != "") {
+    if ( loginId != -1 && loginId != 0) {
  %>
         <li><a href="index.jsp">Inicio</a></li>
- <%     Boolean isAdm = (Boolean)session.getAttribute("isAdmin");        
-        if (isAdm){
+ <%          
+        
             submmenus = new HashMap<String,String>();
             submmenus.put("Pedido Stock", "Form_StockTransfer");            
             menus.put("Stock ", submmenus);
@@ -20,7 +20,7 @@
             submmenus = new HashMap<String,String>();
             submmenus.put("Abrir Mesa", "FormAbrirMesa");
             menus.put("Mesas", submmenus);
-        } else {                     
+                             
         	submmenus = new HashMap<String,String>();
             submmenus.put("Cerrar Mesa", "FormCompra");            
             menus.put("Mesas", submmenus);
@@ -28,8 +28,7 @@
             submmenus = new HashMap<String,String>();
             submmenus.put("Nuevo Plan", "FormPlanProd");
             menus.put("Plan Produccion", submmenus);
-        }
-        
+                
         for( Iterator itMenu = menus.keySet().iterator(); itMenu.hasNext();) { 
             String menuName = (String)itMenu.next();
             HashMap sub = (HashMap)menus.get(menuName);            

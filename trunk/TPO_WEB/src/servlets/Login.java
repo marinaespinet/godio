@@ -30,10 +30,11 @@ public class Login extends HttpServlet {
         String resultPage="index";
         
         try {
-			if (BusinessDelegate.getInstancia().userLogin(usuario)){
-			    resultPage = "/inicio.jsp";
+        	Integer loginId = BusinessDelegate.getInstancia().userLogin(usuario);
+			if ( loginId != -1){
+			    resultPage = "/index.jsp";
 			    HttpSession session = request.getSession();
-			    session.setAttribute("usuario", usuario);			    
+			    session.setAttribute("loginId", loginId);			    
 			}
 			else {
 			    resultPage = "/Error.jsp";
