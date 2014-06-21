@@ -52,4 +52,11 @@ public class ProductosDAO {
 		session.close();
 		return prod;
 	}
+	
+	public List<Semielaborado> getSemielaborados(){
+		Session session = sf.openSession();
+		List<Semielaborado> prod = (List<Semielaborado>)session.createQuery("FROM Semielaborado s Order by Name").list();
+		session.close();
+		return prod;
+	}
 }

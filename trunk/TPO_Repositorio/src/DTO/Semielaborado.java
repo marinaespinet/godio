@@ -14,7 +14,7 @@ public class Semielaborado extends Producto  implements Serializable {
 	private Vector<Insumo_Semielaborado>insumos;
 	
 	
-		public Semielaborado(String n, Integer id) {
+	public Semielaborado(String n, Integer id) {
 		super(n, id);
 		// TODO Auto-generated constructor stub
 	}

@@ -32,7 +32,8 @@
 
 
 <%
-		List<DTO.Producto> productos=  BusinessDelegate.getInstancia().getProductos();	
+		//List<DTO.Producto> productos=  BusinessDelegate.getInstancia().getProductos();
+		List<DTO.Semielaborado> semis=  BusinessDelegate.getInstancia().getSemielaborados();	
 %>
 
 	<form class="formulario" id="formulario" action="Controller2?action=doStockTransfer" method="POST"
@@ -40,15 +41,12 @@
 	<table cellspacing="3" cellpadding="3" border="1" width="60%">	
 	<input type="hidden" name="id" value="1">
 	
-	<tr>
-		<td><b>Producto:</b> 
-	  <td>	  
-	<tr>
-			<td><b>Area Id:</b> 
+
+	<td><b>Producto:</b> 
 		  <td>
 		  	  <select name="prod" form="formulario">
-		  	<%for(Producto prod: productos) {  %>
-			  <option value="<%=prod.getProducto_id() %>"><%=prod.getName()%></option>
+		  	<%for(Semielaborado semi: semis) {  %>
+			  <option value="<%=semi.getProducto_id() %>"><%=semi.getName()%></option>
 		 <% } %>
 		</select>
 		  
