@@ -32,6 +32,13 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		StockController.getInstancia().transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);
 		
 	}
+	@Override
+	public void transferenciaStockByLoginId(Integer prodID, Integer loginID,
+			 String motivo, Integer cant,
+			String lote) throws RemoteException {
+		// TODO Auto-generated method stub
+		StockController.getInstancia().transferenciaStockByLoginId(prodID, loginID, motivo, cant, lote);		
+	}
 	
 	//TODO: Agregar todos los metodos de TODOS los CONTROLLERS
 	

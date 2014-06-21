@@ -3,6 +3,9 @@
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+<%@include file="./CheckLogin.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,10 +30,9 @@
 </head>
 <body>
 
+
 <%
-	//List<DTO.Producto> productos =  BusinessDelegate.getInstancia().getProductos();
-		List<DTO.Area> areas =  BusinessDelegate.getInstancia().getAreas();
-	
+		List<DTO.Producto> productos=  BusinessDelegate.getInstancia().getProductos();	
 %>
 
 	<form class="formulario" id="formulario" action="Controller2?action=doStockTransfer" method="POST"
@@ -39,26 +41,24 @@
 	<input type="hidden" name="id" value="1">
 	
 	<tr>
-		<td><b>Prod Id:</b> 
+		<td><b>Producto:</b> 
 	  <td>	  
-		<input type="text" size="4" name="prod" value="1">
+	<tr>
+			<td><b>Area Id:</b> 
+		  <td>
+		  	  <select name="prod" form="formulario">
+		  	<%for(Producto prod: productos) {  %>
+			  <option value="<%=prod.getProducto_id() %>"><%=prod.getName()%></option>
+		 <% } %>
+		</select>
+		  
+		  </td>
+		</tr>
+		
+	
 	  </td>
 	</tr>
-	<tr>
-		<td><b>Area Id:</b> 
-	  <td>
-	  	  <select name="area" form="formulario">
-	  	<%for(DTO.Area area: areas) {  %>
-		  <option value="<%=area.getArea_id() %>"><%=area.getName()%></option>
-	 <% } %>
-	</select>
-	  
-	  </td>
-	</tr>
-	<tr>
-		<td><b>Suc Id:</b> 
-	  <td><input type="text" size="4" name="suc" value="1"></td>
-	</tr>
+
 	<tr>
 		<td><b>Motivo:</b> 
 	  <td><input type="text" size="50" name="motivo" value="motivo test"></td>

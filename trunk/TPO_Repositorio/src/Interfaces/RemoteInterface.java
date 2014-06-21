@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface RemoteInterface extends Remote {
 
-	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) 
-				throws RemoteException;
+	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote)  throws RemoteException;
+	public void transferenciaStockByLoginId(Integer prodID, Integer loginID, String motivo, Integer cant, String lote)  throws RemoteException;		
 	
 	public List<DTO.Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RemoteException;
 	

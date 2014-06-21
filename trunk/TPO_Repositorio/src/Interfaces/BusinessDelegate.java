@@ -42,9 +42,12 @@ public class BusinessDelegate {
 	
 	//TODO: Aqui van los metodos que llaman al SERVER
 	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID, Integer areaId, Integer sucID, String motivo, Integer cant, String lote) throws RemoteException{
-			ri.transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);
-					
+			ri.transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);					
 	}
+	public void transferenciaStockByLoginId(Integer prodID, Integer loginID, String motivo, Integer cant, String lote) throws RemoteException{
+		ri.transferenciaStockByLoginId(prodID, loginID, motivo, cant, lote);					
+}
+	
 	
 	public List<DTO.Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RemoteException{
 		

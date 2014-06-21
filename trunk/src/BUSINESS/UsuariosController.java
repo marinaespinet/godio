@@ -34,4 +34,17 @@ public class UsuariosController {
 		log.setFecha_logout_dt(BUSINESS.RestauranteController.getInstancia().getTodayDate());
 		DAO.LoginDAO.getInstancia().grabarLogin(log);
 	}
+	
+	public Usuario getLogedUser(Integer loginId) throws RestaurantException{
+		Login log = DAO.LoginDAO.getInstancia().getLogin(loginId);
+		
+		if(log==null)
+			{ throw new RestaurantException("Login id  "+loginId.toString()+ " inexistente.");}
+		
+		Usuario user = log.getUser();
+		if(user==null)
+			{ throw new RestaurantException("Usuario logueado es inexistente.");}
+		
+		return user;				
+	}
 }

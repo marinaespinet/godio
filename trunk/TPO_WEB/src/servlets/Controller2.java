@@ -45,6 +45,12 @@ public class Controller2 extends HttpServlet {
           {
 
         	try{	        		    
+        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		if(loginId == null ) loginId = 0;
+
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");}
+        	    	
         		//TODO: Validaciones aqui y en el Form .JSP con javascript 
         		Integer prod = Integer.parseInt(request.getParameter("prod"));
         		Integer area = Integer.parseInt(request.getParameter("area"));
@@ -53,13 +59,18 @@ public class Controller2 extends HttpServlet {
         		String lote = request.getParameter("lote");
         		Integer cant = Integer.parseInt(request.getParameter("cant"));
         		
-        		BusinessDelegate.getInstancia().transferenciaStockByAreaSuc( 
-        				prod, 1, area, suc,
+        		BusinessDelegate.getInstancia().transferenciaStockByLoginId( 
+        				prod, loginId, 
         				motivo, cant, lote);
         		
         		request.setAttribute("message", "Transferencia de Stock satisfactoria");
         		request.setAttribute("goTo", "index.jsp");		    
         		jspPage = "/Success.jsp";   
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+
         	} catch (RemoteException re) {        
         		request.setAttribute("message",re.getMessage());
         		request.setAttribute("goTo", "index.jsp");		    

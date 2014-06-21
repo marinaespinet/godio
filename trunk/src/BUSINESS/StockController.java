@@ -35,7 +35,16 @@ public class StockController  {
 		
 		transferenciaStock(prodID, loginID, depoFrom.getDeposito_id(), depoTo.getDeposito_id(), motivo, cant, lote);
 	}
+
+	public void transferenciaStockByLoginId(Integer prodID, Integer loginID, String motivo, Integer cant, String lote) throws RestaurantException{
+		Usuario user = UsuariosController.getInstancia().getLogedUser(loginID);
 		
+
+		Deposito depoTo = LocationDAO.getInstancia().getDepositoPorAreaSucursal(user.getArea().getArea_id(), user.getSucursal().getSucursal_id());
+		Deposito depoFrom = LocationDAO.getInstancia().getDepositoPorAreaSucursal( user.getSucursal().getSucursal_id(), "Deposito");		
+		
+		transferenciaStock(prodID, loginID, depoFrom.getDeposito_id(), depoTo.getDeposito_id(), motivo, cant, lote);
+	}
 	
 	public void transferenciaStock(Integer prodID, Integer loginID, Integer depoFromID, Integer depoToID, String motivo, Integer cant, String lote) throws RestaurantException{				
 				
