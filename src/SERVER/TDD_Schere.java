@@ -26,7 +26,21 @@ public class TDD_Schere {
 		//unitTestCerrarMesa();
 		//unitTestCheckStock();
 		//unitTestTransferStock();
-		unitTestAddStock();
+		//unitTestAddStock();
+		unitTestLogin();
+	}
+	
+	private static void unitTestLogin() throws RestaurantException{
+		System.out.print("Test LOGIN: ");
+		Integer id =UsuariosController.getInstancia().tryLogin("PEPE", "1234");
+		if(id==-1) {
+			System.out.print("User or pass inexistente.");
+		} else {
+		System.out.print("LOGIN id= " + id.toString());
+		System.out.print("Test LOGIN OK: ");
+		
+		UsuariosController.getInstancia().logout(id);
+		}
 	}
 	
 	private static void unitTestUpdateEstadoInsumo(){
@@ -126,12 +140,12 @@ public class TDD_Schere {
 		
 	}
 	
-	public static boolean unitTestLogin(){
+	public static boolean unitTestLogin2(){
 		System.out.print("Test LOGIN: ");
 		Login log = new Login();
 		Usuario usu = UsuariosDAO.getInstancia().getUsuario("Cajero1");
 		log.setUser(usu);
-		LoginDAO.getInstancia().grabarLogin(log);
+		//LoginDAO.getInstancia().grabarLogin(log);
 		
 		System.out.println("OK");
 		return true;

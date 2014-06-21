@@ -19,13 +19,15 @@ public class LoginDAO {
 		return instancia;
 	}
 	
-	public void grabarLogin(Login aux){				
+	public Integer grabarLogin(Login aux){				
 		Session session = sf.openSession();
 		
-		session.persist(aux);
+		session.saveOrUpdate(aux);
 			
 		session.flush();
 		session.close();
+		
+		return aux.getLogin_id();
 	}
 	
 	public Login getLogin(Integer id)

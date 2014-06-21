@@ -171,7 +171,7 @@ public class BusinessDelegate {
 	
 
 	
-	public boolean userLogin(String user){
-		return true;
+	public Integer userLogin(String user) throws RemoteException{		
+		return ri.userLogin(user);
 	}	
 }

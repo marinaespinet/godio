@@ -13,6 +13,7 @@ import BUSINESS.CajaController;
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
 import BUSINESS.StockController;
+import BUSINESS.UsuariosController;
 import Exceptions.RestaurantException;
 
 public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.RemoteInterface {
@@ -97,13 +98,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	}
 
 	@Override
-	public boolean userLogin(String user) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public Integer userLogin(String user) throws RemoteException {
+		return UsuariosController.getInstancia().tryLogin(user, "1234");
 	}
-
-	
-
-	
-
 }

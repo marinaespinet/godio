@@ -9,6 +9,15 @@ public class Usuario {
 	@GeneratedValue
 	private Integer user_id;
 	private String user_name;
+	private String user_password;
+	
+	@OneToOne
+	@JoinColumn(name="user_area_id")
+	private Area area; 
+	
+	@OneToOne
+	@JoinColumn(name="user_sucursal_id")
+	private Sucursal sucursal; 
 	
 	@ManyToOne()
 	@JoinColumn(name="user_role_id")
@@ -31,6 +40,24 @@ public class Usuario {
 	}
 	public void setUser_rol(Rol user_rol) {
 		this.user_rol = user_rol;
+	}
+	public String getUser_password() {
+		return user_password;
+	}
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
+	}
+	public Area getArea() {
+		return area;
+	}
+	public void setArea(Area area) {
+		this.area = area;
+	}
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
 	}
 	
 	
