@@ -167,6 +167,9 @@ public class BusinessDelegate {
 	public List<DTO.Producto> getProductos() throws RemoteException {
 		return ri.getProductos();
 	}
+	public List<DTO.Semielaborado> getSemielaborados() throws RemoteException {
+		return ri.getSemielaborados();
+	}
 	
 	public List<DTO.Area> getAreas() throws RemoteException {
 		return ri.getAreas();

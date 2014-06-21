@@ -27,6 +27,7 @@ public interface RemoteInterface extends Remote {
 
 
 	public List<DTO.Producto> getProductos() throws RemoteException;
+	public List<DTO.Semielaborado> getSemielaborados() throws RemoteException;
 	
 	public List<DTO.Area> getAreas() throws RemoteException;
 			

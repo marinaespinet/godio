@@ -34,5 +34,13 @@ public class ProductosController {
 		
 		return productos;
 	}
-	
+
+	public List<DTO.Semielaborado> getSemielaborados(){
+		List<DTO.Semielaborado> semielaborados = new ArrayList<DTO.Semielaborado>();
+		
+		for(Semielaborado semi : DAO.ProductosDAO.getInstancia().getSemielaborados())
+			semielaborados.add(new DTO.Semielaborado(semi.getName(), semi.getSemielaborado_id()));
+		
+		return semielaborados;
+	}
 }

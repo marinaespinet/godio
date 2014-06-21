@@ -99,6 +99,9 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	public List<DTO.Producto> getProductos() throws RemoteException {
 		return ProductosController.getInstancia().getProductos();
 	}	
+	public List<DTO.Semielaborado> getSemielaborados() throws RemoteException {
+		return ProductosController.getInstancia().getSemielaborados();
+	}	
 	
 	public List<DTO.Area> getAreas() throws RemoteException {
 		return RestauranteController.getInstancia().getAreas();
@@ -106,6 +109,6 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 
 	@Override
 	public Integer userLogin(String user) throws RemoteException {
-		return UsuariosController.getInstancia().tryLogin(user, "1234");
+		return UsuariosController.getInstancia().tryLogin(user, "");
 	}
 }
