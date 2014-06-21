@@ -20,12 +20,9 @@ public class UsuariosDAO {
 		return instancia;
 	}
 	
-	public void grabarUsuario(Usuario aux){
-				
-		Session session = sf.openSession();
-		
-		session.persist(aux);
-		
+	public void grabarUsuario(Usuario aux){				
+		Session session = sf.openSession();		
+		session.saveOrUpdate(aux);		
 		session.close();
 	}
 
@@ -62,6 +59,13 @@ public class UsuariosDAO {
 
 		//Si el name no existe devuelve null.
 		return usu;
+	}
+	
+	public Integer addLogin(Login log){
+		Session session = sf.openSession();		
+		session.saveOrUpdate(log);		
+		session.close();
+		return log.getLogin_id();
 	}
 
 }

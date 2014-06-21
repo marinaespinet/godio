@@ -103,6 +103,10 @@ public class RestauranteController {
 		return laFecha;
 	}
 
+	public java.sql.Date getTodayDate(){						
+		return new java.sql.Date(Calendar.getInstance().getTimeInMillis());		
+	}
+	
 
 	public DTO.Login getLoginDTO(ENTITY.Login loginEnt) {
 		DTO.Login unLoginDTO = new DTO.Login();

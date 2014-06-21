@@ -11,11 +11,14 @@ public class Login {
 	@Id
 	@GeneratedValue
 	private Integer login_id;
+	
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="user_id")	
 	private Usuario user;
+	
 	@Column(insertable=false)
 	private Date fecha_login_dt;
+	
 	private Date fecha_logout_dt;
 	
 	public Integer getLogin_id() {
