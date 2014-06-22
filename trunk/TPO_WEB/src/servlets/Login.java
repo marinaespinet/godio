@@ -33,14 +33,13 @@ public class Login extends HttpServlet {
         String usuario = request.getParameter("usuario");
         String pass = request.getParameter("pass");
         
-        String resultPage="index";
+        String resultPage="index.jsp";
         
         try {
         	Integer loginId = BusinessDelegate.getInstancia().userLogin(usuario);
 			if ( loginId != -1){
 			    resultPage = "/index.jsp";
-			    HttpSession session = request.getSession();
-			    session.setAttribute("loginId", loginId);	
+			    request.getSession().setAttribute("loginId", loginId);	
 			    			    
 			    response.addCookie(new Cookie("lastUserLogin",usuario));
 			}
