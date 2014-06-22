@@ -31,6 +31,16 @@ import Interfaces.BusinessDelegate;
 */
 public class Frm_ControlarMovimientosDeStock extends javax.swing.JFrame {
 
+	private static Frm_ControlarMovimientosDeStock instancia = null;
+	
+	public static Frm_ControlarMovimientosDeStock getInstancia(){
+		if(instancia == null){			
+			instancia = new Frm_ControlarMovimientosDeStock();
+		} 
+		return instancia;
+	}
+	
+	
 	{
 		//Set Look & Feel
 		try {
