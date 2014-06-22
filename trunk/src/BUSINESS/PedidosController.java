@@ -209,8 +209,7 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 	public void marcarItemPedidoPreparado(List<Item_Pedido> losItemsPedidoPendientesDTO) {
 		for(DTO.Item_Pedido unItem : losItemsPedidoPendientesDTO){
 			ENTITY.Item_Pedido elItem = PedidosDAO.getInstancia().getItemPedidoPorId(unItem.getItem_id());
-			elItem.getEstado().setEstado_id(unItem.getEstado_id());
-			elItem.getEstado().setEstado_name(unItem.getEstado_name());
+			elItem.getEstado().setEstado_id(2);  //2=EntregadoB
 			PedidosDAO.getInstancia().updateItemPedido(elItem);
 		}
 		

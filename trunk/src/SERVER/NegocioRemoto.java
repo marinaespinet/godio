@@ -113,7 +113,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return UsuariosController.getInstancia().tryLogin(user, "");
 	}
 	
-	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RemoteException{
+	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RestaurantException{
 		return ProduccionController.getInstancia().addTareaPlanProduccion(semiID, cant, loginID);
 	}
 

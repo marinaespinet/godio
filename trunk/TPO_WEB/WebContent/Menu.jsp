@@ -21,8 +21,8 @@
             menus.put("Mesas", submmenus);
                              
         	submmenus = new HashMap<String,String>();
-            submmenus.put("Cerrar Mesa", "FormCerrarMesa.jsp");            
-            menus.put("Mesas", submmenus);
+            submmenus.put("Platos Comandas", "Form_PanelPlatos.jsp");            
+            menus.put("Comandas", submmenus);
               
             submmenus = new HashMap<String,String>();
             submmenus.put("Nuevo Plan", "FormPlanProd.jsp");
