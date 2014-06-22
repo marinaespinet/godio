@@ -43,14 +43,14 @@ public class Controller2 extends HttpServlet {
           }
           else if ("doStockTransfer".equals(action))
           {
-
-        	try{	        		    
-        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        	  Integer loginId = (Integer)request.getAttribute("loginId");  
         		if(loginId == null ) loginId = 0;
 
         	    if ( loginId == -1 || loginId == 0) {
-        	    	response.sendRedirect("./Login.jsp");}
-        	    	
+        	    	response.sendRedirect("./Login.jsp");
+        	    }
+        	    
+        	try{	        		            	    	
         		//TODO: Validaciones aqui y en el Form .JSP con javascript 
         		Integer prod = Integer.parseInt(request.getParameter("prod"));
         		Integer area = Integer.parseInt(request.getParameter("area"));
@@ -84,6 +84,36 @@ public class Controller2 extends HttpServlet {
               //request.setAttribute("cliente", cliente);
           	
               jspPage = "/Form_StockTransfer.jsp";            
+          }         
+          else if ("doPlanProd".equals(action))
+          {
+        	  Integer loginId = (Integer)request.getAttribute("loginId");  
+      		if(loginId == null ) loginId = 0;
+
+      	    if ( loginId == -1 || loginId == 0) {
+      	    	response.sendRedirect("./Login.jsp");
+      	    }
+      	    
+             	try{	        		                	            	    	
+            		//TODO: Validaciones aqui y en el Form .JSP con javascript 
+            		Integer semi = Integer.parseInt(request.getParameter("semi"));
+            		Integer cant = Integer.parseInt(request.getParameter("cant"));
+            		
+            		BusinessDelegate.getInstancia().addTareaPlanProduccion(semi, cant, loginId);
+            		
+            		request.setAttribute("message", "Agregado de tarea al Plan en forma satisfactoria");
+            		request.setAttribute("goTo", "index.jsp");		    
+            		jspPage = "/Success.jsp";   
+            	} catch (RestaurantException re) {        
+            		request.setAttribute("message",re.getMessage());
+            		request.setAttribute("goTo", "index.jsp");		    
+            		jspPage = "/Error.jsp";   
+
+            	} catch (RemoteException re) {        
+            		request.setAttribute("message",re.getMessage());
+            		request.setAttribute("goTo", "index.jsp");		    
+            		jspPage = "/Error.jsp";   
+            	}          
           }
 
           dispatch(jspPage, request, response);
