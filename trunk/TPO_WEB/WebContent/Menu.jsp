@@ -1,10 +1,7 @@
 
 <%@ page import=" java.util.*" %>
-<%  
-    
-    Integer loginId = (Integer)session.getAttribute("loginId");  
-	if(loginId == null ) loginId = 0;
-
+<%@include file="./CheckLogin.jsp"%>
+<%      
     HashMap<String,HashMap<String,String>> menus = new HashMap<String,HashMap<String,String>>();
     HashMap<String,String> submmenus;
  %>

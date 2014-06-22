@@ -17,6 +17,19 @@ public class ProduccionController {
 		return instancia;
 	}
 	
+	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID) throws RestaurantException{
+		Usuario user = UsuariosController.getInstancia().getLogedUser(loginID);
+		Integer sucID = user.getSucursal().getSucursal_id();
+		
+		List<DTO.Item_Plan_Produccion> items = new ArrayList<DTO.Item_Plan_Produccion>();  
+		DTO.Item_Plan_Produccion it = new DTO.Item_Plan_Produccion();
+		it.setCantidad(cant);
+		it.setSucursalID(sucID);
+		it.setSemielaboradoID(semiID);
+		items.add(it);
+
+		return true;
+	}
 	//nro sucursal, codigo semielaborado y cantidad
 	
 	public int addTareasPlanProduccion(List<DTO.Item_Plan_Produccion> tareas) throws RestaurantException{

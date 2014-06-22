@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,10 +8,6 @@
 <title>MENU PRINCIPAL</title>
 </head>
 <body>
-	<%@include file="./Menu.jsp"%>
-	
-	<a href="./Menu.jsp" target="_self">Menu</a>
-	<a href="Controller2?action=FormStockTransfer" target="_self">Transferencia Stock</a>
-	<a href="./Login.jsp" target="_self">Login</a>  
+	<%@include file="./Menu.jsp"%> 
 </body>
 </html>

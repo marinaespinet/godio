@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.Date;
 import java.util.List;
 
+import BUSINESS.ProduccionController;
 import BUSINESS.ProductosController;
 import BUSINESS.RestauranteController;
 import BUSINESS.CajaController;
@@ -111,4 +112,9 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	public Integer userLogin(String user) throws RemoteException {
 		return UsuariosController.getInstancia().tryLogin(user, "");
 	}
+	
+	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RemoteException{
+		return ProduccionController.getInstancia().addTareaPlanProduccion(semiID, cant, loginID);
+	}
+
 }

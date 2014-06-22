@@ -179,5 +179,10 @@ public class BusinessDelegate {
 	
 	public Integer userLogin(String user) throws RemoteException{		
 		return ri.userLogin(user);
-	}	
+	}
+	
+	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RemoteException{
+		return ri.addTareaPlanProduccion(semiID, cant, loginID);
+	}
+	
 }

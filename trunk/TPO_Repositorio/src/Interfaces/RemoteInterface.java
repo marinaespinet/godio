@@ -33,4 +33,6 @@ public interface RemoteInterface extends Remote {
 			
 	public Integer userLogin(String user)  throws RemoteException;
 	
+	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RemoteException; 
+	
 }	
