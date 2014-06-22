@@ -40,13 +40,14 @@
 			<%=item.getCantidad() %></a>
 		</td>	
 		<td>
-			<a href="Controller2?action=doSetPlatoListo&itemPedidoID=<%=item.getItem_id()%>" target="_self">Listo</a>
+			<a href="Controller3?action=doSetPlatoListo&itemPedidoID=<%=item.getItem_id()%>" target="_self">Listo</a>
 		</td>	
 	</tr>
 <% }  %>
 </table>	
-	
-	 
+	<P>
+	<p>
+	 <a href="index.jsp" target="_self">volver</a> 
   
   
 </body>

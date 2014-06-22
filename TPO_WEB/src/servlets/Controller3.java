@@ -2,6 +2,8 @@ package servlets;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,13 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DTO.Item_Pedido;
 import Exceptions.RestaurantException;
 import Interfaces.*;
 
 /**
  * Servlet implementation class Controller2
  */
-@WebServlet("/Controller2")
+@WebServlet("/Controller3")
 public class Controller3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,7 +56,12 @@ public class Controller3 extends HttpServlet {
         	    
         	    Integer idItem = Integer.parseInt(request.getParameter("itemPedidoID"));
         	    	
-        	//    BusinessDelegate.getInstancia().marcarItemPedidoPreparado(idItem);
+        	    List<DTO.Item_Pedido> items =  new ArrayList<DTO.Item_Pedido>();
+        	    DTO.Item_Pedido it = new Item_Pedido();
+        	    it.setItem_id(idItem);
+        	    items.add(it);
+        	    
+        	   BusinessDelegate.getInstancia().marcarItemPedidoPreparado(items);
         		
         		jspPage = "./Form_PanelPlatos.jsp";   
         	} catch (RestaurantException re) {        

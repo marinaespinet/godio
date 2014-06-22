@@ -86,8 +86,13 @@ public class PlanProduccionDAO {
 				+ "").setInteger("suc",sucursalID).setFirstResult(0).setMaxResults(1).uniqueResult();
 		session.close();
 		Double[] valores = new Double[2];
-		valores[0] = (Double)datos[0];
-		valores[1] = ((Long)datos[1]).doubleValue();
+		if(datos[0] == null || datos[1] == null) {
+			valores[0] = 0D;
+			valores[1] = 0D;
+		} else {
+			valores[0] = (Double)datos[0];
+			valores[1] = ((Long)datos[1]).doubleValue();
+		}
 		
 		return valores;
 	}
