@@ -43,18 +43,17 @@ public class Controller2 extends HttpServlet {
           }
           else if ("doStockTransfer".equals(action))
           {
-        	  Integer loginId = (Integer)request.getAttribute("loginId");  
+        	    Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
         		if(loginId == null ) loginId = 0;
 
         	    if ( loginId == -1 || loginId == 0) {
         	    	response.sendRedirect("./Login.jsp");
+        	    	return;
         	    }
         	    
         	try{	        		            	    	
         		//TODO: Validaciones aqui y en el Form .JSP con javascript 
         		Integer prod = Integer.parseInt(request.getParameter("prod"));
-        		Integer area = Integer.parseInt(request.getParameter("area"));
-        		Integer suc = Integer.parseInt(request.getParameter("suc"));
         		String motivo = request.getParameter("motivo");
         		String lote = request.getParameter("lote");
         		Integer cant = Integer.parseInt(request.getParameter("cant"));
@@ -87,12 +86,13 @@ public class Controller2 extends HttpServlet {
           }         
           else if ("doPlanProd".equals(action))
           {
-        	  Integer loginId = (Integer)request.getAttribute("loginId");  
-      		if(loginId == null ) loginId = 0;
+        	    Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		if(loginId == null ) loginId = 0;
 
-      	    if ( loginId == -1 || loginId == 0) {
-      	    	response.sendRedirect("./Login.jsp");
-      	    }
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");
+        	    	return;
+        	    }
       	    
              	try{	        		                	            	    	
             		//TODO: Validaciones aqui y en el Form .JSP con javascript 

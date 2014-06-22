@@ -27,7 +27,7 @@ public class ProduccionController {
 		it.setSucursalID(sucID);
 		it.setSemielaboradoID(semiID);
 		items.add(it);
-
+		addTareasPlanProduccion(items);
 		return true;
 	}
 	//nro sucursal, codigo semielaborado y cantidad
