@@ -29,7 +29,7 @@ public class CajaController {
 			OperacionCajaDAO.getInstancia().grabarOperacionCaja(opCaja);
 			System.out.println("Se creó la operación de caja " + opCaja.getTipo().getNombre() + " con fecha: " + opCaja.getFecha_dt());
 		}
-		else throw new RestaurantException("Ya existe una operacion de caja de el tipo seleccionado para el día de hoy");
+		else throw new RestaurantException("Ya existe una operacion de caja del tipo seleccionado para el día de hoy");
 	}
 	
 	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, int opCajaId){
