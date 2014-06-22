@@ -5,8 +5,8 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.BorderFactory;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -30,6 +30,15 @@ import Interfaces.BusinessDelegate;
 */
 public class Frm_LiquidarComisionesMozos extends javax.swing.JFrame {
 
+	private static Frm_LiquidarComisionesMozos instancia = null;
+	
+	public static Frm_LiquidarComisionesMozos getInstancia(){
+		if(instancia == null){			
+			instancia = new Frm_LiquidarComisionesMozos();
+		} 
+		return instancia;
+	}
+	
 	{
 		//Set Look & Feel
 		try {
