@@ -102,6 +102,9 @@ public class StockController  {
 	
 	public List<DTO.Stock> getStockPorDeposito(Integer depoID) throws RestaurantException{
 		List<Stock> elStock = StockDAO.getInstancia().getStockPorDeposito(depoID);
+	
+		if (elStock == null)
+		{ throw new RestaurantException("No hay productos en ese deposito");}
 		
 		//Tengo un listado de Entities, las paso a DTOs que me convengan
 		List<DTO.Stock> stockSucursalDTO = StockController.getInstancia().getDTOFromEntityStockPorSucursal(elStock);
