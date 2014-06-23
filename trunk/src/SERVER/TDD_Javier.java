@@ -16,11 +16,11 @@ public class TDD_Javier {
 		
 		
 		//unitTestRegistrarReclamo();
-		//unitTestControlarStock();
+		unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
 		//unitTestLiquidarComisiones();
-		unitTestControlarMovimientoDeStock();
+		//unitTestControlarMovimientoDeStock();
 	}
 	
 
