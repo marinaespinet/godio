@@ -37,7 +37,7 @@ public interface RemoteInterface extends Remote {
 	
 	public boolean addTareaPlanProduccion(Integer semiID, Integer cant, Integer loginID)  throws RemoteException;
 	
-	public void crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException; 
+	public Integer crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException; 
 	
 	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException;
 	
