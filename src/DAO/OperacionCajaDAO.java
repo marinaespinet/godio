@@ -1,5 +1,6 @@
 package DAO;
 
+import java.sql.Date;
 import java.util.*;
 
 import org.hibernate.Session;
@@ -127,6 +128,12 @@ public class OperacionCajaDAO {
 		return comisionFacturas.floatValue() + comisionPorPlatos.floatValue();
 		else
 		return null;
+	}
+
+	public Integer getIdOperacionCajaPorFecha(Date hoy) {
+		Session session = sf.openSession();
+		Integer elId = (Integer)session.createQuery("SELECT op.operacion_caja_id FROM Operacion_Caja op WHERE op.fecha_dt = ?").setDate(0, hoy).setFirstResult(0).setMaxResults(1).uniqueResult();
+		return elId;
 	}
 	
 }
