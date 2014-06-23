@@ -18,7 +18,7 @@ public class CajaController {
 		return instancia;
 	}
 	
-	public void crearOperacionCaja(int operacion_id, int sucursal)throws RestaurantException{
+	public Integer crearOperacionCaja(int operacion_id, int sucursal)throws RestaurantException{
 		Date hoy = new java.sql.Date(System.currentTimeMillis());
 		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);
 		if (cantOperacionesHoy==0){
@@ -26,14 +26,20 @@ public class CajaController {
 			opCaja.setFecha_dt(hoy);
 			opCaja.setOperacion_caja_sucursal(LocationDAO.getInstancia().getSucursalPorId(sucursal));
 			opCaja.setTipo(OperacionCajaDAO.getInstancia().getTipo(operacion_id));
+			if (opCaja.getRecaudacion() == null)
+				opCaja.setRecaudacion((double)0);
+			if (opCaja.getComisiones() == null)
+				opCaja.setComisiones((double)0);
 			OperacionCajaDAO.getInstancia().grabarOperacionCaja(opCaja);
-			System.out.println("Se creó la operación de caja " + opCaja.getTipo().getNombre() + " con fecha: " + opCaja.getFecha_dt());
+			Integer opId = OperacionCajaDAO.getInstancia().getIdOperacionCajaPorFecha(hoy);
+			
+			return opId;
 		}
 		else throw new RestaurantException("Ya existe una operacion de caja del tipo seleccionado para el día de hoy");
 	}
 	
-	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, int opCajaId){
-		Item_Operacion_Caja it = getItemCajaFromDTO(item, opCajaId);
+	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId){
+		ENTITY.Item_Operacion_Caja it = getItemCajaFromDTO(item, opCajaId);
 		OperacionCajaDAO.getInstancia().setItemCaja(it);
 		recalcularRecaudacionCaja(opCajaId);
 	}
@@ -60,7 +66,7 @@ public class CajaController {
 
 	private Item_Operacion_Caja getItemCajaFromDTO(DTO.Item_Operacion_Caja itemDTO, int opCajaId){
 		Item_Operacion_Caja itEnt = new Item_Operacion_Caja();
-		//itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante()));
+		itEnt.setTipo_comprobante(OperacionCajaDAO.getInstancia().getTipoComprobante(itemDTO.getTipo_comprobante()));
 		System.out.println("Tipo comprobante: "+itEnt.getTipo_comprobante().getNombre());
 		itEnt.setItem_operacion_id(itemDTO.getItem_operacion_id());
 		System.out.println("Item Id: "+itEnt.getItem_operacion_id());
