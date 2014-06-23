@@ -63,6 +63,7 @@ public class StockDAO {
 		return elStock;
 	}
 	
+	
 	public Long verificarStockPorPlato (Integer plato,Integer cant, Integer depo){
 		Session session = sf.openSession();
 		Long NoTengoStock = (Long)session.createQuery("SELECT COUNT (s.cantidad) FROM Ingrediente ing JOIN ing.ingrediente_plato pl JOIN ing.insumo ins JOIN ins.stock s JOIN s.stock_deposito d WHERE pl.plato_id=? AND d.deposito_id=? AND s.cantidad/ing.cantidad<?").setInteger(0,plato).setInteger(1, depo).setInteger(2,cant).setFirstResult(0).setMaxResults(1).uniqueResult();
