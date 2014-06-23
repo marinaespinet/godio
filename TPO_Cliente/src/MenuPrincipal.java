@@ -100,6 +100,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemCerrarCaja = new JMenuItem();
 						jMenu1.add(jMenuItemCerrarCaja);
 						jMenuItemCerrarCaja.setText("Cerrar Caja");
+						jMenuItemCerrarCaja.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("jMenuItemCerrarCaja.actionPerformed, event="+evt);
+								Frm_CerrarCaja elFormulario = Frm_CerrarCaja.getInstancia();
+								elFormulario.setVisible(true);
+							}
+						});
 					}
 					{
 						jMenuItemControlarMovStock = new JMenuItem();
@@ -117,6 +124,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemControlarStockEnDepo = new JMenuItem();
 						jMenu1.add(jMenuItemControlarStockEnDepo);
 						jMenuItemControlarStockEnDepo.setText("Controlar stock en depósito");
+						jMenuItemControlarStockEnDepo.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("jMenuItemControlarStockEnDepo.actionPerformed, event="+evt);
+								Frm_ControlarStockEnDeposito elFormulario = Frm_ControlarStockEnDeposito.getInstancia();
+								elFormulario.setVisible(true);
+							}
+						});
 					}
 					{
 						jMenuItemLiquidarComisionesMozos = new JMenuItem();
