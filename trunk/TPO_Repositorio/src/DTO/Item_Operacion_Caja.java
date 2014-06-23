@@ -34,6 +34,10 @@ public class Item_Operacion_Caja  implements Serializable {
 		this.item_operacion_operacion_id = operacion;
 	
 	}
+	
+	public Item_Operacion_Caja() {
+	
+	}
 
 
 	public Integer getItem_operacion_id() {
