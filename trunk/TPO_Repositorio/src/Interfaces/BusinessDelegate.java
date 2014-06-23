@@ -185,4 +185,18 @@ public class BusinessDelegate {
 		return ri.addTareaPlanProduccion(semiID, cant, loginID);
 	}
 	
+	
+	public void crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException { 
+		
+		ri.crearOperacionCaja(operacionId,sucId);
+		
+	}
+	
+	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException {
+		
+		ri.agregarItemsCaja(item,opCajaId);
+		
+	}
+	
+	
 }
