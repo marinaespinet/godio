@@ -117,4 +117,16 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return ProduccionController.getInstancia().addTareaPlanProduccion(semiID, cant, loginID);
 	}
 
+	public void crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException {
+		CajaController.getInstancia().crearOperacionCaja(operacionId, sucId);
+		
+	}
+	
+	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException {
+		
+		CajaController.getInstancia().agregarItemsCaja(item,opCajaId);
+		
+	}
+	
+
 }

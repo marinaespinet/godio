@@ -27,12 +27,20 @@ public class TDD_Marina {
 			
 			
 			//CU11 CU14 Abrir Caja/Cerrar Caja
-			/*CajaController.getInstancia().crearOperacionCaja(2, 2);
-			Integer tc = (Integer)1;
+			Integer nroOperacion = CajaController.getInstancia().crearOperacionCaja(2, 3);
+			
 			Float monto=(float) 5;
-			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja(monto, 3, tc,12);
+			
+			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja();
+
+			item.setCantidad(1);
+			item.setMonto(monto);
+			item.setTipo_comprobante(1);
+			item.setItem_operacion_operacion_id(nroOperacion);
+			
 			CajaController.getInstancia().agregarItemsCaja(item,12);
-			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());*/
+			
+			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());
 			
 			//CU17 Registrar Avance de tareas plan de produccion
 			//unitTestCU17();
@@ -40,7 +48,7 @@ public class TDD_Marina {
 			//CU18 Registrar Orden de Compra
 			//unitTestCU18();
 			
-			RestauranteController.getInstancia().abrirMesa(1, 9);
+			//RestauranteController.getInstancia().abrirMesa(1, 9);
 			
 			
 			
