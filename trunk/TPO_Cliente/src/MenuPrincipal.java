@@ -91,7 +91,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						jMenuItemAbrirCaja.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("jMenuItemAbrirCaja.actionPerformed, event="+evt);
-								Frm_AbrirCerrarCaja elFormulario = Frm_AbrirCerrarCaja.getInstancia();
+								Frm_AbrirCaja elFormulario = Frm_AbrirCaja.getInstancia();
 								elFormulario.setVisible(true);
 							}
 						});
