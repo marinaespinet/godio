@@ -186,9 +186,9 @@ public class BusinessDelegate {
 	}
 	
 	
-	public void crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException { 
+	public Integer crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException { 
 		
-		ri.crearOperacionCaja(operacionId,sucId);
+		return ri.crearOperacionCaja(operacionId,sucId);
 		
 	}
 	
