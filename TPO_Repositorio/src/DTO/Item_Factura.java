@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Item_Factura  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-
+	private String plato;
+	private Float importe;
 	private Integer item_id;
 	private Plato item_plato;
 	private Integer cant_plato;
@@ -16,7 +17,7 @@ public class Item_Factura  implements Serializable {
 			Item_Pedido item_pedido) {
 		super();
 		this.item_plato = plato;
-		this.cant_plato = cantidad;
+		this.setCant_plato(cantidad);
 		this.item_pedido = item_pedido;
 	}
 	public Item_Factura() {
@@ -36,6 +37,24 @@ public class Item_Factura  implements Serializable {
 	}
 	public Item_Pedido getItem_pedido() {
 		return item_pedido;
+	}
+	public String getPlato() {
+		return plato;
+	}
+	public void setPlato(String plato) {
+		this.plato = plato;
+	}
+	public Float getImporte() {
+		return importe;
+	}
+	public void setImporte(Float importe) {
+		this.importe = importe;
+	}
+	public Integer getCant_plato() {
+		return cant_plato;
+	}
+	public void setCant_plato(Integer cant_plato) {
+		this.cant_plato = cant_plato;
 	}
 
 	
