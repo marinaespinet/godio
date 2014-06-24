@@ -84,7 +84,7 @@ public class Frm_AbrirMesa extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Liquidar comisiones Mozos");
+			this.setTitle("Abrir Mesa");
 			getContentPane().add(getJTextFieldNotificador());
 			getContentPane().add(getJLabelTitulo());
 			getContentPane().add(getJLabelSucursal());
@@ -107,7 +107,7 @@ public class Frm_AbrirMesa extends javax.swing.JFrame {
 	private JLabel getJLabelTitulo() {
 		if(jLabelTitulo == null) {
 			jLabelTitulo = new JLabel();
-			jLabelTitulo.setText("Abrir Caja");
+			jLabelTitulo.setText("Abrir Mesa");
 			jLabelTitulo.setBounds(20, 12, 182, 20);
 			jLabelTitulo.setFont(new java.awt.Font("Segoe UI",1,14));
 		}

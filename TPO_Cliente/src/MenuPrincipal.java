@@ -48,10 +48,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuItem jMenuItemCerrarCaja;
 	private JMenuItem jMenuItemControlarMovStock;
 	private JMenuItem jMenuItemLiquidarComisionesMozos;
-	private JMenuItem jMenuItemCerrarMesa;
-	private JMenuItem jMenuItemAgregarPlatos;
 	private JMenuItem jMenuItemAbrirMesa;
-	private JMenuItem jMenuItemMesas;
 	private JMenuItem jMenuItemSalirDelSistema;
 	private JMenu jMenuSalir;
 	private JMenuItem jMenuItemControlarStockEnDepo;
@@ -149,31 +146,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						});
 					}
 					{
-						jMenuItemMesas = new JMenuItem();
-						jMenu1.add(jMenuItemMesas);
-						jMenuItemMesas.setText("Mesas");
-						{
-							jMenuItemAbrirMesa = new JMenuItem();
-							jMenuItemMesas.add(jMenuItemAbrirMesa);
-							jMenuItemAbrirMesa.setText("Abrir mesa");
-							jMenuItemAbrirMesa.addActionListener(new ActionListener() {
-								public void actionPerformed(ActionEvent evt) {
-									System.out.println("jMenuItemAbrirMesa.actionPerformed, event="+evt);
-									Frm_AbrirMesa elFormulario = Frm_AbrirMesa.getInstancia();
-									elFormulario.setVisible(true);
-								}
-							});
-						}
-						{
-							jMenuItemAgregarPlatos = new JMenuItem();
-							jMenuItemMesas.add(jMenuItemAgregarPlatos);
-							jMenuItemAgregarPlatos.setText("Agregar Platos");
-						}
-						{
-							jMenuItemCerrarMesa = new JMenuItem();
-							jMenuItemMesas.add(jMenuItemCerrarMesa);
-							jMenuItemCerrarMesa.setText("Cerrar mesa");
-						}
+						jMenuItemAbrirMesa = new JMenuItem();
+						jMenu1.add(jMenuItemAbrirMesa);
+						jMenuItemAbrirMesa.setText("Abrir mesa");
+						jMenuItemAbrirMesa.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("jMenuItemAbrirMesa.actionPerformed, event="+evt);
+								Frm_AbrirMesa elFormulario = Frm_AbrirMesa.getInstancia();
+								elFormulario.setVisible(true);
+							}
+						});
 					}
 				}
 				{
