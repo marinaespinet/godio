@@ -28,7 +28,7 @@ public class RestauranteController {
 		return instancia;
 	}
 	
-	public void abrirMesa(int mozo, int comensales) throws RestaurantException{
+	public Integer abrirMesa(Integer mozo, Integer comensales) throws RestaurantException{
 		ENTITY.Mozo elMozo = LocationDAO.getInstancia().getMozoPorId(mozo);
 		List <ENTITY.Mesa> mesasPosibles=new LinkedList <ENTITY.Mesa>();
 		List <ENTITY.Mesa> mesasLibres = getMesasLibresEnSucursal(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id(), comensales);
@@ -80,10 +80,11 @@ public class RestauranteController {
 					//Marca la mesa como ocupada
 					mesaElegida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
 					LocationDAO.getInstancia().grabarMesa(mesaElegida);
-					
+					return mesaElegida.getMesa_id();
 				}
-				else  {throw new RestaurantException("No hay mesas disponibles en la sucursal");}
-		}
+		  }
+		
+		{throw new RestaurantException("No hay mesas disponibles en la sucursal");}
 		
 	}
 	
