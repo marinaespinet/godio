@@ -48,6 +48,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuItem jMenuItemCerrarCaja;
 	private JMenuItem jMenuItemControlarMovStock;
 	private JMenuItem jMenuItemLiquidarComisionesMozos;
+	private JMenuItem jMenuItemCerrarMesa;
+	private JMenuItem jMenuItemAgregarPlatos;
 	private JMenuItem jMenuItemAbrirMesa;
 	private JMenuItem jMenuItemSalirDelSistema;
 	private JMenu jMenuSalir;
@@ -153,6 +155,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("jMenuItemAbrirMesa.actionPerformed, event="+evt);
 								Frm_AbrirMesa elFormulario = Frm_AbrirMesa.getInstancia();
+								elFormulario.setVisible(true);
+							}
+						});
+					}
+					{
+						jMenuItemAgregarPlatos = new JMenuItem();
+						jMenu1.add(jMenuItemAgregarPlatos);
+						jMenuItemAgregarPlatos.setText("Agregar Platos a Pedido");
+						jMenuItemAgregarPlatos.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("jMenuItemAgregarPlatos.actionPerformed, event="+evt);
+								Frm_AgregarPlato elFormulario = Frm_AgregarPlato.getInstancia();
+								elFormulario.setVisible(true);
+							}
+						});
+					}
+					{
+						jMenuItemCerrarMesa = new JMenuItem();
+						jMenu1.add(jMenuItemCerrarMesa);
+						jMenuItemCerrarMesa.setText("Cerrar Mesa");
+						jMenuItemCerrarMesa.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent evt) {
+								System.out.println("jMenuItemCerrarMesa.actionPerformed, event="+evt);
+								Frm_CerrarMesa elFormulario = Frm_CerrarMesa.getInstancia();
 								elFormulario.setVisible(true);
 							}
 						});
