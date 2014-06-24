@@ -1,6 +1,7 @@
 package DTO;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -11,19 +12,23 @@ public class Factura  implements Serializable {
 
 	private Integer factura_id;
 	private Date fecha_factura_dt;
-	private Mesa factura_mesa;
-	private Mozo factura_mozo;
+	private Integer mesa_cd;
+	private String mozo_nombre;
+	//private Mesa factura_mesa;
+	//private Mozo factura_mozo;
 	private Double monto_total;
-	private List<Item_Factura>items;
+	private ArrayList<Item_Factura>items;
 	
 	
 	
-	public Factura(Date fecha, Mesa mesa, Mozo mozo,
-			List<Item_Factura> items) {
+	public Factura(Date fecha, Integer mesa, String mozo,
+			ArrayList<Item_Factura> items) {
 		super();
 		this.fecha_factura_dt = fecha;
-		this.factura_mesa = mesa;
-		this.factura_mozo = mozo;
+		this.mesa_cd = mesa;
+		this.mozo_nombre = mozo;
+		//this.factura_mesa = mesa;
+		//this.factura_mozo = mozo;
 		this.items = items;
 	}
 	
@@ -43,7 +48,7 @@ public class Factura  implements Serializable {
 	public void setFecha_factura_dt(Date fecha_factura_dt) {
 		this.fecha_factura_dt = fecha_factura_dt;
 	}
-	public Mesa getFactura_mesa() {
+	/*public Mesa getFactura_mesa() {
 		return factura_mesa;
 	}
 	public void setFactura_mesa(Mesa mesa) {
@@ -54,7 +59,7 @@ public class Factura  implements Serializable {
 	}
 	public void setFactura_mozo(Mozo factura_mozo) {
 		this.factura_mozo = factura_mozo;
-	}
+	}*/
 	public Double getMonto_total() {
 		return monto_total;
 	}
@@ -64,8 +69,26 @@ public class Factura  implements Serializable {
 	public List<Item_Factura> getItems() {
 		return items;
 	}
-	public void setItems(List<Item_Factura> list) {
+	public void setItems(ArrayList<Item_Factura> list) {
 		this.items = list;
 	}
+
+	public Integer getMesa_cd() {
+		return mesa_cd;
+	}
+
+	public void setMesa_cd(Integer mesa_cd) {
+		this.mesa_cd = mesa_cd;
+	}
+
+	public String getMozo_nombre() {
+		return mozo_nombre;
+	}
+
+	public void setMozo_nombre(String mozo_nombre) {
+		this.mozo_nombre = mozo_nombre;
+	}
+	
+	
 	
 }
