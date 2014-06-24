@@ -81,7 +81,7 @@ public class Frm_ControlarStockEnDeposito extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Controlar movimientos de stock");
+			this.setTitle("Controlar stock en deposito");
 			{
 				jLabelTitulo = new JLabel();
 				getContentPane().add(jLabelTitulo);

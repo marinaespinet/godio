@@ -93,7 +93,7 @@ public class Frm_AbrirCaja extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Liquidar comisiones Mozos");
+			this.setTitle("Abrir Caja");
 			getContentPane().add(getJLabelBilletesDe2());
 			getContentPane().add(getJLabelBilletesDe5());
 			getContentPane().add(getJLabelBilletesDe10());
