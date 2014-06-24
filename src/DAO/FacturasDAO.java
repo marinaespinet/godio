@@ -1,13 +1,14 @@
 package DAO;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.sql.Date;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import DTO.Item_Pedido;
+import DTO.Plato;
 import ENTITY.*;
 
 public class FacturasDAO {
@@ -20,6 +21,13 @@ public class FacturasDAO {
 			instancia = new FacturasDAO();
 		} 
 		return instancia;
+	}
+	
+	public Factura getFactura(int nro){
+		Session session = sf.openSession();
+		Factura fac = (Factura)session.get(Factura.class, nro);
+		session.close();
+		return fac;
 	}
 	
 	
@@ -106,6 +114,14 @@ public class FacturasDAO {
 		session.persist(liqui);
 				
 		session.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Item_Factura> getItems(int nro) {
+		Session session = sf.openSession();
+		List<Item_Factura> items = (List<Item_Factura>) session.createQuery("FROM Factura fac JOIN fac.items it WHERE fac.factura_id =?").setInteger(0,nro).list();
+		session.close();
+		return items;
 	}
 	
 		
