@@ -82,5 +82,32 @@ public Float montoPagos(Integer facturaID){
 	return (FacturasDAO.getInstancia().getMontoPagos(facturaID)).floatValue();
 }
 
+public DTO.Factura getFacturaDTO(Factura facEnt,List<Object[]> items) {
+	DTO.Factura facDTO = new DTO.Factura();
+	facDTO.setFactura_id(facEnt.getFactura_id());
+	facDTO.setFecha_factura_dt(facEnt.getFecha_factura_dt());
+	facDTO.setMonto_total(facEnt.getMonto_total());
+	facDTO.setMesa_cd(facEnt.getFactura_mesa().getPedido_mesa().getMesa_cd());
+	facDTO.setMozo_nombre(facEnt.getFactura_mozo().getName());
+	ArrayList<DTO.Item_Factura> itemsDTO = getItemsDTO(items);
+	facDTO.setItems(itemsDTO);
+	return facDTO;
+}
+
+private ArrayList<DTO.Item_Factura> getItemsDTO(List<Object[]> items) {
+	ArrayList<DTO.Item_Factura> itemsDTO = new ArrayList<DTO.Item_Factura>();
+	for (Object[] i:items){
+		DTO.Item_Factura itemDTO= new DTO.Item_Factura();
+		itemDTO.setPlato(i[0].toString());
+		itemDTO.setCant_plato((Integer)i[1]);
+		Float importeItem = (Float)((Integer)i[1]*(Float)i[2]);
+		if((boolean)i[3]==true)
+			importeItem=importeItem*0;
+		itemDTO.setImporte(importeItem);
+		itemsDTO.add(itemDTO);
+	}
+	return itemsDTO;
+}
+
 
 }
