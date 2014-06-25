@@ -134,8 +134,8 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		
 	}
 	
-	public void agregarPlato (int plato, int cantidad, int depo, int pedido) throws RestaurantException{
-		PedidosController.getInstancia().agregarPlatoAlPedido(plato, cantidad, depo, pedido);
+	public void agregarPlato (int plato, int cantidad, int depo, int mesa) throws RestaurantException{
+		PedidosController.getInstancia().agregarPlatoAlPedido(plato, cantidad, depo, mesa);
 	}
 
 }
