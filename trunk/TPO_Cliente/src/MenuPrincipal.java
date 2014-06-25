@@ -167,6 +167,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 							public void actionPerformed(ActionEvent evt) {
 								System.out.println("jMenuItemAgregarPlatos.actionPerformed, event="+evt);
 								Frm_AgregarPlato elFormulario = Frm_AgregarPlato.getInstancia();
+								elFormulario.agregameLasMesas(1);
 								elFormulario.setVisible(true);
 							}
 						});

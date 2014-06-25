@@ -43,7 +43,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 	private JTextField jTextFieldNroPlato;
 	private JLabel jLabelCantidad;
 	private JTextField jTextFieldCantidad;
-	private JComboBox jComboBoxMesa;
+	private JComboBox<Integer> jComboBoxMesa;
 	private JLabel jLabelMesa;
 	private JTextField jTextFieldNroMozo;
 	private JButton jButton;
@@ -217,18 +217,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			jComboBoxMesa = new JComboBox();
 			jComboBoxMesa.setModel(jComboBoxMesaModel);
 			jComboBoxMesa.setBounds(66, 58, 70, 23);
-			jComboBoxMesa.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent evt) {
-					System.out.println("jComboBoxMesa.actionPerformed, event="+evt);
-					try {
-						List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(jTextFieldNroMozo.getText());
-						for(Integer unId : lasMesasConPedidosDelMozo)
-							jComboBoxMesa.addItem(unId);
-					} catch (RemoteException e) {
-						jTextFieldNotificador.setText(e.getMessage());
-					}
-				}
-			});
+		
 		}
 		return jComboBoxMesa;
 	}
@@ -273,6 +262,16 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 
 	public void setjTextFieldCantidad(JTextField jTextFieldCantidad) {
 		this.jTextFieldCantidad = jTextFieldCantidad;
+	}
+	
+	public void agregameLasMesas(Integer mozoId){
+				try {
+					List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(Integer.parseInt(jTextFieldNroMozo.getText()));
+					for(Integer unId : lasMesasConPedidosDelMozo)
+						jComboBoxMesa.addItem(unId);
+				} catch (RemoteException e) {
+					jTextFieldNotificador.setText(e.getMessage());
+				}
 	}
 
 }
