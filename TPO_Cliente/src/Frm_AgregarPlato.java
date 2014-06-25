@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
@@ -207,6 +208,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 		return jLabelMesa;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private JComboBox getJComboBoxMesa() {
 		if(jComboBoxMesa == null) {
 			ComboBoxModel jComboBoxMesaModel = 
@@ -215,6 +217,18 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			jComboBoxMesa = new JComboBox();
 			jComboBoxMesa.setModel(jComboBoxMesaModel);
 			jComboBoxMesa.setBounds(66, 58, 70, 23);
+			jComboBoxMesa.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					System.out.println("jComboBoxMesa.actionPerformed, event="+evt);
+					try {
+						List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(jTextFieldNroMozo.getText());
+						for(Integer unId : lasMesasConPedidosDelMozo)
+							jComboBoxMesa.addItem(unId);
+					} catch (RemoteException e) {
+						jTextFieldNotificador.setText(e.getMessage());
+					}
+				}
+			});
 		}
 		return jComboBoxMesa;
 	}
