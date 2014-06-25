@@ -117,9 +117,9 @@ public class FacturasDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Item_Factura> getItems(int nro) {
+	public List<Object[]> getItems(int nro) {
 		Session session = sf.openSession();
-		List<Item_Factura> items = (List<Item_Factura>) session.createQuery("FROM Factura fac JOIN fac.items it WHERE fac.factura_id =?").setInteger(0,nro).list();
+		List<Object[]> items = (List<Object[]>) session.createQuery("SELECT pla.name, it.cant_plato, car.precio_monto, itp.item_no_facturar_ind FROM Factura fac JOIN fac.items it JOIN it.item_plato pla JOIN it.item_pedido itp JOIN itp.item_carta car WHERE fac.factura_id =?").setInteger(0,nro).list();
 		session.close();
 		return items;
 	}
