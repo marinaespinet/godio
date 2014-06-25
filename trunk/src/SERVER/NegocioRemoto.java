@@ -138,4 +138,11 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		PedidosController.getInstancia().agregarPlatoAlPedido(plato, cantidad, depo, mesa);
 	}
 
+	@Override
+	public List<Integer> getMesasConPedidosAbiertosPorMozo(String mozoId)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
