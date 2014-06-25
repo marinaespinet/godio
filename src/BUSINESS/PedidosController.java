@@ -220,6 +220,10 @@ private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
 		pedido.setCant_comensales(comensales);
 		pedido.setPedido_mozo(LocationDAO.getInstancia().getMozoPorId(mozo));
 		pedido.setPedido_mesa(LocationDAO.getInstancia().getMesaPorId(mesa_id));
+		pedido.setEstado(EstadosDAO.getInstancia().buscarEstadoPedido("Abierto"));
+		pedido.setFecha_apertura_dt(RestauranteController.getInstancia().getTodayDate());
+		Usuario usr = LocationDAO.getInstancia().getMozoPorId(mozo).getMozo_user();
+		pedido.setPedido_login(LoginDAO.getInstancia().getLoginActualDeMozo(usr));
 		PedidosDAO.getInstancia().grabarPedido(pedido);
 		System.out.println("Pedido: "+pedido.getPedido_id());
 	}

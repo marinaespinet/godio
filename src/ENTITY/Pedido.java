@@ -105,5 +105,10 @@ public class Pedido {
 		this.items = items;
 	}
 
+	public void setEstado(Estado_Pedido estado) {
+		this.pedido_estado = estado;
+		
+	}
+
 	
 }

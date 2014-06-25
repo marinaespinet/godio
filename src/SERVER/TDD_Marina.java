@@ -12,8 +12,8 @@ import Exceptions.RestaurantException;
 public class TDD_Marina {
 
 		public static void main(String[] args) throws RestaurantException {
-			
-			testMostrarFactura(3);		
+			testGetUsuario(1);
+			//testMostrarFactura(3);		
 			//CU03 Solicitar factura 
 			//FacturasController.getInstancia().solicitarFactura(3);
 			
@@ -169,6 +169,14 @@ public class TDD_Marina {
 			} else{
 				System.out.println("Mal :(");
 				return false;}
+	}
+	
+	public static void testGetUsuario(int mozo){
+	Usuario usr = LocationDAO.getInstancia().getMozoPorId(mozo).getMozo_user();
+	System.out.println(usr.getUser_id());
+	Login l = LoginDAO.getInstancia().getLoginActualDeMozo(usr);
+	System.out.println(l.getLogin_id());
+	System.out.println(l.getFecha_login_dt());
 	}
 
 	}
