@@ -40,6 +40,8 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 	private JLabel jLabelMozo;
 	private JLabel jLabelIdPlato;
 	private JTextField jTextFieldNroPlato;
+	private JLabel jLabelCantidad;
+	private JTextField jTextFieldCantidad;
 	private JComboBox jComboBoxMesa;
 	private JLabel jLabelMesa;
 	private JTextField jTextFieldNroMozo;
@@ -101,6 +103,8 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			getContentPane().add(getJComboBoxMesa());
 			getContentPane().add(getJLabelIdPlato());
 			getContentPane().add(getJTextFieldNroPlato());
+			getContentPane().add(getjLabelCantidad());
+			getContentPane().add(getjTextFieldCantidad());
 			pack();
 			this.setSize(621, 229);
 		} catch (Exception e) {
@@ -164,11 +168,11 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			jButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
-					/*try {
-						// agregar metodo del plato
+					try {
+						BusinessDelegate.getInstancia().agregarPlato(Integer.parseInt(jTextFieldNroPlato.getText()), Integer.parseInt(getjTextFieldCantidad().getText()), Integer.parseInt(getJTextFieldSucursal().getText()), Integer.parseInt(jComboBoxMesa.getSelectedItem().toString()));
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
-					}*/
+					}
 				}
 			});
 		}
@@ -230,6 +234,31 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			jTextFieldNroPlato.setBounds(307, 58, 84, 23);
 		}
 		return jTextFieldNroPlato;
+	}
+
+	public JLabel getjLabelCantidad() {
+		if(jLabelCantidad == null) {
+			jLabelCantidad = new JLabel();
+			jLabelCantidad.setText("Cantidad: ");
+			jLabelCantidad.setBounds(187, 90, 120, 16);
+		}
+		return jLabelCantidad;
+	}
+
+	public void setjLabelCantidad(JLabel jLabelCantidad) {
+		this.jLabelCantidad = jLabelCantidad;
+	}
+
+	public JTextField getjTextFieldCantidad() {
+		if(jTextFieldCantidad == null) {
+			jTextFieldCantidad = new JTextField();
+			jTextFieldCantidad.setBounds(307, 90, 84, 23);
+		}
+		return jTextFieldCantidad;
+	}
+
+	public void setjTextFieldCantidad(JTextField jTextFieldCantidad) {
+		this.jTextFieldCantidad = jTextFieldCantidad;
 	}
 
 }
