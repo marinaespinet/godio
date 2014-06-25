@@ -206,6 +206,17 @@ public class BusinessDelegate {
 	public void agregarPlato (int plato, int cantidad, int depo, int mesa) throws RemoteException{
 		ri.agregarPlato(plato, cantidad, depo, mesa);
 	}
+
+	public List<Integer> getMesasConPedidosAbiertosPorMozo(String mozoId) {
+	
+			try {
+				return ri.getMesasConPedidosAbiertosPorMozo(mozoId);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+	}
 	
 	
 	
