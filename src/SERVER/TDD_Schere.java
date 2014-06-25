@@ -27,8 +27,15 @@ public class TDD_Schere {
 		//unitTestCheckStock();
 		//unitTestTransferStock();
 		//unitTestAddStock();
-		unitTestLogin();
+		//unitTestLogin();
+		unitTestGetMesasAbiertasUnLogin(24);
 	}
+
+	private static void unitTestGetMesasAbiertasUnLogin(Integer log) throws RestaurantException{
+		List<DTO.Mesa> mesas = PedidosController.getInstancia().getMesasAbiertasUnLogin(log);
+		
+	}
+	
 	
 	private static void unitTestLogin() throws RestaurantException{
 		System.out.print("Test LOGIN: ");

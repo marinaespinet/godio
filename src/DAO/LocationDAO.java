@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import ENTITY.*;
+import Exceptions.RestaurantException;
 
 public class LocationDAO {
 
@@ -182,6 +183,22 @@ public class LocationDAO {
 	}	
 	
 	
+	public Mozo getMozoFromUserID(Integer userID) throws RestaurantException{
+		
+		Session session = sf.openSession();
+		Query q = session.createQuery("SELECT moz FROM Mozo moz JOIN moz.mozo_user usu WHERE usu.user_id = :userID"
+				).setInteger("userID", userID);
+		
+		Mozo moz=null;
+		if(q != null)
+			moz = (Mozo)q.setFirstResult(0).setMaxResults(1).uniqueResult();
+				
+		session.close();
+
+		return moz;
+		
+	}
+	
 
 	//busqueda x name
 	public Mozo getMozoPorNombre(String MozoNombre){
@@ -291,6 +308,22 @@ public class LocationDAO {
 
 			return laLista;
 			
+		}	
+		public List<ENTITY.Mesa> getMesasAbiertasUnMozo(Integer mozoID) {
+			List<ENTITY.Mesa> laLista = new ArrayList<ENTITY.Mesa>();
+			Session session = sf.openSession();
+			laLista = (List<Mesa>)session.createQuery(""
+					+ "select m " 
+					+ "from Pedido p "
+					+ "join p.pedido_mesa m  "
+					+ "join p.pedido_mozo o "
+					+ "join p.pedido_estado e "
+					+ "where 1=1 "
+					+ "and e.estado_name = :estado "
+					+ "and o.mozo_id = :mozoID "
+					+ "").setInteger("mozoID",mozoID).setString("estado","Cerrado").list();
+			session.close(); 
+			return laLista;			
 		}	
 		
 		public void grabarMesaActualizada(Mesa aux) {
