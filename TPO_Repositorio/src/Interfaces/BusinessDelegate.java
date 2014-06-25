@@ -4,8 +4,6 @@ import Exceptions.*;
 
 import java.net.MalformedURLException;
 import java.rmi.*;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -203,6 +201,10 @@ public class BusinessDelegate {
 		
 		return ri.abrirMesa(mozoId,cantComensales);
 		
+	}
+	
+	public void agregarPlato (int plato, int cantidad, int depo, int pedido) throws RestaurantException{
+		ri.agregarPlato(plato, cantidad, depo, pedido);
 	}
 	
 	

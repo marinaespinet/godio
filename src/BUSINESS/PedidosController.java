@@ -75,9 +75,8 @@ public class PedidosController {
 		return itEnt;
 	}
 		
-	  public void agregarPlatoAlPedido(DTO.Plato pl, int cantidad, int depo, int pedido){
-          ENTITY.Plato plato=getPlatoFromDTO(pl);
-          boolean disponible = verificarDisponibilidad(pl.getPlato_id(), cantidad, depo);
+	  public void agregarPlatoAlPedido(int pl, int cantidad, int depo, int mesa){
+          boolean disponible = verificarDisponibilidad(pl, cantidad, depo);
           if (disponible){
                   
         	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
@@ -85,9 +84,9 @@ public class PedidosController {
         	  	  
         	  	  //le "cargo" los datos que traigo
         	  	  elItemPedidoEnt.setCantidad(cantidad);
-        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedido(pedido));
-        	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl.getPlato_id()));
-        	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())));
+        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesa));
+        	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
+        	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)));
         	  	  elItemPedidoEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
         	  	  
         	  	  //lo persisto
@@ -95,7 +94,7 @@ public class PedidosController {
           }
           else {
                   System.out.println("No disponible");
-                  String rubro = CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())).getRubro().getName();
+                  String rubro = CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)).getRubro().getName();
                   List<String> alternativas = CartasDAO.getInstancia().getPlatosAlternativos(rubro);
                   System.out.println("El plato elegido no está disponible. Platos alternativos: ");
                   for (String opcion: alternativas){
@@ -112,21 +111,7 @@ public class PedidosController {
 			return itemCartaDTO;
 		}
 
-private DTO.Pedido getPedidoFromEntity(ENTITY.Pedido ped) {
-          DTO.Pedido pedido = new DTO.Pedido();
-          pedido.setPedido_id(ped.getPedido_id());
-          pedido.setCant_comensales(ped.getCant_comensales());
-          return pedido;
-  }
-
-  private ENTITY.Plato getPlatoFromDTO(DTO.Plato plato) {
-          ENTITY.Plato platoEnt = PedidosDAO.getInstancia().getPlatoPorId(plato.getPlato_id());
-          platoEnt.setPlato_id(plato.getPlato_id());
-          return null;
-  }
-  
-
-  private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
+private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
           Long sinStock = StockDAO.getInstancia().verificarStockPorPlato(pl, cantidad, depo);
           System.out.println("Cant sin stock: "+sinStock);
           if(sinStock>0) 
