@@ -59,4 +59,12 @@ public class CartasDAO {
 		session.close();
 		return r;
 	}
+
+	public Plato getPlato(int pl) {
+		Session session = sf.openSession();
+		Plato plato  = (Plato)session.get(Plato.class, pl);
+		session.close();
+		return plato;
+	}
+	
 }
