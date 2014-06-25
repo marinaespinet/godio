@@ -13,13 +13,12 @@ public class TDD_Marina {
 
 		public static void main(String[] args) throws RestaurantException {
 			
-			testMostrarFactura(1);
-			
+			testMostrarFactura(3);		
 			//CU03 Solicitar factura 
 			//FacturasController.getInstancia().solicitarFactura(3);
 			
 			//CU04 Crear Factura
-			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(1));
+			//FacturasController.getInstancia().crearFactura(PedidosDAO.getInstancia().getPedido(2));
 			
 			//CU10 Agregar Plato al pedido
 			/*DTO.Plato pl = new DTO.Plato();
@@ -29,20 +28,15 @@ public class TDD_Marina {
 			
 			
 			//CU11 CU14 Abrir Caja/Cerrar Caja
-			Integer nroOperacion = CajaController.getInstancia().crearOperacionCaja(2, 3);
-			
+			/*Integer nroOperacion = CajaController.getInstancia().crearOperacionCaja(2, 3);
 			Float monto=(float) 5;
-			
 			DTO.Item_Operacion_Caja item = new DTO.Item_Operacion_Caja();
-
 			item.setCantidad(1);
 			item.setMonto(monto);
 			item.setTipo_comprobante(1);
 			item.setItem_operacion_operacion_id(nroOperacion);
-			
 			CajaController.getInstancia().agregarItemsCaja(item,12);
-			
-			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());
+			System.out.println("Id operacion: "+item.getItem_operacion_operacion_id());*/
 			
 			//CU17 Registrar Avance de tareas plan de produccion
 			//unitTestCU17();
@@ -66,27 +60,19 @@ public class TDD_Marina {
 			//System.out.println("Hoy es "+ new java.sql.Date(System.currentTimeMillis()));
 		}
 
-
 		private static DTO.Factura testMostrarFactura(int nro) {
-		DTO.Factura facDTO = new DTO.Factura();
+			
 		ENTITY.Factura facEnt = FacturasDAO.getInstancia().getFactura(nro);
-		facDTO.setFecha_factura_dt(facEnt.getFecha_factura_dt());
-		facDTO.setMonto_total(facEnt.getMonto_total());
-		facDTO.setMesa_cd(facEnt.getFactura_mesa().getPedido_mesa().getMesa_cd());
-		facDTO.setMozo_nombre(facEnt.getFactura_mozo().getName());
-		List<Item_Factura> items = FacturasDAO.getInstancia().getItems(nro);
-		ArrayList<DTO.Item_Factura> itemsDTO = new ArrayList<DTO.Item_Factura>();
-		for (Item_Factura i:items){
-			DTO.Item_Factura itemDTO= new DTO.Item_Factura();
-			itemDTO.setPlato(i.getItem_plato().getName());
-			itemDTO.setCant_plato(i.getCant_plato());
-			Float importeItem = i.getCant_plato()*i.getItem_pedido().getItem_carta().getPrecio_monto();
-			itemDTO.setImporte(importeItem);
-			itemsDTO.add(itemDTO);
+		List<Object[]> items = FacturasDAO.getInstancia().getItems(nro);
+		DTO.Factura facDTO = FacturasController.getInstancia().getFacturaDTO(facEnt,items);
+		System.out.println("Nro de Factura: "+facDTO.getFactura_id()+" Fecha: "+facDTO.getFecha_factura_dt());
+		System.out.println("Mesa: "+facDTO.getMesa_cd()+" Mozo: "+facDTO.getMozo_nombre());
+		for(DTO.Item_Factura i:facDTO.getItems()){
+			System.out.println("Plato: "+i.getPlato()+" - Cantidad: "+i.getCant_plato()+" - Importe: "+i.getImporte());
 		}
-		facDTO.setItems(itemsDTO);
 		return facDTO;
 		}
+
 
 
 		private static void unitTestCU18() throws RestaurantException {
