@@ -3,7 +3,7 @@ package Interfaces;
 import Exceptions.*;
 
 import java.net.MalformedURLException;
-import java.rmi.Naming;
+import java.rmi.*;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.Date;
@@ -30,6 +30,7 @@ public class BusinessDelegate {
 	
 	private void conexionRemota() throws RemoteException{	
 		try{
+			System.setSecurityManager(new RMISecurityManager());
 			ri = (RemoteInterface) Naming.lookup("//localHost/SistemaRemoto");	
 		}
 		catch(NotBoundException nbe){
