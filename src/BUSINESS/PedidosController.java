@@ -82,15 +82,19 @@ public class PedidosController {
         	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
         	  	  ENTITY.Item_Pedido elItemPedidoEnt = new ENTITY.Item_Pedido();
         	  	  
-        	  	  //le "cargo" los        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesa));
+        	  	  //le "cargo" los datos que traigo
+        	  	  elItemPedidoEnt.setCantidad(cantidad);
+        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesa));
         	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
         	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)));
-ta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())));
         	  	  elItemPedidoEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
         	  	  
         	  	  //lo persisto
-        	  	  PedidosDAO.getInstancia().setItemPedido(elItemPedidoEnt)                  String rubro = CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)).getRubro().getName();
-CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())).getRubro().getName();
+        	  	  PedidosDAO.getInstancia().setItemPedido(elItemPedidoEnt);
+          }
+          else {
+                  System.out.println("No disponible");
+                  String rubro = CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)).getRubro().getName();
                   List<String> alternativas = CartasDAO.getInstancia().getPlatosAlternativos(rubro);
                   System.out.println("El plato elegido no está disponible. Platos alternativos: ");
                   for (String opcion: alternativas){
@@ -102,12 +106,12 @@ CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())).getRubro().ge
 
 	  public Item_Carta getItemCargaDTOFromEntity(ENTITY.Item_Carta itemCartaEnt) {
 			DTO.Item_Carta itemCartaDTO = new DTO.Item_Carta();
-			itemCartaDTO.setItem_carta_id(itemCartaEnt.getItem_carta_idprivate boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
-  return null;
-  }
-  
+			itemCartaDTO.setItem_carta_id(itemCartaEnt.getItem_carta_id());
+			itemCartaDTO.setPrecio_monto(itemCartaEnt.getPrecio_monto());
+			return itemCartaDTO;
+		}
 
-  private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
+private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
           Long sinStock = StockDAO.getInstancia().verificarStockPorPlato(pl, cantidad, depo);
           System.out.println("Cant sin stock: "+sinStock);
           if(sinStock>0) 
@@ -208,4 +212,32 @@ CartasDAO.getInstancia().getItemCartaIdPorPlato(pl.getPlato_id())).getRubro().ge
 		PedidosDAO.getInstancia().grabarPedido(pedido);
 		System.out.println("Pedido: "+pedido.getPedido_id());
 	}
+	
+	public List<DTO.Mesa> getMesasAbiertasUnLogin(Integer loginID) throws RestaurantException{
+		Usuario user = UsuariosController.getInstancia().getLogedUser(loginID);
+		if(user==null)
+		{ throw new RestaurantException("Usuario con loginID= "+loginID.toString()+ " inexistente");}
+
+		
+		Mozo moz = LocationDAO.getInstancia().getMozoFromUserID(user.getUser_id());
+		if(moz==null)
+		{ throw new RestaurantException("Mozo con usuarioID="+user.getUser_id().toString()+ " inexistente");}
+
+		
+		return getMesasAbiertasUnMozo(moz.getMozo_id());
+	}
+	
+	public List<DTO.Mesa> getMesasAbiertasUnMozo(Integer mozoID){
+		List<DTO.Mesa> mesasD = new ArrayList<DTO.Mesa>();
+		List<ENTITY.Mesa> mesasE = LocationDAO.getInstancia().getMesasAbiertasUnMozo(mozoID);
+		
+		for(ENTITY.Mesa m : mesasE){
+			DTO.Mesa mesD = new DTO.Mesa();
+			mesD.setMesa_cd(m.getMesa_cd());
+			mesasD.add(mesD);
+		}		
+		return mesasD;
+	}
+	
+
 }
