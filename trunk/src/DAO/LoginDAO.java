@@ -38,4 +38,11 @@ public class LoginDAO {
 		session.close();
 		return obj;
 	}
+	
+	public Login getLoginActualDeMozo(Usuario usr){
+		Session session = sf.openSession();
+		Integer loginId = (Integer)session.createQuery("SELECT l.login_id FROM Login l JOIN l.user u WHERE u.user_id=? ORDER BY l.fecha_login_dt DESC").setInteger(0,usr.getUser_id()).setFirstResult(0).setMaxResults(1).uniqueResult();
+		System.out.println(loginId);
+		return getLogin(loginId);
+	}
 }
