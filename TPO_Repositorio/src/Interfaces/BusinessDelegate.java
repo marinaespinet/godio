@@ -207,7 +207,7 @@ public class BusinessDelegate {
 		ri.agregarPlato(plato, cantidad, depo, mesa);
 	}
 
-	public List<Integer> getMesasConPedidosAbiertosPorMozo(String mozoId) {
+	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) {
 	
 			try {
 				return ri.getMesasConPedidosAbiertosPorMozo(mozoId);
