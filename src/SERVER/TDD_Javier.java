@@ -16,11 +16,12 @@ public class TDD_Javier {
 		
 		
 		//unitTestRegistrarReclamo();
-		unitTestControlarStock();
+		//unitTestControlarStock();
 		//unitTestPrepararComanda();
 		//unitTestRecepcionMercaderia();
 		//unitTestLiquidarComisiones();
 		//unitTestControlarMovimientoDeStock();
+		abrirMesa();
 	}
 	
 
@@ -128,6 +129,24 @@ public class TDD_Javier {
 	
 		
 	}
+	
+	
+	
+	private static void abrirMesa() throws RestaurantException {
+		//Tengo mozoId y cantidad de comensales
+		
+		Integer mozoId = 1;
+		Integer comensales = 4;
+		Integer laMesaId;
+		
+		
+		laMesaId = RestauranteController.getInstancia().abrirMesa(mozoId, comensales);
+		
+		System.out.println(laMesaId);
+		
+		}
+	
+		
 	
 	
 }
