@@ -47,4 +47,6 @@ public class UsuariosController {
 		
 		return user;				
 	}
+	
+
 }
