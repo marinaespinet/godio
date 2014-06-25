@@ -14,8 +14,6 @@ public class Factura  implements Serializable {
 	private Date fecha_factura_dt;
 	private Integer mesa_cd;
 	private String mozo_nombre;
-	//private Mesa factura_mesa;
-	//private Mozo factura_mozo;
 	private Double monto_total;
 	private ArrayList<Item_Factura>items;
 	
