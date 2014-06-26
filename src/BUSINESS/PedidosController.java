@@ -239,15 +239,8 @@ private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
 		return mesasD;
 	}
 
-	public List<Integer> getMesasIdAbiertasUnLogin(Integer mozoId) throws RestaurantException {
-		List<DTO.Mesa> lasMesasDTO = getMesasAbiertasUnMozo(mozoId);
-		if(lasMesasDTO == null)
-		{ throw new RestaurantException("Ese mozo no tiene mesas");}
-		List<Integer> losIdDeLasMesas = new ArrayList<Integer>();
-		for (DTO.Mesa unaMesa : lasMesasDTO){
-			losIdDeLasMesas.add(unaMesa.getMesa_id());
-		}
-		
+	public List<Integer> getMesasIdAbiertasUnIdMozo(Integer mozoId) throws RestaurantException {
+		List<Integer> losIdDeLasMesas = LocationDAO.getInstancia().getIdsMesasAbiertasUnMozo(mozoId);		
 		return losIdDeLasMesas;
 	}
 	
