@@ -75,8 +75,12 @@ public class PedidosController {
 		return itEnt;
 	}
 		
-	  public void agregarPlatoAlPedido(Integer pl, Integer cantidad, Integer depo, Integer mesa){
-          boolean disponible = verificarDisponibilidad(pl, cantidad, depo);
+	  public void agregarPlatoAlPedido(Integer pl, Integer cantidad, Integer suc, Integer mesa) throws RestaurantException{
+		  
+          ENTITY.Area elArea = LocationDAO.getInstancia().getAreaDePlato(pl);
+          ENTITY.Deposito elDepo = LocationDAO.getInstancia().getDepositoPorAreaSucursal(elArea.getArea_id(), suc);
+          
+		  boolean disponible = verificarDisponibilidad(pl, cantidad, elDepo.getDeposito_id());
           if (disponible){
                   
         	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
@@ -85,6 +89,8 @@ public class PedidosController {
         	  	  //le "cargo" los datos que traigo
         	  	  elItemPedidoEnt.setCantidad(cantidad);
         	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesa));
+        	  	  if (elItemPedidoEnt.getPedido() == null)
+        	  	  { throw new RestaurantException("La mesa no tiene un Pedido abierto");}
         	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
         	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)));
         	  	  elItemPedidoEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
