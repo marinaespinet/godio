@@ -332,7 +332,7 @@ public class LocationDAO {
 			List<Integer> laLista = new ArrayList<Integer>();
 			Session session = sf.openSession();
 			laLista = (List<Integer>)session.createQuery(""
-					+ "select me.mesa_id " 
+					+ "select me.mesa_cd " 
 					+ "from Pedido ped "
 					+ "join ped.pedido_mozo mo "
 					+ "join ped.pedido_mesa me "
