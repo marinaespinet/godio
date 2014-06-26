@@ -40,6 +40,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 	private static Frm_AgregarPlato instancia = null;
 	private JLabel jLabelMozo;
 	private JLabel jLabelIdPlato;
+	private JButton jButtonBuscame;
 	private JTextField jTextFieldNroPlato;
 	private JLabel jLabelCantidad;
 	private JTextField jTextFieldCantidad;
@@ -104,6 +105,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 			getContentPane().add(getJComboBoxMesa());
 			getContentPane().add(getJLabelIdPlato());
 			getContentPane().add(getJTextFieldNroPlato());
+			getContentPane().add(getJButtonBuscame());
 			getContentPane().add(getjLabelCantidad());
 			getContentPane().add(getjTextFieldCantidad());
 			pack();
@@ -272,6 +274,21 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 				} catch (RemoteException e) {
 					jTextFieldNotificador.setText(e.getMessage());
 				}
+	}
+	
+	private JButton getJButtonBuscame() {
+		if(jButtonBuscame == null) {
+			jButtonBuscame = new JButton();
+			jButtonBuscame.setText("Buscame las mesas papichulo");
+			jButtonBuscame.setBounds(228, 6, 199, 35);
+			jButtonBuscame.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					System.out.println("jButtonBuscame.actionPerformed, event="+evt);
+					agregameLasMesas(Integer.parseInt(jTextFieldNroMozo.getText()));
+				}
+			});
+		}
+		return jButtonBuscame;
 	}
 
 }
