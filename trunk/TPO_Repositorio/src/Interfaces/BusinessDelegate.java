@@ -203,7 +203,7 @@ public class BusinessDelegate {
 		
 	}
 	
-	public void agregarPlato (int plato, int cantidad, int depo, int mesa) throws RemoteException{
+	public void agregarPlato (Integer plato, Integer cantidad, Integer depo, Integer mesa) throws RemoteException{
 		ri.agregarPlato(plato, cantidad, depo, mesa);
 	}
 
