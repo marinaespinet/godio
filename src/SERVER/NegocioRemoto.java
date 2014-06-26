@@ -128,7 +128,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		
 	}
 	
-	public Integer abrirMesa(Integer mozo, Integer comensales) throws RestaurantException{
+	public List<Integer> abrirMesa(Integer mozo, Integer comensales) throws RestaurantException{
 		
 		return RestauranteController.getInstancia().abrirMesa(mozo, comensales);
 		

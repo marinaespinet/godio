@@ -28,7 +28,7 @@ public class RestauranteController {
 		return instancia;
 	}
 	
-	public Integer abrirMesa(Integer mozo, Integer comensales) throws RestaurantException{
+	public List<Integer> abrirMesa(Integer mozo, Integer comensales) throws RestaurantException{
 		ENTITY.Mozo elMozo = LocationDAO.getInstancia().getMozoPorId(mozo);
 		List <ENTITY.Mesa> mesasPosibles=new LinkedList <ENTITY.Mesa>();
 		List <ENTITY.Mesa> mesasLibres = getMesasLibresEnSucursal(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id(), comensales);
@@ -56,6 +56,7 @@ public class RestauranteController {
 						unaMesa.setUnion_mesa(mesasLibres.get(anterior));
 						mesasLibres.get(anterior).setUnion_mesa(unaMesa);
 						mesasPosibles.add(unaMesa);
+						mesasPosibles.add(mesasLibres.get(anterior));
 				}
 				
 			}
@@ -72,6 +73,7 @@ public class RestauranteController {
 						mesaUnida.setUnion_mesa(mesaElegida);
 						mesaUnida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
 						LocationDAO.getInstancia().grabarMesa(mesaUnida);
+						LocationDAO.getInstancia().grabarMesa(mesaElegida);
 						//Crea el pedido con el id de mesa mayor
 						PedidosController.getInstancia().crearPedido(mesaUnida.getMesa_id(),mozo,comensales);
 					}
@@ -80,7 +82,10 @@ public class RestauranteController {
 					//Marca la mesa como ocupada
 					mesaElegida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
 					LocationDAO.getInstancia().grabarMesa(mesaElegida);
-					return mesaElegida.getMesa_id();
+					ArrayList<Integer> mesas = new ArrayList<Integer>();
+					mesas.add(mesaElegida.getMesa_cd());
+					mesas.add(mesaElegida.getUnion_mesa().getMesa_cd());
+					return mesas;
 				}
 		  }
 		
