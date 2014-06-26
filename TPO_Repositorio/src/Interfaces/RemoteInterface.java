@@ -43,7 +43,7 @@ public interface RemoteInterface extends Remote {
 	
 	public Integer abrirMesa(Integer mozo, Integer comensales) throws RemoteException;
 	
-	public void agregarPlato (int plato, int cantidad, int depo, int mesa) throws RemoteException;
+	public void agregarPlato (Integer plato, Integer cantidad, Integer depo, Integer mesa) throws RemoteException;
 	
 	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException;
 }	
