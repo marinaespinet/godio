@@ -155,12 +155,12 @@ public class TDD_Javier {
 		
 		Integer mozoId = 1;
 		Integer comensales = 4;
-		Integer laMesaId;
+		List<Integer> laMesaId;
 		
 		
 		laMesaId = RestauranteController.getInstancia().abrirMesa(mozoId, comensales);
 		
-		System.out.println(laMesaId);
+		System.out.println(laMesaId.get(0)+laMesaId.get(1));
 		
 		}
 	
