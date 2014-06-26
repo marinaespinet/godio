@@ -68,7 +68,10 @@ public class RestauranteController {
 				if (cantidadReserva<mesasPosibles.size()){
 					//Si está unida, marca la otra mesa como ocupada
 					ENTITY.Mesa mesaElegida = mesasPosibles.get(0);
+					ArrayList<Integer> mesas = new ArrayList<Integer>();
+					mesas.add(mesaElegida.getMesa_cd());
 					if (mesaElegida.getUnion_mesa()!=null) {
+						mesas.add(mesaElegida.getUnion_mesa().getMesa_cd());
 						ENTITY.Mesa mesaUnida=mesaElegida.getUnion_mesa();
 						mesaUnida.setUnion_mesa(mesaElegida);
 						mesaUnida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
@@ -81,10 +84,7 @@ public class RestauranteController {
 					else {PedidosController.getInstancia().crearPedido(mesaElegida.getMesa_id(),mozo,comensales);} 
 					//Marca la mesa como ocupada
 					mesaElegida.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(2));
-					LocationDAO.getInstancia().grabarMesa(mesaElegida);
-					ArrayList<Integer> mesas = new ArrayList<Integer>();
-					mesas.add(mesaElegida.getMesa_cd());
-					mesas.add(mesaElegida.getUnion_mesa().getMesa_cd());
+					LocationDAO.getInstancia().grabarMesa(mesaElegida);				
 					return mesas;
 				}
 		  }
