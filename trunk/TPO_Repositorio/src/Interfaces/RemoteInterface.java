@@ -41,7 +41,7 @@ public interface RemoteInterface extends Remote {
 	
 	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException;
 	
-	public Integer abrirMesa(Integer mozo, Integer comensales) throws RemoteException;
+	public List<Integer> abrirMesa(Integer mozo, Integer comensales) throws RemoteException;
 	
 	public void agregarPlato (Integer plato, Integer cantidad, Integer depo, Integer mesa) throws RemoteException;
 	

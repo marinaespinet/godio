@@ -197,7 +197,7 @@ public class BusinessDelegate {
 		
 	}
 	
-	public Integer abrirMesa(Integer mozoId, Integer cantComensales) throws RemoteException{
+	public List<Integer> abrirMesa(Integer mozoId, Integer cantComensales) throws RemoteException{
 		
 		return ri.abrirMesa(mozoId,cantComensales);
 		
