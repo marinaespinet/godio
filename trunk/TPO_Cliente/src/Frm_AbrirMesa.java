@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -158,8 +159,8 @@ public class Frm_AbrirMesa extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
 					try {
-						Integer mesaId = BusinessDelegate.getInstancia().abrirMesa(Integer.parseInt(jTextFieldNroMozo.getText()), Integer.parseInt(jTextFieldCantComensales.getText()));
-						jTextFieldNotificador.setText("Acomode a los comensales en la mesa " + mesaId.toString());
+						List<Integer> mesaId = BusinessDelegate.getInstancia().abrirMesa(Integer.parseInt(jTextFieldNroMozo.getText()), Integer.parseInt(jTextFieldCantComensales.getText()));
+						jTextFieldNotificador.setText("Acomode a los comensales en la/s mesa/s " + mesaId.get(0).toString() + " - " + mesaId.get(1).toString());
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
 					}
@@ -181,7 +182,7 @@ public class Frm_AbrirMesa extends javax.swing.JFrame {
 	private JTextField getJTextFieldNroMozo() {
 		if(jTextFieldNroMozo == null) {
 			jTextFieldNroMozo = new JTextField();
-			jTextFieldNroMozo.setText("1");
+			jTextFieldNroMozo.setText("4");
 			jTextFieldNroMozo.setBounds(556, 47, 25, 23);
 			jTextFieldNroMozo.setEditable(false);
 		}
