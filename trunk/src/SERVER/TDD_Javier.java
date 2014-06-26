@@ -3,11 +3,14 @@ package SERVER;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import BUSINESS.CajaController;
 import BUSINESS.ComprasController;
 import BUSINESS.PedidosController;
 import BUSINESS.RestauranteController;
 import BUSINESS.StockController;
+import DAO.LocationDAO;
+import DAO.PedidosDAO;
 import Exceptions.RestaurantException;
 
 public class TDD_Javier {
@@ -21,9 +24,24 @@ public class TDD_Javier {
 		//unitTestRecepcionMercaderia();
 		//unitTestLiquidarComisiones();
 		//unitTestControlarMovimientoDeStock();
-		abrirMesa();
+		//abrirMesa();
+		traerIdsMesasDandoMozoId();
 	}
 	
+
+	private static void traerIdsMesasDandoMozoId() {
+		
+		List<Integer> losIds = new ArrayList<Integer>();
+		try {
+			losIds = PedidosController.getInstancia().getMesasIdAbiertasUnIdMozo(1);
+		} catch (RestaurantException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (Integer unId : losIds)
+			System.out.println(unId);
+	}
+
 
 	/******** CASO DE USO 06 - REGISTRAR RECLAMO ************/
 	

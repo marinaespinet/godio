@@ -309,6 +309,7 @@ public class LocationDAO {
 			return laLista;
 			
 		}	
+		@SuppressWarnings("unchecked")
 		public List<ENTITY.Mesa> getMesasAbiertasUnMozo(Integer mozoID) {
 			List<ENTITY.Mesa> laLista = new ArrayList<ENTITY.Mesa>();
 			Session session = sf.openSession();
@@ -324,7 +325,25 @@ public class LocationDAO {
 					+ "").setInteger("mozoID",mozoID).setString("estado","Cerrado").list();
 			session.close(); 
 			return laLista;			
-		}	
+		}
+		
+		@SuppressWarnings("unchecked")
+		public List<Integer> getIdsMesasAbiertasUnMozo(Integer mozoID) {
+			List<Integer> laLista = new ArrayList<Integer>();
+			Session session = sf.openSession();
+			laLista = (List<Integer>)session.createQuery(""
+					+ "select me.mesa_id " 
+					+ "from Pedido ped "
+					+ "join ped.pedido_mozo mo "
+					+ "join ped.pedido_mesa me "
+					+ "join me.mesa_estado est "
+					+ "where mo.mozo_id = ? "
+					+ "and est.estado_id = 2").setInteger(0, mozoID).list();
+			session.close(); 
+			return laLista;			
+		}
+		
+		
 		
 		public void grabarMesaActualizada(Mesa aux) {
 			Session session = sf.openSession();
