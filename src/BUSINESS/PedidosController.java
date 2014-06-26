@@ -75,7 +75,7 @@ public class PedidosController {
 		return itEnt;
 	}
 		
-	  public void agregarPlatoAlPedido(int pl, int cantidad, int depo, int mesa){
+	  public void agregarPlatoAlPedido(Integer pl, Integer cantidad, Integer depo, Integer mesa){
           boolean disponible = verificarDisponibilidad(pl, cantidad, depo);
           if (disponible){
                   
