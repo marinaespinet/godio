@@ -192,7 +192,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 	private JTextField getJTextFieldNroMozo() {
 		if(jTextFieldNroMozo == null) {
 			jTextFieldNroMozo = new JTextField();
-			jTextFieldNroMozo.setText("1");
+			jTextFieldNroMozo.setText("4");
 			jTextFieldNroMozo.setBounds(556, 47, 25, 23);
 			jTextFieldNroMozo.setEditable(false);
 		}
