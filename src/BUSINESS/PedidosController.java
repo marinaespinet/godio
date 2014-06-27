@@ -89,7 +89,8 @@ public class PedidosController {
         	  	  
         	  	  //le "cargo" los datos que traigo
         	  	  elItemPedidoEnt.setCantidad(cantidad);
-        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(LocationDAO.getInstancia().getMesaIdPorSucYmesaCD(suc,mesa)));
+        	  	  Integer elIdDeLaMesa = LocationDAO.getInstancia().getMesaIdPorSucYmesaCD(suc,mesa);
+        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(elIdDeLaMesa));
         	  	  if (elItemPedidoEnt.getPedido() == null)
         	  	  { throw new RestaurantException("La mesa no tiene un Pedido abierto");}
         	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
