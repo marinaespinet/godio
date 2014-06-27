@@ -95,7 +95,7 @@ public class PedidosController {
         	  	  { throw new RestaurantException("La mesa no tiene un Pedido abierto");}
         	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
         	  	  elItemPedidoEnt.setItem_carta(CartasDAO.getInstancia().getItemCarta(CartasDAO.getInstancia().getItemCartaIdPorPlato(pl)));
-        	  	  elItemPedidoEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoByName("Pendiente"));
+        	  	  elItemPedidoEnt.setEstado(EstadosDAO.getInstancia().getEstadoItemPedidoById(1));
         	  	  
         	  	  //lo persisto
         	  	  PedidosDAO.getInstancia().setItemPedido(elItemPedidoEnt);
