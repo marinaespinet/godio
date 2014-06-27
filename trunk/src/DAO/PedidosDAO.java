@@ -56,20 +56,28 @@ public class PedidosDAO {
 	}
 	
 	//Obtener el pedido abierto de una mesa
-	public Pedido getPedidoAbiertoDeMesa(int mesa)
+	public Pedido getPedidoAbiertoDeMesa(Integer mesa)
 	{
 		Session session = sf.openSession();
-		Pedido pedido = (Pedido)session.createQuery(""
-				+ "SELECT p "
+		Pedido unPedido = (Pedido)session.createQuery(""
+				/*+ "SELECT p "
 				+ "FROM Pedido p "
 				+ "JOIN p.pedido_estado e "
 				+ "JOIN p.pedido_mesa m "
 				+ "JOIN p.items i "
 				+ "WHERE e.estado_name='Abierto' "
-				+ "AND p.pedido_mesa.mesa_id=?")
-				.setInteger(0, mesa).setFirstResult(0).setMaxResults(1).uniqueResult();
+				+ "AND m.mesa_id=?")
+				.setInteger(0, mesa).setFirstResult(0).setMaxResults(1).uniqueResult();*/
+				
+				+ "SELECT ped "
+				+ "FROM Pedido ped "
+				+ "JOIN ped.pedido_mesa mes "
+				+ "WHERE mes.mesa_id = ?").setInteger(0, mesa).setMaxResults(1).uniqueResult();
+				
+				
+				
 		session.close();
-		return pedido;
+		return unPedido;
 	}
 	
 	//Listar items de una mesa
