@@ -161,6 +161,7 @@ public class Frm_AbrirMesa extends javax.swing.JFrame {
 					try {
 						List<Integer> mesaId = BusinessDelegate.getInstancia().abrirMesa(Integer.parseInt(jTextFieldNroMozo.getText()), Integer.parseInt(jTextFieldCantComensales.getText()));
 						jTextFieldNotificador.setText("Acomode a los comensales en la/s mesa/s " + mesaId.get(0).toString() + " - " + mesaId.get(1).toString());
+						
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
 					}
