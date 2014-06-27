@@ -32,7 +32,7 @@ public class RestauranteController {
 		ENTITY.Mozo elMozo = LocationDAO.getInstancia().getMozoPorId(mozo);
 		List <ENTITY.Mesa> mesasPosibles=new LinkedList <ENTITY.Mesa>();
 		List <ENTITY.Mesa> mesasLibres = getMesasLibresEnSucursal(elMozo.getMozo_sector().getSector_sucursal().getSucursal_id(), comensales);
-		if(mesasLibres == null) {throw new RestaurantException("No hay mesas libres en la sucursal");}
+		//if(mesasLibres == null) {throw new RestaurantException("No hay mesas libres en la sucursal");}
 		
 		//Si la mesa libre cubre la cantidad de comensales, la agrego como opcion
 		for (ENTITY.Mesa unaMesa: mesasLibres){
