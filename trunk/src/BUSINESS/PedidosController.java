@@ -81,6 +81,7 @@ public class PedidosController {
           ENTITY.Deposito elDepo = LocationDAO.getInstancia().getDepositoPorAreaSucursal(elArea.getArea_id(), suc);
           
 		  boolean disponible = verificarDisponibilidad(pl, cantidad, elDepo.getDeposito_id());
+		  
           if (disponible){
                   
         	  	  //Si tengo todas las condiciones, crea un nuevo ENTITY.Item_Pedido para persistir
@@ -88,7 +89,7 @@ public class PedidosController {
         	  	  
         	  	  //le "cargo" los datos que traigo
         	  	  elItemPedidoEnt.setCantidad(cantidad);
-        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesa));
+        	  	  elItemPedidoEnt.setPedido(PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(LocationDAO.getInstancia().getMesaIdPorSucYmesaCD(suc,mesa)));
         	  	  if (elItemPedidoEnt.getPedido() == null)
         	  	  { throw new RestaurantException("La mesa no tiene un Pedido abierto");}
         	  	  elItemPedidoEnt.set_Area(LocationDAO.getInstancia().getAreaDePlato(pl));
