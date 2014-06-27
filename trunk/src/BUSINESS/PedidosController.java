@@ -246,9 +246,11 @@ private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
 		return mesasD;
 	}
 
-	public List<Integer> getMesasIdAbiertasUnIdMozo(Integer mozoId) throws RestaurantException {
-		List<Integer> losIdDeLasMesas = LocationDAO.getInstancia().getIdsMesasAbiertasUnMozo(mozoId);		
-		return losIdDeLasMesas;
+	public List<Integer> getMesasCodAbiertasUnIdMozo(Integer mozoId) throws RestaurantException {
+		List<Integer> losCodDeLasMesas = LocationDAO.getInstancia().getCodMesasAbiertasUnMozo(mozoId);
+		if(losCodDeLasMesas==null)
+		{ throw new RestaurantException("Ese mozo no tiene mesas con pedidos abiertos");}
+		return losCodDeLasMesas;
 	}
 	
 
