@@ -217,6 +217,8 @@ public class BusinessDelegate {
 			return null;
 	}
 	
-	
+	public void cerrarPedido(Integer mesaID) throws RemoteException{
+		ri.cerrarPedido(mesaID);
+	}
 	
 }
