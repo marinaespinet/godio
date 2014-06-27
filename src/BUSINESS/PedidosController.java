@@ -135,7 +135,7 @@ private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
 		if(mesa==null)
 			{ throw new RestaurantException("Mesa "+mesaID.toString()+ " inexistente");}
 		
-		if(mesa.getMesa_estado().getEstado_name().compareTo( "Ocupada") !=0)
+		if(mesa.getMesa_estado().getEstado_id().equals(2))
 			{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no puede ser cerrada pues no se encuentra Ocupada.");}
 		
 		//verifica mesa con pedido abierto
