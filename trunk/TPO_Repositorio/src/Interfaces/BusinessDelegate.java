@@ -212,7 +212,6 @@ public class BusinessDelegate {
 			try {
 				return ri.getMesasConPedidosAbiertosPorMozo(mozoId);
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
