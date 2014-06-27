@@ -140,7 +140,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 
 	@Override
 	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException {
-		return PedidosController.getInstancia().getMesasIdAbiertasUnIdMozo(mozoId);
+		return PedidosController.getInstancia().getMesasCodAbiertasUnIdMozo(mozoId);
 	}
 
 }

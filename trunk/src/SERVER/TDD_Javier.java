@@ -24,8 +24,8 @@ public class TDD_Javier {
 		//unitTestRecepcionMercaderia();
 		//unitTestLiquidarComisiones();
 		//unitTestControlarMovimientoDeStock();
-		abrirMesa();
-		//traerIdsMesasDandoMozoId();
+		//abrirMesa();
+		traerIdsMesasDandoMozoId();
 	}
 	
 
@@ -33,7 +33,7 @@ public class TDD_Javier {
 		
 		List<Integer> losIds = new ArrayList<Integer>();
 		try {
-			losIds = PedidosController.getInstancia().getMesasIdAbiertasUnIdMozo(1);
+			losIds = PedidosController.getInstancia().getMesasCodAbiertasUnIdMozo(4);
 		} catch (RestaurantException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
