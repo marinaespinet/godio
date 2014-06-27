@@ -36,10 +36,8 @@ public class RestauranteController {
 		
 		//Si la mesa libre cubre la cantidad de comensales, la agrego como opcion
 		for (ENTITY.Mesa unaMesa: mesasLibres){
-					
-				if(unaMesa.getMax_cant_comensales()>=comensales)
-					mesasPosibles.add(unaMesa);
-				else {
+				if(unaMesa.getMax_cant_comensales()<=comensales)
+				{
 					//buscoUnir con la mesa anterior
 					int anterior=0;
 					if (unaMesa.equals(mesasLibres.get(0))) 
@@ -59,8 +57,11 @@ public class RestauranteController {
 						mesasPosibles.add(mesasLibres.get(anterior));
 				}
 				
-			}
-		
+				else {
+					unaMesa.setUnion_mesa(null);
+					mesasPosibles.add(unaMesa);
+				}
+		}
 		if(mesasPosibles!=null) 
 		{
 				//Verifica si hay reservas
