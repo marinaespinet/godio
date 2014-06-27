@@ -171,6 +171,7 @@ public class Frm_AgregarPlato extends javax.swing.JFrame {
 					System.out.println("jButton.actionPerformed, event="+evt);
 					try {
 						BusinessDelegate.getInstancia().agregarPlato(Integer.parseInt(jTextFieldNroPlato.getText()), Integer.parseInt(getjTextFieldCantidad().getText()), Integer.parseInt(getJTextFieldSucursal().getText()), Integer.parseInt(jComboBoxMesa.getSelectedItem().toString()));
+						jTextFieldNotificador.setText("Se agrego el plato al pedido ");
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
 					}
