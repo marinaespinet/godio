@@ -24,8 +24,8 @@ public class TDD_Javier {
 		//unitTestRecepcionMercaderia();
 		//unitTestLiquidarComisiones();
 		//unitTestControlarMovimientoDeStock();
-		//abrirMesa();
-		traerIdsMesasDandoMozoId();
+		abrirMesa();
+		//traerIdsMesasDandoMozoId();
 	}
 	
 
