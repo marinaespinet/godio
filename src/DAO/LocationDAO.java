@@ -328,18 +328,20 @@ public class LocationDAO {
 		}
 		
 		@SuppressWarnings("unchecked")
-		public List<Integer> getIdsMesasAbiertasUnMozo(Integer mozoID) {
+		public List<Integer> getCodMesasAbiertasUnMozo(Integer mozoID) {
 			List<Integer> laLista = new ArrayList<Integer>();
 			Session session = sf.openSession();
-			laLista = (List<Integer>)session.createQuery(""
-					+ "select me.mesa_cd " 
+			List<ENTITY.Mesa> lasMesas = (List<ENTITY.Mesa>)session.createQuery(""
+					+ "select me " 
 					+ "from Pedido ped "
 					+ "join ped.pedido_mozo mo "
 					+ "join ped.pedido_mesa me "
 					+ "join me.mesa_estado est "
 					+ "where mo.mozo_id = ? "
 					+ "and est.estado_id = 2").setInteger(0, mozoID).list();
-			session.close(); 
+			session.close();
+			for(ENTITY.Mesa unaMesa : lasMesas)
+				laLista.add(unaMesa.getMesa_cd());
 			return laLista;			
 		}
 		
