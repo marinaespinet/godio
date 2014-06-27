@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ComboBoxModel;
@@ -160,12 +161,12 @@ public class Frm_CerrarMesa extends javax.swing.JFrame {
 			jButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
-					/*try {
-						//aca va el metodo de cerrar mesa
+					try {
+					BusinessDelegate.getInstancia().cerrarPedido(Integer.parseInt(jComboBoxMesaParaCerrar.getSelectedItem().toString()));
+					jTextFieldNotificador.setText("Se cerró el pedido de la mesa "+Integer.parseInt(jComboBoxMesaParaCerrar.getSelectedItem().toString()));
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
-					}*/
-				}
+					}				}
 			});
 		}
 		return jButton;
@@ -183,7 +184,7 @@ public class Frm_CerrarMesa extends javax.swing.JFrame {
 	private JTextField getJTextFieldNroMozo() {
 		if(jTextFieldNroMozo == null) {
 			jTextFieldNroMozo = new JTextField();
-			jTextFieldNroMozo.setText("1");
+			jTextFieldNroMozo.setText("4");
 			jTextFieldNroMozo.setBounds(556, 47, 25, 23);
 			jTextFieldNroMozo.setEditable(false);
 		}
@@ -203,12 +204,23 @@ public class Frm_CerrarMesa extends javax.swing.JFrame {
 		if(jComboBoxMesaParaCerrar == null) {
 			ComboBoxModel jComboBoxMesaParaCerrarModel = 
 					new DefaultComboBoxModel(
-							new String[] { "Item One", "Item Two" });
+							new String[] { });
 			jComboBoxMesaParaCerrar = new JComboBox();
 			jComboBoxMesaParaCerrar.setModel(jComboBoxMesaParaCerrarModel);
 			jComboBoxMesaParaCerrar.setBounds(188, 51, 130, 23);
+			agregameLasMesas(Integer.parseInt(jTextFieldNroMozo.getText()));
 		}
 		return jComboBoxMesaParaCerrar;
+	}
+	
+	public void agregameLasMesas(Integer mozoId){
+		try {
+			List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(Integer.parseInt(jTextFieldNroMozo.getText()));
+			for(Integer unId : lasMesasConPedidosDelMozo)
+				jComboBoxMesaParaCerrar.addItem(unId);
+		} catch (RemoteException e) {
+			jTextFieldNotificador.setText(e.getMessage());
+		}
 	}
 
 }

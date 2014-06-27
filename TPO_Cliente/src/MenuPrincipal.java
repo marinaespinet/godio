@@ -45,6 +45,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	}
 
 	private JMenu jMenu1;
+	private JMenu jMenu2;
+	private JMenu jMenu3;
 	private JMenuItem jMenuItemCerrarCaja;
 	private JMenuItem jMenuItemControlarMovStock;
 	private JMenuItem jMenuItemLiquidarComisionesMozos;
@@ -87,66 +89,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 					jMenu1 = new JMenu();
 					jMenuBar.add(jMenu1);
 					jMenu1.setText("Restaurante");
-					{
-						jMenuItemAbrirCaja = new JMenuItem();
-						jMenu1.add(jMenuItemAbrirCaja);
-						jMenuItemAbrirCaja.setText("Abrir Caja");
-						jMenuItemAbrirCaja.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.out.println("jMenuItemAbrirCaja.actionPerformed, event="+evt);
-								Frm_AbrirCaja elFormulario = Frm_AbrirCaja.getInstancia();
-								elFormulario.setVisible(true);
-							}
-						});
-					}
-					{
-						jMenuItemCerrarCaja = new JMenuItem();
-						jMenu1.add(jMenuItemCerrarCaja);
-						jMenuItemCerrarCaja.setText("Cerrar Caja");
-						jMenuItemCerrarCaja.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.out.println("jMenuItemCerrarCaja.actionPerformed, event="+evt);
-								Frm_CerrarCaja elFormulario = Frm_CerrarCaja.getInstancia();
-								elFormulario.setVisible(true);
-							}
-						});
-					}
-					{
-						jMenuItemControlarMovStock = new JMenuItem();
-						jMenu1.add(jMenuItemControlarMovStock);
-						jMenuItemControlarMovStock.setText("Controlar movimientos de stock");
-						jMenuItemControlarMovStock.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.out.println("jMenuItemControlarMovStock.actionPerformed, event="+evt);
-								Frm_ControlarMovimientosDeStock elFormulario = Frm_ControlarMovimientosDeStock.getInstancia();
-								elFormulario.setVisible(true);
-							}
-						});
-					}
-					{
-						jMenuItemControlarStockEnDepo = new JMenuItem();
-						jMenu1.add(jMenuItemControlarStockEnDepo);
-						jMenuItemControlarStockEnDepo.setText("Controlar stock en depósito");
-						jMenuItemControlarStockEnDepo.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.out.println("jMenuItemControlarStockEnDepo.actionPerformed, event="+evt);
-								Frm_ControlarStockEnDeposito elFormulario = Frm_ControlarStockEnDeposito.getInstancia();
-								elFormulario.setVisible(true);
-							}
-						});
-					}
-					{
-						jMenuItemLiquidarComisionesMozos = new JMenuItem();
-						jMenu1.add(jMenuItemLiquidarComisionesMozos);
-						jMenuItemLiquidarComisionesMozos.setText("Liquidar comisiones Mozos");
-						jMenuItemLiquidarComisionesMozos.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent evt) {
-								System.out.println("jMenuItemLiquidarComisionesMozos.actionPerformed, event="+evt);
-								Frm_LiquidarComisionesMozos elFormulario = Frm_LiquidarComisionesMozos.getInstancia();
-								elFormulario.setVisible(true);
-							}
-						});
-					}
+					
+					
+
 					{
 						jMenuItemAbrirMesa = new JMenuItem();
 						jMenu1.add(jMenuItemAbrirMesa);
@@ -184,6 +129,77 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						});
 					}
 				}
+				{jMenu2 = new JMenu();
+				jMenuBar.add(jMenu2);
+				jMenu2.setText("Caja");
+				{
+					jMenuItemAbrirCaja = new JMenuItem();
+					jMenu2.add(jMenuItemAbrirCaja);
+					jMenuItemAbrirCaja.setText("Abrir Caja");
+					jMenuItemAbrirCaja.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemAbrirCaja.actionPerformed, event="+evt);
+							Frm_AbrirCaja elFormulario = Frm_AbrirCaja.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}}
+				{
+					jMenuItemCerrarCaja = new JMenuItem();
+					jMenu2.add(jMenuItemCerrarCaja);
+					jMenuItemCerrarCaja.setText("Cerrar Caja");
+					jMenuItemCerrarCaja.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemCerrarCaja.actionPerformed, event="+evt);
+							Frm_CerrarCaja elFormulario = Frm_CerrarCaja.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				{jMenu3 = new JMenu();
+				jMenuBar.add(jMenu3);
+				jMenu3.setText("Control de Stock");
+				{
+					jMenuItemControlarMovStock = new JMenuItem();
+					jMenu3.add(jMenuItemControlarMovStock);
+					jMenuItemControlarMovStock.setText("Controlar movimientos de stock");
+					jMenuItemControlarMovStock.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemControlarMovStock.actionPerformed, event="+evt);
+							Frm_ControlarMovimientosDeStock elFormulario = Frm_ControlarMovimientosDeStock.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				{
+					jMenuItemControlarStockEnDepo = new JMenuItem();
+					jMenu3.add(jMenuItemControlarStockEnDepo);
+					jMenuItemControlarStockEnDepo.setText("Controlar stock en depósito");
+					jMenuItemControlarStockEnDepo.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemControlarStockEnDepo.actionPerformed, event="+evt);
+							Frm_ControlarStockEnDeposito elFormulario = Frm_ControlarStockEnDeposito.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				
+				{
+					jMenuItemLiquidarComisionesMozos = new JMenuItem();
+					jMenu2.add(jMenuItemLiquidarComisionesMozos);
+					jMenuItemLiquidarComisionesMozos.setText("Liquidar comisiones Mozos");
+					jMenuItemLiquidarComisionesMozos.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemLiquidarComisionesMozos.actionPerformed, event="+evt);
+							Frm_LiquidarComisionesMozos elFormulario = Frm_LiquidarComisionesMozos.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				
+				}
+				
+				
 				{
 					jMenuSalir = new JMenu();
 					jMenuBar.add(jMenuSalir);
