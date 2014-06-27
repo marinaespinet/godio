@@ -142,5 +142,9 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException {
 		return PedidosController.getInstancia().getMesasCodAbiertasUnIdMozo(mozoId);
 	}
+	
+	public void cerrarPedido(Integer mesaID) throws RemoteException{
+		PedidosController.getInstancia().cerrarPedido(mesaID);
+	}
 
 }
