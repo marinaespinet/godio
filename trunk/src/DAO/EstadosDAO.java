@@ -40,6 +40,13 @@ public class EstadosDAO {
 		return estado;
 	}
 	
+	public Estado_Item_Pedido getEstadoItemPedidoById(Integer id){
+		Session session = sf.openSession();
+		Estado_Item_Pedido estado = (Estado_Item_Pedido)session.createQuery("FROM Estado_Item_Pedido e WHERE e.estado_id=?").setInteger(0,id).setMaxResults(1).uniqueResult();
+		session.close();
+		return estado;
+	}
+	
 	public void TestActualizarEstadoInsumo(int estadoID, String newdesc){
 		Session session = sf.openSession();
 		Estado_Insumo estado = (Estado_Insumo)session.get(Estado_Insumo.class, estadoID);
