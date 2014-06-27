@@ -409,7 +409,12 @@ public class LocationDAO {
 
 		public Integer getMesaIdPorSucYmesaCD(Integer suc, Integer mesa) {
 			Session session = sf.openSession();
-			Integer idMesa = (Integer)session.createQuery("SELECT me.mesa_id FROM Mesa me JOIN me.mesa_sucursal su WHERE su.sucursal_id =? AND me.mesa_cd = ?").setInteger(0, suc).setInteger(1, mesa).uniqueResult();
+			Integer idMesa = (Integer)session.createQuery(
+					"SELECT me.mesa_id "
+					+ "FROM Mesa me "
+					+ "JOIN me.mesa_sucursal su "
+					+ "WHERE su.sucursal_id =? "
+					+ "AND me.mesa_cd = ?").setInteger(0, suc).setInteger(1, mesa).uniqueResult();
 			session.close();
 
 			return idMesa;
