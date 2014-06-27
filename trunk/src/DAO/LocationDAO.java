@@ -331,8 +331,8 @@ public class LocationDAO {
 		public List<Integer> getCodMesasAbiertasUnMozo(Integer mozoID) {
 			List<Integer> laLista = new ArrayList<Integer>();
 			Session session = sf.openSession();
-			List<ENTITY.Mesa> lasMesas = (List<ENTITY.Mesa>)session.createQuery(""
-					+ "select me " 
+			laLista = (List<Integer>)session.createQuery(""
+					+ "select DISTINCT me.mesa_cd " 
 					+ "from Pedido ped "
 					+ "join ped.pedido_mozo mo "
 					+ "join ped.pedido_mesa me "
@@ -340,8 +340,6 @@ public class LocationDAO {
 					+ "where mo.mozo_id = ? "
 					+ "and est.estado_id = 2").setInteger(0, mozoID).list();
 			session.close();
-			for(ENTITY.Mesa unaMesa : lasMesas)
-				laLista.add(unaMesa.getMesa_cd());
 			return laLista;			
 		}
 		
