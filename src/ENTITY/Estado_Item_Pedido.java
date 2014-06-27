@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Estado_Item_Pedido {
 	
 	@Id
+	@GeneratedValue
 	private Integer estado_id;
 	private String estado_name;
 	

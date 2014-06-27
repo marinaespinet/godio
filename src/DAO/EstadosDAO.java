@@ -35,7 +35,7 @@ public class EstadosDAO {
 	
 	public Estado_Item_Pedido getEstadoItemPedidoByName(String name){
 		Session session = sf.openSession();
-		Estado_Item_Pedido estado = (Estado_Item_Pedido)session.createQuery("FROM Estado_Item_Pedido e WHERE e.estado_name=?").setString(0,name).setFirstResult(0).setMaxResults(1).uniqueResult();
+		Estado_Item_Pedido estado = (Estado_Item_Pedido)session.createQuery("FROM Estado_Item_Pedido e WHERE e.estado_name=?").setString(0,name).setMaxResults(1).uniqueResult();
 		session.close();
 		return estado;
 	}
