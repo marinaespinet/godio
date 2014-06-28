@@ -162,7 +162,7 @@ public class Frm_CerrarMesa extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
 					try {
-					BusinessDelegate.getInstancia().cerrarPedido(Integer.parseInt(jComboBoxMesaParaCerrar.getSelectedItem().toString()));
+					BusinessDelegate.getInstancia().cerrarPedido(Integer.parseInt(jComboBoxMesaParaCerrar.getSelectedItem().toString()),Integer.parseInt(getJTextFieldSucursal().getText().toString()));
 					jTextFieldNotificador.setText("Se cerró el pedido de la mesa "+Integer.parseInt(jComboBoxMesaParaCerrar.getSelectedItem().toString()));
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
