@@ -1,6 +1,7 @@
 package Interfaces;
 
 import DTO.Insumo;
+import DTO.Item_Compra;
 import Exceptions.*;
 
 import java.net.MalformedURLException;
@@ -255,6 +256,15 @@ public class BusinessDelegate {
 	public List<Insumo> getComprasARealizar() throws RemoteException {
 		
 			return ri.getComprasARealizar();
+		
+	}
+	
+	public Integer crearOrdenDeCompra (int proveedorId) throws RemoteException {
+		return ri.crearOrdenDeCompra (proveedorId);
+	}
+
+	public void agregarItemOC(Item_Compra item, Integer oc) throws RemoteException {
+		ri.agregarItemOC(item,oc);
 		
 	}
 	
