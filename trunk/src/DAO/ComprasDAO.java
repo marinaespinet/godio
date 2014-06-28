@@ -27,8 +27,8 @@ public class ComprasDAO {
 		Session session = sf.openSession();
 		List<Insumo> list = (List<Insumo>)session.createQuery(""
 				+ "SELECT i "				
-				+ "FROM Insumo i "
-				+ "WHERE i.estado>1 AND i.puede_compra_ind=true").list();			
+				+ "FROM Insumo i JOIN i.estado est "
+				+ "WHERE est.estado_id>1 AND i.puede_compra_ind=1").list();			
 		
 		session.close();
 
