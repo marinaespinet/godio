@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.List;
 
+import DTO.Insumo;
 import Exceptions.RestaurantException;
 
 public interface RemoteInterface extends Remote {
@@ -32,4 +33,5 @@ public interface RemoteInterface extends Remote {
 	public Integer getSucursalDelLogin(Integer loginId) throws RemoteException;
 	public Integer getMozoDelLogin(Integer loginId)throws RemoteException;
 	public Integer solicitarFactura(Integer mesa)throws RemoteException;
+	public List<Insumo> getComprasARealizar()throws RemoteException;
 }	
