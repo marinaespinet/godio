@@ -75,6 +75,37 @@ public class Controller3 extends HttpServlet {
         		jspPage = "/Error.jsp";   
         	}
           }
+          else if ("doAbrirMesa".equals(action))
+          {
+
+        	try{	        		    
+        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		if(loginId == null ) loginId = 0;
+
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");}
+        	    
+        	    Integer cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        	    Integer mozoId= BusinessDelegate.getInstancia().getMozoDeLogin(loginId);
+        	    List<Integer> mesas = BusinessDelegate.getInstancia().abrirMesa(mozoId, cantidad);
+        	    if (mesas.size()==1)
+        	    	request.setAttribute("message", "Por favor, ubique a los comensales en la mesa: "+mesas.get(0).toString());
+        	    else
+        	    	request.setAttribute("message", "Por favor, ubique a los comensales en las mesas: "+mesas.get(0).toString()+" y "+mesas.get(1).toString());
+        	    request.setAttribute("goTo", "index.jsp");
+        		jspPage = "/Success.jsp";  
+        		
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+
+        	} catch (RemoteException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+        	}
+          }
           else if ("doAgregarPlato".equals(action))
           {
 
