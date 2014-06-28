@@ -47,6 +47,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenu jMenu1;
 	private JMenu jMenu2;
 	private JMenu jMenu3;
+	private JMenu jMenu4;
 	private JMenuItem jMenuItemCerrarCaja;
 	private JMenuItem jMenuItemControlarMovStock;
 	private JMenuItem jMenuItemLiquidarComisionesMozos;
@@ -58,6 +59,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuItem jMenuItemControlarStockEnDepo;
 	private JMenuItem jMenuItemAbrirCaja;
 	private JMenuBar jMenuBar;
+	private JMenuItem jMenuItemListadoComprasARealizar;
+	private JMenuItem jMenuItemRegistrarOC;
+	private JMenuItem jMenuItemRecepcionMercaderia;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -196,9 +200,50 @@ public class MenuPrincipal extends javax.swing.JFrame {
 						}
 					});
 				}
-				
+				}
+								
+				{jMenu4 = new JMenu();
+				jMenuBar.add(jMenu4);
+				jMenu4.setText("Compras");
+				{
+					jMenuItemListadoComprasARealizar = new JMenuItem();
+					jMenu4.add(jMenuItemListadoComprasARealizar);
+					jMenuItemListadoComprasARealizar.setText("Listado de compras a realizar");
+					jMenuItemListadoComprasARealizar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemListadoComprasARealizar.actionPerformed, event="+evt);
+							Frm_ComprasARealizar elFormulario = Frm_ComprasARealizar.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				{
+					jMenuItemRegistrarOC = new JMenuItem();
+					jMenu4.add(jMenuItemRegistrarOC);
+					jMenuItemRegistrarOC.setText("Registrar orden de compra");
+					jMenuItemRegistrarOC.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemRegistrarOC.actionPerformed, event="+evt);
+							Frm_RegistrarOC elFormulario = Frm_RegistrarOC.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
 				}
 				
+				{
+					jMenuItemLiquidarComisionesMozos = new JMenuItem();
+					jMenu2.add(jMenuItemLiquidarComisionesMozos);
+					jMenuItemLiquidarComisionesMozos.setText("Liquidar comisiones Mozos");
+					jMenuItemLiquidarComisionesMozos.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent evt) {
+							System.out.println("jMenuItemLiquidarComisionesMozos.actionPerformed, event="+evt);
+							Frm_LiquidarComisionesMozos elFormulario = Frm_LiquidarComisionesMozos.getInstancia();
+							elFormulario.setVisible(true);
+						}
+					});
+				}
+				
+				}
 				
 				{
 					jMenuSalir = new JMenu();
