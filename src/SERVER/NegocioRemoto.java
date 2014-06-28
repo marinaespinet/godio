@@ -17,6 +17,7 @@ import BUSINESS.PedidosController;
 import BUSINESS.StockController;
 import BUSINESS.UsuariosController;
 import DTO.Insumo;
+import DTO.Item_Compra;
 import Exceptions.RestaurantException;
 
 public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.RemoteInterface {
@@ -169,5 +170,18 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	public List<Insumo> getComprasARealizar() throws RemoteException {
 		return ComprasController.getInstancia().getListadoDeComprasARealizar();
 	}
+
+	@Override
+	public Integer crearOrdenDeCompra(Integer proveedorId) throws RemoteException {
+		return ComprasController.getInstancia().crearOrdenDeCompra(proveedorId);
+	}
+
+
+	public void agregarItemOC(Item_Compra item, Integer oc)
+			throws RemoteException {
+		ComprasController.getInstancia().agregarItemsCompra(item, oc);
+		
+	}
+	
 
 }

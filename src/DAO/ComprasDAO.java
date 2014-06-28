@@ -78,7 +78,7 @@ public class ComprasDAO {
 	}
 
 
-	public Compra getCompra(int id) {
+	public Compra getCompra(Integer id) {
 		Session session = sf.openSession();
 		Compra compra = (Compra) session.get(Compra.class, id);
 		return compra;
