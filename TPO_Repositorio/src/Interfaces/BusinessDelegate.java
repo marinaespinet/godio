@@ -252,13 +252,9 @@ public class BusinessDelegate {
 		
 	}
 
-	public List<Insumo> getComprasARealizar() {
-		try {
+	public List<Insumo> getComprasARealizar() throws RemoteException {
+		
 			return ri.getComprasARealizar();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
 		
 	}
 	
