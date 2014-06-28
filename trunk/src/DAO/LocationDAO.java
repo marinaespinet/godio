@@ -186,15 +186,9 @@ public class LocationDAO {
 	public Mozo getMozoFromUserID(Integer userID) throws RestaurantException{
 		
 		Session session = sf.openSession();
-		Query q = session.createQuery("SELECT moz FROM Mozo moz JOIN moz.mozo_user usu WHERE usu.user_id = :userID"
-				).setInteger("userID", userID);
-		
-		Mozo moz=null;
-		if(q != null)
-			moz = (Mozo)q.setFirstResult(0).setMaxResults(1).uniqueResult();
-				
+		Mozo moz = (Mozo)session.createQuery("SELECT moz FROM Mozo moz JOIN moz.mozo_user usu WHERE usu.user_id =?"
+				).setInteger(0, userID).setFirstResult(0).setMaxResults(1).uniqueResult();		
 		session.close();
-
 		return moz;
 		
 	}

@@ -59,6 +59,7 @@ public class PedidosController {
 		List<DTO.Item_Pedido> itemPedidosPendientesDTO = new LinkedList<DTO.Item_Pedido>();
 		for (ENTITY.Item_Pedido itEnt : itemPedidosPendientesEnt){
 			DTO.Item_Pedido itDTO = new DTO.Item_Pedido();
+			itDTO.setCantidad(itEnt.getCantidad());
 			itDTO.setDescripcionPlatoContenido(itEnt.getItem_carta().getPlato().getName());
 			itDTO.setEstado_id(itEnt.getEstado().getEstado_id());
 			itDTO.setEstado_name(itEnt.getEstado().getEstado_name());
