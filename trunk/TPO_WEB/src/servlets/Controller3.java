@@ -106,6 +106,62 @@ public class Controller3 extends HttpServlet {
         		jspPage = "/Error.jsp";   
         	}
           }
+          else if ("doSolicitarFactura".equals(action))
+          {
+
+        	try{	        		    
+        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		if(loginId == null ) loginId = 0;
+
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");}
+        	    
+        	    Integer mesa = Integer.parseInt(request.getParameter("mesa"));
+        	    Integer mozoId= BusinessDelegate.getInstancia().getMozoDeLogin(loginId);
+        	    Integer factura = BusinessDelegate.getInstancia().solicitarfactura(mesa);
+        	    request.setAttribute("message", "Se creó la factura nro: "+factura+" para la mesa "+mesa);
+        	    request.setAttribute("goTo", "index.jsp");
+        		jspPage = "/Success.jsp";  
+        		
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+
+        	} catch (RemoteException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+        	}
+          }
+          else if ("doCerrrarMesa".equals(action))
+          {
+
+        	try{	        		    
+        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		  Integer suc = BusinessDelegate.getInstancia().getSucursalDeLogin(loginId);
+        		if(loginId == null ) loginId = 0;
+
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");}
+        	    
+        	    Integer mesa = Integer.parseInt(request.getParameter("mesa"));
+        	    BusinessDelegate.getInstancia().cerrarPedido(mesa,suc);
+        	    request.setAttribute("message", "Se cerró el pedido de la mesa "+mesa);
+        	    request.setAttribute("goTo", "index.jsp");
+        		jspPage = "/Success.jsp";  
+        		
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+
+        	} catch (RemoteException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+        	}
+          }
           else if ("doAgregarPlato".equals(action))
           {
 
