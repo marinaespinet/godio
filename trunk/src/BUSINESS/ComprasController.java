@@ -60,7 +60,7 @@ public class ComprasController {
 		
 	}
 	
-	public void crearOrdenDeCompra (int proveedorId) throws RestaurantException{
+	public Integer crearOrdenDeCompra (int proveedorId) throws RestaurantException{
 		//Check proveedor Existe
 		Proveedor proveedor = ComprasDAO.getInstancia().getProveedor(proveedorId);
 		if(proveedor == null){ throw new RestaurantException("Proveedor "+proveedorId+" inexistente");}
@@ -68,9 +68,10 @@ public class ComprasController {
 		ENTITY.Compra OC = new ENTITY.Compra(proveedor);
 		ComprasDAO.getInstancia().grabarCompra(OC);
 		System.out.println("Se creó la orden de compra nro: "+ComprasDAO.getInstancia().getCompraPorProveedor(OC.getCompra_proveedor().getProveedor_id()).getCompra_id());
+		return ComprasDAO.getInstancia().getCompraPorProveedor(OC.getCompra_proveedor().getProveedor_id()).getCompra_id();
 	}
 	
-	public void agregarItemsCompra(DTO.Item_Compra item, int compra ) throws RestaurantException{
+	public void agregarItemsCompra(DTO.Item_Compra item, Integer compra ) throws RestaurantException{
 		ENTITY.Item_Compra it = getItemCompraFromDTO(item);
 		
 		//Valida que exista el producto
