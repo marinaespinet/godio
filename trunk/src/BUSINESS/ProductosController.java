@@ -19,7 +19,8 @@ public class ProductosController {
 	public DTO.Insumo getInsumoDTO(Insumo insumo){
 		
 		DTO.Insumo insumoDTO = new DTO.Insumo();
-		insumoDTO.setName(insumo.getName());		
+		insumoDTO.setInsumo_id(insumo.getInsumo_id());	
+		insumoDTO.setName(insumo.getName());
 		insumoDTO.setPrecio_compra(insumo.getPrecio_compra());
 		
 		
