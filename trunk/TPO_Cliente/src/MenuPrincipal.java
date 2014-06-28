@@ -61,6 +61,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 	private JMenuBar jMenuBar;
 	private JMenuItem jMenuItemListadoComprasARealizar;
 	private JMenuItem jMenuItemRegistrarOC;
+	private JMenuItem jMenuItemAgregarItemOC;
 	private JMenuItem jMenuItemRecepcionMercaderia;
 
 	/**
@@ -231,20 +232,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 				}
 				
 				{
-					jMenuItemLiquidarComisionesMozos = new JMenuItem();
-					jMenu2.add(jMenuItemLiquidarComisionesMozos);
-					jMenuItemLiquidarComisionesMozos.setText("Liquidar comisiones Mozos");
-					jMenuItemLiquidarComisionesMozos.addActionListener(new ActionListener() {
+					jMenuItemAgregarItemOC = new JMenuItem();
+					jMenu4.add(jMenuItemAgregarItemOC);
+					jMenuItemAgregarItemOC.setText("Agregar items a OC");
+					jMenuItemAgregarItemOC.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent evt) {
-							System.out.println("jMenuItemLiquidarComisionesMozos.actionPerformed, event="+evt);
-							Frm_LiquidarComisionesMozos elFormulario = Frm_LiquidarComisionesMozos.getInstancia();
+							System.out.println("jMenuItemAgregarItemOC.actionPerformed, event="+evt);
+							Frm_AgregarItemOC elFormulario = Frm_AgregarItemOC.getInstancia();
 							elFormulario.setVisible(true);
 						}
 					});
 				}
 				
-				}
-				
+				}				
 				{
 					jMenuSalir = new JMenu();
 					jMenuBar.add(jMenuSalir);

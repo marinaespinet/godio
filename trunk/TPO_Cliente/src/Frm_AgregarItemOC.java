@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputMethodEvent;
@@ -35,20 +36,30 @@ import Interfaces.BusinessDelegate;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class Frm_RegistrarOC extends javax.swing.JFrame {
+public class Frm_AgregarItemOC extends javax.swing.JFrame {
 
-	private static Frm_RegistrarOC instancia = null;
+	private static Frm_AgregarItemOC instancia = null;
 	private JLabel jLabelProv;
 	private JTextField jTextFieldProv;
+	private JLabel jLabelIdProd;
+	private JTextField jTextFieldProd;
+	private JLabel jLabelCantidad;
+	private JTextField jTextFieldCantidad;	
+	private JLabel jLabelPrecio;
+	private JTextField jTextFieldPrecio;
+
+
 	private JButton jButton;
+	private JTextField jTextFieldOC;
+	private JLabel jLabelOC;
 	private JLabel jLabelTitulo;
 	private JTextField jTextFieldNotificador;
 	
 	
 
-	public static Frm_RegistrarOC getInstancia(){
+	public static Frm_AgregarItemOC getInstancia(){
 		if(instancia == null){			
-			instancia = new Frm_RegistrarOC();
+			instancia = new Frm_AgregarItemOC();
 		} 
 		return instancia;
 	}
@@ -68,14 +79,14 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				Frm_RegistrarOC inst = new Frm_RegistrarOC();
+				Frm_AgregarItemOC inst = new Frm_AgregarItemOC();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
 			}
 		});
 	}
 	
-	public Frm_RegistrarOC() {
+	public Frm_AgregarItemOC() {
 		super();
 		initGUI();
 	}
@@ -84,13 +95,19 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
-			this.setTitle("Registrar orden de compra");
+			this.setTitle("Agregar item a OC");
 			getContentPane().add(getJTextFieldNotificador());
 			getContentPane().add(getJLabelTitulo());
-			getContentPane().add(getJLabelProv());
-			getContentPane().add(getJTextFieldProv());
+			getContentPane().add(getJLabelOC());
+			getContentPane().add(getJTextFieldOC());
 			getContentPane().add(getJButton());
-						pack();
+			getContentPane().add(getJLabelPrecio());
+			getContentPane().add(getJTextFieldPrecio());
+			getContentPane().add(getJLabelIdProd());
+			getContentPane().add(getJTextFieldProd());
+			getContentPane().add(getjLabelCantidad());
+			getContentPane().add(getjTextFieldCantidad());
+			pack();
 			this.setSize(621, 229);
 		} catch (Exception e) {
 		    //add your error handling code here
@@ -103,7 +120,7 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 	private JLabel getJLabelTitulo() {
 		if(jLabelTitulo == null) {
 			jLabelTitulo = new JLabel();
-			jLabelTitulo.setText("Registrar orden de compra");
+			jLabelTitulo.setText("Agregar item a OC");
 			jLabelTitulo.setBounds(20, 12, 182, 20);
 			jLabelTitulo.setFont(new java.awt.Font("Segoe UI",1,14));
 		}
@@ -126,36 +143,37 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 		
 	}
 	
-	private JLabel getJLabelProv() {
-		if(jLabelProv == null) {
-			jLabelProv = new JLabel();
-			jLabelProv.setText("Proveedor: ");
-			jLabelProv.setBounds(473, 15, 80, 16);
+	private JLabel getJLabelOC() {
+		if(jLabelOC == null) {
+			jLabelOC = new JLabel();
+			jLabelOC.setText("Compra: ");
+			jLabelOC.setBounds(473, 15, 50, 16);
 		}
-		return jLabelProv;
+		return jLabelOC;
 	}
 	
-	private JTextField getJTextFieldProv() {
-		if(jTextFieldProv == null) {
-			jTextFieldProv = new JTextField();
-			jTextFieldProv.setText("");
-			jTextFieldProv.setBounds(556, 12, 25, 23);
-			jTextFieldProv.setEditable(true);
+	private JTextField getJTextFieldOC() {
+		if(jTextFieldOC == null) {
+			jTextFieldOC = new JTextField();
+			jTextFieldOC.setText("");
+			jTextFieldOC.setBounds(556, 12, 25, 23);
+			jTextFieldOC.setEditable(true);
 		}
-		return jTextFieldProv;
+		return jTextFieldOC;
 	}
 	
 	private JButton getJButton() {
 		if(jButton == null) {
 			jButton = new JButton();
-			jButton.setText("Registrar OC");
+			jButton.setText("Agregar item");
 			jButton.setBounds(473, 118, 108, 41);
 			jButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
 					try {
-						Integer oc = BusinessDelegate.getInstancia().crearOrdenDeCompra(Integer.parseInt(jTextFieldProv.getText()));
-						jTextFieldNotificador.setText("Se creo la orden de compra nro. "+oc);
+						DTO.Item_Compra item =new DTO.Item_Compra(Integer.parseInt(getJTextFieldProd().toString()), Integer.parseInt(getjTextFieldCantidad().toString()), Double.parseDouble(getJTextFieldPrecio().toString()));
+						BusinessDelegate.getInstancia().agregarItemOC(item, Integer.parseInt(getJTextFieldOC().toString()));
+						jTextFieldNotificador.setText("Se agrego el plato al pedido ");
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
 					}
@@ -164,4 +182,68 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 		}
 		return jButton;
 	}
+	
+	private JLabel getJLabelPrecio() {
+		if(jLabelPrecio == null) {
+			jLabelPrecio = new JLabel();
+			jLabelPrecio.setText("Precio");
+			jLabelPrecio.setBounds(473, 50, 50, 23);
+		}
+		return jLabelPrecio;
+	}
+	
+	private JTextField getJTextFieldPrecio() {
+		if(jTextFieldPrecio == null) {
+			jTextFieldPrecio = new JTextField();
+			jTextFieldPrecio.setText("");
+			jTextFieldPrecio.setBounds(556,50,30,16);
+			jTextFieldPrecio.setEditable(true);
+		}
+		return jTextFieldPrecio;
+	}
+	
+		
+	private JLabel getJLabelIdProd() {
+		if(jLabelIdProd == null) {
+			jLabelIdProd = new JLabel();
+			jLabelIdProd.setText("Producto: ");
+			jLabelIdProd.setBounds(187, 61, 120, 16);
+		}
+		return jLabelIdProd;
+	}
+	
+	private JTextField getJTextFieldProd() {
+		if(jTextFieldProd == null) {
+			jTextFieldProd  = new JTextField();
+			jTextFieldProd .setBounds(307, 58, 84, 23);
+		}
+		return jTextFieldProd ;
+	}
+
+	public JLabel getjLabelCantidad() {
+		if(jLabelCantidad == null) {
+			jLabelCantidad = new JLabel();
+			jLabelCantidad.setText("Cantidad: ");
+			jLabelCantidad.setBounds(187, 90, 120, 16);
+		}
+		return jLabelCantidad;
+	}
+
+	public void setjLabelCantidad(JLabel jLabelCantidad) {
+		this.jLabelCantidad = jLabelCantidad;
+	}
+
+	public JTextField getjTextFieldCantidad() {
+		if(jTextFieldCantidad == null) {
+			jTextFieldCantidad = new JTextField();
+			jTextFieldCantidad.setBounds(307, 90, 84, 23);
+		}
+		return jTextFieldCantidad;
+	}
+
+	public void setjTextFieldCantidad(JTextField jTextFieldCantidad) {
+		this.jTextFieldCantidad = jTextFieldCantidad;
+	}
+	
+
 }
