@@ -93,7 +93,7 @@ public class Frm_ComprasARealizar extends javax.swing.JFrame {
 				jTextFieldSucursal = new JTextField();
 				getContentPane().add(jTextFieldSucursal);
 				jTextFieldSucursal.setText("Administracion Central");
-				jTextFieldSucursal.setBounds(116, 105, 28, 23);
+				jTextFieldSucursal.setBounds(116, 105, 180, 25);
 				jTextFieldSucursal.setEditable(false);
 			}
 			{
@@ -106,7 +106,7 @@ public class Frm_ComprasARealizar extends javax.swing.JFrame {
 				jButtonCompras = new JButton();
 				getContentPane().add(jButtonCompras);
 				jButtonCompras.setText("Listar compras pendientes");
-				jButtonCompras.setBounds(522, 140, 145, 34);
+				jButtonCompras.setBounds(510, 140, 160, 34);
 				jButtonCompras.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jButtonCompras.actionPerformed, event="+evt);
