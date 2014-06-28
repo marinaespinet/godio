@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.util.List;
 
 import DTO.Insumo;
+import DTO.Item_Compra;
 import Exceptions.RestaurantException;
 
 public interface RemoteInterface extends Remote {
@@ -34,4 +35,7 @@ public interface RemoteInterface extends Remote {
 	public Integer getMozoDelLogin(Integer loginId)throws RemoteException;
 	public Integer solicitarFactura(Integer mesa)throws RemoteException;
 	public List<Insumo> getComprasARealizar()throws RemoteException;
+	public Integer crearOrdenDeCompra(Integer proveedorId) throws RemoteException;
+	public void agregarItemOC(Item_Compra item, Integer oc) throws RemoteException;
+	
 }	
