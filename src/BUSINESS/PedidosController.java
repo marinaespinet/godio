@@ -130,36 +130,37 @@ private boolean verificarDisponibilidad(int pl, int cantidad, int depo) {
   }
 
 
-	public void cerrarPedido(Integer mesaID) throws RestaurantException{
+	public void cerrarPedido(Integer me,Integer suc) throws RestaurantException{
 		//verifica mesa existente
-		Mesa mesa = LocationDAO.getInstancia().getMesaPorId(mesaID);
+		Integer mesaId = LocationDAO.getInstancia().getMesaIdPorSucYmesaCD(suc, me);
+		Mesa mesa = LocationDAO.getInstancia().getMesaPorId(mesaId);
 		if(mesa==null)
-			{ throw new RestaurantException("Mesa "+mesaID.toString()+ " inexistente");}
+			{ throw new RestaurantException("Mesa "+me.toString()+ " inexistente");}
 		
 		if(mesa.getMesa_estado().getEstado_id().equals(2))
-			{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no puede ser cerrada pues no se encuentra Ocupada.");}
+			{ throw new RestaurantException("Mesa "+me.toString()+ " no puede ser cerrada pues no se encuentra Ocupada.");}
 		
 		//verifica mesa con pedido abierto
-		Pedido ped = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesaID);
+		Pedido ped = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(mesaId);
 		if(ped==null)
-		{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no registra pedido de mesa.");}
+		{ throw new RestaurantException("Mesa "+mesaId.toString()+ " no registra pedido de mesa.");}
 		
 		if(ped.getPedidoEstado().getEstado_name().compareTo("Abierto")!=0)
-		{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no tiene el pedido abierto.");}
+		{ throw new RestaurantException("Mesa "+mesaId.toString()+ " no tiene el pedido abierto.");}
 		
 		Factura fac = FacturasDAO.getInstancia().getFacturaPedido(ped.getPedido_id());
 		if(fac==null)
-		{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no tiene factura asociada.");}
+		{ throw new RestaurantException("Mesa "+mesaId.toString()+ " no tiene factura asociada.");}
 		
 		Double montoFac = FacturasDAO.getInstancia().getMontoPagos(fac.getFactura_id());
 		if(montoFac == null || montoFac == 0)		
-			{ throw new RestaurantException("Mesa "+mesaID.toString()+ " no registra pagos en la factura.");}
+			{ throw new RestaurantException("Mesa "+mesaId.toString()+ " no registra pagos en la factura.");}
 		
 		//Desune las mesas si habia unidas
 		mesa.setUnion_mesa(null);
 		
 		//La setea en estado Libre
-		//mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa("Libre")); //comentado para que no haya errores al tiempo de compilacion
+		mesa.setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(1));
 				
 	}
 

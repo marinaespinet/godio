@@ -21,7 +21,7 @@ public class FacturasController {
 		return instancia;
 	}
 	
-	public void solicitarFactura(Integer numeroDeMesa) throws RestaurantException{
+	public Integer solicitarFactura(Integer numeroDeMesa) throws RestaurantException{
 		ENTITY.Pedido pedido = PedidosDAO.getInstancia().getPedidoAbiertoDeMesa(numeroDeMesa);
 		if(pedido!=null){
 			Long pendientes=verificarItemsPendientes(pedido.getPedido_id());
@@ -31,7 +31,7 @@ public class FacturasController {
 					PedidosDAO.getInstancia().grabarPedidoActualizado(pedido);
 					pedido.getPedido_mesa().setMesa_estado(EstadosDAO.getInstancia().buscarEstadoMesa(4));
 					LocationDAO.getInstancia().grabarMesaActualizada(pedido.getPedido_mesa());
-					crearFactura(pedido);
+					return crearFactura(pedido);
 			}
 			else throw new RestaurantException("Hay " + pendientes + " items pendientes de entrega");
 		}
@@ -43,7 +43,7 @@ public class FacturasController {
 		
 	}
 
-	public void crearFactura(ENTITY.Pedido pedido) {
+	public Integer crearFactura(ENTITY.Pedido pedido) {
 		Factura factura=new Factura();
 		llenarDatosDelPedido(factura, pedido);
 		Double monto=calcularMontoFactura(pedido);
@@ -51,6 +51,7 @@ public class FacturasController {
 		FacturasDAO.getInstancia().grabarFactura(factura);
 		System.out.println("Se ha creado la factura nro: " + factura.getFactura_id() + " con un monto total de: $" + factura.getMonto_total());
 		agregarItems(factura,pedido);
+		return factura.getFactura_id();
 	}
 
 private void llenarDatosDelPedido(Factura factura, ENTITY.Pedido pedido) {
