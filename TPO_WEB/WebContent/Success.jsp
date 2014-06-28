@@ -10,10 +10,11 @@
 
          <%
 	String message = (String)request.getAttribute("message");
-        String goTo = (String)request.getAttribute("goTo");	
+    String goTo = (String)request.getAttribute("goTo");	
 	%>
         <h1>Exito</h1>        
         <p><%=message%></p>
+       
         <br><br><br>
         <p>Por favor, toque continuar.</p>
         <br><br>
