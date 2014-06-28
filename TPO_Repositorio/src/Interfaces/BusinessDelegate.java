@@ -231,4 +231,14 @@ public class BusinessDelegate {
 		return null;
 	}
 	
+	public Integer getMozoDeLogin(Integer loginId) {
+		try {
+			return ri.getMozoDelLogin(loginId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

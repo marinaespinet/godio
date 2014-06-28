@@ -306,6 +306,12 @@ public class RestauranteController {
 		return unLogin.getUser().getSucursal().getSucursal_id();
 		
 	}
+
+	public Integer getMozoDeLogin(Integer loginId) throws RestaurantException {
+		ENTITY.Login unLogin = LoginDAO.getInstancia().getLogin(loginId);
+		ENTITY.Mozo mozo = LocationDAO.getInstancia().getMozoFromUserID(unLogin.getUser().getUser_id());
+		return mozo.getMozo_id();
+	}
 	
 	
 }
