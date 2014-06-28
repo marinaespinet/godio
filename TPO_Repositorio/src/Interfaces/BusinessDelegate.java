@@ -220,5 +220,15 @@ public class BusinessDelegate {
 	public void cerrarPedido(Integer mesaID) throws RemoteException{
 		ri.cerrarPedido(mesaID);
 	}
+
+	public Integer getSucursalDeLogin(Integer loginId) {
+		try {
+			return ri.getSucursalDelLogin(loginId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }

@@ -29,4 +29,5 @@ public interface RemoteInterface extends Remote {
 	public void agregarPlato (Integer plato, Integer cantidad, Integer suc, Integer mesa) throws RemoteException;
 	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException;
 	public void cerrarPedido(Integer mesaID) throws RemoteException;
+	public Integer getSucursalDelLogin(Integer loginId) throws RemoteException;
 }	

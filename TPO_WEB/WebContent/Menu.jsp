@@ -19,6 +19,10 @@
             submmenus = new HashMap<String,String>();
             submmenus.put("Abrir Mesa", "FormAbrirMesa.jsp");
             menus.put("Mesas", submmenus);
+            
+            submmenus = new HashMap<String,String>();
+            submmenus.put("Agregar Plato a Pedido", "Form_AgregarPlato.jsp");
+            menus.put("Comandas", submmenus);
                              
         	submmenus = new HashMap<String,String>();
             submmenus.put("Platos Comandas", "Form_PanelPlatos.jsp");            

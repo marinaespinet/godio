@@ -147,4 +147,9 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		PedidosController.getInstancia().cerrarPedido(mesaID);
 	}
 
+	@Override
+	public Integer getSucursalDelLogin(Integer loginId) throws RestaurantException {
+		return RestauranteController.getInstancia().getSucursalDeLogin(loginId);
+	}
+
 }
