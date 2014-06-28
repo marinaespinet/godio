@@ -1,5 +1,6 @@
 package Interfaces;
 
+import DTO.Insumo;
 import Exceptions.*;
 
 import java.net.MalformedURLException;
@@ -244,6 +245,16 @@ public class BusinessDelegate {
 	public Integer solicitarfactura(Integer mesa) {
 		try {
 			return ri.solicitarFactura(mesa);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+
+	public List<Insumo> getComprasARealizar() {
+		try {
+			return ri.getComprasARealizar();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
