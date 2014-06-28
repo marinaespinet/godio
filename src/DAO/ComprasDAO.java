@@ -20,7 +20,7 @@ public class ComprasDAO {
 	}
 	
 	
-	//Trae todos.
+	//Trae todos los que estan agotados o debajo del punto de reposicion
 	@SuppressWarnings("unchecked")
 	public List<Insumo> getComprasRealizar()
 	{
@@ -28,9 +28,7 @@ public class ComprasDAO {
 		List<Insumo> list = (List<Insumo>)session.createQuery(""
 				+ "SELECT i "				
 				+ "FROM Insumo i "
-				+ "JOIN i.stock s "
-				+ "WHERE s.cantidad <= i.punto_reposicion_cant "
-				+ " ").list();			
+				+ "WHERE i.estado>1 AND i.puede_compra_ind=true").list();			
 		
 		session.close();
 
