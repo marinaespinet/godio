@@ -217,8 +217,8 @@ public class BusinessDelegate {
 			return null;
 	}
 	
-	public void cerrarPedido(Integer mesaID) throws RemoteException{
-		ri.cerrarPedido(mesaID);
+	public void cerrarPedido(Integer mesa, Integer suc) throws RemoteException{
+		ri.cerrarPedido(mesa,suc);
 	}
 
 	public Integer getSucursalDeLogin(Integer loginId) {
@@ -239,6 +239,16 @@ public class BusinessDelegate {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Integer solicitarfactura(Integer mesa) {
+		try {
+			return ri.solicitarFactura(mesa);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	
 }
