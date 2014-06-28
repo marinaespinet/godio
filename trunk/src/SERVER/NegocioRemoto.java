@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.Date;
 import java.util.List;
 
+import BUSINESS.FacturasController;
 import BUSINESS.ProduccionController;
 import BUSINESS.ProductosController;
 import BUSINESS.RestauranteController;
@@ -143,8 +144,8 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return PedidosController.getInstancia().getMesasCodAbiertasUnIdMozo(mozoId);
 	}
 	
-	public void cerrarPedido(Integer mesaID) throws RemoteException{
-		PedidosController.getInstancia().cerrarPedido(mesaID);
+	public void cerrarPedido(Integer mesa,Integer suc) throws RemoteException{
+		PedidosController.getInstancia().cerrarPedido(mesa,suc);
 	}
 
 	@Override
@@ -155,6 +156,12 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	@Override
 	public Integer getMozoDelLogin(Integer loginId) throws RestaurantException {
 		return RestauranteController.getInstancia().getMozoDeLogin(loginId);
+	}
+
+	@Override
+	public Integer solicitarFactura(Integer mesa) throws RemoteException {
+		return  FacturasController.getInstancia().solicitarFactura(mesa);
+
 	}
 
 }

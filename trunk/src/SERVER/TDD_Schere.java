@@ -94,7 +94,7 @@ public class TDD_Schere {
 	public static boolean unitTestCerrarMesa() throws RestaurantException{
 		System.out.print("Test Cerrar Mesa: ");
 		
-		PedidosController.getInstancia().cerrarPedido(1);
+		PedidosController.getInstancia().cerrarPedido(1,1);
 		
 		System.out.println("OK");
 		return true;
