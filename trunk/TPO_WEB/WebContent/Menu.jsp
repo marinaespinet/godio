@@ -17,12 +17,12 @@
             menus.put("Stock ", submmenus);
             
             submmenus = new HashMap<String,String>();
-            submmenus.put("Abrir Mesa", "FormAbrirMesa.jsp");
+            submmenus.put("Abrir Mesa", "Form_AbrirMesa.jsp");
             menus.put("Mesas", submmenus);
             
             submmenus = new HashMap<String,String>();
             submmenus.put("Agregar Plato a Pedido", "Form_AgregarPlato.jsp");
-            menus.put("Comandas", submmenus);
+            menus.put("Pedidos", submmenus);
                              
         	submmenus = new HashMap<String,String>();
             submmenus.put("Platos Comandas", "Form_PanelPlatos.jsp");            
