@@ -300,6 +300,12 @@ public class RestauranteController {
 		
 		return areas;
 	}
+
+	public Integer getSucursalDeLogin(Integer loginId) {
+		ENTITY.Login unLogin = LoginDAO.getInstancia().getLogin(loginId);
+		return unLogin.getUser().getSucursal().getSucursal_id();
+		
+	}
 	
 	
 }

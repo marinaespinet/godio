@@ -75,6 +75,39 @@ public class Controller3 extends HttpServlet {
         		jspPage = "/Error.jsp";   
         	}
           }
+          else if ("doAgregarPlato".equals(action))
+          {
+
+        	try{	        		    
+        		Integer loginId = (Integer)request.getSession().getAttribute("loginId");  
+        		if(loginId == null ) loginId = 0;
+
+        	    if ( loginId == -1 || loginId == 0) {
+        	    	response.sendRedirect("./Login.jsp");}
+        	    
+        	    
+        	    Integer nroPlato = Integer.parseInt(request.getParameter("nroPlato"));
+        	    Integer cant = Integer.parseInt(request.getParameter("cant"));
+        	    Integer mesa = Integer.parseInt(request.getParameter("mesa"));
+        	    Integer sucursal = BusinessDelegate.getInstancia().getSucursalDeLogin(loginId);
+        	    
+        	    BusinessDelegate.getInstancia().agregarPlato(nroPlato,cant,sucursal,mesa);
+        	    
+        	    request.setAttribute("message", "Se agrego el plato al pedido");
+        		request.setAttribute("goTo", "index.jsp");
+        		jspPage = "/Success.jsp";  
+        		
+        	} catch (RestaurantException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+
+        	} catch (RemoteException re) {        
+        		request.setAttribute("message",re.getMessage());
+        		request.setAttribute("goTo", "index.jsp");		    
+        		jspPage = "/Error.jsp";   
+        	}
+          }
           else if ("FormStockTransfer".equals(action))
           {
               //String id = request.getParameter("id");
