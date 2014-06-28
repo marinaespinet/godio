@@ -19,9 +19,9 @@ public class ComprasController {
 		return instancia;
 	}
 	
-	public List<DTO.Insumo> getListadoDeComprasARealizar(){
+	public ArrayList<DTO.Insumo> getListadoDeComprasARealizar(){
 		List<Insumo> insumos = ComprasDAO.getInstancia().getComprasRealizar();
-		List<DTO.Insumo> insumosDTO  = new ArrayList<DTO.Insumo>();
+		ArrayList<DTO.Insumo> insumosDTO  = new ArrayList<DTO.Insumo>();
 		
 		for(Insumo insumo: insumos){
 			insumosDTO.add( ProductosController.getInstancia().getInsumoDTO(insumo));			
