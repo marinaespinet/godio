@@ -10,19 +10,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Agregar plato a pedido</title>
+<title>Abrir Mesa</title>
         <script type="text/javascript">
             function validarForm(formulario) {
-              if(formulario.nroPlato.value.length ==0 ) { 
-                formulario.nroPlato.focus();   
-                alert('Debe ingresar el plato'); 
+              if(formulario.cantidad.value.length ==0 ) { 
+                formulario.cantidad.focus();   
+                alert('Debe ingresar la cantidad de comensales'); 
                 return false; 
               }             
-              if(formulario.cant.value.length==0) { //comprueba que no esté vacío
-                formulario.cant.focus();
-                alert('Debe ingresar la cantidad');
-                return false;
-              }   
               return true;
             }
         </script>
@@ -32,40 +27,21 @@
 
 
 <%
-		List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(4);
+		//List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(4);
 %>
 
-	<form class="formulario" id="formulario" action="Controller3?action=doAgregarPlato" method="POST"
+	<form class="formulario" id="formulario" action="Controller3?action=doAbrirMesa" method="POST"
 			onsubmit="return validarForm(this);">
 	<table cellspacing="3" cellpadding="3" border="1" width="60%">	
 	<input type="hidden" name="id" value="1">
-	
-
-	<td><b>Mesa:</b> 
-		  <td>
-		  	  <select name="mesa" form="formulario">
-		  	<%for(Integer elId: lasMesasConPedidosDelMozo) {  
-		  		%><option value="<%=elId %>"><%=elId%></option><% } 
-		  	%>
-		</select>
-		  
-		  </td>
-		</tr>
-		
-	
-	  </td>
-	</tr>
 
 	<tr>
-		<td><b>Nro. Plato a agregar:</b> 
-	  <td><input type="text" size="5" name="nroPlato" value="1"></td>
+		<td><b>Cantidad de comensales:</b> 
+	  <td><input type="text" size="5" name="cantidad" value="1"></td>
 	</tr>
+	
 	<tr>
-		<td><b>Cant:</b> 
-	  <td><input type="text" size="5" name="cant" value="2"></td>
-	</tr>
-	<tr>
-		<td colspan="2"><input type="submit" value="Agregar plato"></td>
+		<td colspan="2"><input type="submit" value="Abrir mesa"></td>
 	</tr>
 	</table>
 	</form>
