@@ -20,7 +20,7 @@ public class TDD_Schere {
 		//unitTestUsuarios();
 		//unitTestLogin();
 		//unitTestPlanProd();
-		//unitTestComprasRealizar();
+		unitTestComprasRealizar();
 		//unitTestAgregarItemPedido();
 		//unitTestAddPlanProduccion();
 		//unitTestCerrarMesa();
@@ -28,7 +28,7 @@ public class TDD_Schere {
 		//unitTestTransferStock();
 		//unitTestAddStock();
 		//unitTestLogin();
-		unitTestGetMesasAbiertasUnLogin(24);
+		//unitTestGetMesasAbiertasUnLogin(24);
 	}
 
 	private static void unitTestGetMesasAbiertasUnLogin(Integer log) throws RestaurantException{
