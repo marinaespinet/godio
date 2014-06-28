@@ -4,6 +4,7 @@
 <%      
     HashMap<String,HashMap<String,String>> menus = new HashMap<String,HashMap<String,String>>();
     HashMap<String,String> submmenus;
+    HashMap<String,String> submmenus2;
  %>
     <ul id="menu">
  <%
@@ -12,14 +13,15 @@
         <li><a href="index.jsp">Inicio</a></li>
  <%          
         
-            submmenus = new HashMap<String,String>();
-            submmenus.put("Pedido Stock", "Form_StockTransfer.jsp");            
-            menus.put("Stock ", submmenus);
             
             submmenus = new HashMap<String,String>();
             submmenus.put("Abrir Mesa", "Form_AbrirMesa.jsp");
             menus.put("Mesas", submmenus);
             
+            submmenus = new HashMap<String,String>();
+            submmenus.put("Cerrar mesa", "Form_CerrarMesa.jsp");            
+            menus.put("Mesas ", submmenus);
+                                   
             submmenus = new HashMap<String,String>();
             submmenus.put("Agregar Plato a Pedido", "Form_AgregarPlato.jsp");
             menus.put("Pedidos", submmenus);
@@ -27,6 +29,14 @@
         	submmenus = new HashMap<String,String>();
             submmenus.put("Platos Comandas", "Form_PanelPlatos.jsp");            
             menus.put("Comandas", submmenus);
+            
+            submmenus = new HashMap<String,String>();
+            submmenus.put("Pedido Stock", "Form_StockTransfer.jsp");            
+            menus.put("Stock ", submmenus);
+            
+        	submmenus = new HashMap<String,String>();
+            submmenus.put("Solicitar factura", "Form_SolicitarFactura.jsp");            
+            menus.put("Facturas", submmenus);
               
             submmenus = new HashMap<String,String>();
             submmenus.put("Nuevo Plan", "FormPlanProd.jsp");
