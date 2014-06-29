@@ -35,7 +35,7 @@ public class FacturasController {
 			}
 			else throw new RestaurantException("Hay " + pendientes + " items pendientes de entrega");
 		}
-		else throw new RestaurantException("No se encontró un pedido abierto para la mesa: " + numeroDeMesa);
+		else throw new RestaurantException("No se encontró un pedido abierto para la mesa: " + numeroDeMesa);		
 	}	
 
 	private Long verificarItemsPendientes(Integer pedido_id) {
@@ -92,6 +92,14 @@ public DTO.Factura getFacturaDTO(Factura facEnt,List<Object[]> items) {
 	facDTO.setMozo_nombre(facEnt.getFactura_mozo().getName());
 	ArrayList<DTO.Item_Factura> itemsDTO = getItemsDTO(items);
 	facDTO.setItems(itemsDTO);
+	return facDTO;
+}
+
+
+public DTO.Factura getFacturaDTO(Integer nro) {
+	ENTITY.Factura facEnt = FacturasDAO.getInstancia().getFactura(nro);
+	List<Object[]> items = FacturasDAO.getInstancia().getItems(nro);
+	DTO.Factura facDTO = FacturasController.getInstancia().getFacturaDTO(facEnt,items);
 	return facDTO;
 }
 

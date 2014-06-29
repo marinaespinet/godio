@@ -23,7 +23,7 @@ import Exceptions.RestaurantException;
 public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.RemoteInterface {
 	private static final long serialVersionUID = 4516149167297806966L;
 	
-	protected NegocioRemoto() throws RemoteException {
+	protected NegocioRemoto() throws RemoteException, RestaurantException  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -31,7 +31,7 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	@Override
 	public void transferenciaStockByAreaSuc(Integer prodID, Integer loginID,
 			Integer areaId, Integer sucID, String motivo, Integer cant,
-			String lote) throws RemoteException {
+			String lote) throws RemoteException, RestaurantException  {
 		// TODO Auto-generated method stub
 		StockController.getInstancia().transferenciaStockByAreaSuc(prodID, loginID, areaId, sucID, motivo, cant, lote);
 		
@@ -39,59 +39,59 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	@Override
 	public void transferenciaStockByLoginId(Integer prodID, Integer loginID,
 			 String motivo, Integer cant,
-			String lote) throws RemoteException {
+			String lote) throws RemoteException, RestaurantException  {
 		// TODO Auto-generated method stub
 		StockController.getInstancia().transferenciaStockByLoginId(prodID, loginID, motivo, cant, lote);		
 	}
 	
 	//TODO: Agregar todos los metodos de TODOS los CONTROLLERS
 	
-	public List<DTO.Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RemoteException{
+	public List<DTO.Reclamo> obtenerItemsParaReclamo(Integer idMesa) throws RemoteException, RestaurantException {
 	
 		return PedidosController.getInstancia().obtenerItemsParaReclamo(idMesa);
 		
 	}
 	
-	public void registrarReclamo(List<DTO.Reclamo> losItemsParaReclamos) throws RemoteException{
+	public void registrarReclamo(List<DTO.Reclamo> losItemsParaReclamos) throws RemoteException, RestaurantException {
 		
 		PedidosController.getInstancia().registrarReclamo(losItemsParaReclamos);
 		
 	}
 	
-	public List<DTO.Stock> getStockPorDeposito (Integer depoID) throws RemoteException{
+	public List<DTO.Stock> getStockPorDeposito (Integer depoID) throws RemoteException, RestaurantException {
 		
 		return StockController.getInstancia().getStockPorDeposito(depoID);
 		
 	}
 	
-	public List<DTO.Item_Pedido> getItemPedidosPendientesDTO (Integer areaID, Integer sucID) throws RemoteException{
+	public List<DTO.Item_Pedido> getItemPedidosPendientesDTO (Integer areaID, Integer sucID) throws RemoteException, RestaurantException {
 		
 		return PedidosController.getInstancia().getItemPedidosPendientesDTO(areaID, sucID);	
 	
 	}
 	
 	
-	public void marcarItemPedidoPreparado(List<DTO.Item_Pedido> losItemsPedidoPendientesDTO) throws RemoteException {
+	public void marcarItemPedidoPreparado(List<DTO.Item_Pedido> losItemsPedidoPendientesDTO) throws RemoteException, RestaurantException  {
 		
 		PedidosController.getInstancia().marcarItemPedidoPreparado(losItemsPedidoPendientesDTO);
 		
 	}
 	
 	
-	public void setRecepcionCompra(DTO.RecepcionCompra laRecepcion) throws RemoteException{
+	public void setRecepcionCompra(DTO.RecepcionCompra laRecepcion) throws RemoteException, RestaurantException {
 		
 		ComprasController.getInstancia().setRecepcionCompra(laRecepcion);
 		
 	}
 	
-	public void liquidarComisionesMozos(Date diaLiquidado, Integer sucID) throws RemoteException{
+	public void liquidarComisionesMozos(Date diaLiquidado, Integer sucID) throws RemoteException, RestaurantException {
 		
 		CajaController.getInstancia().liquidarComisionesMozos(diaLiquidado, 1);
 		
 	}
 	
 	
-	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(Integer depoID) throws RemoteException{
+	public List<DTO.Movimiento_Stock> getMovimientosDeStockPorDeposito(Integer depoID) throws RemoteException, RestaurantException {
 		
 		return StockController.getInstancia().getMovimientosDeStockPorDeposito(depoID);
 		
@@ -100,19 +100,19 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	
 	
 	
-	public List<DTO.Producto> getProductos() throws RemoteException {
+	public List<DTO.Producto> getProductos() throws RemoteException, RestaurantException  {
 		return ProductosController.getInstancia().getProductos();
 	}	
-	public List<DTO.Semielaborado> getSemielaborados() throws RemoteException {
+	public List<DTO.Semielaborado> getSemielaborados() throws RemoteException, RestaurantException  {
 		return ProductosController.getInstancia().getSemielaborados();
 	}	
 	
-	public List<DTO.Area> getAreas() throws RemoteException {
+	public List<DTO.Area> getAreas() throws RemoteException, RestaurantException  {
 		return RestauranteController.getInstancia().getAreas();
 	}
 
 	@Override
-	public Integer userLogin(String user) throws RemoteException {
+	public Integer userLogin(String user) throws RemoteException, RestaurantException  {
 		return UsuariosController.getInstancia().tryLogin(user, "");
 	}
 	
@@ -120,12 +120,12 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 		return ProduccionController.getInstancia().addTareaPlanProduccion(semiID, cant, loginID);
 	}
 
-	public Integer crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException {
+	public Integer crearOperacionCaja(Integer operacionId, Integer sucId) throws RemoteException, RestaurantException  {
 		return CajaController.getInstancia().crearOperacionCaja(operacionId, sucId);
 		
 	}
 	
-	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException {
+	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId) throws RemoteException, RestaurantException  {
 		
 		CajaController.getInstancia().agregarItemsCaja(item,opCajaId);
 		
@@ -142,11 +142,11 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	}
 
 	@Override
-	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException {
+	public List<Integer> getMesasConPedidosAbiertosPorMozo(Integer mozoId) throws RemoteException, RestaurantException  {
 		return PedidosController.getInstancia().getMesasCodAbiertasUnIdMozo(mozoId);
 	}
 	
-	public void cerrarPedido(Integer mesa,Integer suc) throws RemoteException{
+	public void cerrarPedido(Integer mesa,Integer suc) throws RemoteException, RestaurantException {
 		PedidosController.getInstancia().cerrarPedido(mesa,suc);
 	}
 
@@ -161,27 +161,30 @@ public class NegocioRemoto extends UnicastRemoteObject implements Interfaces.Rem
 	}
 
 	@Override
-	public Integer solicitarFactura(Integer mesa) throws RemoteException {
+	public Integer solicitarFactura(Integer mesa) throws RemoteException, RestaurantException  {
 		return  FacturasController.getInstancia().solicitarFactura(mesa);
 
 	}
 
 	@Override
-	public List<Insumo> getComprasARealizar() throws RemoteException {
+	public List<Insumo> getComprasARealizar() throws RemoteException, RestaurantException  {
 		return ComprasController.getInstancia().getListadoDeComprasARealizar();
 	}
 
 	@Override
-	public Integer crearOrdenDeCompra(Integer proveedorId) throws RemoteException {
+	public Integer crearOrdenDeCompra(Integer proveedorId) throws RemoteException, RestaurantException  {
 		return ComprasController.getInstancia().crearOrdenDeCompra(proveedorId);
 	}
 
 
 	public void agregarItemOC(Item_Compra item, Integer oc)
-			throws RemoteException {
+			throws RemoteException, RestaurantException  {
 		ComprasController.getInstancia().agregarItemsCompra(item, oc);
 		
 	}
-	
+
+	public DTO.Factura getFacturaDTO(Integer nro) throws RemoteException, RestaurantException {
+		return FacturasController.getInstancia().getFacturaDTO(nro);
+	}
 
 }
