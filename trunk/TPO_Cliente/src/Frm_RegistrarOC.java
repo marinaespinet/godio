@@ -130,7 +130,7 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 		if(jLabelProv == null) {
 			jLabelProv = new JLabel();
 			jLabelProv.setText("Proveedor: ");
-			jLabelProv.setBounds(473, 15, 80, 16);
+			jLabelProv.setBounds(40, 55, 100, 22);
 		}
 		return jLabelProv;
 	}
@@ -139,7 +139,7 @@ public class Frm_RegistrarOC extends javax.swing.JFrame {
 		if(jTextFieldProv == null) {
 			jTextFieldProv = new JTextField();
 			jTextFieldProv.setText("");
-			jTextFieldProv.setBounds(556, 12, 25, 23);
+			jTextFieldProv.setBounds(140, 55, 100, 22);
 			jTextFieldProv.setEditable(true);
 		}
 		return jTextFieldProv;
