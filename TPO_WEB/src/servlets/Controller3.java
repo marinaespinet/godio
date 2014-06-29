@@ -118,9 +118,8 @@ public class Controller3 extends HttpServlet {
         	    
         	    Integer mesa = Integer.parseInt(request.getParameter("mesa"));
         	    Integer factura = BusinessDelegate.getInstancia().solicitarfactura(mesa);
-        	    request.setAttribute("message", "Se creó la factura nro: "+factura+" para la mesa "+mesa);
-        	    request.setAttribute("goTo", "index.jsp");
-        		jspPage = "/Success.jsp";  
+        	    request.setAttribute("numero", factura);        	    
+        		jspPage = "/View_Factura.jsp?numero=" + factura.toString();  
         		
         	} catch (RestaurantException re) {        
         		request.setAttribute("message",re.getMessage());

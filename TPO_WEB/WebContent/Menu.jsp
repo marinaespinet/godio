@@ -13,11 +13,12 @@
         <li><a href="index.jsp">Inicio</a></li>
  <%          
         
-            
-            submmenus = new HashMap<String,String>();
-            submmenus.put("Abrir Mesa", "Form_AbrirMesa.jsp");
-            menus.put("Mesas", submmenus);
-            
+ 
+			 
+			 submmenus = new HashMap<String,String>();
+			 submmenus.put("Abrir Mesa", "Form_AbrirMesa.jsp");
+			 menus.put("Mesas", submmenus);
+			            
             submmenus = new HashMap<String,String>();
             submmenus.put("Cerrar mesa", "Form_CerrarMesa.jsp");            
             menus.put("Mesas ", submmenus);
