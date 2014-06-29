@@ -147,7 +147,7 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 		if(jLabelOC == null) {
 			jLabelOC = new JLabel();
 			jLabelOC.setText("Compra: ");
-			jLabelOC.setBounds(473, 15, 50, 16);
+			jLabelOC.setBounds(40, 45, 100, 22);
 		}
 		return jLabelOC;
 	}
@@ -156,10 +156,20 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 		if(jTextFieldOC == null) {
 			jTextFieldOC = new JTextField();
 			jTextFieldOC.setText("");
-			jTextFieldOC.setBounds(556, 12, 25, 23);
+			jTextFieldOC.setBounds (150, 45, 100, 22);
 			jTextFieldOC.setEditable(true);
 		}
 		return jTextFieldOC;
+	}
+	
+	private Integer getjTextFieldOC() {
+		if(jTextFieldOC == null) {
+			jTextFieldOC = new JTextField();
+			jTextFieldOC.setText("");
+			jTextFieldOC.setBounds (150, 45, 100, 22);
+			jTextFieldOC.setEditable(true);
+		}
+		return Integer.parseInt(jTextFieldOC.getText().toString());
 	}
 	
 	private JButton getJButton() {
@@ -171,9 +181,12 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 				public void actionPerformed(ActionEvent evt) {
 					System.out.println("jButton.actionPerformed, event="+evt);
 					try {
-						DTO.Item_Compra item =new DTO.Item_Compra(Integer.parseInt(getJTextFieldProd().toString()), Integer.parseInt(getjTextFieldCantidad().toString()), Double.parseDouble(getJTextFieldPrecio().toString()));
-						BusinessDelegate.getInstancia().agregarItemOC(item, Integer.parseInt(getJTextFieldOC().toString()));
-						jTextFieldNotificador.setText("Se agrego el plato al pedido ");
+						Integer prod = getjTextFieldProd();
+						Integer cant = getJTextFieldCantidad();
+						Double precio = getjTextFieldPrecio();
+						DTO.Item_Compra item =new DTO.Item_Compra(prod, cant, precio);
+						BusinessDelegate.getInstancia().agregarItemOC(item, getjTextFieldOC());
+						jTextFieldNotificador.setText("Se agrego el item a la compra");
 					} catch (RemoteException e) {
 						jTextFieldNotificador.setText(e.getMessage());
 					}
@@ -187,7 +200,7 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 		if(jLabelPrecio == null) {
 			jLabelPrecio = new JLabel();
 			jLabelPrecio.setText("Precio");
-			jLabelPrecio.setBounds(473, 50, 50, 23);
+			jLabelPrecio.setBounds(280, 75, 100, 22);
 		}
 		return jLabelPrecio;
 	}
@@ -196,35 +209,57 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 		if(jTextFieldPrecio == null) {
 			jTextFieldPrecio = new JTextField();
 			jTextFieldPrecio.setText("");
-			jTextFieldPrecio.setBounds(556,50,30,16);
+			jTextFieldPrecio.setBounds(390,75,100,22);
 			jTextFieldPrecio.setEditable(true);
 		}
 		return jTextFieldPrecio;
 	}
 	
+	private Double getjTextFieldPrecio() {
+		if(jTextFieldPrecio == null) {
+			jTextFieldPrecio = new JTextField();
+			jTextFieldPrecio.setText("");
+			jTextFieldPrecio.setBounds(390,75,100,22);
+			jTextFieldPrecio.setEditable(true);
+		}
+		return Double.parseDouble(jTextFieldPrecio.getText());
+	}
 		
 	private JLabel getJLabelIdProd() {
 		if(jLabelIdProd == null) {
 			jLabelIdProd = new JLabel();
 			jLabelIdProd.setText("Producto: ");
-			jLabelIdProd.setBounds(187, 61, 120, 16);
+			jLabelIdProd.setBounds(40, 75, 100, 22);
 		}
 		return jLabelIdProd;
 	}
 	
 	private JTextField getJTextFieldProd() {
-		if(jTextFieldProd == null) {
-			jTextFieldProd  = new JTextField();
-			jTextFieldProd .setBounds(307, 58, 84, 23);
+	//Integer getJTextFieldProd(){
+			if(jTextFieldProd == null) {
+				jTextFieldProd = new JTextField();
+				jTextFieldProd.setText("1");
+				jTextFieldProd.setBounds (150, 75, 100, 22);
+				jTextFieldProd.setEditable(true);
+			}
+			return jTextFieldProd;
 		}
-		return jTextFieldProd ;
-	}
+	private Integer getjTextFieldProd() {
+				if(jTextFieldProd == null) {
+					jTextFieldProd = new JTextField();
+					jTextFieldProd.setText("1");
+					jTextFieldProd.setBounds (150, 75, 100, 22);
+					jTextFieldProd.setEditable(true);
+				}
+				return Integer.parseInt(jTextFieldProd.getText().toString());
+			}
+	
 
 	public JLabel getjLabelCantidad() {
 		if(jLabelCantidad == null) {
 			jLabelCantidad = new JLabel();
 			jLabelCantidad.setText("Cantidad: ");
-			jLabelCantidad.setBounds(187, 90, 120, 16);
+			jLabelCantidad.setBounds(280, 45, 100, 22);
 		}
 		return jLabelCantidad;
 	}
@@ -236,9 +271,17 @@ public class Frm_AgregarItemOC extends javax.swing.JFrame {
 	public JTextField getjTextFieldCantidad() {
 		if(jTextFieldCantidad == null) {
 			jTextFieldCantidad = new JTextField();
-			jTextFieldCantidad.setBounds(307, 90, 84, 23);
+			jTextFieldCantidad.setBounds (390, 45, 100, 22);
 		}
 		return jTextFieldCantidad;
+	}
+
+	private Integer getJTextFieldCantidad() {
+		if(jTextFieldCantidad == null) {
+			jTextFieldCantidad = new JTextField();
+			jTextFieldCantidad.setBounds (390, 45, 100, 22);
+		}
+		return Integer.parseInt(jTextFieldCantidad.getText());
 	}
 
 	public void setjTextFieldCantidad(JTextField jTextFieldCantidad) {
