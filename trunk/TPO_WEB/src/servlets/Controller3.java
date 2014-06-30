@@ -178,9 +178,7 @@ public class Controller3 extends HttpServlet {
         	    
         	    BusinessDelegate.getInstancia().agregarPlato(nroPlato,cant,sucursal,mesa);
         	    
-        	    request.setAttribute("message", "Se agrego el plato al pedido");
-        		request.setAttribute("goTo", "index.jsp");
-        		jspPage = "/Success.jsp";  
+        		jspPage = "/Form_AgregarPlato.jsp?mesa=" + mesa.toString();  
         		
         	} catch (RestaurantException re) {        
         		request.setAttribute("message",re.getMessage());
