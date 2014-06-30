@@ -14,36 +14,25 @@
 
 <%
 		//List<DTO.Producto> productos=  BusinessDelegate.getInstancia().getProductos();
-		List<DTO.Semielaborado> semis=  BusinessDelegate.getInstancia().getSemielaborados();
-		
-		List<DTO.Item_Pedido> losItemsPedidoPendientesDTO = BusinessDelegate.getInstancia().getItemPedidosPendientesDTO(1,1);
 %>
 
-<table border="1">
-<thead>
-<tr bgcolor="yellow">
-	<td>Plato</td>
-	<td>Cant</td>
-	<td>Accion</td>
-	</tr>
-</thead>
-<% for(Item_Pedido item : losItemsPedidoPendientesDTO ) { %>
+<form class="formulario" id="formulario" action="Controller3?action=doCerrarMesa" method="POST"
+			onsubmit="return validarForm(this);">
+	<table cellspacing="3" cellpadding="3" border="1" width="60%">	
+	<input type="hidden" name="id" value="1">
+
 	<tr>
-		<td>
-			<%=item.getDescripcionPlatoContenido() %>
-		</td>	
-		<td>
-			<%=item.getCantidad() %></a>
-		</td>	
-		<td>
-			<a href="Controller3?action=doSetPlatoListo&itemPedidoID=<%=item.getItem_id()%>" target="_self">Listo</a>
-		</td>	
+		<td><b>Seleccione mesa:</b> 
+	  <td><input type="text" size="5" name="mesa" value="1"></td>
 	</tr>
-<% }  %>
-</table>	
-	<P>
+	
+	<tr>
+		<td colspan="2"><input type="submit" value="Cerrar mesa"></td>
+	</tr>
+	</table>
+	</form>
 	<p>
-	 <a href="index.jsp" target="_self">volver</a> 
-  
-  
+	<p>
+	<a href="index.jsp" target="_self">volver</a> 
+
 </body></html>
