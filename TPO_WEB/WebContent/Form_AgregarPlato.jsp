@@ -32,6 +32,9 @@
 
 
 <%
+	Integer mesaDefault = Integer.parseInt(request.getParameter("mesa").toString());
+	String select="";
+
 		List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(4);
 %>
 
@@ -44,8 +47,10 @@
 	<td><b>Mesa:</b> 
 		  <td>
 		  	  <select name="mesa" form="formulario">
-		  	<%for(Integer elId: lasMesasConPedidosDelMozo) {  
-		  		%><option value="<%=elId %>"><%=elId%></option><% } 
+		  	<%for(Integer elId: lasMesasConPedidosDelMozo) {
+	  			if(mesaDefault.intValue()==elId.intValue()) select="selected"; else select=""; 
+	  			
+		  		%><option value="<%=elId %>" <%=select %>><%=elId%></option><% } 
 		  	%>
 		</select>
 		  
@@ -62,7 +67,7 @@
 	</tr>
 	<tr>
 		<td><b>Cant:</b> 
-	  <td><input type="text" size="5" name="cant" value="2"></td>
+	  <td><input type="text" size="5" name="cant" value="1"></td>
 	</tr>
 	<tr>
 		<td colspan="2"><input type="submit" value="Agregar plato"></td>

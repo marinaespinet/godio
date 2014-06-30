@@ -26,8 +26,9 @@
 <body>
 
 
-<%
-		//List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(4);
+<%		
+		Integer mozoID = BusinessDelegate.getInstancia().getMozoDeLogin(loginId);
+		List<Integer> lasMesasConPedidosDelMozo = BusinessDelegate.getInstancia().getMesasConPedidosAbiertosPorMozo(mozoID);
 %>
 
 	<form class="formulario" id="formulario" action="Controller3?action=doSolicitarFactura" method="POST"
@@ -36,8 +37,18 @@
 	<input type="hidden" name="id" value="1">
 
 	<tr>
-		<td><b>Numero de mesa:</b> 
-	  <td><input type="text" size="5" name="mesa" value="1"></td>
+		<td><b>Numero de mesa abierta:</b> 
+	  <td>
+	  	<select name="mesa" form="formulario">
+		  	<%for(Integer mesa: lasMesasConPedidosDelMozo) { 
+		  			%>
+			  <option value="<%=mesa.toString() %>"><%=mesa.toString()%></option>
+		 <% } %>
+		</select>
+		
+	  <!-- <input type="text" size="5" name="mesa" value="1">  -->
+	  
+	  </td>
 	</tr>
 	
 	<tr>
