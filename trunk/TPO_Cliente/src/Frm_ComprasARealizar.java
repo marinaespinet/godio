@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
@@ -53,7 +54,7 @@ public class Frm_ComprasARealizar extends javax.swing.JFrame {
 	private JTextField jTextFieldSucursal;
 	//private JTextField jTextFieldDepoId;
 	//private JLabel jLabelIdDepo;
-	private JTextField jTextFieldResultados;
+	private JTextArea jTextAreaResultados;
 	private JLabel jLabelMes;
 	private JButton jButtonCompras;
 	private JLabel jLabelSucursal;
@@ -114,7 +115,7 @@ public class Frm_ComprasARealizar extends javax.swing.JFrame {
 						try {
 							List <DTO.Insumo> listadoCompras = BusinessDelegate.getInstancia().getComprasARealizar();
 							for(DTO.Insumo unaCompra : listadoCompras){
-								jTextFieldResultados.setText(unaCompra.getName());
+								jTextAreaResultados.append(unaCompra.getName() + "\n");
 							}
 							
 							
@@ -131,11 +132,11 @@ public class Frm_ComprasARealizar extends javax.swing.JFrame {
 				jLabelMes.setBounds(116, 65, 28, 16);
 			}
 			{
-				jTextFieldResultados = new JTextField();
-				getContentPane().add(jTextFieldResultados);
-				jTextFieldResultados.setBounds(26, 180, 644, 228);
-				jTextFieldResultados.setEditable(false);
-				jTextFieldResultados.setVisible(true);
+				jTextAreaResultados = new JTextArea();
+				getContentPane().add(jTextAreaResultados);
+				jTextAreaResultados.setBounds(26, 180, 644, 228);
+				jTextAreaResultados.setEditable(false);
+				jTextAreaResultados.setVisible(true);
 			}
 
 			pack();

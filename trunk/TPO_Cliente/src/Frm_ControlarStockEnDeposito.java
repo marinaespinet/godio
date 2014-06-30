@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
@@ -53,7 +54,7 @@ public class Frm_ControlarStockEnDeposito extends javax.swing.JFrame {
 	private JTextField jTextFieldSucursal;
 	private JTextField jTextFieldDepoId;
 	private JLabel jLabelIdDepo;
-	private JTextField jTextFieldResultados;
+	private JTextArea jTextAreaResultados;
 	private JLabel jLabelMes;
 	private JButton jButtonLiquidar;
 	private JLabel jLabelSucursal;
@@ -114,9 +115,9 @@ public class Frm_ControlarStockEnDeposito extends javax.swing.JFrame {
 						try {
 							List <DTO.Stock> elStock = BusinessDelegate.getInstancia().getStockPorDeposito(1);
 							for(DTO.Stock unStock : elStock){
-								jTextFieldResultados.setText("En la sucursal 1 hay " + 
+								jTextAreaResultados.append("En la sucursal 1 hay " + 
 															unStock.getCantidad() + " " + unStock.getNombreProducto() + " que vence el dia " 
-															+ unStock.getFecha_vencimiento_producto_dt());
+															+ unStock.getFecha_vencimiento_producto_dt() + "\n");
 								
 							}
 							
@@ -134,10 +135,10 @@ public class Frm_ControlarStockEnDeposito extends javax.swing.JFrame {
 				jLabelMes.setBounds(116, 65, 28, 16);
 			}
 			{
-				jTextFieldResultados = new JTextField();
-				getContentPane().add(jTextFieldResultados);
-				jTextFieldResultados.setBounds(26, 180, 644, 228);
-				jTextFieldResultados.setEditable(false);
+				jTextAreaResultados = new JTextArea();
+				getContentPane().add(jTextAreaResultados);
+				jTextAreaResultados.setBounds(26, 180, 644, 228);
+				jTextAreaResultados.setEditable(false);
 			}
 			{
 				jLabelIdDepo = new JLabel();
