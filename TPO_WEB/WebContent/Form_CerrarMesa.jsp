@@ -13,8 +13,7 @@
 
 
 <%
-		//List<DTO.Producto> productos=  BusinessDelegate.getInstancia().getProductos();
-%>
+		%>
 
 <form class="formulario" id="formulario" action="Controller3?action=doCerrarMesa" method="POST"
 			onsubmit="return validarForm(this);">
