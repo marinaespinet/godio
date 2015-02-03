@@ -20,8 +20,7 @@ public class CajaController {
 	
 	public Integer crearOperacionCaja(int operacion_id, int sucursal)throws RestaurantException{
 		Date hoy = new java.sql.Date(System.currentTimeMillis());
-		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);
-		
+		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);	
 		if (cantOperacionesHoy==0){
 			Operacion_Caja opCaja = new Operacion_Caja();
 			opCaja.setFecha_dt(hoy);
