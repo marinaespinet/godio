@@ -21,6 +21,7 @@ public class CajaController {
 	public Integer crearOperacionCaja(int operacion_id, int sucursal)throws RestaurantException{
 		Date hoy = new java.sql.Date(System.currentTimeMillis());
 		Long cantOperacionesHoy=OperacionCajaDAO.getInstancia().verificarOperacionCaja(hoy,operacion_id, sucursal);
+		
 		if (cantOperacionesHoy==0){
 			Operacion_Caja opCaja = new Operacion_Caja();
 			opCaja.setFecha_dt(hoy);
@@ -35,7 +36,7 @@ public class CajaController {
 			
 			return opId;
 		}
-		else throw new RestaurantException("Ya existe una operacion de caja del tipo seleccionado para el día de hoy");
+		else throw new RestaurantException("Ya existe una operacion de caja del tipo seleccionado para el dåƒ˜ de hoy");
 	}
 	
 	public void agregarItemsCaja(DTO.Item_Operacion_Caja item, Integer opCajaId){
@@ -48,7 +49,7 @@ public class CajaController {
 		Operacion_Caja op = OperacionCajaDAO.getInstancia().getOperacion(operacion);
 		Double monto = OperacionCajaDAO.getInstancia().calcularMonto(operacion);
 		op.setRecaudacion(monto);
-		System.out.println("Calculé el monto: " + monto);
+		System.out.println("Calculï¿½ el monto: " + monto);
 		OperacionCajaDAO.getInstancia().grabarOperacionCaja(op);
 	}
 
